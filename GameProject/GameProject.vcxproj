@@ -153,6 +153,8 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameException.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -160,8 +162,10 @@
     <ClInclude Include="define.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameException.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="ISingleton.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

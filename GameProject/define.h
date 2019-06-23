@@ -2,6 +2,7 @@
 // Debug
 #define DEBUG
 #define SHOW_CONSOLE
+#define SET_TITLE_AS_FPS
 
 // Windows
 #define WIN_CLASS_NAME L"GameUIT"

@@ -1,5 +1,7 @@
 #pragma once
 #include "Window.h"
+#include "Timer.h"
+#include "SceneManager.h"
 
 class Game : ISingleton {
 private:
@@ -9,8 +11,10 @@ private:
 	LPD3DXSPRITE spriteHandler = NULL;
 	LPD3DXLINE lineDraw = NULL;
 	LPD3DXFONT fontDraw = NULL;
+
 	Window& wnd = Window::GetInstance();
-	//SceneManager& m_sceneManager = SceneManager::Instance();
+	SceneManager& sceneManager = SceneManager::GetInstance();
+	Timer& timer = Timer::GetInstance();
 
 public:
 	static Game& GetInstance();

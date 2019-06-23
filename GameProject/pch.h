@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <sstream>
 #include <string>
+#include <tchar.h>
 
 #include "define.h"
 

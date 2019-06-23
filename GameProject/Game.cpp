@@ -6,19 +6,6 @@ void Game::Init()
 	InitDevice();
 }
 
-void Game::Run()
-{
-	while (wnd.ProcessMessage())
-	{
-		//GameTimer::BeginFrame();
-
-		//sceneManager.Update(GameTimer::DeltaTime());
-		Render();
-
-		//wnd.SetTitleToFps();
-	}
-}
-
 Game::~Game()
 {
 	if (backBuffer != NULL) backBuffer->Release();
@@ -57,6 +44,21 @@ void Game::InitDevice()
 	if (FAILED(D3DXCreateFontA(d3ddv, 13, 0, FW_NORMAL, 1, //AddFontResourceEx( , , ); if need more custom font
 		FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, FF_MODERN, "Arial", &fontDraw)))
 		ThrowGameException("Can't create DirectX Font.");
+}
+
+void Game::Run()
+{
+	while (wnd.ProcessMessage())
+	{
+		timer.Update();
+		Render();
+
+#ifdef SET_TITLE_AS_FPS
+		std::wstringstream wss;
+		wss.str(L""), wss << WIN_TITLE << " | FPS: " << timer.GetFPS();
+		wnd.SetTitle(wss.str());
+#endif
+	}
 }
 
 void Game::Render()

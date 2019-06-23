@@ -36,6 +36,12 @@
     <ClCompile Include="Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -54,6 +60,12 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>

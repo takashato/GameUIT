@@ -21,6 +21,8 @@ public:
 	const UINT GetHeight();
 	const UINT GetWidth();
 
+	void SetTitle(std::wstring str);
+
 private:
 	Window() : ISingleton(NULL) {};
 };

@@ -121,3 +121,8 @@ const UINT Window::GetWidth()
 	auto [width, height] = GetDimension();
 	return height;
 }
+
+void Window::SetTitle(std::wstring str)
+{
+	SetWindowText(hWnd, str.c_str());
+}
