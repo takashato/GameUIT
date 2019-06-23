@@ -2,13 +2,25 @@
 class Window : ISingleton
 {
 private:
-	HINSTANCE	m_hInstance = nullptr;
-	HWND		m_hWnd = nullptr;
+	HINSTANCE hInstance = nullptr;
+	HWND hWnd = nullptr;
 
 public:
-	static Window& GetInstance();
-	void Init(int nShowCmd);
+	static Window& GetInstance();	
 	static LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+
+	void Init(int nShowCmd);
+#ifdef SHOW_CONSOLE
+	void InitConsole();
+#endif
+	bool ProcessMessage() const;
+
+	const HWND GetHWnd() const { return hWnd; }
+	
+	const std::tuple<UINT, UINT> GetDimension();
+	const UINT GetHeight();
+	const UINT GetWidth();
+
 private:
 	Window() : ISingleton(NULL) {};
 };

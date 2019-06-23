@@ -1,6 +1,7 @@
 #pragma once
 // Debug
 #define DEBUG
+#define SHOW_CONSOLE
 
 // Windows
 #define WIN_CLASS_NAME L"GameUIT"

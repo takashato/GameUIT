@@ -10,5 +10,7 @@ int WINAPI WinMain (
 )
 {
 	Window::GetInstance().Init(nShowCmd);
+	Game::GetInstance().Init();
 
+	Game::GetInstance().Run();
 }

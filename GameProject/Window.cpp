@@ -9,12 +9,16 @@ Window& Window::GetInstance()
 
 void Window::Init(int nShowCmd)
 {
-	m_hInstance = GetModuleHandle(NULL);
+#ifdef SHOW_CONSOLE
+	InitConsole();
+#endif
+
+	hInstance = GetModuleHandle(NULL);
 
 	WNDCLASSEX wc;
 	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.lpszClassName = WIN_CLASS_NAME;
-	wc.hInstance = m_hInstance;
+	wc.hInstance = hInstance;
 	wc.lpfnWndProc = WinProc;
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
@@ -26,7 +30,7 @@ void Window::Init(int nShowCmd)
 	wc.style = CS_HREDRAW | CS_VREDRAW;
 	RegisterClassEx(&wc);
 
-	m_hWnd = CreateWindow(
+	hWnd = CreateWindow(
 		WIN_CLASS_NAME,
 		WIN_TITLE,
 		WS_OVERLAPPEDWINDOW,
@@ -36,14 +40,35 @@ void Window::Init(int nShowCmd)
 		SCREEN_HEIGHT,
 		NULL,
 		NULL,
-		m_hInstance,
+		hInstance,
 		NULL
 	);
 
-	if (m_hWnd == nullptr) ThrowGameException("Can't create game window.");
+	if (hWnd == nullptr) ThrowGameException("Can't create game window.");
 
-	ShowWindow(m_hWnd, SW_SHOWNORMAL);
-	UpdateWindow(m_hWnd);
+	ShowWindow(hWnd, SW_SHOWNORMAL);
+	UpdateWindow(hWnd);
+}
+
+#ifdef SHOW_CONSOLE
+void Window::InitConsole()
+{
+	AllocConsole();
+	freopen_s((FILE * *)stdout, "CONOUT$", "w", stdout);
+	std::cout << "Game Debug Console allocated." << std::endl;
+}
+#endif
+
+bool Window::ProcessMessage() const
+{
+	static MSG msg;
+	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+	{
+		if (msg.message == WM_QUIT) return false;
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+	return true;
 }
 
 LRESULT Window::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -73,4 +98,26 @@ LRESULT Window::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
 	return 0;
+}
+
+const std::tuple<UINT, UINT> Window::GetDimension()
+{
+	RECT rect;
+	if (GetWindowRect(hWnd, &rect))
+	{
+		return { rect.right - rect.left, rect.bottom - rect.top };
+	}
+	return { 0, 0 };
+}
+
+const UINT Window::GetHeight()
+{
+	auto [width, height] = GetDimension();
+	return height;
+}
+
+const UINT Window::GetWidth()
+{
+	auto [width, height] = GetDimension();
+	return height;
 }
