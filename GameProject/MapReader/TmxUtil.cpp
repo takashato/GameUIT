@@ -41,7 +41,6 @@
 #include "base64.h"
 #include <functional>
 #include <cctype>
-#include <cwctype>
 #include <locale>
 
 
@@ -87,7 +86,7 @@ namespace Tmx {
 
     std::string &Util::Trim(std::string &str)
     {
-		trim_copy(str);
+		trim(str);
 		return str;
     }
 
