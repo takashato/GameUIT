@@ -2,7 +2,7 @@
 #include "../GameObjects/MapObjects/BrickGold.h"
 #include "../GameObjects/MapObjects/BrickNormal.h"
 
-GameMap::GameMap(char* filePath)
+GameMap::GameMap(string filePath)
 {
     mCamera = new Camera(GameGlobal::GetWidth(), GameGlobal::GetHeight());
     LoadMap(filePath);
@@ -29,7 +29,7 @@ GameMap::~GameMap()
     delete mQuadTree;
 }
 
-void GameMap::LoadMap(char* filePath)
+void GameMap::LoadMap(string filePath)
 {
     mMap = new Tmx::Map();
     mMap->ParseFile(filePath);

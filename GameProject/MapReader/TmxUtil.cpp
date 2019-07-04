@@ -40,30 +40,55 @@
 #include "TmxUtil.h"
 #include "base64.h"
 #include <functional>
-#include <ctype.h>
+#include <cctype>
+#include <cwctype>
+#include <locale>
+
 
 namespace Tmx {
 
-    // trim from start
-    static inline std::string &ltrim(std::string &s) {
-        s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(isspace))));
-        return s;
-    }
+	// trim from start (in place)
+	static inline void ltrim(std::string &s) {
+		s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) {
+			return !std::isspace(ch);
+		}));
+	}
 
-    // trim from end
-    static inline std::string &rtrim(std::string &s) {
-        s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(isspace))).base(), s.end());
-        return s;
-    }
+	// trim from end (in place)
+	static inline void rtrim(std::string &s) {
+		s.erase(std::find_if(s.rbegin(), s.rend(), [](int ch) {
+			return !std::isspace(ch);
+		}).base(), s.end());
+	}
 
-    // trim from both ends
-    static inline std::string &trim(std::string &s) {
-        return ltrim(rtrim(s));
-    }
+	// trim from both ends (in place)
+	static inline void trim(std::string &s) {
+		ltrim(s);
+		rtrim(s);
+	}
+
+	// trim from start (copying)
+	static inline std::string ltrim_copy(std::string s) {
+		ltrim(s);
+		return s;
+	}
+
+	// trim from end (copying)
+	static inline std::string rtrim_copy(std::string s) {
+		rtrim(s);
+		return s;
+	}
+
+	// trim from both ends (copying)
+	static inline std::string trim_copy(std::string s) {
+		trim(s);
+		return s;
+	}
 
     std::string &Util::Trim(std::string &str)
     {
-        return trim( str );
+		trim_copy(str);
+		return str;
     }
 
     std::string Util::DecodeBase64(const std::string &str) 

@@ -123,7 +123,7 @@ Entity::SideCollisions GameCollision::getSideCollision(Entity *e1, Entity::Colli
     float yCenter = data.RegionCollision.top + (data.RegionCollision.bottom - data.RegionCollision.top) / 2.0f;
 
     D3DXVECTOR2 cCenter = D3DXVECTOR2(xCenter, yCenter);
-    D3DXVECTOR2 eCenter = e1->GetPosition();
+    D3DXVECTOR2 eCenter(e1->GetPosition().x, e1->GetPosition().y);
 
     //lay vector noi tam Entity va CollisionRect
     D3DXVECTOR2 vec = cCenter - eCenter;

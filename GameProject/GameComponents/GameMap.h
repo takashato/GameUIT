@@ -17,7 +17,7 @@
 class GameMap
 {
 public:
-    GameMap(char* filePath);
+    GameMap(string filePath);
     void SetCamera(Camera* camera);
     void Update(float dt);
     void Draw();
@@ -40,7 +40,7 @@ public:
     QuadTree* GetQuadTree();
 
 private:
-    void LoadMap(char* filePath);
+    void LoadMap(string filePath);
 
     Tmx::Map                        *mMap;
     std::map<int, Sprite*>          mListTileset;

@@ -38,7 +38,7 @@ public:
 
     RECT GetBound();     
 
-    PlayerState::StateName Player::getState();
+    PlayerState::StateName getState();
 
     //xu ly input
     //gom 256 key tuong ung true = dang dc nhan, false = khong dc nhan
