@@ -18,18 +18,118 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameComponents\Animation.cpp" />
+    <ClCompile Include="GameComponents\Camera.cpp" />
+    <ClCompile Include="GameComponents\Game.cpp" />
+    <ClCompile Include="GameComponents\GameCollision.cpp" />
+    <ClCompile Include="GameComponents\GameGlobal.cpp" />
+    <ClCompile Include="GameComponents\GameMap.cpp" />
+    <ClCompile Include="GameComponents\GameTime.cpp" />
+    <ClCompile Include="GameComponents\QuadTree.cpp" />
+    <ClCompile Include="GameComponents\Scene.cpp" />
+    <ClCompile Include="GameComponents\Sprite.cpp" />
+    <ClCompile Include="GameControllers\SceneManager.cpp" />
+    <ClCompile Include="GameObjects\Entity.cpp" />
+    <ClCompile Include="GameObjects\MapObjects\Brick.cpp" />
+    <ClCompile Include="GameObjects\MapObjects\BrickGold.cpp" />
+    <ClCompile Include="GameObjects\MapObjects\BrickNormal.cpp" />
+    <ClCompile Include="GameObjects\MapObjects\GameObject.cpp" />
+    <ClCompile Include="GameObjects\Player\Player.cpp" />
+    <ClCompile Include="GameObjects\Player\PlayerData.cpp" />
+    <ClCompile Include="GameObjects\Player\PlayerFallingState.cpp" />
+    <ClCompile Include="GameObjects\Player\PlayerJumpingState.cpp" />
+    <ClCompile Include="GameObjects\Player\PlayerRunningState.cpp" />
+    <ClCompile Include="GameObjects\Player\PlayerStandingState.cpp" />
+    <ClCompile Include="GameObjects\Player\PlayerState.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MapReader\base64.cpp" />
+    <ClCompile Include="MapReader\miniz.c" />
+    <ClCompile Include="MapReader\tinyxml2.cpp" />
+    <ClCompile Include="MapReader\TmxEllipse.cpp" />
+    <ClCompile Include="MapReader\TmxImage.cpp" />
+    <ClCompile Include="MapReader\TmxImageLayer.cpp" />
+    <ClCompile Include="MapReader\TmxLayer.cpp" />
+    <ClCompile Include="MapReader\TmxMap.cpp" />
+    <ClCompile Include="MapReader\TmxObject.cpp" />
+    <ClCompile Include="MapReader\TmxObjectGroup.cpp" />
+    <ClCompile Include="MapReader\TmxPolygon.cpp" />
+    <ClCompile Include="MapReader\TmxPolyline.cpp" />
+    <ClCompile Include="MapReader\TmxPropertySet.cpp" />
+    <ClCompile Include="MapReader\TmxTerrain.cpp" />
+    <ClCompile Include="MapReader\TmxTerrainArray.cpp" />
+    <ClCompile Include="MapReader\TmxTile.cpp" />
+    <ClCompile Include="MapReader\TmxTileLayer.cpp" />
+    <ClCompile Include="MapReader\TmxTileOffset.cpp" />
+    <ClCompile Include="MapReader\TmxTileset.cpp" />
+    <ClCompile Include="MapReader\TmxUtil.cpp" />
+    <ClCompile Include="Scenes\DemoScene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameComponents\Animation.h" />
+    <ClInclude Include="GameComponents\Camera.h" />
+    <ClInclude Include="GameComponents\Game.h" />
+    <ClInclude Include="GameComponents\GameCollision.h" />
+    <ClInclude Include="GameComponents\GameGlobal.h" />
+    <ClInclude Include="GameComponents\GameMap.h" />
+    <ClInclude Include="GameComponents\GameTime.h" />
+    <ClInclude Include="GameComponents\QuadTree.h" />
+    <ClInclude Include="GameComponents\Scene.h" />
+    <ClInclude Include="GameComponents\Sprite.h" />
+    <ClInclude Include="GameControllers\SceneManager.h" />
+    <ClInclude Include="GameDefines\GameDefine.h" />
+    <ClInclude Include="GameObjects\Entity.h" />
+    <ClInclude Include="GameObjects\MapObjects\Brick.h" />
+    <ClInclude Include="GameObjects\MapObjects\BrickGold.h" />
+    <ClInclude Include="GameObjects\MapObjects\BrickNormal.h" />
+    <ClInclude Include="GameObjects\MapObjects\GameObject.h" />
+    <ClInclude Include="GameObjects\Player\Player.h" />
+    <ClInclude Include="GameObjects\Player\PlayerData.h" />
+    <ClInclude Include="GameObjects\Player\PlayerFallingState.h" />
+    <ClInclude Include="GameObjects\Player\PlayerJumpingState.h" />
+    <ClInclude Include="GameObjects\Player\PlayerRunningState.h" />
+    <ClInclude Include="GameObjects\Player\PlayerStandingState.h" />
+    <ClInclude Include="GameObjects\Player\PlayerState.h" />
+    <ClInclude Include="MapReader\base64.h" />
+    <ClInclude Include="MapReader\tinyxml2.h" />
+    <ClInclude Include="MapReader\TmxEllipse.h" />
+    <ClInclude Include="MapReader\TmxImage.h" />
+    <ClInclude Include="MapReader\TmxImageLayer.h" />
+    <ClInclude Include="MapReader\TmxLayer.h" />
+    <ClInclude Include="MapReader\TmxMap.h" />
+    <ClInclude Include="MapReader\TmxMapTile.h" />
+    <ClInclude Include="MapReader\TmxObject.h" />
+    <ClInclude Include="MapReader\TmxObjectGroup.h" />
+    <ClInclude Include="MapReader\TmxPoint.h" />
+    <ClInclude Include="MapReader\TmxPolygon.h" />
+    <ClInclude Include="MapReader\TmxPolyline.h" />
+    <ClInclude Include="MapReader\TmxPropertySet.h" />
+    <ClInclude Include="MapReader\TmxTerrain.h" />
+    <ClInclude Include="MapReader\TmxTerrainArray.h" />
+    <ClInclude Include="MapReader\TmxTile.h" />
+    <ClInclude Include="MapReader\TmxTileLayer.h" />
+    <ClInclude Include="MapReader\TmxTileOffset.h" />
+    <ClInclude Include="MapReader\TmxTileset.h" />
+    <ClInclude Include="MapReader\TmxUtil.h" />
+    <ClInclude Include="MapReader\zconf.h" />
+    <ClInclude Include="MapReader\zlib.h" />
+    <ClInclude Include="Scenes\DemoScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MapReader\Tmx.h.in" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{AEC6CC9B-3245-4470-844F-19890AD30DA5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>GameProject</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -72,6 +172,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -91,14 +193,16 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28August 2009%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <CallingConvention>StdCall</CallingConvention>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28August 2009%29\Lib\x86;C:\Program Files %28x86%29\Microsoft DirectX SDK %28August 2009%29\Utilities\bin\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;zlib.lib;dxguid.lib;dinput8.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -150,24 +254,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameException.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="WinMain.cpp" />
-    <ClCompile Include="Window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="define.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameException.h" />
-    <ClInclude Include="Timer.h" />
-    <ClInclude Include="ISingleton.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Window.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
