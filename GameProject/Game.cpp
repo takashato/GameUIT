@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Game.h"
 
+
 void Game::Init()
 {
 	InitDevice();
@@ -12,6 +13,11 @@ Game::~Game()
 	if (lineDraw != NULL) lineDraw->Release();
 	if (d3ddv != NULL) d3ddv->Release();
 	if (d3d != NULL) d3d->Release();
+}
+
+LPD3DXSPRITE Game::GetSpriteHandler()
+{
+	return spriteHandler;
 }
 
 void Game::InitDevice()
@@ -48,11 +54,11 @@ void Game::InitDevice()
 
 void Game::Run()
 {
+	mAladdin = new Sprite(L"Resources\\Sprites\\Aladdin_normal.png");
 	while (wnd.ProcessMessage())
 	{
 		timer.Update();
 		Render();
-
 #ifdef SET_TITLE_AS_FPS
 		std::wstringstream wss;
 		wss.str(L""), wss << WIN_TITLE << " | FPS: " << timer.GetFPS();
@@ -63,6 +69,17 @@ void Game::Run()
 
 void Game::Render()
 {
+	d3ddv->Clear(0, NULL, D3DCLEAR_TARGET, NULL, 0.0f, 0);
+
+	d3ddv->BeginScene();
+	spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
+
+	mAladdin->Draw(D3DXVECTOR3(0, 0, 0));
+
+	spriteHandler->End();
+	d3ddv->EndScene();
+
+	d3ddv->Present(NULL, NULL, NULL, NULL);
 }
 
 Game& Game::GetInstance()

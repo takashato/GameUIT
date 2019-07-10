@@ -13,14 +13,14 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Framework">
-      <UniqueIdentifier>{a7d724cc-d695-454a-b087-afa85bc5e3c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{ef67f63b-d490-4ce5-ae66-180a0aa0d118}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Utils">
       <UniqueIdentifier>{a889e6de-e7c9-4cfe-b3e6-c204a5444de0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{ef67f63b-d490-4ce5-ae66-180a0aa0d118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Sprites">
+      <UniqueIdentifier>{e38b8e98-1437-402f-9304-03d6f348723b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -31,16 +31,19 @@
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>Game</Filter>
+      <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Game</Filter>
+      <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>Game</Filter>
+      <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
-      <Filter>Game</Filter>
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -57,16 +60,33 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Game</Filter>
+      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
-      <Filter>Game</Filter>
+      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
-      <Filter>Game</Filter>
+      <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>Game</Filter>
+      <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Sprites\Aladdin_swing.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Aladdin_run.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Aladdin_normal.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
+    <Image Include="Resources\Sprites\Aladdin_dead.png">
+      <Filter>Resource Files\Sprites</Filter>
+    </Image>
   </ItemGroup>
 </Project>

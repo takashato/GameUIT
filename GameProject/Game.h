@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "Timer.h"
 #include "SceneManager.h"
+#include "Sprite.h"
 
 class Game : ISingleton {
 private:
@@ -16,11 +17,14 @@ private:
 	SceneManager& sceneManager = SceneManager::GetInstance();
 	Timer& timer = Timer::GetInstance();
 
+	Sprite* mAladdin = NULL;
+
 public:
 	static Game& GetInstance();
 	void Init();
 	void Run();
 	~Game();
+	LPD3DXSPRITE GetSpriteHandler();
 
 private:
 	Game() : ISingleton(NULL) {};
