@@ -18,6 +18,23 @@ Sprite::Sprite(const wchar_t* filePath, RECT sourceRect, int width, int height, 
 		ThrowGameException(ss.str());
 	}
 
+	mRect = sourceRect;
+	if (width) 
+	{
+		mWidth = width;
+	}
+	if (height) 
+	{
+		mHeight = height;
+	}
+	if (!IsRect(sourceRect)) 
+	{
+		mRect.left = 0;
+		mRect.right = mWidth;
+		mRect.top = 0;
+		mRect.bottom = mHeight;
+	}
+
 	mSpriteHandler = Game::GetInstance().GetSpriteHandler();
 	LPDIRECT3DDEVICE9 device;
 	mSpriteHandler->GetDevice(&device);
@@ -50,9 +67,26 @@ void Sprite::Draw(D3DXVECTOR3 position)
 {
 	mSpriteHandler->Draw(
 		mTexture,
-		NULL,
+		&mRect,
 		NULL,
 		&position,
 		D3DCOLOR_ARGB(255, 255, 255, 255)
 	);
+}
+
+void Sprite::SetRect(RECT rect)
+{
+	mRect = rect;
+}
+
+D3DXIMAGE_INFO Sprite::GetImageInfo()
+{
+	return mImageInfo;
+}
+
+bool Sprite::IsRect(RECT rect)
+{
+	if (rect.left == rect.right || rect.top == rect.bottom)
+		return false;
+	return true;
 }

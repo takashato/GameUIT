@@ -2,7 +2,7 @@
 #include "Window.h"
 #include "Timer.h"
 #include "SceneManager.h"
-#include "Sprite.h"
+#include "Animation.h"
 
 class Game : ISingleton {
 private:
@@ -17,7 +17,7 @@ private:
 	SceneManager& sceneManager = SceneManager::GetInstance();
 	Timer& timer = Timer::GetInstance();
 
-	Sprite* mAladdin = NULL;
+	Animation* mAladdin = NULL;
 
 public:
 	static Game& GetInstance();
@@ -30,5 +30,6 @@ private:
 	Game() : ISingleton(NULL) {};
 
 	void InitDevice();
+	void Update();
 	void Render();
 };

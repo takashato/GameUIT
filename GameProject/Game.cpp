@@ -54,10 +54,11 @@ void Game::InitDevice()
 
 void Game::Run()
 {
-	mAladdin = new Sprite(L"Resources\\Sprites\\Aladdin_normal.png");
+	mAladdin = new Animation(L"Resources\\Sprites\\Aladdin_run.png", 38, 55, 12, 1, 0.8F / 12);
 	while (wnd.ProcessMessage())
 	{
 		timer.Update();
+		Update();
 		Render();
 #ifdef SET_TITLE_AS_FPS
 		std::wstringstream wss;
@@ -65,6 +66,13 @@ void Game::Run()
 		wnd.SetTitle(wss.str());
 #endif
 	}
+}
+
+void Game::Update()
+{
+	float deltaTime = timer.Get();
+	// Update states
+	mAladdin->Update(deltaTime);
 }
 
 void Game::Render()

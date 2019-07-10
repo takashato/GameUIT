@@ -43,7 +43,10 @@
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +75,9 @@
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Sprite.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
       <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
