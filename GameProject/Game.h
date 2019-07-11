@@ -14,7 +14,6 @@ private:
 	LPD3DXFONT fontDraw = NULL;
 
 	Window& wnd = Window::GetInstance();
-	SceneManager& sceneManager = SceneManager::GetInstance();
 	Timer& timer = Timer::GetInstance();
 
 	Animation* mAladdin = NULL;
