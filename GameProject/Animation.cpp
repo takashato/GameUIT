@@ -77,3 +77,13 @@ void Animation::UpdateRect()
 	mRect.right = mRect.left + mWidth;
 	mRect.bottom = mRect.top + mHeight;
 }
+
+void Animation::SetTimePerFrame(float timePerFrame)
+{
+	mTimePerFrame = timePerFrame;
+}
+
+float Animation::GetTimePerFrame()
+{
+	return mTimePerFrame;
+}

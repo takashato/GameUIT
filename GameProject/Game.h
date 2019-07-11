@@ -16,8 +16,6 @@ private:
 	Window& wnd = Window::GetInstance();
 	Timer& timer = Timer::GetInstance();
 
-	Animation* mAladdin = NULL;
-
 public:
 	static Game& GetInstance();
 	void Init();

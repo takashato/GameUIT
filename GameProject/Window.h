@@ -1,4 +1,6 @@
 #pragma once
+#include "SceneManager.h"
+
 class Window : ISingleton
 {
 private:

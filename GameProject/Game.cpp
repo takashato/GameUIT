@@ -54,7 +54,7 @@ void Game::InitDevice()
 
 void Game::Run()
 {
-	mAladdin = new Animation(L"Resources\\Sprites\\Aladdin_run.png", 38, 55, 12, 1, 0.8F / 12);
+	SceneManager::GetInstance().SetupDefaultScene();
 	while (wnd.ProcessMessage())
 	{
 		timer.Update();
@@ -71,8 +71,7 @@ void Game::Run()
 void Game::Update()
 {
 	float deltaTime = timer.Get();
-	// Update states
-	mAladdin->Update(deltaTime);
+	SceneManager::GetInstance().Update(deltaTime);
 }
 
 void Game::Render()
@@ -82,7 +81,7 @@ void Game::Render()
 	d3ddv->BeginScene();
 	spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 
-	mAladdin->Draw(D3DXVECTOR3(0, 0, 0));
+	SceneManager::GetInstance().Draw();
 
 	spriteHandler->End();
 	d3ddv->EndScene();

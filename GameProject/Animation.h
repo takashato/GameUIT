@@ -21,4 +21,7 @@ public:
 	void SetFrame(int frame);
 	void IncFrame();
 	void UpdateRect();
+
+	void SetTimePerFrame(float timePerFrame);
+	float GetTimePerFrame();
 };

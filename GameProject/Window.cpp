@@ -83,15 +83,13 @@ LRESULT Window::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_SYSKEYDOWN:
 		if (!(lParam & 0x40000000)) // if key is not holding 
 		{
-			//SceneManager::Instance().OnKeyDown((BYTE)wParam);
-			//Window::Instance().keyStates.set((BYTE)wParam);
+			SceneManager::GetInstance().OnKeyDown((BYTE)wParam);
 		}
 		break;
 
 	case WM_KEYUP:
 	case WM_SYSKEYUP:
-		//SceneManager::Instance().OnKeyUp((BYTE)wParam);
-		//Window::Instance().keyStates.reset((BYTE)wParam);
+		SceneManager::GetInstance().OnKeyUp((BYTE)wParam);
 		break;
 
 	default:

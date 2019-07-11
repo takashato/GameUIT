@@ -22,6 +22,9 @@
     <Filter Include="Resource Files\Sprites">
       <UniqueIdentifier>{e38b8e98-1437-402f-9304-03d6f348723b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{032af11c-23c3-4b90-ae13-74647539ee94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinMain.cpp">
@@ -47,6 +50,15 @@
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneDemo.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +91,15 @@
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDemo.h">
+      <Filter>Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
