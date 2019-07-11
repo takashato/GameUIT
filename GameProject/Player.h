@@ -3,10 +3,11 @@
 #include "Animation.h"
 #include "Entity.h"
 
-#define PLAYER_STATE_NORMAL 1
-#define PLAYER_STATE_RUNNING 2
-
-typedef char PLAYER_STATE;
+enum PlayerState 
+{
+	Normal,
+	Running
+};
 
 class Player : public Entity
 {
@@ -16,8 +17,8 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
-	PLAYER_STATE GetState();
-	void SetState(PLAYER_STATE state);
+	PlayerState GetState();
+	void SetState(PlayerState state);
 
 	void OnSetPosition();
 
@@ -26,5 +27,5 @@ private:
 	Animation* mAniRunning = NULL;
 	Animation* mCurrentAni = NULL;
 
-	PLAYER_STATE mState = PLAYER_STATE_NORMAL;
+	PlayerState mState = Normal;
 };

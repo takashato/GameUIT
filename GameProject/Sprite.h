@@ -2,7 +2,7 @@
 class Sprite {
 public:
 	Sprite(const wchar_t* filePath, RECT sourceRect = RECT(), int width = NULL, int height = NULL, D3DCOLOR colorKey = NULL);
-	void Draw(D3DXVECTOR3 postion);
+	void Draw(D3DXVECTOR3 postion, D3DXVECTOR2 scale = D3DXVECTOR2(1.0f, 1.0f));
 
 	void SetRect(RECT rect);
 
@@ -22,5 +22,7 @@ protected:
 
 	LPD3DXSPRITE mSpriteHandler;
 	LPDIRECT3DTEXTURE9 mTexture;
+
+	D3DXMATRIX mMatrix;
 
 };

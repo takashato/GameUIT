@@ -7,37 +7,40 @@ Player::Player() : Entity()
 	mAniRunning = new Animation(L"Resources\\Sprites\\Aladdin_run.png", 38, 55, 12, 1, 0.5F / 12);
 	mCurrentAni = mAniNormal;
 
-	mState = PLAYER_STATE_NORMAL;
+	mState = Normal;
+	SetPosition(D3DXVECTOR3(100.0f, -100.0f, 0.f));
 }
 
 void Player::Update(float deltaTime)
 {
+	mCurrentAni->SetFlippedHorizontally(mDirection == Left);
+
 	if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
 }
 
 void Player::Draw()
 {
+	//auto nPosition = GetPosition() + D3DXVECTOR3(mCurrentAni->GetWidth() / 2, mCurrentAni->GetHeight() / 2, .0F);
 	if (mCurrentAni != NULL) mCurrentAni->Draw(GetPosition());
 }
 
-PLAYER_STATE Player::GetState()
+PlayerState Player::GetState()
 {
 	return mState;
 }
 
-void Player::SetState(PLAYER_STATE state)
+void Player::SetState(PlayerState state)
 {
 	mState = state;
 	switch (mState)
 	{
-	case PLAYER_STATE_RUNNING:
+	case Running:
 		mCurrentAni = mAniRunning;
 		break;
-	case PLAYER_STATE_NORMAL:
+	case Normal:
 	default:
 		mCurrentAni = mAniNormal;
 		break;
-
 	}
 }
 

@@ -14,6 +14,8 @@ private:
 
 	RECT mRect;
 
+	bool mHorizontallyFlip = false; // Flip horizontally
+
 public:
 	Animation(const wchar_t* filePath, int width, int height, int colNum, int rowNum = 1, float timePerFrame = 0.1F);
 	void Draw(D3DXVECTOR3 position);
@@ -24,4 +26,10 @@ public:
 
 	void SetTimePerFrame(float timePerFrame);
 	float GetTimePerFrame();
+
+	int GetWidth();
+	int GetHeight();
+
+	bool IsFlippedHorizontally();
+	void SetFlippedHorizontally(bool flag);
 };

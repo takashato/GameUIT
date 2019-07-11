@@ -33,11 +33,11 @@ void DemoScene::Draw()
 void DemoScene::OnKeyUp(BYTE keyCode)
 {
 	Scene::OnKeyUp(keyCode);
-	((Player*)mEntities[0])->SetState(PLAYER_STATE_NORMAL);
+	((Player*)mEntities[0])->SetState(PlayerState::Normal);
 }
 
 void DemoScene::OnKeyDown(BYTE keyCode)
 {
 	Scene::OnKeyDown(keyCode);
-	((Player*)mEntities[0])->SetState(PLAYER_STATE_RUNNING);
+	((Player*)mEntities[0])->SetState(PlayerState::Running);
 }

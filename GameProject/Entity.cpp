@@ -3,7 +3,7 @@
 
 Entity::Entity()
 {
-	
+	mDirection = Left;
 }
 
 void Entity::Update(float deltaTime)
@@ -30,39 +30,64 @@ void Entity::AddPosition(D3DXVECTOR2 vector)
 	SetPosition(mPosition + D3DXVECTOR3(vector.x, vector.y, 0.0F));
 }
 
-D3DXVECTOR2 Entity::GetVelocity()
+float Entity::GetVelocityX()
 {
-	return mVelocity;
+	return mVelocityX;
 }
 
-void Entity::SetVelocity(D3DXVECTOR2 velocity)
+float Entity::GetVelocityY()
 {
-	mVelocity = velocity;
+	return mVelocityY;
 }
 
-void Entity::AddVelocity(D3DXVECTOR2 deltaVelocity)
+void Entity::SetVelocityX(float velocity)
 {
-	mVelocity += deltaVelocity;
+	mVelocityX = velocity;
 }
 
-int Entity::GetWidth()
+void Entity::SetVelocityY(float velocity)
+{
+	mVelocityY = velocity;
+}
+
+void Entity::AddVelocityX(float deltaVelocity)
+{
+	mVelocityX += deltaVelocity;
+}
+
+void Entity::AddVelocityY(float deltaVelocity)
+{
+	mVelocityY += deltaVelocity;
+}
+
+float Entity::GetWidth()
 {
 	return mWidth;
 }
 
-void Entity::SetWidth(int width)
+void Entity::SetWidth(float width)
 {
 	mWidth = width;
 }
 
-int Entity::GetHeight()
+float Entity::GetHeight()
 {
 	return mHeight;
 }
 
-void Entity::SetHeight(int height)
+void Entity::SetHeight(float height)
 {
 	mHeight = height;
+}
+
+EntityDirection Entity::GetDirection()
+{
+	return mDirection;
+}
+
+void Entity::SetDirection(EntityDirection direction)
+{
+	mDirection = direction;
 }
 
 void Entity::OnSetPosition()

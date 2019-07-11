@@ -35,7 +35,7 @@ Animation::Animation(const wchar_t* filePath, int width, int height, int colNum,
 void Animation::Draw(D3DXVECTOR3 position)
 {
 	mSprite->SetRect(mRect);
-	mSprite->Draw(position);
+	mSprite->Draw(position, D3DXVECTOR2(mHorizontallyFlip ? -1.0f : 1.0f, 1.0f));
 }
 
 void Animation::Update(float deltaTime)
@@ -86,4 +86,24 @@ void Animation::SetTimePerFrame(float timePerFrame)
 float Animation::GetTimePerFrame()
 {
 	return mTimePerFrame;
+}
+
+int Animation::GetWidth()
+{
+	return mWidth;
+}
+
+int Animation::GetHeight()
+{
+	return mHeight;
+}
+
+bool Animation::IsFlippedHorizontally()
+{
+	return mHorizontallyFlip;
+}
+
+void Animation::SetFlippedHorizontally(bool flag)
+{
+	mHorizontallyFlip = flag;
 }
