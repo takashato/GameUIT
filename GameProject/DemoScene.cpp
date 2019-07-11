@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "SceneDemo.h"
+#include "DemoScene.h"
 
 SceneDemo::SceneDemo() : Scene()
 {
