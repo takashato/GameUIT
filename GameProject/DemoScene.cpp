@@ -1,39 +1,43 @@
 #include "pch.h"
 #include "DemoScene.h"
 
-SceneDemo::SceneDemo() : Scene()
+DemoScene::DemoScene() : Scene()
 {
 	Setup();
 }
 
-void SceneDemo::Setup()
+void DemoScene::Setup()
 {
 	Scene::Setup();
-	aladdin = new Animation(L"Resources\\Sprites\\Aladdin_run.png", 38, 55, 12, 1, 0.8F / 12);
+	mEntities.push_back(new Player());
 }
 
-void SceneDemo::Update(float deltaTime)
+void DemoScene::Update(float deltaTime)
 {
 	Scene::Update(deltaTime);
-	aladdin->Update(deltaTime);
+	for (std::size_t i = 0; i < mEntities.size(); ++i)
+	{
+		mEntities[i]->Update(deltaTime);
+	}
 }
 
-void SceneDemo::Draw()
+void DemoScene::Draw()
 {
-	aladdin->Draw(D3DXVECTOR3(0, 0, 0));
+	for (std::size_t i = 0; i < mEntities.size(); ++i)
+	{
+		mEntities[i]->Draw();
+	}
 	Scene::Draw();
 }
 
-void SceneDemo::OnKeyUp(BYTE keyCode)
+void DemoScene::OnKeyUp(BYTE keyCode)
 {
-	std::cout << "Keyup!\n";
 	Scene::OnKeyUp(keyCode);
-	aladdin->SetTimePerFrame(0.8F / 12);
+	((Player*)mEntities[0])->SetState(PLAYER_STATE_NORMAL);
 }
 
-void SceneDemo::OnKeyDown(BYTE keyCode)
+void DemoScene::OnKeyDown(BYTE keyCode)
 {
-	std::cout << "Keydown!\n";
 	Scene::OnKeyDown(keyCode);
-	aladdin->SetTimePerFrame(0.1F / 12);
+	((Player*)mEntities[0])->SetState(PLAYER_STATE_RUNNING);
 }

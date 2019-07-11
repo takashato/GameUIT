@@ -8,6 +8,7 @@
 #include <sstream>
 #include <string>
 #include <tchar.h>
+#include <vector>
 
 #include "define.h"
 

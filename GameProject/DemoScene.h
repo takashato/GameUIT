@@ -1,11 +1,13 @@
 #pragma once
 #include "Scene.h"
 #include "Animation.h"
+#include "Entity.h"
+#include "Player.h"
 
-class SceneDemo : public Scene
+class DemoScene : public Scene
 {
 public:
-	SceneDemo();
+	DemoScene();
 	
 	void Setup();
 
@@ -16,5 +18,5 @@ public:
 	void OnKeyDown(BYTE keyCode);
 
 protected:
-	Animation* aladdin;
+	std::vector<Entity*> mEntities;
 };

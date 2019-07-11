@@ -9,7 +9,7 @@ SceneManager& SceneManager::GetInstance()
 
 void SceneManager::SetupDefaultScene()
 {
-	mCurrentScene = new SceneDemo();
+	mCurrentScene = new DemoScene();
 }
 
 void SceneManager::Update(float deltaTime)

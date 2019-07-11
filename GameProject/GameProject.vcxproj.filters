@@ -57,7 +57,13 @@
     <ClCompile Include="Keyboard.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="SceneDemo.cpp">
+    <ClCompile Include="DemoScene.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,8 +104,14 @@
     <ClInclude Include="Scene.h">
       <Filter>Framework</Filter>
     </ClInclude>
-    <ClInclude Include="SceneDemo.h">
+    <ClInclude Include="Entity.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoScene.h">
       <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
