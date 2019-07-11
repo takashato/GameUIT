@@ -8,7 +8,7 @@ Player::Player() : Entity()
 	mCurrentAni = mAniNormal;
 
 	mState = Normal;
-	SetPosition(D3DXVECTOR3(100.0f, -100.0f, 0.f));
+	SetPosition(D3DXVECTOR3(100.0f, 30.0f, 0.f));
 }
 
 void Player::Update(float deltaTime)
