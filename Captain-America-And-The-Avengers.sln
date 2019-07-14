@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameProject", "GameProject\GameProject.vcxproj", "{AEC6CC9B-3245-4470-844F-19890AD30DA5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Captain-America-And-The-Avengers", "Captain-America-And-The-Avengers\Captain-America-And-The-Avengers.vcxproj", "{AEC6CC9B-3245-4470-844F-19890AD30DA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

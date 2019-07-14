@@ -4,7 +4,7 @@
 Player::Player() : Entity()
 {
 	mAniStanding = new Animation(L"Resources\\Sprites\\Players\\Cap\\stand.png", 25, 45, 1, 1, 0.1F);
-	mAniRunning = new Animation(L"Resources\\Sprites\\Players\\Cap\\run_shield.png", 51, 43, 2, 1, 0.2F);
+	mAniRunning = new Animation(L"Resources\\Sprites\\Players\\Cap\\run_shield.png", 51, 43, 2, 1, 0.15F);
 	mCurrentAni = mAniStanding;
 
 	mState = new PlayerStandingState(this);
@@ -20,7 +20,6 @@ void Player::Update(float deltaTime)
 
 void Player::Draw()
 {
-	//auto nPosition = GetPosition() + D3DXVECTOR3(mCurrentAni->GetWidth() / 2, mCurrentAni->GetHeight() / 2, .0F);
 	if (mCurrentAni != NULL) mCurrentAni->Draw(GetPosition());
 }
 
