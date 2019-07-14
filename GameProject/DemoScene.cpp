@@ -9,35 +9,29 @@ DemoScene::DemoScene() : Scene()
 void DemoScene::Setup()
 {
 	Scene::Setup();
-	mEntities.push_back(new Player());
+	mPlayer = new Player();
 }
 
 void DemoScene::Update(float deltaTime)
 {
 	Scene::Update(deltaTime);
-	for (std::size_t i = 0; i < mEntities.size(); ++i)
-	{
-		mEntities[i]->Update(deltaTime);
-	}
+
+	mPlayer->HandleKeyboard(mKeyboard);
+	mPlayer->Update(deltaTime);
 }
 
 void DemoScene::Draw()
 {
-	for (std::size_t i = 0; i < mEntities.size(); ++i)
-	{
-		mEntities[i]->Draw();
-	}
+	mPlayer->Draw();
 	Scene::Draw();
 }
 
 void DemoScene::OnKeyUp(BYTE keyCode)
 {
 	Scene::OnKeyUp(keyCode);
-	((Player*)mEntities[0])->SetState(PlayerState::Normal);
 }
 
 void DemoScene::OnKeyDown(BYTE keyCode)
 {
 	Scene::OnKeyDown(keyCode);
-	((Player*)mEntities[0])->SetState(PlayerState::Running);
 }

@@ -3,11 +3,11 @@
 
 Player::Player() : Entity()
 {
-	mAniNormal = new Animation(L"Resources\\Sprites\\Aladdin_normal.png", 20, 53, 1, 1, 0.1F);
-	mAniRunning = new Animation(L"Resources\\Sprites\\Aladdin_run.png", 38, 55, 12, 1, 0.5F / 12);
-	mCurrentAni = mAniNormal;
+	mAniStanding = new Animation(L"Resources\\Sprites\\Players\\Cap\\stand.png", 25, 45, 1, 1, 0.1F);
+	mAniRunning = new Animation(L"Resources\\Sprites\\Players\\Cap\\run_shield.png", 51, 43, 2, 1, 0.2F);
+	mCurrentAni = mAniStanding;
 
-	mState = Normal;
+	mState = new PlayerStandingState(this);
 	SetPosition(D3DXVECTOR3(100.0f, 30.0f, 0.f));
 }
 
@@ -24,22 +24,36 @@ void Player::Draw()
 	if (mCurrentAni != NULL) mCurrentAni->Draw(GetPosition());
 }
 
-PlayerState Player::GetState()
+void Player::HandleKeyboard(Keyboard& keyboard)
+{
+	if (mState != nullptr)
+	{
+		mState->HandleKeyboard(keyboard);
+	}
+}
+
+PlayerState* Player::GetState()
 {
 	return mState;
 }
 
-void Player::SetState(PlayerState state)
+void Player::SetState(PlayerState *state)
 {
+	delete mState;
 	mState = state;
-	switch (mState)
+	ChangeAnimationByState(mState->GetState());
+}
+
+void Player::ChangeAnimationByState(EPlayerState state)
+{
+	switch (state)
 	{
-	case Running:
-		mCurrentAni = mAniRunning;
+	case EPlayerState::Standing:
+		mCurrentAni = mAniStanding;
 		break;
-	case Normal:
+	case EPlayerState::Running:
 	default:
-		mCurrentAni = mAniNormal;
+		mCurrentAni = mAniRunning;
 		break;
 	}
 }

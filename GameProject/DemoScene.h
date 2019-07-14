@@ -18,5 +18,5 @@ public:
 	void OnKeyDown(BYTE keyCode);
 
 protected:
-	std::vector<Entity*> mEntities;
+	Player* mPlayer;
 };

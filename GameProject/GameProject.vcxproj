@@ -159,6 +159,9 @@
     <ClCompile Include="GameException.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerRunningState.cpp" />
+    <ClCompile Include="PlayerStandingState.cpp" />
+    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -175,6 +178,9 @@
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerRunningState.h" />
+    <ClInclude Include="PlayerStandingState.h" />
+    <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="DemoScene.h" />
     <ClInclude Include="Sprite.h" />

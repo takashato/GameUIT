@@ -1,13 +1,8 @@
 #pragma once
-
 #include "Animation.h"
 #include "Entity.h"
-
-enum PlayerState 
-{
-	Normal,
-	Running
-};
+#include "PlayerState.h"
+#include "PlayerStandingState.h" 
 
 class Player : public Entity
 {
@@ -16,16 +11,20 @@ public:
 
 	void Update(float deltaTime);
 	void Draw();
+	void HandleKeyboard(Keyboard& keyboard);
 
-	PlayerState GetState();
-	void SetState(PlayerState state);
+	PlayerState* GetState();
+	void SetState(PlayerState* state);
+
+	void ChangeAnimationByState(EPlayerState state);
 
 	void OnSetPosition();
 
 private:
-	Animation* mAniNormal = NULL;
+	Animation* mAniStanding = NULL;
 	Animation* mAniRunning = NULL;
+
 	Animation* mCurrentAni = NULL;
 
-	PlayerState mState = Normal;
+	PlayerState* mState;
 };
