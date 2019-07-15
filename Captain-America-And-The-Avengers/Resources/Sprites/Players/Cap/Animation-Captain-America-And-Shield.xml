@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Standing" imagePath="Captain.png" width="231" height="444">      
+    <sprite x="3" y="3" w="25" h="45" />
+  </Animation>
+  <Animation name="Shield" imagePath="Captain.png" width="231" height="444">      
+    <sprite x="87" y="154" w="16" h="9" />
+  </Animation>
+  <Animation name="Running" imagePath="Captain.png" width="231" height="444">
+	<!-- Running With Shield -->  	
+    <sprite x="3" y="52" w="25" h="42" />
+	<sprite x="31" y="51" w="25" h="43" />  
+	<!-- Running Without Shield -->  
+    <sprite x="59" y="52" w="24" h="42" />
+	<sprite x="86" y="51" w="24" h="43" />  
+  </Animation>
+  <Animation name="ThrowingShield" imagePath="Captain.png" width="231" height="444">      
+    <sprite x="3" y="138" w="39" h="39" />
+	<sprite x="45" y="141" w="39" h="36" />
+  </Animation>
+  <Animation name="HighJump" imagePath="Captain.png" width="231" height="444">      
+    <sprite x="53" y="97" w="19" h="20" />
+	<sprite x="75" y="97" w="20" h="19" />
+	<sprite x="99" y="97" w="19" h="20" />
+	<sprite x="121" y="97" w="20" h="19" />
+  </Animation>
+  <Animation name="LowJump" imagePath="Captain.png" width="231" height="444"> 
+	<!-- LowJump With Shield -->  
+    <sprite x="3" y="97" w="22" h="38" /> 
+	<!-- LowJump Without Shield -->
+	<sprite x="28" y="97" w="22" h="38" />
+  </Animation>
+  <Animation name="Sitting" imagePath="Captain.png" width="231" height="444"> 
+	<!-- Sitting With Shield -->  
+    <sprite x="144" y="107" w="26" h="28" /> 
+	<!-- Sitting Without Shield -->
+	<sprite x="173" y="107" w="24" h="28" />
+  </Animation>
+  <Animation name="Punching" imagePath="Captain.png" width="231" height="444">      
+    <sprite x="3" y="180" w="38" h="41" />
+	<sprite x="44" y="180" w="29" h="41" />
+  </Animation>
+  <Animation name="Kicking" imagePath="Captain.png" width="231" height="444"> 
+	<!-- Kicking With Shield -->  
+    <sprite x="3" y="273" w="42" h="25" /> 
+	<!-- Kicking Without Shield -->
+	<sprite x="48" y="273" w="40" h="25" />
+  </Animation>
+  <Animation name="TakeDamage" imagePath="Captain.png" width="231" height="444">      
+    <sprite x="3" y="373" w="29" h="38" />
+	<sprite x="35" y="373" w="29" h="38" />
+  </Animation>
+  <Animation name="HighShielding" imagePath="Captain.png" width="231" height="444"> 
+	<!-- High Shielding With Shield -->  
+    <sprite x="3" y="224" w="24" h="44" /> 
+	<!-- High Shielding Without Shield -->
+	<sprite x="30" y="225" w="24" h="43" />
+  </Animation>
+  <Animation name="TakeDown1" imagePath="Captain.png" width="231" height="444">      
+    <sprite x="3" y="414" w="30" h="28" />
+	<sprite x="36" y="414" w="30" h="28" />
+  </Animation>
+  <Animation name="TakeDown2" imagePath="Captain.png" width="231" height="444">      
+    <sprite x="69" y="419" w="26" h="23" />
+	<sprite x="98" y="419" w="25" h="23" />
+  </Animation>
+  <Animation name="LowPunching" imagePath="Captain.png" width="231" height="444"> 
+	<!-- LowPunching With Shield -->  
+    <sprite x="3" y="336" w="37" h="27" /> 
+    <sprite x="43" y="336" w="28" h="27" /> 
+	<!-- LowPunching Without Shield -->
+	<sprite x="74" y="336" w="37" h="27" />
+	<sprite x="114" y="336" w="28" h="27" />
+  </Animation>
+  <Animation name="InvincibleStand" imagePath="Captain.png" width="231" height="444">      
+    <sprite x="68" y="366" w="25" h="45" />
+	<sprite x="97" y="367" w="25" h="44" />
+  </Animation>
+</Animations>
