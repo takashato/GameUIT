@@ -28,8 +28,12 @@ private:
 	
 	Animation* mAniStanding = NULL;
 	Animation* mAniRunning = NULL;
+	Animation* mAniLowJumping = NULL;
+	Animation* mAniHighJumping = NULL;
 
 	Animation* mCurrentAni = NULL;
 
 	PlayerState* mState;
+
+	float mCounter;
 };

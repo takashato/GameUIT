@@ -5,7 +5,8 @@ class Player;
 
 enum EPlayerState {
 	Standing,
-	Running
+	Running,
+	Jumping
 };
 
 class PlayerState

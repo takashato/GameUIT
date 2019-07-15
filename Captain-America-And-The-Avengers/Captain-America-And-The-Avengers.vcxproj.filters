@@ -141,6 +141,9 @@
     <ClCompile Include="AnimationScript.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerJumpingState.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -265,6 +268,9 @@
     </ClInclude>
     <ClInclude Include="MapReader\zlib.h">
       <Filter>Utils\MapReader</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerJumpingState.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

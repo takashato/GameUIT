@@ -25,9 +25,33 @@ void Entity::SetPosition(D3DXVECTOR3 position)
 	OnSetPosition();
 }
 
+void Entity::SetPositionX(float value)
+{
+	mPosition.x = value;
+	SetPosition(mPosition);
+}
+
+void Entity::SetPositionY(float value)
+{
+	mPosition.y = value;
+	SetPosition(mPosition);
+}
+
 void Entity::AddPosition(D3DXVECTOR2 vector)
 {
 	SetPosition(mPosition + D3DXVECTOR3(vector.x, vector.y, 0.0F));
+}
+
+void Entity::AddPositionX(float value)
+{
+	mPosition.x += value;
+	SetPosition(mPosition);
+}
+
+void Entity::AddPositionY(float value)
+{
+	mPosition.y += value;
+	SetPosition(mPosition);
 }
 
 float Entity::GetVelocityX()

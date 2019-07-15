@@ -16,7 +16,11 @@ public:
 
 	D3DXVECTOR3 GetPosition();
 	void SetPosition(D3DXVECTOR3 position);
+	void SetPositionX(float value);
+	void SetPositionY(float value);
 	void AddPosition(D3DXVECTOR2 vector);
+	void AddPositionX(float value);
+	void AddPositionY(float value);
 
 	float GetVelocityX();
 	float GetVelocityY();

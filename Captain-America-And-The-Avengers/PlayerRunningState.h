@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "PlayerState.h"
 #include "PlayerStandingState.h"
+#include "PlayerJumpingState.h"
 #include "Entity.h"
 
 class PlayerRunningState : public PlayerState
@@ -14,5 +15,4 @@ public:
 	EPlayerState GetState();
 
 protected:
-	float mAcceleratorX;
 };

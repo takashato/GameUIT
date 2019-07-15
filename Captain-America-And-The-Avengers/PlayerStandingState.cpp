@@ -18,4 +18,12 @@ void PlayerStandingState::HandleKeyboard(Keyboard& keyboard)
 	{
 		mPlayer->SetState(new PlayerRunningState(mPlayer));
 	}
+	else if (keyboard.IsPressing(GAME_KEY_JUMP))
+	{
+		mPlayer->SetState(new PlayerJumpingState(mPlayer));
+	}
+	else
+	{
+		mPlayer->SetVelocityX(.0f);
+	}
 }
