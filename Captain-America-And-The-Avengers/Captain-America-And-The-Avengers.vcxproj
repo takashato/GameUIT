@@ -157,6 +157,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationScript.cpp" />
+    <ClCompile Include="AnimationScript.h" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameException.cpp" />

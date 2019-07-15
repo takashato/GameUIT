@@ -5,8 +5,8 @@ class Animation
 {
 private:
 	Sprite* mSprite; // Spritesheet
-	int mWidth, mHeight;
-	int mColNum, mRowNum;
+
+	std::vector<RECT> mFrames;
 	int mFrame; // Frame number, start from 0
 
 	float mTimePerFrame; // Time interval
@@ -17,12 +17,17 @@ private:
 	bool mHorizontallyFlip = false; // Flip horizontally
 
 public:
-	Animation(const wchar_t* filePath, int width, int height, int colNum, int rowNum = 1, float timePerFrame = 0.1F);
+	Animation(Sprite* sprite, std::vector<RECT> frames, float timePerFrame = 0.1F);
+
 	void Draw(D3DXVECTOR3 position);
 	virtual void Update(float deltaTime);
+
 	void SetFrame(int frame);
 	void IncFrame();
-	void UpdateRect();
+
+	int GetFrameNumber();
+
+	RECT GetCurrentFrameRect();
 
 	void SetTimePerFrame(float timePerFrame);
 	float GetTimePerFrame();

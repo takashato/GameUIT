@@ -2,13 +2,20 @@
 #include "Player.h"
 
 Player::Player() : Entity()
-{
-	mAniStanding = new Animation(L"Resources\\Sprites\\Players\\Cap\\stand.png", 25, 45, 1, 1, 0.1F);
-	mAniRunning = new Animation(L"Resources\\Sprites\\Players\\Cap\\run_shield.png", 51, 43, 2, 1, 0.15F);
-	mCurrentAni = mAniStanding;
-
+{	
+	LoadAnimations();
 	mState = new PlayerStandingState(this);
 	SetPosition(D3DXVECTOR3(100.0f, 30.0f, 0.f));
+}
+
+void Player::LoadAnimations()
+{
+	mSprite = new Sprite(L"Resources\\Sprites\\Players\\Cap\\capnamerica.png");
+	mAniScripts = new AnimationScript("Resources\\Sprites\\Players\\Cap\\scripts.xml");
+
+	mAniStanding = new Animation(mSprite, mAniScripts->GetRectList("Standing", "0"), 0.1F);
+	mAniRunning = new Animation(mSprite, mAniScripts->GetRectList("Running", "0"), 0.15F);
+	mCurrentAni = mAniStanding;
 }
 
 void Player::Update(float deltaTime)

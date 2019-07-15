@@ -1,47 +1,33 @@
 #include "pch.h"
 #include "Animation.h"
 
-Animation::Animation(const wchar_t* filePath, int width, int height, int colNum, int rowNum, float timePerFrame)
+Animation::Animation(Sprite* sprite, std::vector<RECT> frames, float timePerFrame)
 {
-	mSprite = new Sprite(filePath, RECT(), width, height);
-
-	if (width < 1 || height < 1 || colNum < 1 || rowNum < 1)
-	{
-		ThrowGameException("Invalid Anmation passed argument(s).");
-	}
-
-	mColNum = colNum;
-	mRowNum = rowNum;
-
-	int imgWidth = mSprite->GetImageInfo().Width;
-	int imgHeight = mSprite->GetImageInfo().Height;
-
-	if (width > imgWidth / colNum)
-		mWidth = imgWidth / colNum;
-	else
-		mWidth = width;
-
-	if (height > imgHeight / colNum)
-		mHeight = imgHeight / rowNum;
-	else
-		mHeight = height;
+	mSprite = sprite;
 
 	mTimePerFrame = timePerFrame;
 	mTimer = 0.0F;
+
+	mFrames = frames;
 
 	SetFrame(0);
 }
 
 void Animation::Draw(D3DXVECTOR3 position)
 {
-	mSprite->SetRect(mRect);
+	RECT rect = GetCurrentFrameRect();
+	mSprite->SetRect(rect);
+	if (mHorizontallyFlip)
+	{
+		position.x += (rect.right - rect.left);
+	}
 	mSprite->Draw(position, D3DXVECTOR2(mHorizontallyFlip ? -1.0f : 1.0f, 1.0f));
 }
 
 void Animation::Update(float deltaTime)
 {
 	//std::cout << "mTimer: " << mTimer << ", delta: " << deltaTime << std::endl;
-	if (mRowNum * mColNum <= 1) return; // Not need update, static animation, lol
+	if (GetFrameNumber() <= 1) return; // Not need update, static animation, lol
 
 	mTimer += deltaTime;
 	if (mTimer >= mTimePerFrame) 
@@ -54,11 +40,19 @@ void Animation::Update(float deltaTime)
 
 void Animation::SetFrame(int frame)
 {
-	if (frame >= mColNum * mRowNum)
+	int frameNum = GetFrameNumber();
+	if (frame >= frameNum)
+	{
 		mFrame = 0;
+	}
+	else if (frame < 0)
+	{
+		mFrame = frameNum - 1;
+	}
 	else
+	{
 		mFrame = frame;
-	UpdateRect(); // Update after set frame
+	}
 }
 
 void Animation::IncFrame()
@@ -66,16 +60,14 @@ void Animation::IncFrame()
 	SetFrame(mFrame + 1);
 }
 
-void Animation::UpdateRect()
+int Animation::GetFrameNumber()
 {
-	// Row, Col start from 0
-	int currentCol = mFrame % mColNum;
-	int currentRow = mFrame / mColNum;
+	return static_cast<int>(mFrames.size());
+}
 
-	mRect.left = currentCol * mWidth;
-	mRect.top = currentRow * mHeight;
-	mRect.right = mRect.left + mWidth;
-	mRect.bottom = mRect.top + mHeight;
+RECT Animation::GetCurrentFrameRect()
+{
+	return mFrames[mFrame];
 }
 
 void Animation::SetTimePerFrame(float timePerFrame)
@@ -90,12 +82,12 @@ float Animation::GetTimePerFrame()
 
 int Animation::GetWidth()
 {
-	return mWidth;
+	return 0;
 }
 
 int Animation::GetHeight()
 {
-	return mHeight;
+	return 0;
 }
 
 bool Animation::IsFlippedHorizontally()

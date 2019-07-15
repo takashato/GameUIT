@@ -135,6 +135,12 @@
     <ClCompile Include="MapReader\TmxUtil.cpp">
       <Filter>Utils\MapReader</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationScript.h">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationScript.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">

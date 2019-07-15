@@ -1,9 +1,0 @@
-{
-	"resources" : {
-		"basePath": "Resources\\",
-		"resources": [
-			"run.png",
-			"run_shield.png",
-		]
-	}
-}

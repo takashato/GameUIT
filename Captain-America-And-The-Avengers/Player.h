@@ -3,11 +3,13 @@
 #include "Entity.h"
 #include "PlayerState.h"
 #include "PlayerStandingState.h" 
+#include "AnimationScript.h"
 
 class Player : public Entity
 {
 public:
 	Player();
+	void LoadAnimations();
 
 	void Update(float deltaTime);
 	void Draw();
@@ -21,6 +23,9 @@ public:
 	void OnSetPosition();
 
 private:
+	Sprite* mSprite = NULL;
+	AnimationScript* mAniScripts = NULL;
+	
 	Animation* mAniStanding = NULL;
 	Animation* mAniRunning = NULL;
 
