@@ -35,7 +35,7 @@ float Timer::GetFPS()
 
 	if (timePassed >= 1.0f)
 	{
-		fps = nFrame;
+		fps = static_cast<float>(nFrame);
 		nFrame = 0;
 		timePassed -= 1.0f;
 	}

@@ -28,8 +28,10 @@ void Game::InitDevice()
 	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;
 	d3dpp.BackBufferCount = 1;
-	d3dpp.BackBufferHeight = wnd.GetHeight();
-	d3dpp.BackBufferWidth = wnd.GetWidth();
+	//d3dpp.BackBufferHeight = wnd.GetHeight();
+	//d3dpp.BackBufferWidth = wnd.GetWidth();
+	d3dpp.BackBufferHeight = BUFFER_HEIGHT;
+	d3dpp.BackBufferWidth = BUFFER_WIDTH;
 
 	LPDIRECT3D9 d3d = Direct3DCreate9(D3D_SDK_VERSION);
 	d3d->CreateDevice(
