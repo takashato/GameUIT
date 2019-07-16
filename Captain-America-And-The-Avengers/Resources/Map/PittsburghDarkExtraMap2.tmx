@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="8" height="7" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="18">
+ <tileset firstgid="1" name="PittsburghDarkExtraMap2" tilewidth="32" tileheight="32" tilecount="56" columns="8">
+  <image source="pittsburgh_dark_extramap2.png" width="256" height="224"/>
+ </tileset>
+ <layer id="1" name="BackGround" width="8" height="7">
+  <data encoding="base64" compression="zlib">
+   eJwNwwUOwkAAALDDXYb7sOHu/38ZbdJUCCFtxqw58xYsWrJsxao16zZsGtmybceuPfsOHDpy7MSpM2PnLly6cm3ixq079x48evLsxas37z58+vLtx68//+MPBj0=
+  </data>
+ </layer>
+ <objectgroup id="2" name="Boundary">
+  <object id="1" name="Roof" x="0" y="0" width="256" height="11"/>
+  <object id="2" name="Ground" x="0" y="186" width="256" height="11"/>
+  <object id="3" name="LeftBorder" x="0" y="0" width="11" height="186"/>
+  <object id="4" name="RightBorder" x="245" y="0" width="11" height="186"/>
+ </objectgroup>
+ <objectgroup id="3" name="Steps">
+  <object id="5" name="Step" x="17.6667" y="155" width="27.3333" height="30.6667"/>
+  <object id="6" name="Step" x="81.3333" y="156.333" width="27.3333" height="30.6667"/>
+  <object id="7" name="Step" x="146.333" y="156.667" width="27.3333" height="30.6667"/>
+  <object id="8" name="Step" x="210.333" y="157" width="27.3333" height="30.6667"/>
+  <object id="9" name="Step" x="48.6667" y="80" width="29" height="6.66667"/>
+  <object id="10" name="Step" x="112.667" y="81" width="29" height="6.66667"/>
+  <object id="11" name="Step" x="177.333" y="80.6667" width="29" height="6.66667"/>
+ </objectgroup>
+ <objectgroup id="4" name="Trigger">
+  <object id="12" name="Door2" x="54" y="147.333" width="19.6667" height="39.6667"/>
+ </objectgroup>
+ <objectgroup id="5" name="Capsule">
+  <object id="13" name="Capsule" x="156" y="45.6667" width="19" height="18.6667"/>
+  <object id="14" name="Capsule" x="182" y="121" width="19" height="18.6667"/>
+ </objectgroup>
+ <objectgroup id="6" name="HeartEnegy">
+  <object id="15" name="HeartEnegy" x="187.667" y="126.667" width="8.33333" height="6.66667"/>
+ </objectgroup>
+ <objectgroup id="7" name="PowerStone">
+  <object id="16" name="PowerStone" x="162" y="53" width="8" height="5.66667"/>
+ </objectgroup>
+</map>

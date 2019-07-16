@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="8" height="7" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="18">
+ <tileset firstgid="1" name="PittsburghDarkExtraMap1" tilewidth="32" tileheight="32" tilecount="56" columns="8">
+  <image source="pittsburgh_dark_extramap1.png" width="256" height="224"/>
+ </tileset>
+ <layer id="1" name="BackGround" width="8" height="7">
+  <data encoding="base64" compression="zlib">
+   eJwNwwUOwkAAALDDXYb7sOHu/38ZbdJUCCFtxqw58xYsWrJsxao16zZsGtmybceuPfsOHDpy7MSpM2PnLly6cm3ixq079x48evLsxas37z58+vLtx68//+MPBj0=
+  </data>
+ </layer>
+ <objectgroup id="2" name="Trigger">
+  <object id="1" name="Door1" x="52" y="145.667" width="24.3333" height="43.6667"/>
+ </objectgroup>
+ <objectgroup id="3" name="Boundary">
+  <object id="2" name="LeftBorder" x="0" y="0" width="11" height="193"/>
+  <object id="3" name="RightBorder" x="245" y="0" width="11" height="193"/>
+  <object id="5" name="Roof" x="0" y="0" width="256" height="11"/>
+  <object id="6" name="Ground" x="0" y="186" width="256" height="11"/>
+ </objectgroup>
+ <objectgroup id="4" name="IronBar">
+  <object id="7" name="IronBar" x="18" y="108" width="44" height="2"/>
+  <object id="8" name="IronBar" x="194" y="108" width="44" height="2"/>
+ </objectgroup>
+ <objectgroup id="5" name="Steps">
+  <object id="9" name="Step" x="65" y="80" width="126" height="9"/>
+  <object id="10" name="Step" x="64.3333" y="89" width="31" height="28.6667"/>
+  <object id="11" name="Step" x="64.3333" y="89" width="31" height="28.6667"/>
+  <object id="12" name="Step" x="160.333" y="89.3333" width="31" height="28.6667"/>
+ </objectgroup>
+ <objectgroup id="6" name="Capsule">
+  <object id="13" name="Capsule" x="124.667" y="32.3333" width="18.6667" height="16.6667"/>
+  <object id="14" name="Capsule" x="125.667" y="135.667" width="18.6667" height="16.6667"/>
+ </objectgroup>
+ <objectgroup id="7" name="HeartEnegy">
+  <object id="15" name="HeartEnegy" x="132.333" y="140.667" width="6.33333" height="7"/>
+ </objectgroup>
+ <objectgroup id="8" name="PowerStone">
+  <object id="16" name="PowerStone" x="130.667" y="38" width="7.33333" height="5.33333"/>
+ </objectgroup>
+</map>

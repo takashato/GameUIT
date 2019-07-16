@@ -162,6 +162,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameException.cpp" />
+    <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="MapReader\base64.cpp" />
     <ClCompile Include="MapReader\miniz.c" />
@@ -192,6 +193,7 @@
     <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="StringUtils.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -201,6 +203,7 @@
     <ClInclude Include="define.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameException.h" />
+    <ClInclude Include="GameMap.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="MapReader\base64.h" />
@@ -234,6 +237,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="DemoScene.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="StringUtils.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="ISingleton.h" />
     <ClInclude Include="pch.h" />

@@ -68,7 +68,14 @@ void Sprite::Draw(D3DXVECTOR3 position, D3DXVECTOR2 scale)
 	D3DXVECTOR2 inScale;
 	D3DXVECTOR2 inScalingCenter(position.x, position.y);
 
-	inScale = scale;
+	if (scale == D3DXVECTOR2())
+	{
+		inScale = D3DXVECTOR2(1.0f, 1.0f);
+	}
+	else
+	{
+		inScale = scale;
+	}
 
 	// Transformation
 	D3DXMatrixTransformation2D(&mMatrix, &inScalingCenter, .0F, &inScale, NULL, .0F, NULL);

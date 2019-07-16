@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="32" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="23" nextobjectid="144">
+ <tileset firstgid="1" name="PittsburghDarkMap" tilewidth="32" tileheight="32" tilecount="960" columns="32">
+  <image source="Pittsburgh_Dark_Map.png" width="1024" height="960"/>
+ </tileset>
+ <layer id="1" name="BackGround" width="32" height="30">
+  <data encoding="base64" compression="zlib">
+   eJxF1kMMIIgSBcCxbdu2bdu2bdu2bdu2bVu749kda2uSn/yk69KXd+q8DhggQIBABCYIQQlGcEIQklCEJgxhCUd4IhCRSEQmClGJRnRiEJNYxCYOcYlHfBKQkEQkJglJSUZyUpCSVKQmDWlJR3oykJFMZCYLWclGdnKQk1zkJg95yUd+ClCQQhSmCEUpRnFKUJJSlKYMZSlHeSpQkUpUpgpVqUZ1alCTWtSmDnWpR30a0JBGNKYJTWlGc1rQkla0pg1taUd7OtCRTnSmC13pRnd60JNe9KYPfelHfwYwkEEMZghDGcZwRjCSUYxmDGMZx3gmMJFJTGYKU5nGdGYwk1nMZg5zmcd8FrCQRSxmCUtZxnJWsJJVrGYNa1nHejawkU1sZgtb2cZ2drCTXexmD3vZx34OcJBDHOYIRznGcU5wklOc5gxnOcd5LnCRS1zmCle5xnVucJNb3OYOd7nHfR7wkEc85glPecZzXvAXf/OSV7zmDW95x3s+8A//8pFPfOYLX/nGd37wk1/8JkBAQyACE4SgBCM4IQhJKEIThrCEIzwRiEgkIhOFqEQjOjGISSxiE4e4xCM+CUhIIhKThKQkIzkpSEkqUpOGtKQjPRnISCYyk4WsZCM7OchJLnKTh7zkIz8FKEghClOEohSjOCUoSSlKU4aylKM8FahIJSpThapUozo1qEktalOHutSjPg1oSCMa04SmNKM5LWhJK1rThra0oz0d6EgnOtOFrnSjOz3oSS9604e+9KM/AxjIIAYzhKEMYzgjGMkoRjOGsYxjPBOYyCQmM4WpTGM6M5jJLGYzh7nMYz4LWMgiFrOEpSxjOStYySpWs4a1rGM9G9jIJjazha1sYzs72MkudrOHvexjPwc4yCEOc4SjHOM4JzjJKU5zhrOc4zwXuMglLnOFq1zjOje4yS1uc4e73OM+D3jIIx7zhKc84zkv+Iu/eckrXvOGt7zjPR/4h3/5yCc+84WvfOM7P/jJL37zp/gDEojABCEowQhOCEISitCEISzhCE8EIhKJyEQhKtGITgxiEovYxCEu8YhPAhKSiMQkISnJSE4KUpKK1KQhLelITwYykonMZCEr2chODnKSi9zkIS/5yE8BClKIwhShKMUoTglKUorSlKEs5ShPBSpSicpUoSrVqE4NalKL2tShLvWoTwMa0ojGNKEpzWhOC1rSita0oS3taE8HOtKJznShK93oTg960ove9KEv/ejPAAYyiMEMYSjDGM4IRjKK0YxhLOMYzwQmMonJTGEq05jODGYyi9nMYS7zmM8CFrKIxSxhKctYzgpWsorVrGEt61jPBjayic1sYSvb2M4OdrKL3exhL/vYzwEOcojDHOEoxzjOCU5yitOc4SznOM8FLnKJy1zhKte4zg1ucovb3OEu97jPAx7yiMc84SnPeM4L/uJvXvKK17zhLe94zwf+4V8+8onPfOEr3/jOD37yi9/8efoDEojABCEowQhOCEISitCEISzhCE8EIhKJyEQhKtGITgxiEovYxCEu8YhPAhKSiMQkISnJSE4KUpKKDIH/f5d/OjH9/3YZyURmspCVbGQnBznJRW7ykJd85KcABSlEYYpQ9E8OxSlBSUpRmjKUpRzlqUBFKlGZKlSlGtWpQU1qUZs61KUe9WlAQxrRmCY0pRnNaUFLWtGaNrSlHe3pQEc60ZkudKUb3elBT3rRmz70pR/9GcBABjGYIQxlGMMZwUhGMZoxjGUc45nARCYxmSlMZRrTmcFMZjGbOcxlHvNZwEIWsZglLGUZy1nBSlaxmjWsZR3r2cBGNrGZLWxlG9vZwU52sZs97GUf+znAf+XZzKM=
+  </data>
+ </layer>
+ <objectgroup id="18" name="RunEnemy">
+  <object id="132" name="RunEnemy" x="268.5" y="878" width="22.5" height="48.5"/>
+ </objectgroup>
+ <objectgroup id="19" name="Bat">
+  <object id="133" name="Bat" x="807.5" y="240" width="23" height="17.5"/>
+  <object id="135" name="Bat" x="907.5" y="321" width="23" height="17.5"/>
+ </objectgroup>
+ <objectgroup id="20" name="MissileEnemy">
+  <object id="136" name="MissileEnemy" x="430" y="874.5" width="23.5" height="52.5"/>
+ </objectgroup>
+ <objectgroup id="21" name="FlyEnemy">
+  <object id="137" name="FlyEnemy" x="133" y="732" width="28" height="57"/>
+  <object id="138" name="FlyEnemy" x="630.5" y="30" width="25" height="54"/>
+ </objectgroup>
+ <objectgroup id="2" name="Boundary">
+  <object id="1" name="Roof" x="0" y="0" width="1024" height="16"/>
+  <object id="2" name="Ground" x="2.84217e-14" y="926" width="808" height="12"/>
+  <object id="3" name="LeftBorder" x="0" y="18" width="2" height="180.667"/>
+  <object id="4" name="LeftBorder" x="0" y="240" width="2" height="244"/>
+  <object id="5" name="LeftBorder" x="0" y="718" width="2" height="208"/>
+  <object id="6" name="RightBorder" x="1022" y="16" width="2" height="180"/>
+  <object id="7" name="LeftBorder" x="0" y="609" width="2" height="69"/>
+  <object id="8" name="RightBorder" x="1022" y="238" width="2" height="207"/>
+  <object id="9" name="RightBorder" x="1022" y="613" width="2" height="66"/>
+  <object id="10" name="RightBorder" x="1022" y="480" width="2" height="118"/>
+  <object id="11" name="RightBorder" x="1022" y="736" width="2" height="185"/>
+  <object id="12" name="Ground" x="831.333" y="924" width="192.667" height="14"/>
+ </objectgroup>
+ <objectgroup id="12" name="IronBar">
+  <object id="113" name="IronBar" x="467.5" y="86" width="29" height="2"/>
+  <object id="114" name="IronBar" x="67" y="536" width="92" height="2"/>
+  <object id="115" name="IronBar" x="163.5" y="600" width="63.5" height="2"/>
+  <object id="116" name="IronBar" x="81.5" y="617" width="27" height="2"/>
+  <object id="117" name="IronBar" x="351.5" y="825" width="68" height="2"/>
+  <object id="118" name="IronBar" x="853.5" y="375" width="29" height="2"/>
+  <object id="119" name="IronBar" x="918" y="375" width="29" height="2"/>
+  <object id="120" name="IronBar" x="934" y="117.5" width="61.5" height="2"/>
+  <object id="121" name="IronBar" x="934" y="117.5" width="61.5" height="2"/>
+  <object id="128" name="IronBar" x="163.5" y="117" width="59.5" height="2"/>
+ </objectgroup>
+ <objectgroup id="16" name="GunEnemy">
+  <object id="129" x="93.5" y="44.5" width="22.5" height="44"/>
+  <object id="130" x="234" y="157" width="22.5" height="44"/>
+  <object id="131" x="347.5" y="157.5" width="22.5" height="44"/>
+ </objectgroup>
+ <objectgroup id="3" name="Steps">
+  <object id="13" name="Step" x="83" y="88" width="43" height="23"/>
+  <object id="14" name="Step" x="0" y="200" width="63" height="39"/>
+  <object id="17" name="Step" x="209" y="200" width="48" height="40"/>
+  <object id="18" name="Step" x="290" y="84.6667" width="34" height="12"/>
+  <object id="19" name="Step" x="324" y="19.3333" width="61.3333" height="77.3333"/>
+  <object id="20" name="Step" x="260" y="168" width="58" height="34"/>
+  <object id="22" name="Step" x="373" y="168" width="26" height="33"/>
+  <object id="24" name="Step" x="437" y="168" width="26" height="33"/>
+  <object id="32" name="Step" x="514" y="201.333" width="320" height="39"/>
+  <object id="33" name="Step" x="982" y="198" width="42" height="40"/>
+  <object id="34" name="Step" x="853" y="86" width="45.3333" height="24.6667"/>
+  <object id="35" name="Step" x="515" y="119" width="125" height="7"/>
+  <object id="36" name="Step" x="678" y="118.667" width="58" height="7"/>
+  <object id="37" name="Step" x="870.667" y="312.667" width="58" height="7"/>
+  <object id="38" name="Step" x="834" y="215.333" width="32" height="7"/>
+  <object id="39" name="Step" x="951.333" y="216" width="30" height="7"/>
+  <object id="40" name="Step" x="967.333" y="361.333" width="44" height="7"/>
+  <object id="41" name="Step" x="790" y="362" width="44" height="7"/>
+  <object id="42" name="Step" x="1007" y="443" width="16" height="7"/>
+  <object id="43" name="Step" x="774" y="443" width="21" height="7"/>
+  <object id="44" name="Step" x="835" y="603" width="49" height="7"/>
+  <object id="45" name="Step" x="915" y="603" width="50" height="7"/>
+  <object id="46" name="Step" x="996" y="603" width="28" height="7"/>
+  <object id="47" name="Step" x="773" y="603" width="30" height="7"/>
+  <object id="48" name="Step" x="805" y="570" width="30" height="40"/>
+  <object id="49" name="Step" x="885" y="570" width="30" height="40"/>
+  <object id="50" name="Step" x="966" y="570" width="30" height="40"/>
+  <object id="51" name="Step" x="774" y="685" width="250" height="52"/>
+  <object id="52" name="Step" x="835" y="603" width="49" height="7"/>
+  <object id="53" name="Step" x="805" y="829" width="30" height="105"/>
+  <object id="54" name="Step" x="614" y="798" width="73" height="20"/>
+  <object id="55" name="Step" x="514" y="813" width="63" height="37"/>
+  <object id="56" name="Step" x="872" y="737" width="73" height="127"/>
+  <object id="57" name="Step" x="63.6667" y="215" width="30" height="7"/>
+  <object id="58" name="Step" x="180" y="218" width="30" height="7"/>
+  <object id="59" name="Step" x="258" y="200" width="253" height="279"/>
+  <object id="60" name="Step" x="0.666667" y="490" width="63" height="118.333"/>
+  <object id="61" name="Step" x="226.667" y="571.333" width="29.6667" height="39.6667"/>
+  <object id="62" name="Step" x="1.33333" y="685.333" width="29.6667" height="35"/>
+  <object id="63" name="Step" x="32" y="700" width="29.6667" height="21.6667"/>
+  <object id="64" name="Step" x="212" y="699.333" width="47" height="25"/>
+  <object id="65" name="Step" x="242" y="684.667" width="15" height="16.3333"/>
+  <object id="66" name="Step" x="256.667" y="604.667" width="45.6667" height="91"/>
+  <object id="67" name="Step" x="258" y="682.667" width="256" height="85.3333"/>
+  <object id="68" name="Step" x="258" y="769.333" width="92.6667" height="80"/>
+  <object id="69" name="Step" x="421.333" y="768.667" width="92.6667" height="81.3333"/>
+  <object id="70" name="Step" x="338.667" y="554" width="30" height="8"/>
+  <object id="71" name="Step" x="420" y="570.667" width="28" height="38.6667"/>
+  <object id="72" name="Step" x="449.333" y="602.667" width="63.3333" height="7.33333"/>
+  <object id="73" name="Step" x="774" y="451.333" width="249.333" height="26"/>
+  <object id="74" name="Step" x="725" y="844.333" width="45.3333" height="8"/>
+ </objectgroup>
+ <objectgroup id="4" name="Button">
+  <object id="75" name="Button" x="274" y="51.6667" width="14.6667" height="10.3333"/>
+ </objectgroup>
+ <objectgroup id="5" name="Location">
+  <object id="76" name="PlayerSpawn" x="20.5" y="147" width="18" height="50"/>
+ </objectgroup>
+ <objectgroup id="6" name="Capsule">
+  <object id="77" name="Capsule" x="92.5" y="47.5" width="24" height="19.5"/>
+  <object id="78" name="Capsule" x="130.5" y="145.5" width="24" height="19.5"/>
+  <object id="79" name="Capsule" x="437" y="55.5" width="24" height="19.5"/>
+  <object id="80" name="Capsule" x="517.5" y="84" width="24" height="19.5"/>
+  <object id="81" name="Capsule" x="864" y="53.5" width="24" height="19.5"/>
+  <object id="82" name="Capsule" x="903.5" y="139.5" width="24" height="19.5"/>
+  <object id="83" name="Capsule" x="984.5" y="323.5" width="24" height="19.5"/>
+  <object id="84" name="Capsule" x="972" y="540" width="24" height="19.5"/>
+  <object id="85" name="Capsule" x="971" y="635.5" width="24" height="19.5"/>
+  <object id="86" name="Capsule" x="526" y="768.5" width="24" height="19.5"/>
+  <object id="87" name="Capsule" x="676" y="881.5" width="24" height="19.5"/>
+  <object id="88" name="Capsule" x="383" y="838" width="24" height="19.5"/>
+  <object id="89" name="Capsule" x="176" y="869.5" width="24" height="19.5"/>
+  <object id="90" name="Capsule" x="78.5" y="736.5" width="24" height="19.5"/>
+  <object id="91" name="Capsule" x="458.5" y="641" width="24" height="19.5"/>
+  <object id="92" name="Capsule" x="226" y="534.5" width="24" height="19.5"/>
+ </objectgroup>
+ <objectgroup id="7" name="HeartEnegy">
+  <object id="94" name="HeartEnegy" x="443.5" y="60" width="11" height="9.5"/>
+  <object id="95" name="HeartEnegy" x="870.5" y="58" width="11" height="9.5"/>
+  <object id="96" name="HeartEnegy" x="978.5" y="544.5" width="11" height="9.5"/>
+  <object id="97" name="HeartEnegy" x="532.5" y="773" width="11" height="9.5"/>
+  <object id="98" name="HeartEnegy" x="389.5" y="843" width="11" height="9.5"/>
+ </objectgroup>
+ <objectgroup id="8" name="PowerStone">
+  <object id="99" name="PowerStone" x="137.5" y="151.5" width="10" height="7.5"/>
+  <object id="100" name="PowerStone" x="525" y="90" width="10" height="7.5"/>
+  <object id="101" name="PowerStone" x="910" y="145" width="10" height="7.5"/>
+  <object id="102" name="PowerStone" x="978" y="641" width="10" height="7.5"/>
+  <object id="103" name="PowerStone" x="683" y="888" width="10" height="7.5"/>
+  <object id="104" name="PowerStone" x="465.5" y="646.5" width="10" height="7.5"/>
+  <object id="105" name="PowerStone" x="183" y="875.5" width="10" height="7.5"/>
+  <object id="106" name="PowerStone" x="234" y="540.5" width="10" height="7.5"/>
+ </objectgroup>
+ <objectgroup id="13" name="Thorns">
+  <object id="122" name="Thorns" x="795" y="437.5" width="211.5" height="14.5"/>
+ </objectgroup>
+ <objectgroup id="11" name="Trigger">
+  <object id="110" name="NextMap" x="981" y="736" width="11.5" height="192.5"/>
+  <object id="111" name="Door2" x="825.5" y="641.5" width="21" height="42.5"/>
+  <object id="112" name="Door1" x="568.5" y="158.5" width="21" height="42.5"/>
+ </objectgroup>
+ <objectgroup id="22" name="GunStock">
+  <object id="139" name="GunStock" x="257" y="546.5" width="13.5" height="14"/>
+  <object id="140" name="GunStock" x="21.5" y="653" width="13.5" height="14"/>
+  <object id="141" name="GunStock" x="390.5" y="876.5" width="13.5" height="14"/>
+  <object id="142" name="GunStock" x="391" y="891" width="13.5" height="14"/>
+  <object id="143" name="GunStock" x="565.5" y="754" width="13.5" height="14"/>
+ </objectgroup>
+ <objectgroup id="15" name="Lazer">
+  <object id="124" name="Lazer" x="868.5" y="880.5" width="16" height="37.5"/>
+  <object id="125" name="Lazer" x="917" y="881" width="16" height="37.5"/>
+  <object id="126" name="Lazer" x="595.5" y="154" width="16" height="37.5"/>
+  <object id="127" name="Lazer" x="546.5" y="153.5" width="16" height="37.5"/>
+ </objectgroup>
+ <objectgroup id="9" name="KeyCrystal">
+  <object id="107" name="KeyCrystal" x="101" y="53" width="8" height="8.5"/>
+  <object id="108" name="KeyCrystal" x="86.5" y="742.5" width="8" height="8.5"/>
+ </objectgroup>
+ <objectgroup id="10" name="OneUp">
+  <object id="109" name="OneUp" x="993" y="329.5" width="8.5" height="8.5"/>
+ </objectgroup>
+</map>

@@ -9,6 +9,7 @@ DemoScene::DemoScene() : Scene()
 void DemoScene::Setup()
 {
 	Scene::Setup();
+	mMap = new GameMap((char*)"Resources\\Map\\CharlestonMap.tmx");
 	mPlayer = new Player();
 }
 
@@ -22,6 +23,7 @@ void DemoScene::Update(float deltaTime)
 
 void DemoScene::Draw()
 {
+	mMap->Draw();
 	mPlayer->Draw();
 	Scene::Draw();
 }

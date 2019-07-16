@@ -144,6 +144,12 @@
     <ClCompile Include="PlayerJumpingState.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="GameMap.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="StringUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -271,6 +277,12 @@
     </ClInclude>
     <ClInclude Include="PlayerJumpingState.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="StringUtils.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

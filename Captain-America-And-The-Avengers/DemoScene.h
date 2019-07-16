@@ -3,6 +3,7 @@
 #include "Animation.h"
 #include "Entity.h"
 #include "Player.h"
+#include "GameMap.h"
 
 class DemoScene : public Scene
 {
@@ -19,4 +20,5 @@ public:
 
 protected:
 	Player* mPlayer;
+	GameMap* mMap;
 };
