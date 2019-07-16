@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "Game.h"
 #include "Player.h"
 
 Player::Player() : Entity()
@@ -38,7 +39,16 @@ void Player::Update(float deltaTime)
 
 void Player::Draw()
 {
-	if (mCurrentAni != NULL) mCurrentAni->Draw(GetPosition());
+	if (mCamera)
+	{
+		D3DXVECTOR2 trans = D3DXVECTOR2(Game::GetInstance().GetWidth() / 2 - mCamera->GetPosition().x,
+			Game::GetInstance().GetHeight() / 2 - mCamera->GetPosition().y);
+		if (mCurrentAni != NULL) mCurrentAni->Draw(GetPosition(), trans);
+	}
+	else
+	{
+		if (mCurrentAni != NULL) mCurrentAni->Draw(GetPosition());
+	}
 }
 
 void Player::HandleKeyboard(Keyboard& keyboard)
@@ -80,4 +90,9 @@ void Player::ChangeAnimationByState(EPlayerState state)
 
 void Player::OnSetPosition()
 {
+}
+
+void Player::SetCamera(Camera* camera)
+{
+	mCamera = camera;
 }

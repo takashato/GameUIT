@@ -4,6 +4,7 @@
 #include "PlayerState.h"
 #include "PlayerStandingState.h" 
 #include "AnimationScript.h"
+#include "Camera.h"
 
 class Player : public Entity
 {
@@ -22,6 +23,8 @@ public:
 
 	void OnSetPosition();
 
+	void SetCamera(Camera* camera);
+
 private:
 	Sprite* mSprite = NULL;
 	AnimationScript* mAniScripts = NULL;
@@ -34,6 +37,8 @@ private:
 	Animation* mCurrentAni = NULL;
 
 	PlayerState* mState;
+
+	Camera* mCamera;
 
 	float mCounter;
 };

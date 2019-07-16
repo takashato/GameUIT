@@ -13,7 +13,7 @@ Animation::Animation(Sprite* sprite, std::vector<RECT> frames, float timePerFram
 	SetFrame(0);
 }
 
-void Animation::Draw(D3DXVECTOR3 position)
+void Animation::Draw(D3DXVECTOR3 position, D3DXVECTOR2 translation)
 {
 	RECT rect = GetCurrentFrameRect();
 	mSprite->SetRect(rect);
@@ -21,7 +21,7 @@ void Animation::Draw(D3DXVECTOR3 position)
 	{
 		position.x += (rect.right - rect.left);
 	}
-	mSprite->Draw(position, D3DXVECTOR2(mHorizontallyFlip ? -1.0f : 1.0f, 1.0f));
+	mSprite->Draw(position, D3DXVECTOR2(mHorizontallyFlip ? -1.0f : 1.0f, 1.0f), translation);
 }
 
 void Animation::Update(float deltaTime)

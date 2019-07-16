@@ -3,22 +3,28 @@
 #include "Animation.h"
 #include "Entity.h"
 #include "Player.h"
+#include "Camera.h"
 #include "GameMap.h"
 
 class DemoScene : public Scene
 {
 public:
 	DemoScene();
+	~DemoScene();
 	
 	void Setup();
 
 	void Update(float deltaTime);
 	void Draw();
 
+	void CheckCamera();
+
 	void OnKeyUp(BYTE keyCode);
 	void OnKeyDown(BYTE keyCode);
 
 protected:
-	Player* mPlayer;
-	GameMap* mMap;
+	Camera* mCamera = NULL;
+
+	Player* mPlayer = NULL;
+	GameMap* mMap = NULL;
 };

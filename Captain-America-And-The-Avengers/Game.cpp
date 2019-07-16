@@ -20,6 +20,16 @@ LPD3DXSPRITE Game::GetSpriteHandler()
 	return spriteHandler;
 }
 
+int Game::GetWidth()
+{
+	return BUFFER_WIDTH;
+}
+
+int Game::GetHeight()
+{
+	return BUFFER_HEIGHT;
+}
+
 void Game::InitDevice()
 {
 	D3DPRESENT_PARAMETERS d3dpp;

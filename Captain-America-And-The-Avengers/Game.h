@@ -23,6 +23,9 @@ public:
 	~Game();
 	LPD3DXSPRITE GetSpriteHandler();
 
+	int GetWidth();
+	int GetHeight();
+
 private:
 	Game() : ISingleton(NULL) {};
 

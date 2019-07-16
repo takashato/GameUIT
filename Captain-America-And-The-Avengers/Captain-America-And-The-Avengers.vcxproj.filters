@@ -18,14 +18,14 @@
     <Filter Include="Resource Files\Sprites">
       <UniqueIdentifier>{e38b8e98-1437-402f-9304-03d6f348723b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Data">
-      <UniqueIdentifier>{032af11c-23c3-4b90-ae13-74647539ee94}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Player">
       <UniqueIdentifier>{6d2aa959-194f-46ca-a2e3-58ed981aa08e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Utils\MapReader">
       <UniqueIdentifier>{158bb214-7091-4cf3-9773-40760a60ea99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{032af11c-23c3-4b90-ae13-74647539ee94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,7 +57,7 @@
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="DemoScene.cpp">
-      <Filter>Data</Filter>
+      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Framework</Filter>
@@ -150,6 +150,9 @@
     <ClCompile Include="StringUtils.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -192,7 +195,7 @@
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="DemoScene.h">
-      <Filter>Data</Filter>
+      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Player</Filter>
@@ -283,6 +286,9 @@
     </ClInclude>
     <ClInclude Include="StringUtils.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

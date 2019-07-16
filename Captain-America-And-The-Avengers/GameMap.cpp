@@ -1,8 +1,10 @@
 #include "pch.h"
+#include "Game.h"
 #include "GameMap.h"
 
-GameMap::GameMap(char* filePath)
+GameMap::GameMap(char* filePath, Camera* camera)
 {
+	mCamera = camera;
 	LoadMap(filePath);
 }
 
@@ -30,6 +32,9 @@ void GameMap::LoadMap(char* filePath)
 
 void GameMap::Draw()
 {
+	D3DXVECTOR2 trans = D3DXVECTOR2(Game::GetInstance().GetWidth() / 2 - mCamera->GetPosition().x,
+		Game::GetInstance().GetHeight() / 2 - mCamera->GetPosition().y);
+
 	for (int i = 0; i < mMap->GetNumTileLayers(); i++)
 	{
 		const Tmx::TileLayer* layer = mMap->GetTileLayer(i);
@@ -71,10 +76,26 @@ void GameMap::Draw()
 
 						sprite->SetRect(sourceRECT);
 
-						sprite->Draw(position, D3DXVECTOR2()/*, trans*/);
+						sprite->Draw(position, D3DXVECTOR2(), trans);
 					}
 				}
 			}
 		}
 	}
+}
+
+void GameMap::SetCamera(Camera* camera)
+{
+	mCamera = camera;
+}
+
+
+int GameMap::GetWidth()
+{
+	return mMap->GetWidth()* mMap->GetTileWidth();
+}
+
+int GameMap::GetHeight()
+{
+	return mMap->GetHeight()* mMap->GetTileHeight();
 }
