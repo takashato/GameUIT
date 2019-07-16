@@ -11,6 +11,10 @@ Player* PlayerState::GetPlayer()
 	return mPlayer;
 }
 
+void PlayerState::Update(float deltaTime)
+{
+}
+
 EPlayerState PlayerState::GetState()
 {
 	return EPlayerState::Running;

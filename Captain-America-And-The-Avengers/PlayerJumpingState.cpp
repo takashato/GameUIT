@@ -3,21 +3,25 @@
 
 PlayerJumpingState::PlayerJumpingState(Player* player) : PlayerState(player)
 {
-	// accelector
+	mPlayer->SetVelocityY(-PLAYER_VELOCITY_Y_MAX);
 }
 
 void PlayerJumpingState::HandleKeyboard(Keyboard* keyboard)
 {
 	if (!keyboard->IsPressing(GAME_KEY_JUMP))
 	{
-		if (keyboard->IsPressing(GAME_KEY_LEFT) || keyboard->IsPressing(GAME_KEY_RIGHT))
-		{
-			mPlayer->SetState(new PlayerRunningState(mPlayer));
-		}
-		else
-		{
-			mPlayer->SetState(new PlayerStandingState(mPlayer));
-		}
+		mPlayer->SetState(new PlayerFallingState(mPlayer));
+	}
+}
+
+void PlayerJumpingState::Update(float deltaTime)
+{
+	mTimeCounter += deltaTime;
+	mTimeUpdater += deltaTime;
+	if (mTimeUpdater > MOVEMENT_UPDATE_TIME)
+	{
+		mPlayer->AddVelocityY(PLAYER_GRAVITY);
+		mTimeUpdater = .0f;
 	}
 }
 

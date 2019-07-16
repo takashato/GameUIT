@@ -49,28 +49,23 @@ void DemoScene::CheckCamera()
 
 	if (mCamera->GetBound().left < 0)
 	{
-		//vi position cua camera ma chinh giua camera
-		//luc nay o vi tri goc ben trai cua the gioi thuc
-		mCamera->SetPosition(mCamera->GetWidth() / 2, mCamera->GetPosition().y);
+		mCamera->SetPosition(mCamera->GetWidth() / 2, (int)mCamera->GetPosition().y);
 	}
 
 	if (mCamera->GetBound().right > mMap->GetWidth())
 	{
-		//luc nay cham goc ben phai cua the gioi thuc
 		mCamera->SetPosition(mMap->GetWidth() - mCamera->GetWidth() / 2,
-			mCamera->GetPosition().y);
+			(int)mCamera->GetPosition().y);
 	}
 
 	if (mCamera->GetBound().top < 0)
 	{
-		//luc nay cham goc tren the gioi thuc
-		mCamera->SetPosition(mCamera->GetPosition().x, mCamera->GetHeight() / 2);
+		mCamera->SetPosition((int)mCamera->GetPosition().x, mCamera->GetHeight() / 2);
 	}
 
 	if (mCamera->GetBound().bottom > mMap->GetHeight())
 	{
-		//luc nay cham day cua the gioi thuc
-		mCamera->SetPosition(mCamera->GetPosition().x,
+		mCamera->SetPosition((int)mCamera->GetPosition().x,
 			mMap->GetHeight() - mCamera->GetHeight() / 2);
 	}
 }

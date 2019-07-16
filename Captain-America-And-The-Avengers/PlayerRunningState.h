@@ -11,8 +11,11 @@ public:
 	PlayerRunningState(Player* player);
 
 	void HandleKeyboard(Keyboard *keyboard);
+	void Update(float deltaTime);
 
 	EPlayerState GetState();
 
 protected:
+	float mTimeUpdater = .0f;
+	
 };

@@ -17,18 +17,25 @@ void Player::LoadAnimations()
 	mAniStanding = new Animation(mSprite, mAniScripts->GetRectList("Standing", "0"), 0.1F);
 	mAniRunning = new Animation(mSprite, mAniScripts->GetRectList("Running", "0"), 0.15F);
 	mAniLowJumping = new Animation(mSprite, mAniScripts->GetRectList("LowJump", "0"), 0.15F);
+	mAniHighJumping = new Animation(mSprite, mAniScripts->GetRectList("HighJump", "0"), 0.05F);
+
 	mCurrentAni = mAniStanding;
 }
 
 void Player::Update(float deltaTime)
 {
+	if (mState != nullptr) mState->Update(deltaTime);
+
 	mCurrentAni->SetFlippedHorizontally(mDirection == Left);
 
 	mCounter += deltaTime;
 	if (mCounter > MOVEMENT_UPDATE_TIME)
 	{
-		if (GetVelocityX() != 0) {
+		if (GetVelocityX() != .0f) {
 			AddPositionX(GetVelocityX() * mCounter);
+		}
+		if (GetVelocityY() != .0f) {
+			AddPositionY(GetVelocityY() * mCounter);
 		}
 		mCounter = 0;
 	}
@@ -66,7 +73,7 @@ PlayerState* Player::GetState()
 
 void Player::SetState(PlayerState *state)
 {
-	if (state == nullptr) return;
+	if (state == nullptr || this == (void*)0xDDDDDDDD) return;
 
 	delete mState;
 	mState = state;
@@ -81,7 +88,11 @@ void Player::ChangeAnimationByState(EPlayerState state)
 		mCurrentAni = mAniStanding;
 		break;
 	case EPlayerState::Jumping:
+	case EPlayerState::Falling:
 		mCurrentAni = mAniLowJumping;
+		break;
+	case EPlayerState::HighJumping:
+		mCurrentAni = mAniHighJumping;
 		break;
 	case EPlayerState::Running:
 	default:
