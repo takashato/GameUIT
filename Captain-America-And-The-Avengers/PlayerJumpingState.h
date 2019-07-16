@@ -8,7 +8,7 @@ class PlayerJumpingState : public PlayerState
 public:
 	PlayerJumpingState(Player* player);
 
-	void HandleKeyboard(Keyboard& keyboard);
+	void HandleKeyboard(Keyboard* keyboard);
 
 	EPlayerState GetState();
 };

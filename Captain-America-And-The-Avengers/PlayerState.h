@@ -16,7 +16,7 @@ public:
 	Player* GetPlayer();
 
 	virtual EPlayerState GetState();
-	virtual void HandleKeyboard(Keyboard &keyboard);
+	virtual void HandleKeyboard(Keyboard* keyboard);
 
 protected:
 	Player* mPlayer = nullptr;

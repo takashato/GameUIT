@@ -6,11 +6,11 @@ PlayerJumpingState::PlayerJumpingState(Player* player) : PlayerState(player)
 	// accelector
 }
 
-void PlayerJumpingState::HandleKeyboard(Keyboard& keyboard)
+void PlayerJumpingState::HandleKeyboard(Keyboard* keyboard)
 {
-	if (!keyboard.IsPressing(GAME_KEY_JUMP))
+	if (!keyboard->IsPressing(GAME_KEY_JUMP))
 	{
-		if (keyboard.IsPressing(GAME_KEY_LEFT) || keyboard.IsPressing(GAME_KEY_RIGHT))
+		if (keyboard->IsPressing(GAME_KEY_LEFT) || keyboard->IsPressing(GAME_KEY_RIGHT))
 		{
 			mPlayer->SetState(new PlayerRunningState(mPlayer));
 		}

@@ -7,8 +7,9 @@ SceneManager& SceneManager::GetInstance()
 	return sceneManager;
 }
 
-void SceneManager::SetupDefaultScene()
+void SceneManager::Setup()
 {
+	mKeyboard = new Keyboard();
 	mCurrentScene = new DemoScene();
 }
 
@@ -24,14 +25,7 @@ void SceneManager::Draw()
 	mCurrentScene->Draw();
 }
 
-void SceneManager::OnKeyDown(BYTE keyCode)
+Keyboard* SceneManager::GetKeyboard()
 {
-	if (mCurrentScene == NULL) return;
-	mCurrentScene->OnKeyDown(keyCode);
-}
-
-void SceneManager::OnKeyUp(BYTE keyCode)
-{
-	if (mCurrentScene == NULL) return;
-	mCurrentScene->OnKeyUp(keyCode);
+	return mKeyboard;
 }

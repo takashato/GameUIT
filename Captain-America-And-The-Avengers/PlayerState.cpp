@@ -16,6 +16,6 @@ EPlayerState PlayerState::GetState()
 	return EPlayerState::Running;
 }
 
-void PlayerState::HandleKeyboard(Keyboard& keyboard)
+void PlayerState::HandleKeyboard(Keyboard* keyboard)
 {
 }

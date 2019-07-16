@@ -18,6 +18,7 @@ public:
 	bool ProcessMessage() const;
 
 	const HWND GetHWnd() const { return hWnd; }
+	const HINSTANCE GetHInstance() const { return hInstance;  };
 	
 	const std::tuple<UINT, UINT> GetDimension();
 	const UINT GetHeight();

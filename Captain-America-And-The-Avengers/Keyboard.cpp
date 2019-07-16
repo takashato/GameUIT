@@ -15,30 +15,16 @@ void Keyboard::ResetKey()
 }
 
 
-void Keyboard::SetKey(BYTE keyCode, BOOL isSet)
-{
-	int index = keyCode / 8;
-	int offset = keyCode % 8;
-	if (isSet)
-		mKeyStates[index] |= 1UL << offset;
-	else
-		mKeyStates[index] &= ~(1UL << offset);
-}
-
 BOOL Keyboard::IsPressing(BYTE keyCode)
 {
-	int index = keyCode / 8;
-	int offset = keyCode % 8;
-
-	return (mKeyStates[index] >> offset) & 1U;
+	return mKeyStates[keyCode];
 }
 
-void Keyboard::OnKeyDown(BYTE keyCode)
+void Keyboard::ReadInput(IDirectInputDevice8* DIKeyboard)
 {
-	SetKey(keyCode, TRUE);
-}
-
-void Keyboard::OnKeyUp(BYTE keyCode)
-{
-	SetKey(keyCode, FALSE);
+	if (DIKeyboard != nullptr)
+	{
+		DIKeyboard->Acquire();
+		DIKeyboard->GetDeviceState(sizeof(mKeyStates), (LPVOID)& mKeyStates);
+	}
 }

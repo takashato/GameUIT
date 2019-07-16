@@ -12,13 +12,13 @@ EPlayerState PlayerStandingState::GetState()
 	return Standing;
 }
 
-void PlayerStandingState::HandleKeyboard(Keyboard& keyboard)
+void PlayerStandingState::HandleKeyboard(Keyboard* keyboard)
 {
-	if (keyboard.IsPressing(VK_LEFT) || keyboard.IsPressing(VK_RIGHT))
+	if (keyboard->IsPressing(GAME_KEY_LEFT) || keyboard->IsPressing(GAME_KEY_RIGHT))
 	{
 		mPlayer->SetState(new PlayerRunningState(mPlayer));
 	}
-	else if (keyboard.IsPressing(GAME_KEY_JUMP))
+	else if (keyboard->IsPressing(GAME_KEY_JUMP))
 	{
 		mPlayer->SetState(new PlayerJumpingState(mPlayer));
 	}

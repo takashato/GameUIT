@@ -7,15 +7,16 @@ class SceneManager : ISingleton
 public:
 	static SceneManager& GetInstance();
 	
-	void SetupDefaultScene();
+	void Setup();
 
 	void Update(float deltaTime);
 	void Draw();
 
-	void OnKeyDown(BYTE keyCode);
-	void OnKeyUp(BYTE keyCode);
+	Keyboard* GetKeyboard();
 
 private:
 	SceneManager() : ISingleton(NULL) {}
 	Scene* mCurrentScene = NULL;
+
+	Keyboard* mKeyboard = NULL;
 };

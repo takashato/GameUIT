@@ -30,7 +30,7 @@ void DemoScene::Update(float deltaTime)
 {
 	Scene::Update(deltaTime);
 
-	mPlayer->HandleKeyboard(mKeyboard);
+	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->Update(deltaTime);
 
 	CheckCamera();
@@ -73,14 +73,4 @@ void DemoScene::CheckCamera()
 		mCamera->SetPosition(mCamera->GetPosition().x,
 			mMap->GetHeight() - mCamera->GetHeight() / 2);
 	}
-}
-
-void DemoScene::OnKeyUp(BYTE keyCode)
-{
-	Scene::OnKeyUp(keyCode);
-}
-
-void DemoScene::OnKeyDown(BYTE keyCode)
-{
-	Scene::OnKeyDown(keyCode);
 }

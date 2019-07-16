@@ -9,11 +9,5 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Draw();
 
-	virtual void OnKeyDown(BYTE keyCode);
-	virtual void OnKeyUp(BYTE keyCode);
-
-	Keyboard& GetKeyboard();
-
 protected:
-	Keyboard mKeyboard;
 };

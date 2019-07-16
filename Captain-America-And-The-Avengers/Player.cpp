@@ -51,7 +51,7 @@ void Player::Draw()
 	}
 }
 
-void Player::HandleKeyboard(Keyboard& keyboard)
+void Player::HandleKeyboard(Keyboard* keyboard)
 {
 	if (mState != nullptr)
 	{

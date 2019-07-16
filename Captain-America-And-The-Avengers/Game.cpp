@@ -5,6 +5,7 @@
 void Game::Init()
 {
 	InitDevice();
+	InitInput();
 }
 
 Game::~Game()
@@ -28,6 +29,32 @@ int Game::GetWidth()
 int Game::GetHeight()
 {
 	return BUFFER_HEIGHT;
+}
+
+void Game::InitInput()
+{
+	HRESULT res = DirectInput8Create(
+		wnd.GetHInstance(),
+		DIRECTINPUT_VERSION,
+		IID_IDirectInput8,
+		(void**)& mDinput,
+		NULL
+	);
+	if (res != MB_OK)
+	{
+		ThrowGameException("Can't create dinput8.");
+	}
+	res = mDinput->CreateDevice(
+		GUID_SysKeyboard,
+		&mDIKeyboard,
+		NULL
+	);
+	if (mDIKeyboard == nullptr)
+	{
+		ThrowGameException("Can't create dinput8 keyboard device.")
+	}
+	mDIKeyboard->SetDataFormat(&c_dfDIKeyboard);
+	mDIKeyboard->SetCooperativeLevel(wnd.GetHWnd(), DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
 }
 
 void Game::InitDevice()
@@ -66,7 +93,8 @@ void Game::InitDevice()
 
 void Game::Run()
 {
-	SceneManager::GetInstance().SetupDefaultScene();
+	SceneManager::GetInstance().Setup();
+
 	while (wnd.ProcessMessage())
 	{
 		timer.Update();
@@ -83,6 +111,7 @@ void Game::Run()
 void Game::Update()
 {
 	float deltaTime = timer.Get();
+	SceneManager::GetInstance().GetKeyboard()->ReadInput(mDIKeyboard);
 	SceneManager::GetInstance().Update(deltaTime);
 }
 

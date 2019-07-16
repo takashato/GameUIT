@@ -19,9 +19,6 @@ public:
 
 	void CheckCamera();
 
-	void OnKeyUp(BYTE keyCode);
-	void OnKeyDown(BYTE keyCode);
-
 protected:
 	Camera* mCamera = NULL;
 

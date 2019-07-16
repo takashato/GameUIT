@@ -9,5 +9,5 @@ public:
 	PlayerStandingState(Player* player);
 	EPlayerState GetState();
 
-	void HandleKeyboard(Keyboard& keyboard);
+	void HandleKeyboard(Keyboard *keyboard);
 };

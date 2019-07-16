@@ -13,12 +13,16 @@ private:
 	LPD3DXLINE lineDraw = NULL;
 	LPD3DXFONT fontDraw = NULL;
 
+	LPDIRECTINPUT8 mDinput;
+	IDirectInputDevice8* mDIKeyboard;
+
 	Window& wnd = Window::GetInstance();
 	Timer& timer = Timer::GetInstance();
 
 public:
 	static Game& GetInstance();
 	void Init();
+	void InitInput();
 	void Run();
 	~Game();
 	LPD3DXSPRITE GetSpriteHandler();

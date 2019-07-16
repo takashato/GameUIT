@@ -14,7 +14,7 @@ public:
 
 	void Update(float deltaTime);
 	void Draw();
-	void HandleKeyboard(Keyboard& keyboard);
+	void HandleKeyboard(Keyboard* keyboard);
 
 	PlayerState* GetState();
 	void SetState(PlayerState* state);

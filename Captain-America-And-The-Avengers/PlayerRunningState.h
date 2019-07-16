@@ -10,7 +10,7 @@ class PlayerRunningState : public PlayerState
 public:
 	PlayerRunningState(Player* player);
 
-	void HandleKeyboard(Keyboard& keyboard);
+	void HandleKeyboard(Keyboard *keyboard);
 
 	EPlayerState GetState();
 
