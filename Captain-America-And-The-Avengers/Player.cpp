@@ -66,6 +66,8 @@ PlayerState* Player::GetState()
 
 void Player::SetState(PlayerState *state)
 {
+	if (state == nullptr) return;
+
 	delete mState;
 	mState = state;
 	ChangeAnimationByState(mState->GetState());
