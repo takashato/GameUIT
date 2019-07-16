@@ -17,6 +17,7 @@ void DemoScene::Setup()
 	Scene::Setup();
 	mMap = new GameMap((char*)"Resources\\Map\\CharlestonMap.tmx");
 	mPlayer = new Player();
+	mPlayer->SetPosition(mMap->GetPlayerSpawnPoint());
 
 	mCamera = new Camera(Game::GetInstance().GetWidth(), Game::GetInstance().GetHeight());
 	mMap->SetCamera(mCamera);

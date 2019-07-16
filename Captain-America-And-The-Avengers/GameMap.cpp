@@ -99,3 +99,29 @@ int GameMap::GetHeight()
 {
 	return mMap->GetHeight()* mMap->GetTileHeight();
 }
+
+D3DXVECTOR3 GameMap::GetPlayerSpawnPoint()
+{
+	D3DXVECTOR3 spawnPoint(.0f, .0f, .0f);
+	bool shouldContinue = true;
+	for (int i = 0; i < mMap->GetNumObjectGroups(); ++i)
+	{
+		const Tmx::ObjectGroup* objectGroup = mMap->GetObjectGroup(i);
+		if (objectGroup->GetName().compare("Location") == 0)
+		{
+			for (int j = 0; j < objectGroup->GetNumObjects(); ++j)
+			{
+				auto obj = objectGroup->GetObjectW(j);
+				if (obj->GetName().compare("PlayerSpawn") == 0)
+				{
+					spawnPoint.x = (float)obj->GetX();
+					spawnPoint.y = (float)obj->GetY();
+					shouldContinue = false;
+					break;
+				}
+			}
+		}
+		if (!shouldContinue) break;
+	}
+	return spawnPoint;
+}

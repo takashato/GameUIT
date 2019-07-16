@@ -17,6 +17,8 @@ public:
 	int GetWidth();
 	int GetHeight();
 
+	D3DXVECTOR3 GetPlayerSpawnPoint();
+
 protected:
 	Tmx::Map* mMap;
 	std::map<int, Sprite*> mTilesetMap;
