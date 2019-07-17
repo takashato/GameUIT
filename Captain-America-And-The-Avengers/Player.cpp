@@ -11,8 +11,8 @@ Player::Player() : Entity()
 
 void Player::LoadAnimations()
 {
-	mSprite = new Sprite(L"Resources\\Sprites\\Players\\Cap\\capnamerica.png");
-	mAniScripts = new AnimationScript("Resources\\Sprites\\Players\\Cap\\scripts.xml");
+	mSprite = new Sprite(L"Resources\\Sprites\\Players\\Cap\\Captain America.png");
+	mAniScripts = new AnimationScript("Resources\\Sprites\\Players\\Cap\\Animation Captain America And Shield.xml");
 
 	mAniStanding = new Animation(mSprite, mAniScripts->GetRectList("Standing", "0"), 0.1F);
 	mAniRunning = new Animation(mSprite, mAniScripts->GetRectList("Running", "0"), 0.15F);
@@ -26,7 +26,7 @@ void Player::Update(float deltaTime)
 {
 	if (mState != nullptr) mState->Update(deltaTime);
 
-	mCurrentAni->SetFlippedHorizontally(mDirection == Left);
+	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 
 	mCounter += deltaTime;
 	if (mCounter > MOVEMENT_UPDATE_TIME)

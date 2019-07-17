@@ -46,7 +46,7 @@
     <Sprites type="0">
       <sprite x="144" y="107" w="26" h="28" />
     </Sprites>
-    <Sprites type="0">
+    <Sprites type="1">
       <sprite x="173" y="107" w="24" h="28" />
     </Sprites>
   </Animation>

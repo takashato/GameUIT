@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Standing" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="21" y="11" w="22" h="45" />
+    </Sprites>
+  </Animation>
+  <Animation name="Shield" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="87" y="154" w="16" h="9" />
+    </Sprites>
+  </Animation>
+  <Animation name="Running" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="52" y="14" w="24" h="42" />
+		<sprite x="84" y="13" w="24" h="43" />
+		<sprite x="116" y="14" w="24" h="42" />
+		<sprite x="148" y="13" w="24" h="43" />
+    </Sprites>
+  </Animation>
+  <Animation name="ThrowingShield" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="9" y="73" w="34" h="39" />
+		<sprite x="57" y="76" w="39" h="36" />
+    </Sprites>
+  </Animation>
+  <Animation name="HighJump" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="276" y="28" w="19" h="20" />
+		<sprite x="312" y="29" w="20" h="19" />
+    </Sprites>
+  </Animation>
+  <Animation name="LowJump" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="244" y="15" w="22" h="38" />
+    </Sprites>
+  </Animation>
+  <Animation name="Falling" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="244" y="15" w="22" h="38" />
+    </Sprites>
+  </Animation>
+  <Animation name="Sitting" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="212" y="28" w="24" h="28" />
+    </Sprites>
+  </Animation>
+  <Animation name="Punching" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="105" y="71" w="38" h="41" />
+		<sprite x="154" y="71" w="29" h="41" />
+	</Sprites>
+  </Animation>
+  <Animation name="Kicking" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="340" y="23" w="40" h="25" />
+    </Sprites>
+  </Animation>
+  <Animation name="TakeDamage" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="202" y="192" w="29" h="38" />
+		<sprite x="21" y="11" w="22" h="45" />
+		<sprite x="89" y="187" w="22" h="45" />
+    </Sprites>
+  </Animation>
+  <Animation name="HighShielding" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="180" y="13" w="24" h="43" />
+    </Sprites>
+  </Animation>
+  <Animation name="TakeDown" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="242" y="204" w="30" h="28" />
+		<sprite x="286" y="209" w="26" h="23" />
+    </Sprites>
+  </Animation>
+  <Animation name="LowPunching" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="195" y="85" w="37" h="27" />
+		<sprite x="244" y="85" w="28" h="27" />
+    </Sprites>
+  </Animation>
+  <Animation name="InvincibleStand" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="21" y="11" w="22" h="45" />
+		<sprite x="89" y="187" w="22" h="44" />
+    </Sprites>
+  </Animation>
+  <Animation name="Surfing" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="281" y="38" w="31" h="29" />
+		<sprite x="321" y="85" w="39" h="23" />
+    </Sprites>
+  </Animation>
+  <Animation name="SittingOnShield" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="370" y="83" w="21" h="27" />
+    </Sprites>
+  </Animation>
+  <Animation name="Swimming" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="262" y="245" w="18" h="11" />
+		<sprite x="294" y="244" w="16" h="12" />
+    </Sprites>
+  </Animation>
+  <Animation name="Cling" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="293" y="120" w="19" h="56" />
+		<sprite x="324" y="120" w="20" h="55" />
+		<sprite x="352" y="120" w="16" h="56" />
+    </Sprites>
+  </Animation>
+</Animations>
