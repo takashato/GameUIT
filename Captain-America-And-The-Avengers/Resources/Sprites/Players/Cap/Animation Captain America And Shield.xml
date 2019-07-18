@@ -5,11 +5,6 @@
 		<sprite x="21" y="11" w="22" h="45" />
     </Sprites>
   </Animation>
-  <Animation name="Shield" imagePath="Captain America.png" width="400" height="368">
-    <Sprites type="0">
-		<sprite x="87" y="154" w="16" h="9" />
-    </Sprites>
-  </Animation>
   <Animation name="Running" imagePath="Captain America.png" width="400" height="368">
     <Sprites type="0">
 		<sprite x="52" y="14" w="24" h="42" />

@@ -14,8 +14,13 @@ EPlayerState PlayerHighShieldingState::GetState()
 
 void PlayerHighShieldingState::HandleKeyboard(Keyboard* keyboard)
 {
+	if (keyboard->IsPressing(GAME_KEY_ATTACK))
+	{
+		mPlayer->SetState(new PlayerPunchingState(mPlayer));
+	}
+
 	if (!keyboard->IsPressing(GAME_KEY_UP))
 	{
 		mPlayer->SetState(new PlayerStandingState(mPlayer));
-	}
+	}	
 }

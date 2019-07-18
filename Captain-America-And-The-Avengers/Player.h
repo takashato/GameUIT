@@ -30,6 +30,7 @@ private:
 	AnimationScript* mAniScripts = NULL;
 	
 	Animation* mAniStanding = NULL;
+	Animation* mAniPunching = NULL;
 	Animation* mAniHighShielding = NULL;
 	Animation* mAniRunning = NULL;
 	Animation* mAniLowJumping = NULL;

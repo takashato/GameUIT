@@ -15,6 +15,7 @@ void Player::LoadAnimations()
 	mAniScripts = new AnimationScript("Resources\\Sprites\\Players\\Cap\\Animation Captain America And Shield.xml");
 
 	mAniStanding = new Animation(mSprite, mAniScripts->GetRectList("Standing", "0"), 0.1F);
+	mAniPunching = new Animation(mSprite, mAniScripts->GetRectList("Punching", "0"), 0.15F);
 	mAniHighShielding = new Animation(mSprite, mAniScripts->GetRectList("HighShielding", "0"), 0.1F);
 	mAniSitting = new Animation(mSprite, mAniScripts->GetRectList("Sitting", "0"), 0.1F);
 	mAniRunning = new Animation(mSprite, mAniScripts->GetRectList("Running", "0"), 0.15F);
@@ -101,6 +102,9 @@ void Player::ChangeAnimationByState(EPlayerState state)
 		break;
 	case EPlayerState::HighShielding:
 		mCurrentAni = mAniHighShielding;
+		break;
+	case EPlayerState::Punching:
+		mCurrentAni = mAniPunching;
 		break;
 	case EPlayerState::Running:
 	default:

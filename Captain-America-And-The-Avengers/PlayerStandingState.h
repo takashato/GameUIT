@@ -3,6 +3,7 @@
 #include "PlayerState.h"
 #include "PlayerRunningState.h"
 #include "PlayerHighShieldingState.h"
+#include "PlayerPunchingState.h"
 
 class PlayerStandingState : public PlayerState
 {
