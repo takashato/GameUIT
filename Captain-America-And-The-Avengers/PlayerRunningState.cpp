@@ -22,7 +22,7 @@ void PlayerRunningState::HandleKeyboard(Keyboard* keyboard)
 
 	if (keyboard->IsPressing(GAME_KEY_JUMP))
 	{
-		mPlayer->SetState(new PlayerJumpingState(mPlayer));
+	mPlayer->SetState(new PlayerJumpingState(mPlayer));
 	}
 }
 

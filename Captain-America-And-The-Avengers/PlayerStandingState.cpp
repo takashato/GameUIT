@@ -22,8 +22,12 @@ void PlayerStandingState::HandleKeyboard(Keyboard* keyboard)
 	{
 		mPlayer->SetState(new PlayerJumpingState(mPlayer));
 	}
-	else
+	else if (keyboard->IsPressing(GAME_KEY_DOWN))
+	{
+		mPlayer->SetState(new PlayerSittingState(mPlayer));
+	}
+	/*else
 	{
 		mPlayer->SetVelocityX(.0f);
-	}
+	}*/
 }

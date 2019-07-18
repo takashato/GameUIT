@@ -153,7 +153,12 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerFallingState.cpp" />
+    <ClCompile Include="PlayerSittingState.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFallingState.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -292,6 +297,9 @@
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="PlayerFallingState.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSittingState.h">
       <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>

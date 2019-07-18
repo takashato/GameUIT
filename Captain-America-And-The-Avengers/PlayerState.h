@@ -8,7 +8,8 @@ enum EPlayerState {
 	Running,
 	Jumping,
 	HighJumping,
-	Falling
+	Falling,
+	Sitting
 };
 
 class PlayerState

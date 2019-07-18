@@ -3,6 +3,7 @@
 #include "PlayerState.h"
 #include "PlayerStandingState.h"
 #include "PlayerJumpingState.h"
+#include "PlayerSittingState.h"
 #include "Entity.h"
 
 class PlayerRunningState : public PlayerState
