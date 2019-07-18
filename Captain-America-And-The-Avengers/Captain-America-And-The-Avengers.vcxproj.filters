@@ -153,13 +153,13 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerSittingState.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerFallingState.cpp">
       <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHighShieldingState.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSittingState.cpp">
       <Filter>Player</Filter>
     </ClCompile>
   </ItemGroup>
@@ -302,10 +302,10 @@
     <ClInclude Include="PlayerFallingState.h">
       <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerSittingState.h">
+    <ClInclude Include="PlayerHighShieldingState.h">
       <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerHighShieldingState.h">
+    <ClInclude Include="PlayerSittingState.h">
       <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
