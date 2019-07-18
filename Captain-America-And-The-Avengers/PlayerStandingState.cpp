@@ -26,6 +26,11 @@ void PlayerStandingState::HandleKeyboard(Keyboard* keyboard)
 	{
 		mPlayer->SetState(new PlayerSittingState(mPlayer));
 	}
+	else if (keyboard->IsPressing(GAME_KEY_UP))
+	{
+		mPlayer->SetState(new PlayerHighShieldingState(mPlayer));
+	}
+	
 	/*else
 	{
 		mPlayer->SetVelocityX(.0f);
