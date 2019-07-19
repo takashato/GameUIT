@@ -180,6 +180,9 @@
     <ClCompile Include="PlayerTakeDownState.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerInvincibleStandState.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -342,6 +345,9 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerTakeDownState.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInvincibleStandState.h">
       <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>

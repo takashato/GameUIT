@@ -41,6 +41,7 @@ private:
 	Animation* mAniKicking = NULL;
 	Animation* mAniTakeDamage = NULL;
 	Animation* mAniTakeDown = NULL;
+	Animation* mAniInvincibleStand = NULL;
 
 	Animation* mCurrentAni = NULL;
 
