@@ -15,7 +15,8 @@ enum EPlayerState {
 	ThrowingShield,
 	LowPunching,
 	Kicking,
-	TakeDamage
+	TakeDamage,
+	TakeDown
 };
 
 class PlayerState

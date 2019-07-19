@@ -25,6 +25,7 @@ void Player::LoadAnimations()
 	mAniHighJumping = new Animation(mSprite, mAniScripts->GetRectList("HighJump", "0"), 0.05F);
 	mAniKicking = new Animation(mSprite, mAniScripts->GetRectList("Kicking", "0"), 0.1F);
 	mAniTakeDamage = new Animation(mSprite, mAniScripts->GetRectList("TakeDamage", "0"), 0.1F);
+	mAniTakeDown = new Animation(mSprite, mAniScripts->GetRectList("TakeDown", "0"), 0.2F);
 
 	mCurrentAni = mAniStanding;
 }
@@ -121,6 +122,9 @@ void Player::ChangeAnimationByState(EPlayerState state)
 		break;
 	case EPlayerState::TakeDamage:
 		mCurrentAni = mAniTakeDamage;
+		break;
+	case EPlayerState::TakeDown:
+		mCurrentAni = mAniTakeDown;
 		break;
 	case EPlayerState::Running:
 	default:

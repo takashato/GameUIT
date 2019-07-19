@@ -40,6 +40,7 @@ private:
 	Animation* mAniLowPunching = NULL;
 	Animation* mAniKicking = NULL;
 	Animation* mAniTakeDamage = NULL;
+	Animation* mAniTakeDown = NULL;
 
 	Animation* mCurrentAni = NULL;
 
