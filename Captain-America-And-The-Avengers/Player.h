@@ -45,6 +45,7 @@ private:
 	Animation* mAniSurfing = NULL;
 	Animation* mAniSittingOnShield = NULL;
 	Animation* mAniSwimming = NULL;
+	Animation* mAniCling = NULL;
 
 	Animation* mCurrentAni = NULL;
 

@@ -20,7 +20,8 @@ enum EPlayerState {
 	InvincibleStand,
 	Surfing,
 	SittingOnShield,
-	Swimming
+	Swimming,
+	Cling
 };
 
 class PlayerState

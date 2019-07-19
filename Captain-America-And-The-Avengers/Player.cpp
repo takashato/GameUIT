@@ -30,6 +30,7 @@ void Player::LoadAnimations()
 	mAniSurfing = new Animation(mSprite, mAniScripts->GetRectList("Surfing", "0"), 0.1F);
 	mAniSittingOnShield = new Animation(mSprite, mAniScripts->GetRectList("SittingOnShield", "0"), 0.1F);
 	mAniSwimming = new Animation(mSprite, mAniScripts->GetRectList("Swimming", "0"), 0.1F);
+	mAniCling = new Animation(mSprite, mAniScripts->GetRectList("Cling", "0"), 0.2F);
 
 	mCurrentAni = mAniStanding;
 }
@@ -141,6 +142,9 @@ void Player::ChangeAnimationByState(EPlayerState state)
 		break;
 	case EPlayerState::Swimming:
 		mCurrentAni = mAniSwimming;
+		break;
+	case EPlayerState::Cling:
+		mCurrentAni = mAniCling;
 		break;
 	case EPlayerState::Running:
 	default:

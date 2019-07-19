@@ -186,6 +186,7 @@
     <ClCompile Include="MapReader\TmxTileset.cpp" />
     <ClCompile Include="MapReader\TmxUtil.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerClingState.cpp" />
     <ClCompile Include="PlayerFallingState.cpp" />
     <ClCompile Include="PlayerHighShieldingState.cpp" />
     <ClCompile Include="PlayerInvincibleStandState.cpp" />
@@ -245,6 +246,7 @@
     <ClInclude Include="MapReader\zconf.h" />
     <ClInclude Include="MapReader\zlib.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerClingState.h" />
     <ClInclude Include="PlayerFallingState.h" />
     <ClInclude Include="PlayerHighShieldingState.h" />
     <ClInclude Include="PlayerInvincibleStandState.h" />
