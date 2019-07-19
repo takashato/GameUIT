@@ -8,6 +8,11 @@ PlayerJumpingState::PlayerJumpingState(Player* player) : PlayerState(player)
 
 void PlayerJumpingState::HandleKeyboard(Keyboard* keyboard)
 {
+	if (keyboard->IsPressing(GAME_KEY_ATTACK))
+	{
+		mPlayer->SetState(new PlayerKickingState(mPlayer));
+	}
+
 	if (!keyboard->IsPressing(GAME_KEY_JUMP))
 	{
 		mPlayer->SetState(new PlayerFallingState(mPlayer));

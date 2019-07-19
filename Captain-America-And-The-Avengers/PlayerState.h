@@ -13,7 +13,8 @@ enum EPlayerState {
 	HighShielding,
 	Punching,
 	ThrowingShield,
-	LowPunching
+	LowPunching,
+	Kicking
 };
 
 class PlayerState

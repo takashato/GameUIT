@@ -23,6 +23,7 @@ void Player::LoadAnimations()
 	mAniRunning = new Animation(mSprite, mAniScripts->GetRectList("Running", "0"), 0.15F);
 	mAniLowJumping = new Animation(mSprite, mAniScripts->GetRectList("LowJump", "0"), 0.15F);
 	mAniHighJumping = new Animation(mSprite, mAniScripts->GetRectList("HighJump", "0"), 0.05F);
+	mAniKicking = new Animation(mSprite, mAniScripts->GetRectList("Kicking", "0"), 0.1F);
 
 	mCurrentAni = mAniStanding;
 }
@@ -113,6 +114,9 @@ void Player::ChangeAnimationByState(EPlayerState state)
 		break;
 	case EPlayerState::ThrowingShield:
 		mCurrentAni = mAniThrowingShield;
+		break;
+	case EPlayerState::Kicking:
+		mCurrentAni = mAniKicking;
 		break;
 	case EPlayerState::Running:
 	default:
