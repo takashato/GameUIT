@@ -32,7 +32,7 @@ void PlayerStandingState::HandleKeyboard(Keyboard* keyboard)
 	}
 	else if (keyboard->IsPressing(GAME_KEY_ATTACK))
 	{
-		mPlayer->SetState(new PlayerPunchingState(mPlayer));
+		mPlayer->SetState(new PlayerThrowingShieldState(mPlayer));
 	}
 	
 	/*else

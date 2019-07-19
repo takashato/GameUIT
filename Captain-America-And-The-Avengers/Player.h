@@ -31,6 +31,7 @@ private:
 	
 	Animation* mAniStanding = NULL;
 	Animation* mAniPunching = NULL;
+	Animation* mAniThrowingShield = NULL;
 	Animation* mAniHighShielding = NULL;
 	Animation* mAniRunning = NULL;
 	Animation* mAniLowJumping = NULL;

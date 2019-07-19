@@ -194,6 +194,7 @@
     <ClCompile Include="PlayerSittingState.cpp" />
     <ClCompile Include="PlayerStandingState.cpp" />
     <ClCompile Include="PlayerState.cpp" />
+    <ClCompile Include="PlayerThrowingShieldState.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -244,6 +245,7 @@
     <ClInclude Include="PlayerSittingState.h" />
     <ClInclude Include="PlayerStandingState.h" />
     <ClInclude Include="PlayerState.h" />
+    <ClInclude Include="PlayerThrowingShieldState.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="DemoScene.h" />
     <ClInclude Include="Sprite.h" />

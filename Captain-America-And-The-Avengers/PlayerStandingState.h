@@ -4,6 +4,7 @@
 #include "PlayerRunningState.h"
 #include "PlayerHighShieldingState.h"
 #include "PlayerPunchingState.h"
+#include "PlayerThrowingShieldState.h"
 
 class PlayerStandingState : public PlayerState
 {
