@@ -16,7 +16,7 @@ void Player::LoadAnimations()
 
 	mAniStanding = new Animation(mSprite, mAniScripts->GetRectList("Standing", "0"), 0.1F);
 	mAniPunching = new Animation(mSprite, mAniScripts->GetRectList("Punching", "0"), 0.15F);
-	mAniThrowingShield = new Animation(mSprite, mAniScripts->GetRectList("ThrowingShield", "0"), 0.3F);
+	mAniThrowingShield = new Animation(mSprite, mAniScripts->GetRectList("ThrowingShield", "0"), 0.15F);
 	mAniHighShielding = new Animation(mSprite, mAniScripts->GetRectList("HighShielding", "0"), 0.1F);
 	mAniSitting = new Animation(mSprite, mAniScripts->GetRectList("Sitting", "0"), 0.1F);
 	mAniLowPunching = new Animation(mSprite, mAniScripts->GetRectList("LowPunching", "0"), 0.15F);
@@ -29,6 +29,7 @@ void Player::LoadAnimations()
 	mAniInvincibleStand = new Animation(mSprite, mAniScripts->GetRectList("InvincibleStand", "0"), 0.05F);
 	mAniSurfing = new Animation(mSprite, mAniScripts->GetRectList("Surfing", "0"), 0.1F);
 	mAniSittingOnShield = new Animation(mSprite, mAniScripts->GetRectList("SittingOnShield", "0"), 0.1F);
+	mAniSwimming = new Animation(mSprite, mAniScripts->GetRectList("Swimming", "0"), 0.1F);
 
 	mCurrentAni = mAniStanding;
 }
@@ -137,6 +138,9 @@ void Player::ChangeAnimationByState(EPlayerState state)
 		break;
 	case EPlayerState::SittingOnShield:
 		mCurrentAni = mAniSittingOnShield;
+		break;
+	case EPlayerState::Swimming:
+		mCurrentAni = mAniSwimming;
 		break;
 	case EPlayerState::Running:
 	default:

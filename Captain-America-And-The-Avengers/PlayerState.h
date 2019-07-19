@@ -19,7 +19,8 @@ enum EPlayerState {
 	TakeDown,
 	InvincibleStand,
 	Surfing,
-	SittingOnShield
+	SittingOnShield,
+	Swimming
 };
 
 class PlayerState
