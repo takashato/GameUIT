@@ -168,6 +168,9 @@
     <ClCompile Include="PlayerThrowingShieldState.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerLowPunchingState.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -318,6 +321,9 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerThrowingShieldState.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLowPunchingState.h">
       <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>

@@ -19,6 +19,7 @@ void Player::LoadAnimations()
 	mAniThrowingShield = new Animation(mSprite, mAniScripts->GetRectList("ThrowingShield", "0"), 0.3F);
 	mAniHighShielding = new Animation(mSprite, mAniScripts->GetRectList("HighShielding", "0"), 0.1F);
 	mAniSitting = new Animation(mSprite, mAniScripts->GetRectList("Sitting", "0"), 0.1F);
+	mAniLowPunching = new Animation(mSprite, mAniScripts->GetRectList("LowPunching", "0"), 0.15F);
 	mAniRunning = new Animation(mSprite, mAniScripts->GetRectList("Running", "0"), 0.15F);
 	mAniLowJumping = new Animation(mSprite, mAniScripts->GetRectList("LowJump", "0"), 0.15F);
 	mAniHighJumping = new Animation(mSprite, mAniScripts->GetRectList("HighJump", "0"), 0.05F);
@@ -106,6 +107,9 @@ void Player::ChangeAnimationByState(EPlayerState state)
 		break;
 	case EPlayerState::Punching:
 		mCurrentAni = mAniPunching;
+		break;
+	case EPlayerState::LowPunching:
+		mCurrentAni = mAniLowPunching;
 		break;
 	case EPlayerState::ThrowingShield:
 		mCurrentAni = mAniThrowingShield;

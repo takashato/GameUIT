@@ -189,6 +189,7 @@
     <ClCompile Include="PlayerFallingState.cpp" />
     <ClCompile Include="PlayerHighShieldingState.cpp" />
     <ClCompile Include="PlayerJumpingState.cpp" />
+    <ClCompile Include="PlayerLowPunchingState.cpp" />
     <ClCompile Include="PlayerPunchingState.cpp" />
     <ClCompile Include="PlayerRunningState.cpp" />
     <ClCompile Include="PlayerSittingState.cpp" />
@@ -240,6 +241,7 @@
     <ClInclude Include="PlayerFallingState.h" />
     <ClInclude Include="PlayerHighShieldingState.h" />
     <ClInclude Include="PlayerJumpingState.h" />
+    <ClInclude Include="PlayerLowPunchingState.h" />
     <ClInclude Include="PlayerPunchingState.h" />
     <ClInclude Include="PlayerRunningState.h" />
     <ClInclude Include="PlayerSittingState.h" />

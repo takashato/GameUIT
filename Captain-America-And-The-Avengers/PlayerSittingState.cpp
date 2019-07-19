@@ -17,6 +17,10 @@ void PlayerSittingState::HandleKeyboard(Keyboard* keyboard)
 	{
 		mPlayer->SetState(new PlayerJumpingState(mPlayer));
 	}
+	else if (keyboard->IsPressing(GAME_KEY_ATTACK))
+	{
+		mPlayer->SetState(new PlayerLowPunchingState(mPlayer));
+	}
 	
 	if (!keyboard->IsPressing(GAME_KEY_DOWN))
 	{
