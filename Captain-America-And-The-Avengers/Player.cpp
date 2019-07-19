@@ -28,6 +28,7 @@ void Player::LoadAnimations()
 	mAniTakeDown = new Animation(mSprite, mAniScripts->GetRectList("TakeDown", "0"), 0.2F);
 	mAniInvincibleStand = new Animation(mSprite, mAniScripts->GetRectList("InvincibleStand", "0"), 0.05F);
 	mAniSurfing = new Animation(mSprite, mAniScripts->GetRectList("Surfing", "0"), 0.1F);
+	mAniSittingOnShield = new Animation(mSprite, mAniScripts->GetRectList("SittingOnShield", "0"), 0.1F);
 
 	mCurrentAni = mAniStanding;
 }
@@ -133,6 +134,9 @@ void Player::ChangeAnimationByState(EPlayerState state)
 		break;
 	case EPlayerState::Surfing:
 		mCurrentAni = mAniSurfing;
+		break;
+	case EPlayerState::SittingOnShield:
+		mCurrentAni = mAniSittingOnShield;
 		break;
 	case EPlayerState::Running:
 	default:
