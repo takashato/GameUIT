@@ -14,6 +14,7 @@ EPlayerState PlayerStandingState::GetState()
 
 void PlayerStandingState::HandleKeyboard(Keyboard* keyboard)
 {
+	int counter = 0;
 	if (keyboard->IsPressing(GAME_KEY_LEFT) || keyboard->IsPressing(GAME_KEY_RIGHT))
 	{
 		mPlayer->SetState(new PlayerRunningState(mPlayer));
@@ -33,6 +34,10 @@ void PlayerStandingState::HandleKeyboard(Keyboard* keyboard)
 	else if (keyboard->IsPressing(GAME_KEY_ATTACK))
 	{
 		mPlayer->SetState(new PlayerThrowingShieldState(mPlayer));
+	}
+	else if (keyboard->IsPressing(GAME_KEY_SURF))
+	{
+		mPlayer->SetState(new PlayerSurfingState(mPlayer));	
 	}
 	
 	/*else

@@ -5,6 +5,7 @@
 #include "PlayerHighShieldingState.h"
 #include "PlayerPunchingState.h"
 #include "PlayerThrowingShieldState.h"
+#include "PlayerSurfingState.h"
 
 class PlayerStandingState : public PlayerState
 {

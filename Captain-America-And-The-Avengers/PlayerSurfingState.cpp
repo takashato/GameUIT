@@ -13,5 +13,31 @@ EPlayerState PlayerSurfingState::GetState()
 
 void PlayerSurfingState::HandleKeyboard(Keyboard* keyboard)
 {
+	if (!keyboard->IsPressing(GAME_KEY_SURF))
+	{
+		mPlayer->SetState(new PlayerStandingState(mPlayer));
+	}
+}
 
+void PlayerSurfingState::Update(float deltaTime)
+{
+	mTimeUpdater += deltaTime;
+	if (mTimeUpdater >= MOVEMENT_UPDATE_TIME)
+	{
+		if (mPlayer->GetDirection() == EntityDirection::Left)
+		{
+			if (mPlayer->GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
+			{
+				mPlayer->AddVelocityX(-5*PLAYER_ACC_X);
+			}
+		}
+		else
+		{
+			if (mPlayer->GetVelocityX() < PLAYER_VELOCITY_X_MAX)
+			{
+				mPlayer->AddVelocityX(5*PLAYER_ACC_X);
+			}
+		}
+		mTimeUpdater = .0f;
+	}
 }

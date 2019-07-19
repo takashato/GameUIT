@@ -3,7 +3,7 @@
 
 Entity::Entity()
 {
-	mDirection = Left;
+	mDirection = Right;
 }
 
 void Entity::Update(float deltaTime)
