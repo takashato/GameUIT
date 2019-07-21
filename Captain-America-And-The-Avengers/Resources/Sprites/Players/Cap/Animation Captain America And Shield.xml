@@ -5,6 +5,11 @@
 		<sprite x="21" y="11" w="22" h="45" />
     </Sprites>
   </Animation>
+  <Animation name="Shield" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="87" y="154" w="16" h="9" />
+    </Sprites>
+  </Animation>
   <Animation name="Running" imagePath="Captain America.png" width="400" height="368">
     <Sprites type="0">
 		<sprite x="52" y="14" w="24" h="42" />
@@ -22,6 +27,8 @@
   <Animation name="HighJump" imagePath="Captain America.png" width="400" height="368">
     <Sprites type="0">
 		<sprite x="276" y="28" w="19" h="20" />
+		<sprite x="338" y="244" w="20" h="20" />
+		<sprite x="337" y="209" w="20" h="21" />
 		<sprite x="312" y="29" w="20" h="19" />
     </Sprites>
   </Animation>
@@ -83,7 +90,7 @@
   </Animation>
   <Animation name="Surfing" imagePath="Captain America.png" width="400" height="368">
     <Sprites type="0">
-		<sprite x="281" y="83" w="31" h="29" />
+		<sprite x="281" y="38" w="31" h="29" />
 		<sprite x="321" y="85" w="39" h="23" />
     </Sprites>
   </Animation>
