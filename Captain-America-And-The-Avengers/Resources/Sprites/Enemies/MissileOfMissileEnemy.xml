@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Left" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="232" y="73" w="15" h="7" />
+		<sprite x="256" y="74" w="13" h="5" />
+	</Sprites>
+  </Animation>
+  <Animation name="TopLeft" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="236" y="96" w="9" h="10" />
+		<sprite x="260" y="96" w="12" h="13" />
+	</Sprites>
+  </Animation>
+</Animations>

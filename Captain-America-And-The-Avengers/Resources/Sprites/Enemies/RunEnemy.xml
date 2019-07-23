@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Running" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="72" y="16" w="24" h="40" />
+		<sprite x="104" y="16" w="22" h="40" />
+		<sprite x="136" y="16" w="24" h="40" />
+	</Sprites>
+  </Animation>
+  <Animation name="Die" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="232" y="24" w="24" h="32" />
+	</Sprites>
+  </Animation>
+</Animations>

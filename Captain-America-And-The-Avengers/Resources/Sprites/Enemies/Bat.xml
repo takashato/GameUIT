@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Swing" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="116" y="224" w="8" h="16" />
+		<sprite x="136" y="224" w="17" h="16" />
+		<sprite x="165" y="224" w="23" h="16" />
+	</Sprites>
+  </Animation>
+  <Animation name="Fly" imagePath="Enemies.png" width="440" height="432">      
+	<Sprites type="0">
+		<sprite x="196" y="224" w="24" h="16" />
+		<sprite x="228" y="224" w="23" h="16" />
+		<sprite x="261" y="224" w="38" h="16" />
+	</Sprites>
+  </Animation>
+</Animations>

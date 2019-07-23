@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Standing" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="168" y="13" w="24" h="43" />
+	</Sprites>
+  </Animation>
+  <Animation name="Sitting" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="200" y="29" w="24" h="27" />
+	</Sprites>
+  </Animation>
+  <Animation name="Dying" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="232" y="24" w="24" h="32" />
+	</Sprites>
+  </Animation>
+</Animations>

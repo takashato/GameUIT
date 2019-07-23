@@ -27,6 +27,9 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{032af11c-23c3-4b90-ae13-74647539ee94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Enemies">
+      <UniqueIdentifier>{7d1a044d-3c7a-4c49-943d-5ff3886eecc4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameException.cpp">
@@ -194,6 +197,24 @@
     </ClCompile>
     <ClCompile Include="PlayerClingState.cpp">
       <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GunEnemy.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="MissileEnemy.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="RunEnemy.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyEnemy.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Bat.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="GunStock.cpp">
+      <Filter>Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -373,6 +394,24 @@
     </ClInclude>
     <ClInclude Include="PlayerClingState.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GunEnemy.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="MissileEnemy.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="RunEnemy.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyEnemy.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Bat.h">
+      <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="GunStock.h">
+      <Filter>Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

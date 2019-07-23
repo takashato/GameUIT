@@ -159,11 +159,15 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationScript.cpp" />
     <ClCompile Include="AnimationScript.h" />
+    <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="FlyEnemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameException.cpp" />
     <ClCompile Include="GameMap.cpp" />
+    <ClCompile Include="GunEnemy.cpp" />
+    <ClCompile Include="GunStock.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="MapReader\base64.cpp" />
     <ClCompile Include="MapReader\miniz.c" />
@@ -185,6 +189,7 @@
     <ClCompile Include="MapReader\TmxTileOffset.cpp" />
     <ClCompile Include="MapReader\TmxTileset.cpp" />
     <ClCompile Include="MapReader\TmxUtil.cpp" />
+    <ClCompile Include="MissileEnemy.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerClingState.cpp" />
     <ClCompile Include="PlayerFallingState.cpp" />
@@ -204,6 +209,7 @@
     <ClCompile Include="PlayerTakeDamageState.cpp" />
     <ClCompile Include="PlayerTakeDownState.cpp" />
     <ClCompile Include="PlayerThrowingShieldState.cpp" />
+    <ClCompile Include="RunEnemy.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -215,11 +221,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Bat.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="FlyEnemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameException.h" />
     <ClInclude Include="GameMap.h" />
+    <ClInclude Include="GunEnemy.h" />
+    <ClInclude Include="GunStock.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="MapReader\base64.h" />
@@ -245,6 +255,7 @@
     <ClInclude Include="MapReader\TmxUtil.h" />
     <ClInclude Include="MapReader\zconf.h" />
     <ClInclude Include="MapReader\zlib.h" />
+    <ClInclude Include="MissileEnemy.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerClingState.h" />
     <ClInclude Include="PlayerFallingState.h" />
@@ -264,6 +275,7 @@
     <ClInclude Include="PlayerTakeDamageState.h" />
     <ClInclude Include="PlayerTakeDownState.h" />
     <ClInclude Include="PlayerThrowingShieldState.h" />
+    <ClInclude Include="RunEnemy.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="DemoScene.h" />
     <ClInclude Include="Sprite.h" />
