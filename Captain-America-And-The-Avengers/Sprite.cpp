@@ -101,6 +101,8 @@ void Sprite::Draw(D3DXVECTOR3 position, D3DXVECTOR2 scale, D3DXVECTOR2 transform
 	mSpriteHandler->SetTransform(&oldMatrix);
 }
 
+
+
 void Sprite::SetRect(RECT rect)
 {
 	mRect = rect;

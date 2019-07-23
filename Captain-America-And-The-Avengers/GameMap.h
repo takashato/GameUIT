@@ -3,13 +3,13 @@
 #include "Camera.h"
 #include "./MapReader/Tmx.h.in"
 #include "StringUtils.h"
-
+#include "fstream"
 class GameMap
 {
 public:
-	GameMap(char* filePath, Camera* camera = NULL);
+	GameMap(const wchar_t* filePathIMap, const wchar_t* filePathMMap, Camera* camera = NULL);//Imagepath vs MatrixMap
 	~GameMap();
-	void LoadMap(char* filePath);
+	void LoadMap(const wchar_t* filePathIMap, const wchar_t* filePathMMap);
 	void Draw();
 
 	void SetCamera(Camera* camera);
@@ -18,10 +18,11 @@ public:
 	int GetHeight();
 
 	D3DXVECTOR3 GetPlayerSpawnPoint();
-
 protected:
-	Tmx::Map* mMap;
-	std::map<int, Sprite*> mTilesetMap;
 
+	int TileWidth, TileHeight;
+	int InTile, InWidth, InHeight;//InWidth = tile tren hang , InHeight = tile tren cot 
+	int **MatrixMap;
+	Sprite* SpriteMap = NULL;
 	Camera* mCamera;
 };
