@@ -2,11 +2,11 @@
 #include "Game.h"
 #include "GunEnemy.h"
 
-GunEnemy::GunEnemy() : Entity()
+GunEnemy::GunEnemy(D3DXVECTOR3 position) : Entity()
 {
 	LoadAnimations();
-	SetPosition(D3DXVECTOR3(100.0f, 30.0f, 0.f));
-	mState = GUNENEMY_SITTING_STATE;
+	SetPosition(position);
+	mState = GUNENEMY_STANDING_STATE;
 }
 
 
@@ -26,14 +26,49 @@ void GunEnemy::LoadAnimations()
 	mCurrentAni = mAniStanding;
 }
 
-void GunEnemy::Update(float deltaTime)
+void GunEnemy::Update(float deltaTime, Player* player)
 {
+	D3DXVECTOR3 playerPosition = player->GetPosition();
+	D3DXVECTOR3 gunEnemyPosition = this->GetPosition();
 
+	if (playerPosition.x <= gunEnemyPosition.x)
+	{
+		mDirection = Right;
+	}
+	else
+	{
+		mDirection = Left;
+	}
+
+	mCurrentAni->SetFlippedHorizontally(mDirection == Left);
+	mCounter += deltaTime;
+
+	if (mCounter >= 0.9f)
+	{
+		if (mCurrentAni == mAniStanding)
+		{
+			mCurrentAni = mAniSitting;
+			mState = GUNENEMY_SITTING_STATE;
+		}
+		else
+		{
+			mCurrentAni = mAniStanding;
+			mState = GUNENEMY_STANDING_STATE;
+		}
+		mCounter = 0;
+	}
 }
 
-void GunEnemy::Draw()
+void GunEnemy::Draw(D3DXVECTOR2 transform)
 {
-
+	if (mCurrentAni != nullptr && mState != -1)
+	{
+		mCurrentAni->Draw(GetPosition(), transform);
+	}
+	else
+	{
+		mCurrentAni->Draw(GetPosition());
+	}
 }
 
 int GunEnemy::GetState()
@@ -49,14 +84,25 @@ void GunEnemy::SetState(int state)
 
 void GunEnemy::ChangeAnimationByState(int state)
 {
-
+	switch (state)
+	{
+	case GUNENEMY_STANDING_STATE:
+		mCurrentAni = mAniStanding;
+		break;
+	case GUNENEMY_SITTING_STATE:
+		mCurrentAni = mAniSitting;
+		break;
+	case GUNENEMY_DYING_STATE:
+		mCurrentAni = mAniDying;
+		break;
+	}
 }
 
 void GunEnemy::OnSetPosition()
 {
 }
 
-void GunEnemy::SetCamera(Camera* camera)
-{
-	mCamera = camera;
-}
+//void GunEnemy::SetCamera(Camera* camera)
+//{
+//	mCamera = camera;
+//}

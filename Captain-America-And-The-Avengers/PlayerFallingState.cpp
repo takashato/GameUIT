@@ -21,9 +21,9 @@ void PlayerFallingState::Update(float deltaTime)
 		mPlayer->AddVelocityY(PLAYER_GRAVITY);
 		mTimeUpdater = .0f;
 	}
-	if (mPlayer->GetPosition().y >= 411.0f)
+	if (mPlayer->GetPosition().y >= 402.0f)
 	{
-		mPlayer->SetPositionY(411.0f);
+		mPlayer->SetPositionY(402.0f);
 		mPlayer->SetState(new PlayerStandingState(mPlayer));
 	}
 }

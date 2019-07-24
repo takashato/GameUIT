@@ -12,12 +12,12 @@
 class GunEnemy : public Entity
 {
 public:
-	GunEnemy();
+	GunEnemy(D3DXVECTOR3 position = D3DXVECTOR3(300.0f, 416.0f, 0.f));
 	~GunEnemy();
 	void LoadAnimations();
 
-	void Update(float deltaTime);
-	void Draw();
+	void Update(float deltaTime, Player* player);
+	void Draw(D3DXVECTOR2 transform);
 
 	int GetState();
 	void SetState(int state);
@@ -26,7 +26,7 @@ public:
 
 	void OnSetPosition();
 
-	void SetCamera(Camera* camera);
+	/*void SetCamera(Camera* camera);*/
 
 private:
 	Sprite* mSprite = NULL;
@@ -36,10 +36,9 @@ private:
 	Animation* mAniSitting = NULL;
 	Animation* mAniDying = NULL;
 	Animation* mCurrentAni = NULL;
-	int mState;
+	int mState = -1;
 
-	Camera* mCamera;
-
+	/*Camera* mCamera;*/
 	float mCounter;
 };
 

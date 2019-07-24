@@ -3,6 +3,7 @@
 #include "Animation.h"
 #include "Entity.h"
 #include "Player.h"
+#include "GunEnemy.h"
 #include "Camera.h"
 #include "GameMap.h"
 
@@ -21,7 +22,7 @@ public:
 
 protected:
 	Camera* mCamera = NULL;
-
 	Player* mPlayer = NULL;
 	GameMap* mMap = NULL;
+	GunEnemy* gunEnemy1 = NULL, *gunEnemy2 = NULL, *gunEnemy3 = NULL, *gunEnemy4 = NULL;
 };

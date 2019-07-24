@@ -6,7 +6,7 @@ Player::Player() : Entity()
 {	
 	LoadAnimations();
 	mState = new PlayerStandingState(this);
-	SetPosition(D3DXVECTOR3(100.0f, 30.0f, 0.f));
+	SetPosition(D3DXVECTOR3(50.0f, 402.0f, 0.f));
 }
 
 void Player::LoadAnimations()
