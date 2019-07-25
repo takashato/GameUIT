@@ -170,8 +170,10 @@ switch (ID)
 		spawnPoint = SPAWPOINT_CHARLESTON;
 			break;
 	case ID_MAP_CHARLESTON_BOSS_LIGHT:
+		spawnPoint = SPAWPOINT_MiniMap;
 		break;
 	case ID_MAP_PITTSBURGH_DARK:
+		spawnPoint = SPAWPOINT_PITTSBURGH;
 		break;
 	case ID_MAP_PITTSBURGH_EXTRA_1:
 		break;

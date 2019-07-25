@@ -94,6 +94,7 @@ void DemoScene::Update(float deltaTime)
 	// ------------------
 
 	CheckCamera();
+	CheckChageMap();
 }
 
 void DemoScene::Draw()
@@ -153,4 +154,18 @@ void DemoScene::ChangeMap(int ID)
 {
 	MapID = ID;
 	Setup();
+}
+void DemoScene::CheckChageMap()//Demo
+{
+	if (MapID == ID_MAP_CHARLESTON)
+	{
+		if (mPlayer->GetPosition().x >= EXIT_CHARLESTON)
+			this->ChangeMap(ID_MAP_CHARLESTON_BOSS_LIGHT);
+		
+	}
+	else if (MapID == ID_MAP_CHARLESTON_BOSS_LIGHT)
+	{
+		if (mPlayer->GetPosition().x >= DEMO_EXIT_MINIMAP)
+			this->ChangeMap(ID_MAP_PITTSBURGH_DARK);
+	}
 }

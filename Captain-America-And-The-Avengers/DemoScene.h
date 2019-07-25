@@ -24,6 +24,7 @@ public:
 
 	void SetMapId(int ID) { MapID = ID; }
 
+	void CheckChageMap();
 	void ChangeMap(int ID);
 protected:
 	Camera* mCamera = NULL;
@@ -31,7 +32,8 @@ protected:
 	GameMap* mMap = NULL;
 	GunEnemy* gunEnemy1 = NULL, *gunEnemy2 = NULL, *gunEnemy3 = NULL, *gunEnemy4 = NULL;
 	MissileEnemy *missileEnemy1 = NULL, *missileEnemy2 = NULL;
+	RunEnemy *runEnemy1 = NULL;
 private:
 	int MapID, MapMaxID;
-	RunEnemy *runEnemy1 = NULL;
+	
 };
