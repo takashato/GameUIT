@@ -5,7 +5,8 @@
 using namespace std;
 GameMap::GameMap(int MapID, const wchar_t* filePathIMap, const wchar_t* filePathMMap, Camera* camera)
 {
-	ID = MapID;
+	isAnimation = false;
+	mID = MapID;
 	TileWidth = TileHeight = 32;
 	mCamera = camera;
 	LoadMap(filePathIMap, filePathMMap);
@@ -143,6 +144,7 @@ void GameMap::Draw()
 			}
 		}
 	}*/
+		isAnimation = !isAnimation;
 }
 
 void GameMap::SetCamera(Camera* camera)
@@ -164,7 +166,7 @@ int GameMap::GetHeight()
 D3DXVECTOR3 GameMap::GetPlayerSpawnPoint()
 {
 	D3DXVECTOR3 spawnPoint(.0f, .0f, .0f);
-switch (ID)
+switch (mID)
 	{
 	case ID_MAP_CHARLESTON:
 		spawnPoint = SPAWPOINT_CHARLESTON;

@@ -26,5 +26,6 @@ protected:
 	Sprite* SpriteMap = NULL;
 	Camera* mCamera;
 private:
-	int ID;
+	int mID;
+	bool isAnimation;
 };
