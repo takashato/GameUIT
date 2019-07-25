@@ -52,6 +52,11 @@ void GameMap::Draw()
 {
 	D3DXVECTOR2 trans = D3DXVECTOR2(Game::GetInstance().GetWidth() / 2 - mCamera->GetPosition().x,
 		Game::GetInstance().GetHeight() / 2 - mCamera->GetPosition().y);
+	//Fix camera render error
+	int x, y;
+	x = trans.x;
+	y = trans.y;
+	D3DXVECTOR2 trans2(x,y);
 	D3DXVECTOR3 Pos;
 	//Xu li theo luoi bitmap chuan 32x32
 	//Chieu ngang va chieu doc camera
@@ -88,14 +93,14 @@ void GameMap::Draw()
 					Top = ID / 80;
 					Left = ID - Top * 80;
 				}
-				Pos = D3DXVECTOR3(1.0f * j * TileWidth, 1.0f * i * TileHeight, 0);//Toa do thuc cua Tile
+				Pos = D3DXVECTOR3(j * TileWidth, i * TileHeight, 0);//Toa do thuc cua Tile
 				RECT sourceRECT;
 				sourceRECT.left = Left * TileWidth;
 				sourceRECT.right = sourceRECT.left + TileWidth;
 				sourceRECT.top = Top * TileHeight;
 				sourceRECT.bottom = sourceRECT.top + TileHeight;
 				SpriteMap->SetRect(sourceRECT);
-				SpriteMap->Draw(Pos, D3DXVECTOR2(), trans);
+				SpriteMap->Draw(Pos, D3DXVECTOR2(), trans2);
 			}
 	/*for (int i = 0; i < mMap->GetNumTileLayers(); i++)
 	{
