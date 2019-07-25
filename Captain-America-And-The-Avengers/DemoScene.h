@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "GunEnemy.h"
 #include "MissileEnemy.h"
+#include "RunEnemy.h"
 #include "Camera.h"
 #include "GameMap.h"
 
@@ -32,4 +33,5 @@ protected:
 	MissileEnemy *missileEnemy1 = NULL, *missileEnemy2 = NULL;
 private:
 	int MapID, MapMaxID;
+	RunEnemy *runEnemy1 = NULL;
 };

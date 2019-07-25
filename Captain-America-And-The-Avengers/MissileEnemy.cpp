@@ -80,7 +80,7 @@ void MissileEnemy::Update(float deltaTime, Player* player, int id)
 				if (GetVelocityX() < PLAYER_VELOCITY_X_MAX)
 					AddVelocityX(PLAYER_ACC_X);
 				if (GetVelocityX() != 0.f)
-					AddPositionX(GetVelocityX() * 0.15f);
+					AddPositionX(GetVelocityX() * 0.01f);
 			}
 			else if (mCounter >= 0.9f && mCounter < 1.5f)
 			{
@@ -96,6 +96,7 @@ void MissileEnemy::Update(float deltaTime, Player* player, int id)
 			{
 				mCounter = 0;
 			}
+			if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
 		}
 		else
 		{
@@ -106,7 +107,7 @@ void MissileEnemy::Update(float deltaTime, Player* player, int id)
 				if (GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
 					AddVelocityX(-PLAYER_ACC_X);
 				if (GetVelocityX() != 0.f)
-					AddPositionX(GetVelocityX() * 0.15f);
+					AddPositionX(GetVelocityX() * 0.01f);
 			}
 			else if (mCounter >= 0.9f && mCounter < 1.5f)
 			{
@@ -122,6 +123,7 @@ void MissileEnemy::Update(float deltaTime, Player* player, int id)
 			{
 				mCounter = 0;
 			}
+			if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
 		}
 	}
 }
