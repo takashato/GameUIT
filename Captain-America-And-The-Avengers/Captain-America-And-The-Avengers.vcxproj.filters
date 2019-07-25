@@ -30,6 +30,9 @@
     <Filter Include="Enemies">
       <UniqueIdentifier>{7d1a044d-3c7a-4c49-943d-5ff3886eecc4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Static Object">
+      <UniqueIdentifier>{9738a0c7-aabd-4a78-bbac-805965d2948e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameException.cpp">
@@ -224,6 +227,9 @@
     </ClCompile>
     <ClCompile Include="Collidable.cpp">
       <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>Static Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -430,6 +436,9 @@
     </ClInclude>
     <ClInclude Include="Collidable.h">
       <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>Static Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

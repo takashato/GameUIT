@@ -169,6 +169,7 @@
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="GridNode.cpp" />
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="GunEnemy.cpp" />
     <ClCompile Include="GunStock.cpp" />
     <ClCompile Include="Keyboard.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GridNode.h" />
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="GunEnemy.h" />
     <ClInclude Include="GunStock.h" />
     <ClInclude Include="Keyboard.h" />
