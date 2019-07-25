@@ -9,6 +9,7 @@
 #define GUNENEMY_STANDING_STATE 0
 #define GUNENEMY_SITTING_STATE 1
 #define GUNENEMY_DYING_STATE 2
+
 class GunEnemy : public Entity
 {
 public:
@@ -39,6 +40,6 @@ private:
 	int mState = -1;
 
 	/*Camera* mCamera;*/
-	float mCounter;
+	float mCounter = 0;
 };
 

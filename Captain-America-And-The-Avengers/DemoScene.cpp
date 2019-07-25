@@ -24,10 +24,17 @@ void DemoScene::Setup()
 	mPlayer = new Player();
 	/*mPlayer->SetPosition(mMap->GetPlayerSpawnPoint());*/
 
+	// -----GunEnemy-----
 	gunEnemy1 = new GunEnemy();
 	gunEnemy2 = new GunEnemy(D3DXVECTOR3(688.0f, 338.0f, 0.f));
 	gunEnemy3 = new GunEnemy(D3DXVECTOR3(776.0f, 416.0f, 0.f));
 	gunEnemy4 = new GunEnemy(D3DXVECTOR3(944.0f, 338.0f, 0.f));
+	// ------------------
+
+	// -----MissileEnemy-----
+	missileEnemy1 = new MissileEnemy();
+	missileEnemy2 = new MissileEnemy(D3DXVECTOR3(1568.0f, 416.0f, 0.f));
+	// ----------------------
 
 	mCamera = new Camera(Game::GetInstance().GetWidth(), Game::GetInstance().GetHeight());
 	mMap->SetCamera(mCamera);
@@ -43,11 +50,17 @@ void DemoScene::Update(float deltaTime)
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->Update(deltaTime);
 
+	// -----GunEnemy-----
 	gunEnemy1->Update(deltaTime, mPlayer);
 	gunEnemy2->Update(deltaTime, mPlayer);
 	gunEnemy3->Update(deltaTime, mPlayer);
 	gunEnemy4->Update(deltaTime, mPlayer);
+	// ------------------
 
+	// -----MissileEnemy-----
+	missileEnemy1->Update(deltaTime, mPlayer, 1);
+	missileEnemy2->Update(deltaTime, mPlayer, 2);
+	// ----------------------
 	CheckCamera();
 }
 
@@ -57,10 +70,18 @@ void DemoScene::Draw()
 	mPlayer->Draw();
 
 	D3DXVECTOR2 trans = D3DXVECTOR2(Game::GetInstance().GetWidth() / 2 - mCamera->GetPosition().x, Game::GetInstance().GetHeight() / 2 - mCamera->GetPosition().y);
+
+	// -----GunEnemy-----
 	gunEnemy1->Draw(trans);
 	gunEnemy2->Draw(trans);
 	gunEnemy3->Draw(trans);
 	gunEnemy4->Draw(trans);
+	// ------------------
+
+	// -----MissileEnemy-----
+	missileEnemy1->Draw(trans);
+	missileEnemy2->Draw(trans);
+	// ----------------------
 
 	Scene::Draw();
 }
