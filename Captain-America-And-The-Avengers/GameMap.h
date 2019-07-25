@@ -7,7 +7,7 @@
 class GameMap
 {
 public:
-	GameMap(const wchar_t* filePathIMap, const wchar_t* filePathMMap, Camera* camera = NULL);//Imagepath vs MatrixMap
+	GameMap(int MapID, const wchar_t* filePathIMap, const wchar_t* filePathMMap, Camera* camera = NULL);//Imagepath vs MatrixMap
 	~GameMap();
 	void LoadMap(const wchar_t* filePathIMap, const wchar_t* filePathMMap);
 	void Draw();
@@ -25,4 +25,6 @@ protected:
 	int **MatrixMap;
 	Sprite* SpriteMap = NULL;
 	Camera* mCamera;
+private:
+	int ID;
 };

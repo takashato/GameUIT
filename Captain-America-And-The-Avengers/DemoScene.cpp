@@ -4,6 +4,8 @@
 
 DemoScene::DemoScene() : Scene()
 {
+	MapID = 0;
+	MapMaxID = 6;
 	Setup();
 }
 
@@ -15,14 +17,35 @@ DemoScene::~DemoScene()
 void DemoScene::Setup()
 {
 	Scene::Setup();
-	mMap = new GameMap(L"Resources\\Map\\Chaleston_Map.png",L"Resources\\Map\\Matrix_Chaleston_Map.txt");
-	/*mMap = new GameMap(L"Resources\\Map\\Chaleston_MapBoss.png", L"Resources\\Map\\Matrix_Chaleston_MapBoss.txt");*/
-	/*mMap = new GameMap(L"Resources\\Map\\Pittsburgh_Dark_Map.png", L"Resources\\Map\\Matrix_Pittsburgh_Dark_Map.txt");*/
-	/*mMap = new GameMap(L"Resources\\Map\\pittsburgh_dark_extramap1.png", L"Resources\\Map\\Matrix_pittsburgh_dark_extramap1.txt");*/
-	/*mMap = new GameMap(L"Resources\\Map\\pittsburgh_dark_extramap2.png", L"Resources\\Map\\Matrix_pittsburgh_dark_extramap2.txt"); */
-	/*mMap = new GameMap(L"Resources\\Map\\map_red-alert.png", L"Resources\\Map\\Matrix_map_red-alert.txt");*/
+	//Setup Map
+	switch (MapID)
+	{
+	case ID_MAP_CHARLESTON:
+		mMap = new GameMap(ID_MAP_CHARLESTON, L"Resources\\Map\\Chaleston_Map.png", L"Resources\\Map\\Matrix_Chaleston_Map.txt");
+		break;
+	case ID_MAP_CHARLESTON_BOSS_LIGHT:
+		mMap = new GameMap(ID_MAP_CHARLESTON_BOSS_LIGHT, L"Resources\\Map\\Chaleston_MapBoss.png", L"Resources\\Map\\Matrix_Chaleston_MapBoss.txt");
+		break;
+	case ID_MAP_PITTSBURGH_DARK:
+		mMap = new GameMap(ID_MAP_PITTSBURGH_DARK, L"Resources\\Map\\Pittsburgh_Dark_Map.png", L"Resources\\Map\\Matrix_Pittsburgh_Dark_Map.txt");
+		break;
+	case ID_MAP_PITTSBURGH_EXTRA_1:
+		mMap = new GameMap(ID_MAP_PITTSBURGH_EXTRA_1, L"Resources\\Map\\pittsburgh_dark_extramap1.png", L"Resources\\Map\\Matrix_pittsburgh_dark_extramap1.txt");
+		break;
+	case ID_MAP_PITTSBURGH_EXTRA_2:
+		mMap = new GameMap(ID_MAP_PITTSBURGH_EXTRA_2, L"Resources\\Map\\pittsburgh_dark_extramap2.png", L"Resources\\Map\\Matrix_pittsburgh_dark_extramap2.txt");
+		break;
+	case ID_MAP_RED_ALERT:
+		mMap = new GameMap(ID_MAP_RED_ALERT, L"Resources\\Map\\map_red-alert.png", L"Resources\\Map\\Matrix_map_red-alert.txt");
+		break;
+	default:
+		break;
+	}
+
+
+
 	mPlayer = new Player();
-	/*mPlayer->SetPosition(mMap->GetPlayerSpawnPoint());*/
+	mPlayer->SetPosition(mMap->GetPlayerSpawnPoint());
 
 	// -----GunEnemy-----
 	gunEnemy1 = new GunEnemy();
@@ -111,4 +134,10 @@ void DemoScene::CheckCamera()
 		mCamera->SetPosition((int)mCamera->GetPosition().x,
 			mMap->GetHeight() - mCamera->GetHeight() / 2);
 	}
+}
+
+void DemoScene::ChangeMap(int ID)
+{
+	MapID = ID;
+	Setup();
 }

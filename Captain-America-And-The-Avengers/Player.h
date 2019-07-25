@@ -54,4 +54,6 @@ private:
 	Camera* mCamera;
 
 	float mCounter;
+
+	bool ExitIsOke;//Chap nhan qua man khi an cuc exit
 };

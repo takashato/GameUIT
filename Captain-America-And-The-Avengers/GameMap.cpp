@@ -3,8 +3,9 @@
 #include "GameMap.h"
 
 using namespace std;
-GameMap::GameMap(const wchar_t* filePathIMap, const wchar_t* filePathMMap, Camera* camera)
+GameMap::GameMap(int MapID, const wchar_t* filePathIMap, const wchar_t* filePathMMap, Camera* camera)
 {
+	ID = MapID;
 	TileWidth = TileHeight = 32;
 	mCamera = camera;
 	LoadMap(filePathIMap, filePathMMap);
@@ -163,25 +164,23 @@ int GameMap::GetHeight()
 D3DXVECTOR3 GameMap::GetPlayerSpawnPoint()
 {
 	D3DXVECTOR3 spawnPoint(.0f, .0f, .0f);
-//	bool shouldContinue = true;
-//	for (int i = 0; i < mMap->GetNumObjectGroups(); ++i)
-//	{
-//		const Tmx::ObjectGroup* objectGroup = mMap->GetObjectGroup(i);
-//		if (objectGroup->GetName().compare("Location") == 0)
-//		{
-//			for (int j = 0; j < objectGroup->GetNumObjects(); ++j)
-//			{
-//				auto obj = objectGroup->GetObjectW(j);
-//				if (obj->GetName().compare("PlayerSpawn") == 0)
-//				{
-//					spawnPoint.x = (float)obj->GetX();
-//					spawnPoint.y = (float)obj->GetY();
-//					shouldContinue = false;
-//					break;
-//				}
-//			}
-//		}
-//		if (!shouldContinue) break;
-//	}
+switch (ID)
+	{
+	case ID_MAP_CHARLESTON:
+		spawnPoint = SPAWPOINT_CHARLESTON;
+			break;
+	case ID_MAP_CHARLESTON_BOSS_LIGHT:
+		break;
+	case ID_MAP_PITTSBURGH_DARK:
+		break;
+	case ID_MAP_PITTSBURGH_EXTRA_1:
+		break;
+	case ID_MAP_PITTSBURGH_EXTRA_2:
+		break;
+	case ID_MAP_RED_ALERT:
+		break;
+	default:
+		break;
+	}
 	return spawnPoint;
 }

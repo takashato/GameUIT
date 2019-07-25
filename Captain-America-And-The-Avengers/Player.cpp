@@ -4,9 +4,9 @@
 
 Player::Player() : Entity()
 {	
+	ExitIsOke = true; //Chua xu lí an cuc exit
 	LoadAnimations();
 	mState = new PlayerStandingState(this);
-	SetPosition(D3DXVECTOR3(50.0f, 402.0f, 0.f));
 }
 
 void Player::LoadAnimations()
