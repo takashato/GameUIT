@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "GunEnemy.h"
 #include "MissileEnemy.h"
+#include "RunEnemy.h"
 #include "Camera.h"
 #include "GameMap.h"
 
@@ -27,4 +28,5 @@ protected:
 	GameMap* mMap = NULL;
 	GunEnemy* gunEnemy1 = NULL, *gunEnemy2 = NULL, *gunEnemy3 = NULL, *gunEnemy4 = NULL;
 	MissileEnemy *missileEnemy1 = NULL, *missileEnemy2 = NULL;
+	RunEnemy *runEnemy1 = NULL;
 };
