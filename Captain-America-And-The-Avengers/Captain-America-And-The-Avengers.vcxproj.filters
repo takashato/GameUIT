@@ -216,6 +216,15 @@
     <ClCompile Include="GunStock.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="GridNode.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Collidable.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -412,6 +421,15 @@
     </ClInclude>
     <ClInclude Include="GunStock.h">
       <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="GridNode.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Collidable.h">
+      <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

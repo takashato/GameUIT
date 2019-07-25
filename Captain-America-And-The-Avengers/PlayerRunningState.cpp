@@ -29,24 +29,23 @@ void PlayerRunningState::HandleKeyboard(Keyboard* keyboard)
 
 void PlayerRunningState::Update(float deltaTime)
 {
-	mTimeUpdater += deltaTime;
-	if (mTimeUpdater >= MOVEMENT_UPDATE_TIME)
+	if (mPlayer->GetDirection() == EntityDirection::Left)
 	{
-		if (mPlayer->GetDirection() == EntityDirection::Left)
+		if (mPlayer->GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
 		{
-			if (mPlayer->GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
-			{
-				mPlayer->AddVelocityX(-PLAYER_ACC_X);
-			}
+			mPlayer->AddVelocityX(-PLAYER_ACC_X * deltaTime);
+			if (mPlayer->GetVelocityX() < -PLAYER_VELOCITY_X_MAX)
+				mPlayer->SetVelocityX(-PLAYER_VELOCITY_X_MAX);
 		}
-		else
+	}
+	else
+	{
+		if (mPlayer->GetVelocityX() < PLAYER_VELOCITY_X_MAX)
 		{
-			if (mPlayer->GetVelocityX() < PLAYER_VELOCITY_X_MAX)
-			{
-				mPlayer->AddVelocityX(PLAYER_ACC_X);
-			}
+			mPlayer->AddVelocityX(PLAYER_ACC_X * deltaTime);
+			if (mPlayer->GetVelocityX() > PLAYER_VELOCITY_X_MAX)
+				mPlayer->SetVelocityX(PLAYER_VELOCITY_X_MAX);
 		}
-		mTimeUpdater = .0f;
 	}
 }
 

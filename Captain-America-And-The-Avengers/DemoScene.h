@@ -8,6 +8,7 @@
 #include "RunEnemy.h"
 #include "Camera.h"
 #include "GameMap.h"
+#include "Grid.h"
 
 class DemoScene : public Scene
 {
@@ -28,8 +29,10 @@ public:
 	void ChangeMap(int ID);
 protected:
 	Camera* mCamera = NULL;
-	Player* mPlayer = NULL;
 	GameMap* mMap = NULL;
+	Grid* mGrid = NULL;
+
+	Player* mPlayer = NULL;
 	GunEnemy* gunEnemy1 = NULL, *gunEnemy2 = NULL, *gunEnemy3 = NULL, *gunEnemy4 = NULL;
 	MissileEnemy *missileEnemy1 = NULL, *missileEnemy2 = NULL;
 	RunEnemy *runEnemy1 = NULL;

@@ -17,6 +17,7 @@ DemoScene::~DemoScene()
 void DemoScene::Setup()
 {
 	Scene::Setup();
+
 	//Setup Map
 	switch (MapID)
 	{
@@ -41,8 +42,13 @@ void DemoScene::Setup()
 	default:
 		break;
 	}
-
-
+	// Setup Grid
+	int gridCellSize = Game::GetInstance().GetWidth() > Game::GetInstance().GetHeight() ?
+		Game::GetInstance().GetWidth() 
+		: Game::GetInstance().GetHeight();
+	int gridColNum = ceil(mMap->GetWidth() / gridCellSize);
+	int gridRowNum = ceil(mMap->GetHeight() / gridCellSize);
+	mGrid = new Grid(gridColNum, gridRowNum, gridCellSize);
 
 	mPlayer = new Player();
 	mPlayer->SetPosition(mMap->GetPlayerSpawnPoint());

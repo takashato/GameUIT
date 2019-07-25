@@ -23,11 +23,8 @@ void PlayerJumpingState::Update(float deltaTime)
 {
 	mTimeCounter += deltaTime;
 	mTimeUpdater += deltaTime;
-	if (mTimeUpdater > MOVEMENT_UPDATE_TIME)
-	{
-		mPlayer->AddVelocityY(PLAYER_GRAVITY);
-		mTimeUpdater = .0f;
-	}
+	mPlayer->AddVelocityY(PLAYER_GRAVITY * deltaTime);
+	mTimeUpdater = .0f;
 }
 
 EPlayerState PlayerJumpingState::GetState()

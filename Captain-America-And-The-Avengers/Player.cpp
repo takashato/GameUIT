@@ -41,18 +41,12 @@ void Player::Update(float deltaTime)
 
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 
-	mCounter += deltaTime;
-	if (mCounter > MOVEMENT_UPDATE_TIME)
-	{
-		if (GetVelocityX() != .0f) {
-			AddPositionX(GetVelocityX() * mCounter);
-		}
-		if (GetVelocityY() != .0f) {
-			AddPositionY(GetVelocityY() * mCounter);
-		}
-		mCounter = 0;
+	if (GetVelocityX() != .0f) {
+		AddPositionX(GetVelocityX() * deltaTime);
 	}
-
+	if (GetVelocityY() != .0f) {
+		AddPositionY(GetVelocityY() * deltaTime);
+	}
 
 	if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
 }
