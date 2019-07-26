@@ -17,7 +17,6 @@ DemoScene::~DemoScene()
 void DemoScene::Setup()
 {
 	Scene::Setup();
-
 	//Setup Map
 	switch (MapID)
 	{
@@ -47,30 +46,41 @@ void DemoScene::Setup()
 	int gridCellSize = Game::GetInstance().GetWidth() > Game::GetInstance().GetHeight() ?
 		Game::GetInstance().GetWidth() 
 		: Game::GetInstance().GetHeight();
-	int gridColNum = (int)ceil(1.0f * mMap->GetWidth() / gridCellSize);
-	int gridRowNum = (int)ceil(1.0f * mMap->GetHeight() / gridCellSize);
+	int gridColNum = (int)ceil(mMap->GetWidth() / gridCellSize);
+	int gridRowNum = (int)ceil(mMap->GetHeight() / gridCellSize);
 	mGrid = new Grid(gridColNum, gridRowNum, gridCellSize);
 
-	// Setup player
+	
 	mPlayer = new Player();
 	mPlayer->SetPosition(mMap->GetPlayerSpawnPoint());
 	mGrid->Add(mPlayer);
 
 	// Setup Enemies
+	Enemy* enemy = nullptr;
 	// -----GunEnemy-----
-	gunEnemy1 = new GunEnemy();
-	gunEnemy2 = new GunEnemy(D3DXVECTOR3(688.0f, 338.0f, 0.f));
+	enemy = new GunEnemy();
+	mEnemies.push_back(enemy);
+	mGrid->Add(enemy);
+	enemy = new GunEnemy(D3DXVECTOR3(688.0f, 338.0f, 0.f));
+	mEnemies.push_back(enemy);
+	mGrid->Add(enemy);
 	/*gunEnemy3 = new GunEnemy(D3DXVECTOR3(776.0f, 416.0f, 0.f));*/
-	gunEnemy4 = new GunEnemy(D3DXVECTOR3(944.0f, 338.0f, 0.f));
+	enemy = new GunEnemy(D3DXVECTOR3(944.0f, 338.0f, 0.f));
+	mEnemies.push_back(enemy);
+	mGrid->Add(enemy);
 	// ------------------
 
 	// -----MissileEnemy-----
-	missileEnemy1 = new MissileEnemy();
-	missileEnemy2 = new MissileEnemy(D3DXVECTOR3(1568.0f, 416.0f, 0.f));
+	enemy = new MissileEnemy(D3DXVECTOR3(344.0f, 416.0f, 0.f), 1);
+	enemy = new MissileEnemy(D3DXVECTOR3(1568.0f, 416.0f, 0.f), 2);
+	mEnemies.push_back(enemy);
+	mGrid->Add(enemy);
 	// ----------------------
 
 	// -----RunEnemy-----
-	runEnemy1 = new RunEnemy();
+	enemy = new RunEnemy();
+	mEnemies.push_back(enemy);
+	mGrid->Add(enemy);
 	// ------------------
 
 	//------Ground-------
@@ -100,21 +110,11 @@ void DemoScene::Update(float deltaTime)
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->Update(deltaTime);
 
-	// -----GunEnemy-----
-	gunEnemy1->Update(deltaTime, mPlayer);
-	gunEnemy2->Update(deltaTime, mPlayer);
-	/*gunEnemy3->Update(deltaTime, mPlayer);*/
-	gunEnemy4->Update(deltaTime, mPlayer);
-	// ------------------
-
-	// -----MissileEnemy-----
-	missileEnemy1->Update(deltaTime, mPlayer, 1);
-	missileEnemy2->Update(deltaTime, mPlayer, 2);
-	// ----------------------
-
-	// -----RunEnemy-----
-	runEnemy1->Update(deltaTime, mPlayer, EntityDirection::Right);
-	// ------------------
+	for (int i = 0; i < mEnemies.size(); ++i)
+	{
+		//mEnemies[i]->GetEnemyType()
+		mEnemies[i]->Update(deltaTime, mPlayer);
+	}
 
 	CheckCamera();
 	CheckChageMap();
@@ -127,22 +127,10 @@ void DemoScene::Draw()
 
 	D3DXVECTOR2 trans = D3DXVECTOR2(Game::GetInstance().GetWidth() / 2 - mCamera->GetPosition().x, Game::GetInstance().GetHeight() / 2 - mCamera->GetPosition().y);
 
-	// -----GunEnemy-----
-	gunEnemy1->Draw(trans);
-	gunEnemy2->Draw(trans);
-	/*gunEnemy3->Draw(trans);*/
-	gunEnemy4->Draw(trans);
-	// ------------------
-
-	// -----MissileEnemy-----
-	missileEnemy1->Draw(trans);
-	missileEnemy2->Draw(trans);
-	// ----------------------
-
-	// -----RunEnemy-----
-	runEnemy1->Draw(trans);
-	// ------------------
-
+	for (int i = 0; i < mEnemies.size(); ++i)
+	{
+		mEnemies[i]->Draw(trans);
+	}
 
 	// -----Ground-----
 	ground1->Draw(trans);

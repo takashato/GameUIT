@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "GunEnemy.h"
 
-GunEnemy::GunEnemy(D3DXVECTOR3 position) : Entity()
+GunEnemy::GunEnemy(D3DXVECTOR3 position) : Enemy()
 {
 	LoadAnimations();
 	SetPosition(position);
@@ -113,5 +113,10 @@ RECT GunEnemy::GetBoundingBox()
 	rect.left = 0;
 	rect.top = 0;
 	return rect;
+}
+
+EnemyType GunEnemy::GetEnemyType()
+{
+	return EnemyType::EGunEnemy;
 }
 

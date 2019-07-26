@@ -1,6 +1,6 @@
 #pragma once
 #include "Animation.h"
-#include "Entity.h"
+#include "Enemy.h"
 #include "PlayerState.h"
 #include "PlayerStandingState.h" 
 #include "AnimationScript.h"
@@ -10,14 +10,14 @@
 #define RUNENEMY_RUNNING_STATE 1
 #define RUNENEMY_DYING_STATE 2
 
-class RunEnemy : public Entity
+class RunEnemy : public Enemy
 {
 public:
 	RunEnemy(D3DXVECTOR3 position = D3DXVECTOR3(776.0f, 416.0f, 0.f));
 	~RunEnemy();
 	void LoadAnimations();
 
-	void Update(float deltaTime, Player* player, EntityDirection direction);
+	void Update(float deltaTime, Player* player);
 	void Draw(D3DXVECTOR2 transform);
 
 	int GetState();
@@ -30,6 +30,7 @@ public:
 	/*void SetCamera(Camera* camera);*/
 	RECT GetBoundingBox();
 
+	EnemyType GetEnemyType();
 
 private:
 	Sprite* mSprite = NULL;

@@ -1,6 +1,6 @@
 #pragma once
 #include "Animation.h"
-#include "Entity.h"
+#include "Enemy.h"
 #include "PlayerState.h"
 #include "PlayerStandingState.h" 
 #include "AnimationScript.h"
@@ -14,14 +14,14 @@
 #define MISSILEENEMY_TAKEDAMAGE_STATE 5
 #define MISSILEENEMY_DYING_STATE 6
 
-class MissileEnemy : public Entity
+class MissileEnemy : public Enemy
 {
 public:
-	MissileEnemy(D3DXVECTOR3 position = D3DXVECTOR3(344.0f, 416.0f, 0.f));
+	MissileEnemy(D3DXVECTOR3 position = D3DXVECTOR3(344.0f, 416.0f, 0.f), int subTypeID = 1);
 	~MissileEnemy();
 	void LoadAnimations();
 
-	void Update(float deltaTime, Player* player, int id);
+	void Update(float deltaTime, Player* player);
 	void Draw(D3DXVECTOR2 transform);
 
 	int GetState();
@@ -33,7 +33,7 @@ public:
 
 	/*void SetCamera(Camera* camera);*/
 	RECT GetBoundingBox();
-
+	EnemyType GetEnemyType();
 
 private:
 	Sprite* mSprite = NULL;
@@ -51,5 +51,7 @@ private:
 
 	/*Camera* mCamera;*/
 	float mCounter = 0;
+	
+	int mSubTypeID = 0;
 };
 

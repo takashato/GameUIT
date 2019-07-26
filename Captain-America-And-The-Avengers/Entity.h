@@ -10,9 +10,9 @@ enum EntityDirection
 enum CollidableType
 {
 	EPlayer,
-	Enemy,
-	Platform,
-	Default
+	EEnemy,
+	EPlatform,
+	EDefault
 };
 
 class Entity 
@@ -49,10 +49,12 @@ public:
 
 	virtual void OnSetPosition();
 	
+	//Get box de xu li va cham 
 	virtual RECT GetBoundingBox() = 0;
 	virtual CollidableType GetCollidableType();
 
 	void RenderBoundingBox(D3DXVECTOR2 transform);
+
 
 protected:
 	D3DXVECTOR3 mPosition; // Position (x, y)

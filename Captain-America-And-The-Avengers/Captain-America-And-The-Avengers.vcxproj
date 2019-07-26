@@ -161,6 +161,7 @@
     <ClCompile Include="AnimationScript.h" />
     <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="FlyEnemy.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -228,6 +229,7 @@
     <ClInclude Include="Bat.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="define.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="FlyEnemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameException.h" />

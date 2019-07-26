@@ -66,5 +66,5 @@ RECT Ground::GetBoundingBox()
 
 CollidableType Ground::GetCollidableType()
 {
-	return Platform;
+	return EPlatform;
 }

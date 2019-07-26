@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "RunEnemy.h"
 
-RunEnemy::RunEnemy(D3DXVECTOR3 position) : Entity()
+RunEnemy::RunEnemy(D3DXVECTOR3 position) : Enemy()
 {
 	LoadAnimations();
 	SetPosition(position);
@@ -28,7 +28,7 @@ void RunEnemy::LoadAnimations()
 	mCurrentAni = mAniStanding;
 }
 
-void RunEnemy::Update(float deltaTime, Player* player, EntityDirection direction)
+void RunEnemy::Update(float deltaTime, Player* player)
 {
 	D3DXVECTOR3 playerPosition = player->GetPosition();
 	D3DXVECTOR3 runEnemyPosition = this->GetPosition();
@@ -129,5 +129,10 @@ RECT RunEnemy::GetBoundingBox()
 	rect.left = 0;
 	rect.top = 0;
 	return rect;
+}
+
+EnemyType RunEnemy::GetEnemyType()
+{
+	return EnemyType::ERunEnemy;
 }
 

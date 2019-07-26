@@ -18,10 +18,6 @@ public:
 	~DemoScene();
 
 	void Setup();
-	void SetupMap();
-	void SetupGrid();
-	void SetupPlayer();
-	void SetupEnemies();
 
 	void Update(float deltaTime);
 	void Draw();
@@ -32,15 +28,16 @@ public:
 
 	void CheckChageMap();
 	void ChangeMap(int ID);
+
 protected:
 	Camera* mCamera = NULL;
 	GameMap* mMap = NULL;
 	Grid* mGrid = NULL;
 
 	Player* mPlayer = NULL;
-	GunEnemy* gunEnemy1 = NULL, *gunEnemy2 = NULL, *gunEnemy3 = NULL, *gunEnemy4 = NULL;
-	MissileEnemy *missileEnemy1 = NULL, *missileEnemy2 = NULL;
-	RunEnemy *runEnemy1 = NULL;
+
+	std::vector<Enemy*> mEnemies;
+
 	Ground *ground1 = NULL, *ground2 = NULL, *ground3 = NULL, *ground4 = NULL, *ground5 = NULL, *ground6 = NULL, *ground7 = NULL, *ground8 = NULL, *ground9 = NULL, *ground10 = NULL;
 private:
 	int MapID, MapMaxID;

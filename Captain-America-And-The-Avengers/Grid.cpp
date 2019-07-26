@@ -48,6 +48,7 @@ void Grid::Add(Entity* entity)
 	int row = entity->GetPosition().y / mCellSize;
 	if (col >= mColNum || row >= mRowNum) return; // Do not add this
 	mCells[col][row]->Add(entity);
+	std::cout << "An entity has been added to grid <" << col << "; " << row << "> based on position (" << entity->GetPosition().x << "; " << entity->GetPosition().y << ")\n";
 }
 
 void Grid::Move(Entity* entity, D3DXVECTOR3 oldPosition)

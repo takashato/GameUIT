@@ -232,6 +232,9 @@
     <ClCompile Include="GridNode.cpp">
       <Filter>Framework\Grid</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -440,6 +443,9 @@
     </ClInclude>
     <ClInclude Include="GridNode.h">
       <Filter>Framework\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

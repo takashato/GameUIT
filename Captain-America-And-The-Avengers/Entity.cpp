@@ -126,7 +126,7 @@ void Entity::OnSetPosition()
 
 CollidableType Entity::GetCollidableType()
 {
-	return Default;
+	return EDefault;
 }
 
 void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
