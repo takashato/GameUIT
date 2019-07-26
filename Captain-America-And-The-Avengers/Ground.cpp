@@ -30,7 +30,7 @@ void Ground::Update(float deltaTime)
 
 void Ground::Draw(D3DXVECTOR2 transform)
 {
-	/*mCurrentAni->Draw(GetPosition(), transform);*/
+	this->RenderBoundingBox(transform);
 }
 
 int Ground::GetState()
