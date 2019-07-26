@@ -173,3 +173,8 @@ RECT Player::GetBoundingBox()
 	return rect;
 }
 
+CollidableType Player::GetCollidableType()
+{
+	return EPlayer;
+}
+

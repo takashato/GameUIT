@@ -26,6 +26,7 @@ public:
 	void SetCamera(Camera* camera);
 
 	RECT GetBoundingBox();
+	CollidableType GetCollidableType();
 
 private:
 	Sprite* mSprite = NULL;

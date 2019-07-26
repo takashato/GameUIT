@@ -5,18 +5,18 @@ GridNode::GridNode()
 {
 }
 
-void GridNode::Add(Collidable* collidable)
+void GridNode::Add(Entity* entity)
 {
-	mList.push_back(collidable);
+	mList.push_back(entity);
 	mList.unique();
 }
 
-void GridNode::Remove(Collidable* collidable)
+void GridNode::Remove(Entity* entity)
 {
-	mList.remove(collidable);
+	mList.remove(entity);
 }
 
-std::list<Collidable*> GridNode::GetAll()
+std::list<Entity*> GridNode::GetAll()
 {
 	return mList;
 }

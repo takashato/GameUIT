@@ -7,6 +7,14 @@ enum EntityDirection
 	Right
 };
 
+enum CollidableType
+{
+	EPlayer,
+	Enemy,
+	Platform,
+	Default
+};
+
 class Entity 
 {
 public:
@@ -41,8 +49,8 @@ public:
 
 	virtual void OnSetPosition();
 	
-	//Get box de xu li va cham 
 	virtual RECT GetBoundingBox() = 0;
+	virtual CollidableType GetCollidableType();
 
 	void RenderBoundingBox(D3DXVECTOR2 transform);
 
