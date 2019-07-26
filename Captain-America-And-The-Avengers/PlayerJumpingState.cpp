@@ -24,7 +24,12 @@ void PlayerJumpingState::Update(float deltaTime)
 	mTimeCounter += deltaTime;
 	mTimeUpdater += deltaTime;
 	mPlayer->AddVelocityY(PLAYER_GRAVITY * deltaTime);
-	mTimeUpdater = .0f;
+	if (mTimeCounter >= 0.3f && mTimeCounter <= 0.5f)
+		mPlayer->SetState(new PlayerHighJumpState(mPlayer));
+	if (mTimeCounter > 0.5f)
+	{
+		mPlayer->SetState(new PlayerFallingState(mPlayer));
+	}
 }
 
 EPlayerState PlayerJumpingState::GetState()

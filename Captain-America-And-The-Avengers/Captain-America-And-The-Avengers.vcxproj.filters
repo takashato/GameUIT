@@ -231,6 +231,7 @@
     <ClCompile Include="Ground.cpp">
       <Filter>Static Object</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerHighJumpState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -439,6 +440,9 @@
     </ClInclude>
     <ClInclude Include="Ground.h">
       <Filter>Static Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHighJumpState.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

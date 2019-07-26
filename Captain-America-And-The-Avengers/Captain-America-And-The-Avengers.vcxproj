@@ -197,6 +197,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerClingState.cpp" />
     <ClCompile Include="PlayerFallingState.cpp" />
+    <ClCompile Include="PlayerHighJumpState.cpp" />
     <ClCompile Include="PlayerHighShieldingState.cpp" />
     <ClCompile Include="PlayerInvincibleStandState.cpp" />
     <ClCompile Include="PlayerJumpingState.cpp" />
@@ -267,6 +268,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerClingState.h" />
     <ClInclude Include="PlayerFallingState.h" />
+    <ClInclude Include="PlayerHighJumpState.h" />
     <ClInclude Include="PlayerHighShieldingState.h" />
     <ClInclude Include="PlayerInvincibleStandState.h" />
     <ClInclude Include="PlayerJumpingState.h" />
