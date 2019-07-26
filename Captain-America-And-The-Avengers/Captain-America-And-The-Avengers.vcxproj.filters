@@ -33,6 +33,9 @@
     <Filter Include="Static Object">
       <UniqueIdentifier>{9738a0c7-aabd-4a78-bbac-805965d2948e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Grid">
+      <UniqueIdentifier>{c7c2b3ea-f8f0-4cd1-9450-0c0834c73f5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameException.cpp">
@@ -219,23 +222,17 @@
     <ClCompile Include="GunStock.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Grid.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="GridNode.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="Enemy.cpp" />
-=======
-    <ClCompile Include="Collidable.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Ground.cpp">
       <Filter>Static Object</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHighJumpState.cpp" />
->>>>>>> 30065f4b9e405d273d4c4d14da9107aa49f2ba8f
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Grid.cpp">
+      <Filter>Framework\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="GridNode.cpp">
+      <Filter>Framework\Grid</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -433,12 +430,6 @@
     <ClInclude Include="GunStock.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Grid.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="GridNode.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Collidable.h">
       <Filter>Framework</Filter>
     </ClInclude>
@@ -448,7 +439,6 @@
     <ClInclude Include="PlayerHighJumpState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Grid.h">
       <Filter>Framework\Grid</Filter>
     </ClInclude>
@@ -458,8 +448,12 @@
     <ClInclude Include="Enemy.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-=======
->>>>>>> 30065f4b9e405d273d4c4d14da9107aa49f2ba8f
+    <ClInclude Include="Grid.h">
+      <Filter>Framework\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="GridNode.h">
+      <Filter>Framework\Grid</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Sprites\Aladdin_swing.png">

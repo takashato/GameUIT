@@ -23,14 +23,14 @@
     <ProjectGuid>{AEC6CC9B-3245-4470-844F-19890AD30DA5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>GameProject</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>Captain-America-And-The-Avengers</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -161,11 +161,7 @@
     <ClCompile Include="AnimationScript.h" />
     <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Camera.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="Enemy.cpp" />
-=======
-    <ClCompile Include="Collidable.cpp" />
->>>>>>> 30065f4b9e405d273d4c4d14da9107aa49f2ba8f
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="FlyEnemy.cpp" />
     <ClCompile Include="Game.cpp" />
