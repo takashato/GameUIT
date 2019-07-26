@@ -18,6 +18,10 @@ public:
 	~DemoScene();
 
 	void Setup();
+	void SetupMap();
+	void SetupGrid();
+	void SetupPlayer();
+	void SetupEnemies();
 
 	void Update(float deltaTime);
 	void Draw();

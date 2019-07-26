@@ -1,7 +1,7 @@
 #pragma once
+#include "Entity.h"
 #include "Camera.h"
 #include "GridNode.h"
-#include "Collidable.h"
 
 class Grid
 {
@@ -12,8 +12,8 @@ public:
 	void InitNodes();
 	GridNode* GetNode(int col, int row);
 
-	void Add(Collidable* collidable);
-	void Move(Collidable* collidable, D3DXVECTOR3 oldPosition);
+	void Add(Entity* entity);
+	void Move(Entity* entity, D3DXVECTOR3 oldPosition);
 
 	std::vector<GridNode*> GetByViewPort(Camera* camera);
 
