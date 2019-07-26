@@ -62,9 +62,13 @@ RECT Ground::GetBoundingBox()
 	rect.right = mWidth;
 	rect.bottom = mHeight;
 	return rect;
+<<<<<<< HEAD
 }
 
 CollidableType Ground::GetCollidableType()
 {
-	return Platform;
+	return EPlatform;
 }
+=======
+}
+>>>>>>> 30065f4b9e405d273d4c4d14da9107aa49f2ba8f

@@ -2,8 +2,10 @@
 #include "Game.h"
 #include "MissileEnemy.h"
 
-MissileEnemy::MissileEnemy(D3DXVECTOR3 position) : Entity()
+MissileEnemy::MissileEnemy(D3DXVECTOR3 position, int subTypeID)
 {
+	mSubTypeID = subTypeID;
+
 	LoadAnimations();
 	SetPosition(position);
 	mState = MISSILEENEMY_STANDING_STATE;
@@ -33,7 +35,7 @@ void MissileEnemy::LoadAnimations()
 	mCurrentAni = mAniStanding;
 }
 
-void MissileEnemy::Update(float deltaTime, Player* player, int id)
+void MissileEnemy::Update(float deltaTime, Player* player)
 {
 	D3DXVECTOR3 playerPosition = player->GetPosition();
 	D3DXVECTOR3 missileEnemyPosition = this->GetPosition();
@@ -49,7 +51,7 @@ void MissileEnemy::Update(float deltaTime, Player* player, int id)
 
 	mCurrentAni->SetFlippedHorizontally(mDirection == Left);
 	
-	if (id == 1) // Missile Enemy Stand and Shoot
+	if (mSubTypeID == 1) // Missile Enemy Stand and Shoot
 	{
 		mCounter += deltaTime;
 		if (mCounter >= 0.9f)
@@ -67,8 +69,7 @@ void MissileEnemy::Update(float deltaTime, Player* player, int id)
 			mCounter = 0;
 		}
 	}
-
-	if (id == 2) // Missile Enemy Run and Shoot
+	else if (mSubTypeID == 2) // Missile Enemy Run and Shoot
 	{
 		mCounter += deltaTime;
 		if (mDirection == Left)
@@ -195,5 +196,10 @@ RECT MissileEnemy::GetBoundingBox()
 	rect.left = 0;
 	rect.top = 0;
 	return rect;
+}
+
+EnemyType MissileEnemy::GetEnemyType()
+{
+	return EnemyType::EMissileEnemy;
 }
 

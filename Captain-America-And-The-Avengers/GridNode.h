@@ -1,16 +1,16 @@
 #pragma once
-#include "Entity.h"
+#include "Collidable.h"
 
 class GridNode
 {
 public:
 	GridNode();
 
-	void Add(Entity* collidable);
-	void Remove(Entity* entity);
+	void Add(Collidable* collidable);
+	void Remove(Collidable* collidable);
 
-	std::list<Entity*> GetAll();
+	std::list<Collidable*> GetAll();
 
 private:
-	std::list<Entity*> mList;
+	std::list<Collidable*> mList;
 };

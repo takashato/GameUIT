@@ -1,6 +1,6 @@
 #pragma once
 #include "Animation.h"
-#include "Entity.h"
+#include "Enemy.h"
 #include "PlayerState.h"
 #include "PlayerStandingState.h" 
 #include "AnimationScript.h"
@@ -10,7 +10,7 @@
 #define GUNENEMY_SITTING_STATE 1
 #define GUNENEMY_DYING_STATE 2
 
-class GunEnemy : public Entity
+class GunEnemy : public Enemy
 {
 public:
 	GunEnemy(D3DXVECTOR3 position = D3DXVECTOR3(300.0f, 416.0f, 0.f));
@@ -30,6 +30,7 @@ public:
 	/*void SetCamera(Camera* camera);*/
 	RECT GetBoundingBox();
 
+	EnemyType GetEnemyType();
 
 private:
 	Sprite* mSprite = NULL;

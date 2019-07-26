@@ -19,7 +19,6 @@ public:
 	void OnSetPosition();
 
 	RECT GetBoundingBox();
-	CollidableType GetCollidableType();
 
 private:
 	int mState = -1;
