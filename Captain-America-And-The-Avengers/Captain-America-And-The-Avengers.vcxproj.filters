@@ -36,6 +36,9 @@
     <Filter Include="Framework\Grid">
       <UniqueIdentifier>{aa944621-47d4-4253-9b10-6184f4d275e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Collision">
+      <UniqueIdentifier>{6afec771-035d-469d-96e9-d724880f25e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameException.cpp">
@@ -234,6 +237,9 @@
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionEvent.cpp">
+      <Filter>Framework\Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -446,6 +452,9 @@
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionEvent.h">
+      <Filter>Framework\Collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
