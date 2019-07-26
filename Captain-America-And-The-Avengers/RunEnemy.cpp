@@ -117,12 +117,9 @@ void RunEnemy::OnSetPosition()
 {
 }
 
-//void RunEnemy::SetCamera(Camera* camera)
-//{
-//	mCamera = camera;
-//}
-void RunEnemy::GetBoundingBox(float &left, float &top, float &right, float &bottom)
+
+RECT RunEnemy::GetBoundingBox()
 {
-	//......
+	return RECT();
 }
 

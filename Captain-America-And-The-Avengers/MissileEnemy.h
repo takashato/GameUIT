@@ -32,7 +32,7 @@ public:
 	void OnSetPosition();
 
 	/*void SetCamera(Camera* camera);*/
-	void GetBoundingBox(float &left, float &top, float &right, float &bottom);
+	RECT GetBoundingBox();
 
 
 private:

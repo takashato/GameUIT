@@ -53,11 +53,12 @@ void Ground::OnSetPosition()
 {
 }
 
-void Ground::GetBoundingBox(float &left, float &top, float &right, float &bottom) 
+RECT Ground::GetBoundingBox() 
 {
-	left = GetPosition().x;
-	top = GetPosition().y;
-	right = left + mWidth;
-	bottom = top + mHeight;
-
+	RECT rect;
+	rect.left = GetPosition().x;
+	rect.top = GetPosition().y;
+	rect.right = rect.left + mWidth;
+	rect.bottom = rect.top + mHeight;
+	return rect;
 }

@@ -18,7 +18,7 @@ public:
 
 	void OnSetPosition();
 
-	void GetBoundingBox(float &left, float &top, float &right, float &bottom);
+	RECT GetBoundingBox();
 
 private:
 	int mState = -1;

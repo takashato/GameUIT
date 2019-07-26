@@ -63,6 +63,11 @@ Sprite::Sprite(const wchar_t* filePath, RECT sourceRect, int width, int height, 
 	} 
 }
 
+Sprite::~Sprite()
+{
+	delete mTexture;
+}
+
 void Sprite::Draw(D3DXVECTOR3 position, D3DXVECTOR2 scale, D3DXVECTOR2 transform, int alpha)
 {
 	D3DXVECTOR2 inScale, inTransform;

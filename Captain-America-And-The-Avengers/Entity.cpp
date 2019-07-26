@@ -7,6 +7,10 @@ Entity::Entity()
 	mDirection = Right;
 }
 
+Entity::~Entity()
+{
+}
+
 void Entity::Update(float deltaTime)
 {
 }
@@ -119,16 +123,15 @@ void Entity::OnSetPosition()
 {
 
 }
+
 void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
 {
-	Sprite* bSprite = new Sprite(L"Resources\\Sprites\\BoudingBox\\bbox.png");
-	RECT rect;
-	float l, t, r, b;
-	GetBoundingBox(l, t, r, b);
-	rect.left = 0;
-	rect.top = 0;
-	rect.right = (int)r - (int)l;
-	rect.bottom = (int)b - (int)t;
-	bSprite->SetRect(rect);
-	bSprite->Draw(mPosition, D3DXVECTOR2(), transform, 32);//render mau` nhat
+	if (mSpriteBB == nullptr)
+	{
+		mSpriteBB = new Sprite(L"Resources\\Sprites\\BoudingBox\\bbox.png");
+	}
+	mSpriteBB->SetRect(GetBoundingBox());
+	mSpriteBB->Draw(mPosition, D3DXVECTOR2(), transform, 100); //render mau` nhat
 }
+
+Sprite* Entity::mSpriteBB = NULL;

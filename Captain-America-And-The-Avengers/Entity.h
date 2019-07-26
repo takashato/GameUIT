@@ -1,5 +1,6 @@
 #pragma once
 #include"Sprite.h"
+
 enum EntityDirection
 {
 	Left,
@@ -10,6 +11,7 @@ class Entity
 {
 public:
 	Entity();
+	~Entity();
 
 	virtual void Update(float deltaTime);
 	virtual void Draw();
@@ -40,11 +42,15 @@ public:
 	virtual void OnSetPosition();
 	
 	//Get box de xu li va cham 
-	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom) = 0;
+	virtual RECT GetBoundingBox() = 0;
+
 	void RenderBoundingBox(D3DXVECTOR2 transform);
+
 protected:
 	D3DXVECTOR3 mPosition; // Position (x, y)
 	float mWidth, mHeight; // Size
 	float mVelocityX, mVelocityY;
 	EntityDirection mDirection;
+
+	static Sprite* mSpriteBB;
 };

@@ -25,7 +25,7 @@ public:
 
 	void SetCamera(Camera* camera);
 
-	void GetBoundingBox(float &left, float &top, float &right, float &bottom);
+	RECT GetBoundingBox();
 
 private:
 	Sprite* mSprite = NULL;
