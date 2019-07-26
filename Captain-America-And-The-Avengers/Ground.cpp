@@ -1,35 +1,63 @@
-//#include "Ground.h"
-//
-//Ground::Ground(D3DXVECTOR3 position) : Entity()
-//{
-//	SetPosition(position);
-//	//Quy dinh ground la 16x16
-//	SetWidth(16.0f);
-//	SetHeight(16.0f);
-//	
-//}
-//
-//void Ground::GetBoundingBox(float &left, float &top, float &right, float &bottom)//Dung get box xet va cham trong sweep aabb
-//{
-//	left = GetPosition().x;
-//	top = GetPosition().y;
-//	right = left + mWidth;
-//	bottom = top + mHeight;
-//}
-//void Ground::Update()
-//{
-//
-//}
-//void Ground::Draw()
-//{
-//
-//}
-//Ground::~Ground()
-//{
-//
-//}
-//void Ground::LoadSpriteBoudingBox()
-//{
-//	//Load anh trong resource//sprite//boudingbox
-//}
+#include "pch.h"
+#include "Game.h"
+#include "Ground.h"
 
+Ground::Ground(D3DXVECTOR3 position) : Entity()
+{
+	LoadAnimations();
+	SetPosition(position);
+	SetVelocityX(0.f);
+	SetVelocityY(0.f);
+}
+
+
+Ground::~Ground()
+{
+
+}
+
+void Ground::LoadAnimations()
+{
+	
+	
+}
+
+void Ground::Update(float deltaTime)
+{
+
+
+}
+
+void Ground::Draw(D3DXVECTOR2 transform)
+{
+	/*mCurrentAni->Draw(GetPosition(), transform);*/
+}
+
+int Ground::GetState()
+{
+	return mState;
+}
+
+void Ground::SetState(int state)
+{
+	mState = state;
+	ChangeAnimationByState(mState);
+}
+
+void Ground::ChangeAnimationByState(int state)
+{
+
+}
+
+void Ground::OnSetPosition()
+{
+}
+
+void Ground::GetBoundingBox(float &left, float &top, float &right, float &bottom) 
+{
+	left = GetPosition().x;
+	top = GetPosition().y;
+	right = left + mWidth;
+	bottom = top + mHeight;
+
+}

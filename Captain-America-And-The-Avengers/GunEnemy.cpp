@@ -106,3 +106,8 @@ void GunEnemy::OnSetPosition()
 //{
 //	mCamera = camera;
 //}
+void GunEnemy::GetBoundingBox(float &left, float &top, float &right, float &bottom)
+{
+	//.....
+}
+

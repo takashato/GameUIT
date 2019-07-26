@@ -187,3 +187,8 @@ void MissileEnemy::OnSetPosition()
 //{
 //	mCamera = camera;
 //}
+void MissileEnemy::GetBoundingBox(float &left, float &top, float &right, float &bottom)
+{
+	//..
+}
+

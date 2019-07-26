@@ -27,5 +27,4 @@ protected:
 	Camera* mCamera;
 private:
 	int mID;
-	bool isAnimation;
 };

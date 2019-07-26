@@ -155,3 +155,9 @@ void Player::SetCamera(Camera* camera)
 {
 	mCamera = camera;
 }
+
+void Player::GetBoundingBox(float &left, float &top, float &right, float &bottom)
+{
+	//.......
+}
+

@@ -5,7 +5,6 @@
 using namespace std;
 GameMap::GameMap(int MapID, const wchar_t* filePathIMap, const wchar_t* filePathMMap, Camera* camera)
 {
-	isAnimation = false;
 	mID = MapID;
 	TileWidth = TileHeight = 32;
 	mCamera = camera;
@@ -33,19 +32,6 @@ void GameMap::LoadMap(const wchar_t* filePathIMap, const wchar_t* filePathMMap)
 			ReadMap >> MatrixMap[i][j];
 		}
 	SpriteMap = new Sprite(filePathIMap);
-	/*mMap = new Tmx::Map();
-	mMap->ParseFile(filePath);
-
-	for (int i = 0; i < mMap->GetNumTilesets(); i++)
-	{
-		const Tmx::Tileset* tileset = mMap->GetTileset(i);
-
-		std::string directoryPath = StringUtils::GetDirectoryFromFilePath(filePath);
-		directoryPath += "\\" + tileset->GetImage()->GetSource();
-		std::wstring wFilePath = std::wstring(directoryPath.begin(), directoryPath.end());
-		Sprite* sprite = new Sprite(wFilePath.c_str());
-		mTilesetMap.insert(std::pair<int, Sprite*>(i, sprite));
-	}*/
 }
 
 void GameMap::Draw()
@@ -102,54 +88,6 @@ void GameMap::Draw()
 				SpriteMap->SetRect(sourceRECT);
 				SpriteMap->Draw(Pos, D3DXVECTOR2(), trans2);
 			}
-	/*for (int i = 0; i < mMap->GetNumTileLayers(); i++)
-	{
-		const Tmx::TileLayer* layer = mMap->GetTileLayer(i);
-		if (!layer->IsVisible())
-		{
-			continue;
-		}
-
-		for (int j = 0; j < mMap->GetNumTilesets(); j++)
-		{
-			const Tmx::Tileset* tileSet = mMap->GetTileset(j);
-			RECT sourceRECT;
-
-			int tileWidth = mMap->GetTileWidth();
-			int tileHeight = mMap->GetTileHeight();
-
-			int tileSetWidth = tileSet->GetImage()->GetWidth() / tileWidth;
-			int tileSetHeight = tileSet->GetImage()->GetHeight() / tileHeight;
-
-			for (int m = 0; m < layer->GetHeight(); m++)
-			{
-				for (int n = 0; n < layer->GetWidth(); n++)
-				{
-					if (layer->GetTileTilesetIndex(n, m) != -1)
-					{
-						int tileID = layer->GetTileId(n, m);
-
-						int y = tileID / tileSetWidth;
-						int x = tileID - y * tileSetWidth;
-
-						sourceRECT.top = y * tileHeight;
-						sourceRECT.bottom = sourceRECT.top + tileHeight;
-						sourceRECT.left = x * tileWidth;
-						sourceRECT.right = sourceRECT.left + tileWidth;
-
-						Sprite* sprite = mTilesetMap[j];
-
-						D3DXVECTOR3 position(1.0f * n * tileWidth, 1.0f * m * tileHeight, 0);
-
-						sprite->SetRect(sourceRECT);
-
-						sprite->Draw(position, D3DXVECTOR2(), trans);
-					}
-				}
-			}
-		}
-	}*/
-		isAnimation = !isAnimation;
 }
 
 void GameMap::SetCamera(Camera* camera)

@@ -1,5 +1,5 @@
 #pragma once
-
+#include"Sprite.h"
 enum EntityDirection
 {
 	Left,
@@ -38,6 +38,10 @@ public:
 	void SetDirection(EntityDirection direction);
 
 	virtual void OnSetPosition();
+	
+	//Get box de xu li va cham 
+	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom) = 0;
+	void RenderBoundingBox(D3DXVECTOR2 transform);
 protected:
 	D3DXVECTOR3 mPosition; // Position (x, y)
 	float mWidth, mHeight; // Size
