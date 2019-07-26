@@ -17,7 +17,6 @@ DemoScene::~DemoScene()
 void DemoScene::Setup()
 {
 	Scene::Setup();
-
 	//Setup Map
 	switch (MapID)
 	{
@@ -47,16 +46,14 @@ void DemoScene::Setup()
 	int gridCellSize = Game::GetInstance().GetWidth() > Game::GetInstance().GetHeight() ?
 		Game::GetInstance().GetWidth() 
 		: Game::GetInstance().GetHeight();
-	int gridColNum = (int)ceil(1.0f * mMap->GetWidth() / gridCellSize);
-	int gridRowNum = (int)ceil(1.0f * mMap->GetHeight() / gridCellSize);
+	int gridColNum = (int)ceil(mMap->GetWidth() / gridCellSize);
+	int gridRowNum = (int)ceil(mMap->GetHeight() / gridCellSize);
 	mGrid = new Grid(gridColNum, gridRowNum, gridCellSize);
 
-	// Setup player
+	
 	mPlayer = new Player();
 	mPlayer->SetPosition(mMap->GetPlayerSpawnPoint());
-	mGrid->Add(mPlayer);
 
-	// Setup Enemies
 	// -----GunEnemy-----
 	gunEnemy1 = new GunEnemy();
 	gunEnemy2 = new GunEnemy(D3DXVECTOR3(688.0f, 338.0f, 0.f));

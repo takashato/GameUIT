@@ -42,22 +42,22 @@ GridNode* Grid::GetNode(int col, int row)
 	return mCells[col][row];
 }
 
-void Grid::Add(Entity* entity)
+void Grid::Add(Collidable* collidable)
 {
-	int col = entity->GetPosition().x / mCellSize;
-	int row = entity->GetPosition().y / mCellSize;
+	int col = collidable->GetPositionX() / mCellSize;
+	int row = collidable->GetPositionY() / mCellSize;
 	if (col >= mColNum || row >= mRowNum) return; // Do not add this
-	mCells[col][row]->Add(entity);
+	mCells[col][row]->Add(collidable);
 }
 
-void Grid::Move(Entity* entity, D3DXVECTOR3 oldPosition)
+void Grid::Move(Collidable* collidable, D3DXVECTOR3 oldPosition)
 {
 	int oldCol = static_cast<int>(oldPosition.x / mCellSize);
 	int oldRow = static_cast<int>(oldPosition.y / mCellSize);
 	if (oldCol >= mColNum || oldRow >= mRowNum)
 		ThrowGameException("Old position is out of grid range.");
-	mCells[oldCol][oldRow]->Remove(entity); // Remove from old placed grid
-	Add(entity); // Add to new grid
+	mCells[oldCol][oldRow]->Remove(collidable); // Remove from old placed grid
+	Add(collidable); // Add to new grid
 }
 
 std::vector<GridNode*> Grid::GetByViewPort(Camera* camera)

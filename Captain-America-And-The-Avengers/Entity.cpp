@@ -124,11 +124,6 @@ void Entity::OnSetPosition()
 
 }
 
-CollidableType Entity::GetCollidableType()
-{
-	return Default;
-}
-
 void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
 {
 	if (mSpriteBB == nullptr)

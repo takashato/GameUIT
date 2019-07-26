@@ -63,8 +63,3 @@ RECT Ground::GetBoundingBox()
 	rect.bottom = mHeight;
 	return rect;
 }
-
-CollidableType Ground::GetCollidableType()
-{
-	return Platform;
-}
