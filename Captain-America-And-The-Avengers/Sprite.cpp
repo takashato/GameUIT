@@ -63,7 +63,7 @@ Sprite::Sprite(const wchar_t* filePath, RECT sourceRect, int width, int height, 
 	} 
 }
 
-void Sprite::Draw(D3DXVECTOR3 position, D3DXVECTOR2 scale, D3DXVECTOR2 transform)
+void Sprite::Draw(D3DXVECTOR3 position, D3DXVECTOR2 scale, D3DXVECTOR2 transform, int alpha)
 {
 	D3DXVECTOR2 inScale, inTransform;
 	D3DXVECTOR2 inScalingCenter(position.x, position.y);
@@ -96,7 +96,7 @@ void Sprite::Draw(D3DXVECTOR3 position, D3DXVECTOR2 scale, D3DXVECTOR2 transform
 		&mRect,
 		&center,
 		&position,
-		D3DCOLOR_ARGB(255, 255, 255, 255)
+		D3DCOLOR_ARGB(alpha, 255, 255, 255)
 	);
 	mSpriteHandler->SetTransform(&oldMatrix);
 }

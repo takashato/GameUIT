@@ -3,7 +3,7 @@
 
 Entity::Entity()
 {
-	
+
 	mDirection = Right;
 }
 
@@ -130,5 +130,5 @@ void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
 	rect.right = (int)r - (int)l;
 	rect.bottom = (int)b - (int)t;
 	bSprite->SetRect(rect);
-	bSprite->Draw(mPosition, D3DXVECTOR2(), transform);
+	bSprite->Draw(mPosition, D3DXVECTOR2(), transform, 32);//render mau` nhat
 }
