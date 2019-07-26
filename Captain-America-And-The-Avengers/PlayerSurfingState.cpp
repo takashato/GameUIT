@@ -28,14 +28,14 @@ void PlayerSurfingState::Update(float deltaTime)
 		{
 			if (mPlayer->GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
 			{
-				mPlayer->AddVelocityX(-5*PLAYER_ACC_X);
+				mPlayer->AddVelocityX(-2*PLAYER_ACC_X);
 			}
 		}
 		else
 		{
 			if (mPlayer->GetVelocityX() < PLAYER_VELOCITY_X_MAX)
 			{
-				mPlayer->AddVelocityX(5*PLAYER_ACC_X);
+				mPlayer->AddVelocityX(2*PLAYER_ACC_X);
 			}
 		}
 		mTimeUpdater = .0f;

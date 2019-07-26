@@ -90,7 +90,7 @@
   </Animation>
   <Animation name="Surfing" imagePath="Captain America.png" width="400" height="368">
     <Sprites type="0">
-		<sprite x="281" y="38" w="31" h="29" />
+		<sprite x="281" y="83" w="31" h="29" />
 		<sprite x="321" y="85" w="39" h="23" />
     </Sprites>
   </Animation>

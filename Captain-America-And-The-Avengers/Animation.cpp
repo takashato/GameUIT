@@ -65,6 +65,11 @@ int Animation::GetFrameNumber()
 	return static_cast<int>(mFrames.size());
 }
 
+int Animation::GetCurrentFrame()
+{
+	return mFrame;
+}
+
 RECT Animation::GetCurrentFrameRect()
 {
 	return mFrames[mFrame];

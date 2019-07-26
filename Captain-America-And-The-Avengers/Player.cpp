@@ -48,7 +48,16 @@ void Player::Update(float deltaTime)
 		AddPositionY(GetVelocityY() * deltaTime);
 	}
 
-	if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
+	if (mCurrentAni != NULL)
+	{
+		if (mCurrentAni == mAniSurfing)
+		{
+			if (mCurrentAni->GetCurrentFrame() != 1)
+				mCurrentAni->Update(deltaTime);
+		}
+		else
+			mCurrentAni->Update(deltaTime);
+	}
 }
 
 void Player::Draw()

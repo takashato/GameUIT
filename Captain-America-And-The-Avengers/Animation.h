@@ -26,6 +26,7 @@ public:
 	void IncFrame();
 
 	int GetFrameNumber();
+	int GetCurrentFrame();
 
 	RECT GetCurrentFrameRect();
 
