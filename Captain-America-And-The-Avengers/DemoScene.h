@@ -37,6 +37,7 @@ protected:
 	Player* mPlayer = NULL;
 
 	std::vector<Enemy*> mEnemies;
+	std::vector<Ground*> mGrounds;
 
 	Ground *ground1 = NULL, *ground2 = NULL, *ground3 = NULL, *ground4 = NULL, *ground5 = NULL, *ground6 = NULL, *ground7 = NULL, *ground8 = NULL, *ground9 = NULL, *ground10 = NULL;
 private:

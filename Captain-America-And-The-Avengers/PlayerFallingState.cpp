@@ -17,12 +17,6 @@ void PlayerFallingState::HandleKeyboard(Keyboard* keyboard)
 void PlayerFallingState::Update(float deltaTime)
 {
 	mPlayer->AddVelocityY(PLAYER_GRAVITY * deltaTime);
-
-	if (mPlayer->GetPosition().y >= 402.0f)
-	{
-		mPlayer->SetPositionY(402.0f);
-		mPlayer->SetState(new PlayerStandingState(mPlayer));
-	}
 }
 
 EPlayerState PlayerFallingState::GetState()

@@ -46,8 +46,8 @@ void DemoScene::Setup()
 	int gridCellSize = Game::GetInstance().GetWidth() > Game::GetInstance().GetHeight() ?
 		Game::GetInstance().GetWidth() 
 		: Game::GetInstance().GetHeight();
-	int gridColNum = (int)ceil(mMap->GetWidth() / gridCellSize);
-	int gridRowNum = (int)ceil(mMap->GetHeight() / gridCellSize);
+	int gridColNum = (int)ceil(1.0f * mMap->GetWidth() / gridCellSize);
+	int gridRowNum = (int)ceil(1.0f * mMap->GetHeight() / gridCellSize);
 	mGrid = new Grid(gridColNum, gridRowNum, gridCellSize);
 
 	
@@ -84,16 +84,13 @@ void DemoScene::Setup()
 	// ------------------
 
 	//------Ground-------
-	ground1 = new Ground(D3DXVECTOR3(0,444,0));
-	ground2 = new Ground(D3DXVECTOR3(16, 444, 0));
-	ground3 = new Ground(D3DXVECTOR3(32, 444, 0));
-	ground4 = new Ground(D3DXVECTOR3(48, 444, 0));
-	ground5 = new Ground(D3DXVECTOR3(64, 444, 0));
-	ground6 = new Ground(D3DXVECTOR3(80, 444, 0));
-	ground7 = new Ground(D3DXVECTOR3(96, 444, 0));
-	ground8 = new Ground(D3DXVECTOR3(112, 444, 0));
-	ground9 = new Ground(D3DXVECTOR3(128, 444, 0));
-	ground10 = new Ground(D3DXVECTOR3(144, 444, 0));
+	Ground* ground = nullptr;
+	for (int i = 0; i < 112; ++i)
+	{
+		ground = new Ground(D3DXVECTOR3(16 * i, 444, 0));
+		mGrounds.push_back(ground);
+		mGrid->Add(ground);
+	}
 
 	//----------------
 	mCamera = new Camera(Game::GetInstance().GetWidth(), Game::GetInstance().GetHeight());
@@ -110,7 +107,7 @@ void DemoScene::Update(float deltaTime)
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->Update(deltaTime);
 
-	for (int i = 0; i < mEnemies.size(); ++i)
+	for (size_t i = 0; i < mEnemies.size(); ++i)
 	{
 		//mEnemies[i]->GetEnemyType()
 		mEnemies[i]->Update(deltaTime, mPlayer);
@@ -127,23 +124,16 @@ void DemoScene::Draw()
 
 	D3DXVECTOR2 trans = D3DXVECTOR2(Game::GetInstance().GetWidth() / 2 - mCamera->GetPosition().x, Game::GetInstance().GetHeight() / 2 - mCamera->GetPosition().y);
 
-	for (int i = 0; i < mEnemies.size(); ++i)
+	for (size_t i = 0; i < mEnemies.size(); ++i)
 	{
 		mEnemies[i]->Draw(trans);
 	}
 
-	// -----Ground-----
-	ground1->Draw(trans);
-	ground2->Draw(trans);
-	ground3->Draw(trans);
-	ground4->Draw(trans);
-	ground5->Draw(trans);
-	ground6->Draw(trans);
-	ground7->Draw(trans);
-	ground8->Draw(trans);
-	ground9->Draw(trans);
-	ground10->Draw(trans);
-	// ------------------
+	// Debug
+	for (size_t i = 0; i < mGrounds.size(); ++i)
+	{
+		mGrounds[i]->Draw(trans);
+	}
 
 	Scene::Draw();
 }

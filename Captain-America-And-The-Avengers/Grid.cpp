@@ -46,7 +46,10 @@ void Grid::Add(Entity* entity)
 {
 	int col = entity->GetPosition().x / mCellSize;
 	int row = entity->GetPosition().y / mCellSize;
-	if (col >= mColNum || row >= mRowNum) return; // Do not add this
+	if (col >= mColNum || row >= mRowNum) {
+		std::cout << "Grid reject col " << col << " row " << row << "\n";
+		return; // Do not add this
+	}
 	mCells[col][row]->Add(entity);
 	std::cout << "An entity has been added to grid <" << col << "; " << row << "> based on position (" << entity->GetPosition().x << "; " << entity->GetPosition().y << ")\n";
 }
