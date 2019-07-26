@@ -164,7 +164,7 @@ void Player::SetCamera(Camera* camera)
 
 RECT Player::GetBoundingBox()
 {
-	if (mCurrentAni != nullptr) return RECT();
+	if (mCurrentAni == nullptr) return RECT();
 	RECT rect = mCurrentAni->GetCurrentFrameRect();
 	rect.right -= rect.left;
 	rect.bottom -= rect.top;
