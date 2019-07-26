@@ -9,6 +9,7 @@ GameMap::GameMap(int MapID, const wchar_t* filePathIMap, const wchar_t* filePath
 	TileWidth = TileHeight = 32;
 	mCamera = camera;
 	LoadMap(filePathIMap, filePathMMap);
+	LoadGround();
 }
 
 GameMap::~GameMap()
@@ -120,9 +121,9 @@ switch (mID)
 	case ID_MAP_PITTSBURGH_DARK:
 		spawnPoint = SPAWPOINT_PITTSBURGH;
 		break;
-	case ID_MAP_PITTSBURGH_EXTRA_1:
+	case ID_MAP_PITTSBURGH_DARK_EXTRA_1:
 		break;
-	case ID_MAP_PITTSBURGH_EXTRA_2:
+	case ID_MAP_PITTSBURGH_DARK_EXTRA_2:
 		break;
 	case ID_MAP_RED_ALERT:
 		break;
@@ -130,4 +131,31 @@ switch (mID)
 		break;
 	}
 	return spawnPoint;
+}
+void GameMap::LoadGround()
+{
+	if (mID == ID_MAP_CHARLESTON)
+	{
+		
+	}
+	else if (mID == ID_MAP_CHARLESTON_BOSS_DARK || mID == ID_MAP_CHARLESTON_BOSS_LIGHT)
+	{
+
+	}
+	else if (mID == ID_MAP_PITTSBURGH_DARK || mID == ID_MAP_PITTSBURGH_LIGHT)
+	{
+
+	}
+	else if (mID == ID_MAP_PITTSBURGH_DARK_EXTRA_1 || mID == ID_MAP_PITTSBURGH_LIGHT_EXTRA_1)
+	{
+
+	}
+	else if (mID == ID_MAP_PITTSBURGH_DARK_EXTRA_2 || mID == ID_MAP_PITTSBURGH_LIGHT_EXTRA_2)
+	{
+
+	}
+	else if (mID==ID_MAP_RED_ALERT)
+	{
+		 
+	}
 }

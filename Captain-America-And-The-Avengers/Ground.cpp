@@ -4,6 +4,7 @@
 
 Ground::Ground(D3DXVECTOR3 position) : Entity()
 {
+	mWidth = mHeight = 16;
 	LoadAnimations();
 	SetPosition(position);
 	SetVelocityX(0.f);
@@ -56,9 +57,9 @@ void Ground::OnSetPosition()
 RECT Ground::GetBoundingBox() 
 {
 	RECT rect;
-	rect.left = GetPosition().x;
-	rect.top = GetPosition().y;
-	rect.right = rect.left + mWidth;
-	rect.bottom = rect.top + mHeight;
+	rect.left = 0;
+	rect.top = 0;
+	rect.right = mWidth;
+	rect.bottom = mHeight;
 	return rect;
 }

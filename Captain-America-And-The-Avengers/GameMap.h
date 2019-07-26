@@ -4,6 +4,7 @@
 #include "./MapReader/Tmx.h.in"
 #include "StringUtils.h"
 #include "fstream"
+#include "Ground.h"
 class GameMap
 {
 public:
@@ -18,6 +19,8 @@ public:
 	int GetHeight();
 
 	D3DXVECTOR3 GetPlayerSpawnPoint();
+
+	void LoadGround();//Load ground 
 protected:
 
 	int TileWidth, TileHeight;

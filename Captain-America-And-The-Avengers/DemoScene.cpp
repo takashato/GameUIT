@@ -17,12 +17,11 @@ DemoScene::~DemoScene()
 void DemoScene::Setup()
 {
 	Scene::Setup();
-
 	//Setup Map
 	switch (MapID)
 	{
 	case ID_MAP_CHARLESTON:
-		mMap = new GameMap(ID_MAP_CHARLESTON, L"Resources\\Map\\Chaleston_Map.png", L"Resources\\Map\\Matrix_Chaleston_Map.txt");
+		mMap = new GameMap(ID_MAP_CHARLESTON, L"Resources\\Map\\Chaleston_Map.png", L"Resources\\Map\\Matrix_Chaleston_Map.txt"/*,Truyen Grid*/);
 		break;
 	case ID_MAP_CHARLESTON_BOSS_LIGHT:
 		mMap = new GameMap(ID_MAP_CHARLESTON_BOSS_LIGHT, L"Resources\\Map\\Chaleston_MapBoss.png", L"Resources\\Map\\Matrix_Chaleston_MapBoss.txt");
@@ -30,11 +29,11 @@ void DemoScene::Setup()
 	case ID_MAP_PITTSBURGH_DARK:
 		mMap = new GameMap(ID_MAP_PITTSBURGH_DARK, L"Resources\\Map\\Pittsburgh_Dark_Map.png", L"Resources\\Map\\Matrix_Pittsburgh_Dark_Map.txt");
 		break;
-	case ID_MAP_PITTSBURGH_EXTRA_1:
-		mMap = new GameMap(ID_MAP_PITTSBURGH_EXTRA_1, L"Resources\\Map\\pittsburgh_dark_extramap1.png", L"Resources\\Map\\Matrix_pittsburgh_dark_extramap1.txt");
+	case ID_MAP_PITTSBURGH_DARK_EXTRA_1:
+		mMap = new GameMap(ID_MAP_PITTSBURGH_DARK_EXTRA_1, L"Resources\\Map\\pittsburgh_dark_extramap1.png", L"Resources\\Map\\Matrix_pittsburgh_dark_extramap1.txt");
 		break;
-	case ID_MAP_PITTSBURGH_EXTRA_2:
-		mMap = new GameMap(ID_MAP_PITTSBURGH_EXTRA_2, L"Resources\\Map\\pittsburgh_dark_extramap2.png", L"Resources\\Map\\Matrix_pittsburgh_dark_extramap2.txt");
+	case ID_MAP_PITTSBURGH_DARK_EXTRA_2:
+		mMap = new GameMap(ID_MAP_PITTSBURGH_DARK_EXTRA_2, L"Resources\\Map\\pittsburgh_dark_extramap2.png", L"Resources\\Map\\Matrix_pittsburgh_dark_extramap2.txt");
 		break;
 	case ID_MAP_RED_ALERT:
 		mMap = new GameMap(ID_MAP_RED_ALERT, L"Resources\\Map\\map_red-alert.png", L"Resources\\Map\\Matrix_map_red-alert.txt");
@@ -42,6 +41,7 @@ void DemoScene::Setup()
 	default:
 		break;
 	}
+
 	// Setup Grid
 	int gridCellSize = Game::GetInstance().GetWidth() > Game::GetInstance().GetHeight() ?
 		Game::GetInstance().GetWidth() 
@@ -50,6 +50,7 @@ void DemoScene::Setup()
 	int gridRowNum = (int)ceil(mMap->GetHeight() / gridCellSize);
 	mGrid = new Grid(gridColNum, gridRowNum, gridCellSize);
 
+	
 	mPlayer = new Player();
 	mPlayer->SetPosition(mMap->GetPlayerSpawnPoint());
 
@@ -69,6 +70,19 @@ void DemoScene::Setup()
 	runEnemy1 = new RunEnemy();
 	// ------------------
 
+	//------Ground-------
+	ground1 = new Ground(D3DXVECTOR3(0,444,0));
+	ground2 = new Ground(D3DXVECTOR3(16, 444, 0));
+	ground3 = new Ground(D3DXVECTOR3(32, 444, 0));
+	ground4 = new Ground(D3DXVECTOR3(48, 444, 0));
+	ground5 = new Ground(D3DXVECTOR3(64, 444, 0));
+	ground6 = new Ground(D3DXVECTOR3(80, 444, 0));
+	ground7 = new Ground(D3DXVECTOR3(96, 444, 0));
+	ground8 = new Ground(D3DXVECTOR3(112, 444, 0));
+	ground9 = new Ground(D3DXVECTOR3(128, 444, 0));
+	ground10 = new Ground(D3DXVECTOR3(144, 444, 0));
+
+	//----------------
 	mCamera = new Camera(Game::GetInstance().GetWidth(), Game::GetInstance().GetHeight());
 	mMap->SetCamera(mCamera);
 	mPlayer->SetCamera(mCamera);
@@ -124,6 +138,20 @@ void DemoScene::Draw()
 
 	// -----RunEnemy-----
 	runEnemy1->Draw(trans);
+	// ------------------
+
+
+	// -----Ground-----
+	ground1->Draw(trans);
+	ground2->Draw(trans);
+	ground3->Draw(trans);
+	ground4->Draw(trans);
+	ground5->Draw(trans);
+	ground6->Draw(trans);
+	ground7->Draw(trans);
+	ground8->Draw(trans);
+	ground9->Draw(trans);
+	ground10->Draw(trans);
 	// ------------------
 
 	Scene::Draw();

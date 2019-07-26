@@ -64,10 +64,12 @@ void GunEnemy::Draw(D3DXVECTOR2 transform)
 	if (mCurrentAni != nullptr && mState != -1)
 	{
 		mCurrentAni->Draw(GetPosition(), transform);
+		this->RenderBoundingBox(transform);
 	}
 	else
 	{
 		mCurrentAni->Draw(GetPosition());
+		this->RenderBoundingBox(D3DXVECTOR2(0,0));
 	}
 }
 
@@ -104,6 +106,12 @@ void GunEnemy::OnSetPosition()
 
 RECT GunEnemy::GetBoundingBox()
 {
-	return RECT();
+	if (mCurrentAni == nullptr) return RECT();
+	RECT rect = mCurrentAni->GetCurrentFrameRect();
+	rect.right -= rect.left;
+	rect.bottom -= rect.top;
+	rect.left = 0;
+	rect.top = 0;
+	return rect;
 }
 
