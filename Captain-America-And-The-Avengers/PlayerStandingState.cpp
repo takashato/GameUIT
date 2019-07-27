@@ -72,7 +72,7 @@ void PlayerStandingState::CheckCollision(std::list<Entity*> entities)
 				ny
 			);
 
-			std::cout << "Stand t = " << t << "\n";
+			//std::cout << "Stand t = " << t << "\n";
 
 			if (t >= 0.0f && t <= 0.03f)
 			{
