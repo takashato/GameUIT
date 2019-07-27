@@ -44,8 +44,8 @@ void DemoScene::Setup()
 
 	// Setup Grid
 	int gridCellSize = Game::GetInstance().GetWidth() > Game::GetInstance().GetHeight() ?
-		Game::GetInstance().GetWidth() 
-		: Game::GetInstance().GetHeight();
+		Game::GetInstance().GetWidth() / 2
+		: Game::GetInstance().GetHeight() / 2;
 	int gridColNum = (int)ceil(1.0f * mMap->GetWidth() / gridCellSize);
 	int gridRowNum = (int)ceil(1.0f * mMap->GetHeight() / gridCellSize);
 	mGrid = new Grid(gridColNum, gridRowNum, gridCellSize);
