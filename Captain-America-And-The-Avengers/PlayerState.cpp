@@ -23,3 +23,7 @@ EPlayerState PlayerState::GetState()
 void PlayerState::HandleKeyboard(Keyboard* keyboard)
 {
 }
+
+void PlayerState::CheckCollision(std::list<Entity*> entities)
+{
+}

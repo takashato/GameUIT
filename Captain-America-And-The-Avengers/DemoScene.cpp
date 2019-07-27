@@ -52,8 +52,11 @@ void DemoScene::Setup()
 
 	
 	mPlayer = new Player();
-	mPlayer->SetPosition(mMap->GetPlayerSpawnPoint());
-	mGrid->Add(mPlayer);
+	auto spawnPoint = mMap->GetPlayerSpawnPoint();
+	spawnPoint.y -= 100.0f;
+	mPlayer->SetPosition(spawnPoint);
+	mPlayer->SetState(new PlayerFallingState(mPlayer));
+	//mGrid->Add(mPlayer);
 
 	// Setup Enemies
 	Enemy* enemy = nullptr;
@@ -114,6 +117,13 @@ void DemoScene::Update(float deltaTime)
 	}
 
 	CheckCamera();
+
+	std::vector<GridNode*> nodes = mGrid->GetByViewPort(mCamera);
+	for (size_t i = 0; i < nodes.size(); ++i) {
+		std::list<Entity*> entites = nodes[i]->GetAll();
+		mPlayer->CheckCollision(entites);
+	}
+	
 	CheckChageMap();
 }
 

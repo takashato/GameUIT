@@ -1,6 +1,7 @@
 #pragma once
 #include "Keyboard.h"
 
+class Entity;
 class Player;
 
 enum EPlayerState {
@@ -34,6 +35,8 @@ public:
 
 	virtual EPlayerState GetState();
 	virtual void HandleKeyboard(Keyboard* keyboard);
+
+	virtual void CheckCollision(std::list<Entity*> entities);
 
 protected:
 	Player* mPlayer = nullptr;

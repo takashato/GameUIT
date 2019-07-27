@@ -55,6 +55,7 @@ public:
 
 	void RenderBoundingBox(D3DXVECTOR2 transform);
 
+	virtual void CheckCollision(std::list<Entity*> entities);
 
 protected:
 	D3DXVECTOR3 mPosition; // Position (x, y)

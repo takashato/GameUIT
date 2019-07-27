@@ -28,6 +28,8 @@ public:
 	RECT GetBoundingBox();
 	CollidableType GetCollidableType();
 
+	void CheckCollision(std::list<Entity*> entities);
+
 private:
 	Sprite* mSprite = NULL;
 	AnimationScript* mAniScripts = NULL;

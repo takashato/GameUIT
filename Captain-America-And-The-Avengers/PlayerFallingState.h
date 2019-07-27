@@ -13,6 +13,8 @@ public:
 
 	EPlayerState GetState();
 
+	void CheckCollision(std::list<Entity*> entities);
+
 private:
 	float mTimeUpdater = .0f;
 };

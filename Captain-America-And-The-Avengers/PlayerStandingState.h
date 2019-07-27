@@ -6,6 +6,7 @@
 #include "PlayerPunchingState.h"
 #include "PlayerThrowingShieldState.h"
 #include "PlayerSurfingState.h"
+#include "CollisionEvent.h"
 
 class PlayerStandingState : public PlayerState
 {
@@ -14,4 +15,6 @@ public:
 	EPlayerState GetState();
 
 	void HandleKeyboard(Keyboard *keyboard);
+
+	void CheckCollision(std::list<Entity*> entities);
 };

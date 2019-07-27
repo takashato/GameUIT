@@ -187,3 +187,8 @@ CollidableType Player::GetCollidableType()
 	return EPlayer;
 }
 
+void Player::CheckCollision(std::list<Entity*> entities)
+{
+	mState->CheckCollision(entities);
+}
+

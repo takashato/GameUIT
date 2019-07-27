@@ -139,4 +139,8 @@ void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
 	mSpriteBB->Draw(mPosition, D3DXVECTOR2(), transform, 100); //render mau` nhat
 }
 
+void Entity::CheckCollision(std::list<Entity*> entities)
+{
+}
+
 Sprite* Entity::mSpriteBB = NULL;
