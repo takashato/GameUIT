@@ -90,7 +90,7 @@ void DemoScene::Setup()
 	Ground* ground = nullptr;
 	for (int i = 0; i < 112; ++i)
 	{
-		ground = new Ground(D3DXVECTOR3(16 * i, 444, 0));
+		ground = new Ground(D3DXVECTOR3(16.0f * i, 444.0f, .0f));
 		mGrounds.push_back(ground);
 		mGrid->Add(ground);
 	}

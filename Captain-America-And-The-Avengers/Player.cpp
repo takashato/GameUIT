@@ -62,8 +62,7 @@ void Player::Update(float deltaTime)
 
 void Player::Draw(D3DXVECTOR2 trans)
 {
-	if (mCurrentAni != NULL) mCurrentAni->Draw(GetPosition());
-	D3DXVECTOR2 trans(0.f,0.f);
+	if (mCurrentAni != NULL) mCurrentAni->Draw(GetPosition(), trans);
 	this->RenderBoundingBox(trans);
 }
 

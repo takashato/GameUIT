@@ -65,8 +65,8 @@ void CollisionEvent::SweptAABB(
 
 	if (dx == 0)
 	{
-		tx_entry = -99999999999;//Vo cuc
-		tx_exit = 99999999999;
+		tx_entry = -std::numeric_limits<float>::infinity();//Vo cuc
+		tx_exit = std::numeric_limits<float>::infinity();
 	}
 	else
 	{
@@ -76,8 +76,8 @@ void CollisionEvent::SweptAABB(
 
 	if (dy == 0)
 	{
-		ty_entry = -99999999999;
-		ty_exit = 99999999999;
+		ty_entry = -std::numeric_limits<float>::infinity();
+		ty_exit = std::numeric_limits<float>::infinity();
 	}
 	else
 	{
@@ -107,7 +107,7 @@ void CollisionEvent::SweptAABB(
 	}
 }
 
-void CollisionEvent::compare(const CollisionEvent*& a, const CollisionEvent*& b)
+bool CollisionEvent::compare(CollisionEvent*& a, CollisionEvent*& b)
 {
 	return a->t < b->t;
 }

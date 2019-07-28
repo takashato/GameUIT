@@ -1,9 +1,6 @@
 #pragma once
-#include "Sprite.h"
-
-class Entity;
-
 #include "CollisionEvent.h"
+#include "Sprite.h"
 
 enum EntityDirection
 {

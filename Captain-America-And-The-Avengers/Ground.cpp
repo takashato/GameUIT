@@ -58,8 +58,8 @@ RECT Ground::GetBoundingBox()
 	RECT rect;
 	rect.left = 0;
 	rect.top = 0;
-	rect.right = mWidth;
-	rect.bottom = mHeight;
+	rect.right = (long)mWidth;
+	rect.bottom = (long)mHeight;
 	return rect;
 }
 

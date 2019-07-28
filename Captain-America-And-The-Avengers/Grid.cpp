@@ -44,8 +44,8 @@ GridNode* Grid::GetNode(int col, int row)
 
 void Grid::Add(Entity* entity)
 {
-	int col = entity->GetPosition().x / mCellSize;
-	int row = entity->GetPosition().y / mCellSize;
+	int col = static_cast<int>(entity->GetPosition().x / mCellSize);
+	int row = static_cast<int>(entity->GetPosition().y / mCellSize);
 	if (col >= mColNum || row >= mRowNum) {
 		std::cout << "Grid reject col " << col << " row " << row << "\n";
 		return; // Do not add this

@@ -39,9 +39,9 @@ void GameMap::Draw(D3DXVECTOR2 trans)
 {
 	//Fix camera render error
 	int x, y;
-	x = trans.x;
-	y = trans.y;
-	D3DXVECTOR2 trans2(x,y);
+	x = static_cast<int>(trans.x);
+	y = static_cast<int>(trans.y);
+	D3DXVECTOR2 trans2((float)x,(float)y);
 	D3DXVECTOR3 Pos;
 	//Xu li theo luoi bitmap chuan 32x32
 	//Chieu ngang va chieu doc camera
@@ -78,7 +78,7 @@ void GameMap::Draw(D3DXVECTOR2 trans)
 					Top = ID / 80;
 					Left = ID - Top * 80;
 				}
-				Pos = D3DXVECTOR3(j * TileWidth, i * TileHeight, 0);//Toa do thuc cua Tile
+				Pos = D3DXVECTOR3(1.0f * j * TileWidth, 1.0f* i * TileHeight, .0f);//Toa do thuc cua Tile
 				RECT sourceRECT;
 				sourceRECT.left = Left * TileWidth;
 				sourceRECT.right = sourceRECT.left + TileWidth;

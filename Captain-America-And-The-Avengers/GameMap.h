@@ -1,7 +1,6 @@
 #pragma once
 #include "Sprite.h"
 #include "Camera.h"
-#include "./MapReader/Tmx.h.in"
 #include "StringUtils.h"
 #include "fstream"
 #include "Ground.h"

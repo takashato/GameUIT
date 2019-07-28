@@ -13,7 +13,7 @@ public:
 	void LoadAnimations();
 
 	void Update(float deltaTime);
-	void Draw(D3DXVECTOR2 trans = D3DXVECTOR2(.0f, .0f);
+	void Draw(D3DXVECTOR2 trans = D3DXVECTOR2(.0f, .0f));
 	void HandleKeyboard(Keyboard* keyboard);
 
 	PlayerState* GetState();

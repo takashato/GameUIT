@@ -141,9 +141,9 @@ CollisionEvent* Entity::SweptAABBEx(Entity* other)
 	float dy = (this->GetVelocityY() - other->GetVelocityY()) * deltaTime;
 
 	CollisionEvent::SweptAABB(
-		thisBB.left, thisBB.top, thisBB.right, thisBB.bottom,
+		(float)thisBB.left, (float)thisBB.top, (float)thisBB.right, (float)thisBB.bottom,
 		dx, dy,
-		otherBB.left, otherBB.top, otherBB.right, otherBB.bottom,
+		(float)otherBB.left, (float)otherBB.top, (float)otherBB.right, (float)otherBB.bottom,
 		t, nx, ny
 	);
 

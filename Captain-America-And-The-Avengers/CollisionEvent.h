@@ -1,5 +1,7 @@
 #pragma once
 
+class Entity;
+
 struct CollisionEvent
 {
 	Entity* entity;
@@ -13,5 +15,5 @@ struct CollisionEvent
 		float sl, float st, float sr, float sb, // Static box
 		float &t, float &nx, float &ny ); // Time, n(nx, ny) collision vector
 
-	static void compare(const CollisionEvent*& a, const CollisionEvent*& b);
+	static bool compare(CollisionEvent* &a, CollisionEvent* &b);
 };

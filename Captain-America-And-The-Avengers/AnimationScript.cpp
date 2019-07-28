@@ -30,6 +30,7 @@ std::vector<RECT> AnimationScript::GetRectList(const char* animationName, const 
 			if (!subElement)
 			{
 				ThrowGameException("Empty animation detected.");
+				return std::vector<RECT>();
 			}
 
 			if (subElement->Attribute("type", type))
@@ -41,12 +42,14 @@ std::vector<RECT> AnimationScript::GetRectList(const char* animationName, const 
 			if (!subElement)
 			{
 				ThrowGameException("Invalid sprites type.");
+				return std::vector<RECT>();
 			}
 			return GetSpriteRects(subElement);
 		}
 	}
 
 	ThrowGameException("Can't find animation.");
+	return std::vector<RECT>();
 }
 
 std::vector<RECT> AnimationScript::GetSpriteRects(tinyxml2::XMLElement* ele)
