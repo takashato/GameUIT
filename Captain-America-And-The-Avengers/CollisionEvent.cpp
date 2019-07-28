@@ -1,10 +1,14 @@
 #include "pch.h"
 #include "CollisionEvent.h"
-CollisionEvent& CollisionEvent::GetInstance()
+
+CollisionEvent::CollisionEvent(float t, float nx, float ny, Entity* entity)
 {
-	static CollisionEvent collisionEvent;
-	return collisionEvent;
+	this->t = t;
+	this->nx = nx;
+	this->ny = ny;
+	this->entity = entity;
 }
+
 void CollisionEvent::SweptAABB(
 	float ml, float mt, float mr, float mb,			//move box 
 	float dx, float dy,			                    //dx, dy
@@ -101,4 +105,9 @@ void CollisionEvent::SweptAABB(
 		nx = 0.0f;
 		dy > 0 ? ny = -1.0f : ny = 1.0f;
 	}
+}
+
+void CollisionEvent::compare(const CollisionEvent*& a, const CollisionEvent*& b)
+{
+	return a->t < b->t;
 }

@@ -5,8 +5,8 @@
 #define SET_TITLE_AS_FPS
 
 // Windows
-#define WIN_CLASS_NAME L"GameUIT"
-#define WIN_TITLE L"GameUIT"
+#define WIN_CLASS_NAME L"CapAAndTheAvengers"
+#define WIN_TITLE L"Captain America and The Avengers"
 #define SCREEN_WIDTH 600
 #define SCREEN_HEIGHT 525
 #define BUFFER_WIDTH 256

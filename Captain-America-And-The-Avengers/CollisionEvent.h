@@ -1,25 +1,17 @@
 #pragma once
-class CollisionEvent : ISingleton
+
+struct CollisionEvent
 {
-public:
-	static CollisionEvent& GetInstance();
+	Entity* entity;
+	float t, nx, ny;
+
+	CollisionEvent(float t, float nx, float ny, Entity* entity);
+
 	static void SweptAABB(
-		float ml,			// move left 
-		float mt,			// move top
-		float mr,			// move right 
-		float mb,			// move bottom
-		float dx,			// 
-		float dy,			// 
-		float sl,			// static left
-		float st,
-		float sr,
-		float sb,
-		float &t,
-		float &nx,
-		float &ny);
+		float ml, float mt, float mr, float mb, // Moving box
+		float dx, float dy, // Delta X, delta Y
+		float sl, float st, float sr, float sb, // Static box
+		float &t, float &nx, float &ny ); // Time, n(nx, ny) collision vector
 
-
-
-private:
-	CollisionEvent() : ISingleton(NULL) {}
+	static void compare(const CollisionEvent*& a, const CollisionEvent*& b);
 };

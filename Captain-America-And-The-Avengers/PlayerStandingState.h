@@ -15,6 +15,4 @@ public:
 	EPlayerState GetState();
 
 	void HandleKeyboard(Keyboard *keyboard);
-
-	void CheckCollision(std::list<Entity*> entities);
 };

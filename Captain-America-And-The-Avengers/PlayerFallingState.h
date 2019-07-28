@@ -12,9 +12,6 @@ public:
 	void Update(float deltaTime);
 
 	EPlayerState GetState();
-
-	void CheckCollision(std::list<Entity*> entities);
-
 private:
 	float mTimeUpdater = .0f;
 };

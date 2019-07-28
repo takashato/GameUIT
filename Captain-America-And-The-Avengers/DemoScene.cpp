@@ -112,18 +112,10 @@ void DemoScene::Update(float deltaTime)
 
 	for (size_t i = 0; i < mEnemies.size(); ++i)
 	{
-		//mEnemies[i]->GetEnemyType()
 		mEnemies[i]->Update(deltaTime, mPlayer);
 	}
 
-	CheckCamera();
-
-	std::vector<GridNode*> nodes = mGrid->GetByViewPort(mCamera);
-	for (size_t i = 0; i < nodes.size(); ++i) {
-		std::list<Entity*> entites = nodes[i]->GetAll();
-		mPlayer->CheckCollision(entites);
-	}
-	
+	CheckCamera();	
 	CheckChageMap();
 }
 

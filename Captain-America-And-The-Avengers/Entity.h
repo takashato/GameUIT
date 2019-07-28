@@ -1,5 +1,9 @@
 #pragma once
-#include"Sprite.h"
+#include "Sprite.h"
+
+class Entity;
+
+#include "CollisionEvent.h"
 
 enum EntityDirection
 {
@@ -7,7 +11,7 @@ enum EntityDirection
 	Right
 };
 
-enum CollidableType
+enum CollidableObjectType
 {
 	EPlayer,
 	EEnemy,
@@ -49,19 +53,21 @@ public:
 
 	virtual void OnSetPosition();
 	
-	//Get box de xu li va cham 
 	virtual RECT GetBoundingBox() = 0;
-	virtual CollidableType GetCollidableType();
+	virtual CollidableObjectType GetCollidableObjectType();
+
+	CollisionEvent* SweptAABBEx(Entity* other);
+	void CalcCollision(std::vector<Entity*> entities, std::vector<CollisionEvent*>& cEvent);
 
 	void RenderBoundingBox(D3DXVECTOR2 transform);
-
-	virtual void CheckCollision(std::list<Entity*> entities);
 
 protected:
 	D3DXVECTOR3 mPosition; // Position (x, y)
 	float mWidth, mHeight; // Size
 	float mVelocityX, mVelocityY;
 	EntityDirection mDirection;
+	
+	float deltaTime;
 
 	static Sprite* mSpriteBB;
 };

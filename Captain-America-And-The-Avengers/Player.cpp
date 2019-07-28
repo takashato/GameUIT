@@ -182,13 +182,7 @@ RECT Player::GetBoundingBox()
 	return rect;
 }
 
-CollidableType Player::GetCollidableType()
+CollidableObjectType Player::GetCollidableType()
 {
 	return EPlayer;
 }
-
-void Player::CheckCollision(std::list<Entity*> entities)
-{
-	mState->CheckCollision(entities);
-}
-

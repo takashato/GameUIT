@@ -25,8 +25,7 @@ void Ground::LoadAnimations()
 
 void Ground::Update(float deltaTime)
 {
-
-
+	Entity::Update(deltaTime);
 }
 
 void Ground::Draw(D3DXVECTOR2 transform)
@@ -64,7 +63,7 @@ RECT Ground::GetBoundingBox()
 	return rect;
 }
 
-CollidableType Ground::GetCollidableType()
+CollidableObjectType Ground::GetCollidableType()
 {
 	return EPlatform;
 }

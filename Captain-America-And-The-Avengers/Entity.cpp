@@ -13,6 +13,7 @@ Entity::~Entity()
 
 void Entity::Update(float deltaTime)
 {
+	this->deltaTime = deltaTime;
 }
 
 void Entity::Draw()
@@ -124,9 +125,45 @@ void Entity::OnSetPosition()
 
 }
 
-CollidableType Entity::GetCollidableType()
+CollidableObjectType Entity::GetCollidableObjectType()
 {
 	return EDefault;
+}
+
+CollisionEvent* Entity::SweptAABBEx(Entity* other)
+{
+	float t, nx, ny;
+
+	RECT otherBB = other->GetBoundingBox(); // static
+	RECT thisBB = this->GetBoundingBox();
+
+	float dx = (this->GetVelocityX() - other->GetVelocityX()) * deltaTime;
+	float dy = (this->GetVelocityY() - other->GetVelocityY()) * deltaTime;
+
+	CollisionEvent::SweptAABB(
+		thisBB.left, thisBB.top, thisBB.right, thisBB.bottom,
+		dx, dy,
+		otherBB.left, otherBB.top, otherBB.right, otherBB.bottom,
+		t, nx, ny
+	);
+
+	CollisionEvent* e = new CollisionEvent(t, nx, ny, other);
+	return e;
+}
+
+void Entity::CalcCollision(std::vector<Entity*> *entities, std::vector<CollisionEvent*>& cEvent)
+{
+	for (size_t i = 0; i < entities->size(); ++i)
+	{
+		CollisionEvent* e = SweptAABBEx(entities->at(i));
+
+		if (e->t >= .0f && e->t <= 1.0f)
+			cEvent.push_back(e);
+		else
+			delete e;
+	}
+
+	std::sort(cEvent.begin(), cEvent.end(), CollisionEvent::compare);
 }
 
 void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
@@ -137,10 +174,6 @@ void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
 	}
 	mSpriteBB->SetRect(GetBoundingBox());
 	mSpriteBB->Draw(mPosition, D3DXVECTOR2(), transform, 100); //render mau` nhat
-}
-
-void Entity::CheckCollision(std::list<Entity*> entities)
-{
 }
 
 Sprite* Entity::mSpriteBB = NULL;

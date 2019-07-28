@@ -26,9 +26,7 @@ public:
 	void SetCamera(Camera* camera);
 
 	RECT GetBoundingBox();
-	CollidableType GetCollidableType();
-
-	void CheckCollision(std::list<Entity*> entities);
+	CollidableObjectType GetCollidableType();
 
 private:
 	Sprite* mSprite = NULL;

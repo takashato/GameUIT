@@ -36,8 +36,6 @@ public:
 	virtual EPlayerState GetState();
 	virtual void HandleKeyboard(Keyboard* keyboard);
 
-	virtual void CheckCollision(std::list<Entity*> entities);
-
 protected:
 	Player* mPlayer = nullptr;
 };
