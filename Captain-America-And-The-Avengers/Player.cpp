@@ -37,19 +37,12 @@ void Player::LoadAnimations()
 
 void Player::Update(float deltaTime)
 {
-	if (mState != nullptr) mState->Update(deltaTime);
-
-	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
-
-	if (GetVelocityX() != .0f) {
-		AddPositionX(GetVelocityX() * deltaTime);
-	}
-	if (GetVelocityY() != .0f) {
-		AddPositionY(GetVelocityY() * deltaTime);
-	}
+	Entity::Update(deltaTime); // Update position
 
 	if (mCurrentAni != NULL)
 	{
+		mCurrentAni->SetFlippedHorizontally(mDirection == Right);
+
 		if (mCurrentAni == mAniSurfing)
 		{
 			if (mCurrentAni->GetCurrentFrame() != 1)
@@ -57,7 +50,14 @@ void Player::Update(float deltaTime)
 		}
 		else
 			mCurrentAni->Update(deltaTime);
+
+		// Dynamically set width, height
+		RECT rect = mCurrentAni->GetCurrentFrameRect();
+		SetWidth(rect.right - rect.left);
+		SetHeight(rect.bottom - rect.top);
 	}
+
+	if (mState != nullptr) mState->Update(deltaTime);
 }
 
 void Player::Draw(D3DXVECTOR2 trans)
@@ -160,11 +160,13 @@ void Player::SetCamera(Camera* camera)
 RECT Player::GetBoundingBox()
 {
 	if (mCurrentAni == nullptr) return RECT();
-	RECT rect = mCurrentAni->GetCurrentFrameRect();
-	rect.right -= rect.left;
-	rect.bottom -= rect.top;
-	rect.left = 0;
-	rect.top = 0;
+
+	RECT rect;
+	rect.left = mPosition.x;
+	rect.top = mPosition.y;
+	rect.right = rect.left + GetWidth();
+	rect.bottom = rect.top + GetHeight();
+
 	return rect;
 }
 

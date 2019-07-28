@@ -35,6 +35,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Entities\Player\State">
+      <UniqueIdentifier>{c25a6409-f29b-4cd9-a4da-dc166453c552}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameException.cpp">
@@ -67,16 +70,7 @@
     <ClCompile Include="Player.cpp">
       <Filter>Entities\Player</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerStandingState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
     <ClCompile Include="WinMain.cpp" />
-    <ClCompile Include="PlayerRunningState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
     <ClCompile Include="MapReader\tinyxml2.cpp">
       <Filter>Utils\MapReader</Filter>
     </ClCompile>
@@ -86,9 +80,6 @@
     <ClCompile Include="AnimationScript.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerJumpingState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
     <ClCompile Include="GameMap.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
@@ -97,48 +88,6 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerFallingState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerHighShieldingState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerSittingState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerPunchingState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerThrowingShieldState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerLowPunchingState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerKickingState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerTakeDamageState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerTakeDownState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerInvincibleStandState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerSurfingState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerSittingOnShieldState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerSwimmingState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerClingState.cpp">
-      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="GunEnemy.cpp">
       <Filter>Entities\Enemies</Filter>
@@ -179,6 +128,60 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerClingState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFallingState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHighShieldingState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInvincibleStandState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerJumpingState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerKickingState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerLowPunchingState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerPunchingState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerRunningState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSittingOnShieldState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSittingState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerStandingState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSurfingState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSwimmingState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTakeDamageState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTakeDownState.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerThrowingShieldState.cpp">
+      <Filter>Entities\Player\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -221,20 +224,8 @@
     <ClInclude Include="Player.h">
       <Filter>Entities\Player</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerStandingState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerRunningState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
     <ClInclude Include="MapReader\tinyxml2.h">
       <Filter>Utils\MapReader</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerJumpingState.h">
-      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="GameMap.h">
       <Filter>Framework</Filter>
@@ -244,48 +235,6 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerFallingState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerHighShieldingState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerSittingState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerPunchingState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerThrowingShieldState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerLowPunchingState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerKickingState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerTakeDamageState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerTakeDownState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerInvincibleStandState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerSurfingState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerSittingOnShieldState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerSwimmingState.h">
-      <Filter>Entities\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerClingState.h">
-      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="GunEnemy.h">
       <Filter>Entities\Enemies</Filter>
@@ -326,8 +275,62 @@
     <ClInclude Include="Scene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerClingState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFallingState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
     <ClInclude Include="PlayerHighJumpState.h">
-      <Filter>Entities\Player</Filter>
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHighShieldingState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInvincibleStandState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerJumpingState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerKickingState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLowPunchingState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerPunchingState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerRunningState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSittingOnShieldState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSittingState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerStandingState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSurfingState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSwimmingState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTakeDamageState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTakeDownState.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerThrowingShieldState.h">
+      <Filter>Entities\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

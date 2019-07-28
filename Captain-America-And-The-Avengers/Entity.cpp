@@ -14,6 +14,9 @@ Entity::~Entity()
 void Entity::Update(float deltaTime)
 {
 	this->deltaTime = deltaTime;
+
+	this->AddPositionX(deltaTime * mVelocityX);
+	this->AddPositionY(deltaTime * mVelocityY);
 }
 
 void Entity::Draw(D3DXVECTOR2 trans)
@@ -172,7 +175,15 @@ void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
 	{
 		mSpriteBB = new Sprite(L"Resources\\Sprites\\BoudingBox\\bbox.png");
 	}
-	mSpriteBB->SetRect(GetBoundingBox());
+
+	RECT boundingBox = GetBoundingBox();
+
+	RECT rect;
+	rect.left = rect.top = 0;
+	rect.right = boundingBox.right - boundingBox.left;
+	rect.bottom = boundingBox.bottom - boundingBox.top;
+
+	mSpriteBB->SetRect(rect);
 	mSpriteBB->Draw(mPosition, D3DXVECTOR2(), transform, 100); //render mau` nhat
 }
 
