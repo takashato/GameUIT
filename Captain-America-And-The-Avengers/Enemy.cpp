@@ -14,7 +14,7 @@ RECT Enemy::GetBoundingBox()
 	return RECT();
 }
 
-CollidableType Enemy::GetCollidableType()
+CollidableObjectType Enemy::GetCollidableType()
 {
 	return EEnemy;
 }

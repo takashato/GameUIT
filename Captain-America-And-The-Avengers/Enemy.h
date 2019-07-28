@@ -23,6 +23,6 @@ public:
 	virtual void Draw(D3DXVECTOR2 transform) = 0;
 
 	virtual RECT GetBoundingBox();
-	virtual CollidableType GetCollidableType();
+	virtual CollidableObjectType GetCollidableType();
 	virtual EnemyType GetEnemyType();
 };

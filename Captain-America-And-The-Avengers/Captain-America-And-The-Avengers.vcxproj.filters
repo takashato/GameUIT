@@ -1,43 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Utils">
       <UniqueIdentifier>{a889e6de-e7c9-4cfe-b3e6-c204a5444de0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework">
       <UniqueIdentifier>{ef67f63b-d490-4ce5-ae66-180a0aa0d118}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Sprites">
-      <UniqueIdentifier>{e38b8e98-1437-402f-9304-03d6f348723b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{6d2aa959-194f-46ca-a2e3-58ed981aa08e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Utils\MapReader">
       <UniqueIdentifier>{158bb214-7091-4cf3-9773-40760a60ea99}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scenes">
-      <UniqueIdentifier>{032af11c-23c3-4b90-ae13-74647539ee94}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Enemies">
-      <UniqueIdentifier>{7d1a044d-3c7a-4c49-943d-5ff3886eecc4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Static Object">
-      <UniqueIdentifier>{9738a0c7-aabd-4a78-bbac-805965d2948e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework\Grid">
       <UniqueIdentifier>{aa944621-47d4-4253-9b10-6184f4d275e5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework\Collision">
       <UniqueIdentifier>{6afec771-035d-469d-96e9-d724880f25e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{5c3d3c80-5109-4b45-95c0-39de763428d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Player">
+      <UniqueIdentifier>{6d2aa959-194f-46ca-a2e3-58ed981aa08e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Enemies">
+      <UniqueIdentifier>{7d1a044d-3c7a-4c49-943d-5ff3886eecc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Statics">
+      <UniqueIdentifier>{e88de36b-1ab9-484c-a955-d52eb6b85008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{032af11c-23c3-4b90-ae13-74647539ee94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -62,30 +58,24 @@
     <ClCompile Include="Animation.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Keyboard.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="DemoScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerStandingState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="PlayerRunningState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\base64.cpp">
       <Filter>Utils\MapReader</Filter>
@@ -154,7 +144,7 @@
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="PlayerJumpingState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="GameMap.cpp">
       <Filter>Framework</Filter>
@@ -166,67 +156,64 @@
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="PlayerFallingState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHighShieldingState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerSittingState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerPunchingState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerThrowingShieldState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerLowPunchingState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerKickingState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTakeDamageState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTakeDownState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerInvincibleStandState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerSurfingState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerSittingOnShieldState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerSwimmingState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerClingState.cpp">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="GunEnemy.cpp">
-      <Filter>Enemies</Filter>
+      <Filter>Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="MissileEnemy.cpp">
-      <Filter>Enemies</Filter>
+      <Filter>Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="RunEnemy.cpp">
-      <Filter>Enemies</Filter>
+      <Filter>Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="FlyEnemy.cpp">
-      <Filter>Enemies</Filter>
+      <Filter>Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Bat.cpp">
-      <Filter>Enemies</Filter>
+      <Filter>Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="GunStock.cpp">
-      <Filter>Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Ground.cpp">
-      <Filter>Static Object</Filter>
+      <Filter>Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHighJumpState.cpp" />
     <ClCompile Include="Grid.cpp">
@@ -236,18 +223,27 @@
       <Filter>Framework\Grid</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>Enemies</Filter>
+      <Filter>Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="CollisionEvent.cpp">
       <Filter>Framework\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>Entities\Statics</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
-      <Filter>Header Files</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
+      <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="GameException.h">
       <Filter>Utils</Filter>
@@ -276,26 +272,20 @@
     <ClInclude Include="Keyboard.h">
       <Filter>Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
     <ClInclude Include="DemoScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerStandingState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerRunningState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\base64.h">
       <Filter>Utils\MapReader</Filter>
@@ -367,7 +357,7 @@
       <Filter>Utils\MapReader</Filter>
     </ClInclude>
     <ClInclude Include="PlayerJumpingState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="GameMap.h">
       <Filter>Framework</Filter>
@@ -379,70 +369,64 @@
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="PlayerFallingState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHighShieldingState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerSittingState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerPunchingState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerThrowingShieldState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerLowPunchingState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerKickingState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerTakeDamageState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerTakeDownState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerInvincibleStandState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerSurfingState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerSittingOnShieldState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerSwimmingState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerClingState.h">
-      <Filter>Player</Filter>
+      <Filter>Entities\Player</Filter>
     </ClInclude>
     <ClInclude Include="GunEnemy.h">
-      <Filter>Enemies</Filter>
+      <Filter>Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="MissileEnemy.h">
-      <Filter>Enemies</Filter>
+      <Filter>Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="RunEnemy.h">
-      <Filter>Enemies</Filter>
+      <Filter>Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="FlyEnemy.h">
-      <Filter>Enemies</Filter>
+      <Filter>Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Bat.h">
-      <Filter>Enemies</Filter>
+      <Filter>Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="GunStock.h">
-      <Filter>Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Ground.h">
-      <Filter>Static Object</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerHighJumpState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Grid.h">
       <Filter>Framework\Grid</Filter>
@@ -451,25 +435,23 @@
       <Filter>Framework\Grid</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>Enemies</Filter>
+      <Filter>Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="CollisionEvent.h">
       <Filter>Framework\Collision</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Resources\Sprites\Aladdin_swing.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resources\Sprites\Aladdin_run.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resources\Sprites\Aladdin_normal.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
-    <Image Include="Resources\Sprites\Aladdin_dead.png">
-      <Filter>Resource Files\Sprites</Filter>
-    </Image>
+    <ClInclude Include="Entity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>Entities\Statics</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHighJumpState.h">
+      <Filter>Entities\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">

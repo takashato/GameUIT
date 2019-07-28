@@ -60,24 +60,11 @@ void Player::Update(float deltaTime)
 	}
 }
 
-void Player::Draw()
+void Player::Draw(D3DXVECTOR2 trans)
 {
-	if (mCamera)
-	{
-		D3DXVECTOR2 trans = D3DXVECTOR2(Game::GetInstance().GetWidth() / 2 - mCamera->GetPosition().x,
-			Game::GetInstance().GetHeight() / 2 - mCamera->GetPosition().y);
-		if (mCurrentAni != NULL) mCurrentAni->Draw(GetPosition(), trans);
-		//Test bouding box
-		this->RenderBoundingBox(trans);
-	}
-	else
-	{
-		if (mCurrentAni != NULL) mCurrentAni->Draw(GetPosition());
-		//Test bouding box
-		D3DXVECTOR2 trans(0.f,0.f);
-		this->RenderBoundingBox(trans);
-	}
-	
+	if (mCurrentAni != NULL) mCurrentAni->Draw(GetPosition());
+	D3DXVECTOR2 trans(0.f,0.f);
+	this->RenderBoundingBox(trans);
 }
 
 void Player::HandleKeyboard(Keyboard* keyboard)

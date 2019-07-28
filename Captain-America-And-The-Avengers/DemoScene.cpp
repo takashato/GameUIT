@@ -107,13 +107,10 @@ void DemoScene::Update(float deltaTime)
 {
 	Scene::Update(deltaTime);
 
+	mGrid->GetEntities(mCamera, mEntities);
+
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->Update(deltaTime);
-
-	for (size_t i = 0; i < mEnemies.size(); ++i)
-	{
-		mEnemies[i]->Update(deltaTime, mPlayer);
-	}
 
 	CheckCamera();	
 	CheckChageMap();
@@ -121,21 +118,19 @@ void DemoScene::Update(float deltaTime)
 
 void DemoScene::Draw()
 {
-	mMap->Draw();
-	mPlayer->Draw();
+	D3DXVECTOR2 trans = mCamera->GetTransform();
 
-	D3DXVECTOR2 trans = D3DXVECTOR2(Game::GetInstance().GetWidth() / 2 - mCamera->GetPosition().x, Game::GetInstance().GetHeight() / 2 - mCamera->GetPosition().y);
+	// Draw Map
+	mMap->Draw(trans);
 
-	for (size_t i = 0; i < mEnemies.size(); ++i)
+	// Draw Entities
+	for (size_t i = 0; i < mEntities.size(); ++i)
 	{
-		mEnemies[i]->Draw(trans);
+		mEntities[i]->Draw(trans);
 	}
 
-	// Debug
-	for (size_t i = 0; i < mGrounds.size(); ++i)
-	{
-		mGrounds[i]->Draw(trans);
-	}
+	// Draw player
+	mPlayer->Draw(trans);
 
 	Scene::Draw();
 }

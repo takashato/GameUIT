@@ -16,7 +16,7 @@ void Entity::Update(float deltaTime)
 	this->deltaTime = deltaTime;
 }
 
-void Entity::Draw()
+void Entity::Draw(D3DXVECTOR2 trans)
 {
 }
 

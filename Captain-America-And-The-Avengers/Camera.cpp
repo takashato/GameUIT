@@ -46,6 +46,11 @@ RECT Camera::GetBound()
 	return bound;
 }
 
+D3DXVECTOR2 Camera::GetTransform()
+{
+	return D3DXVECTOR2(Game::GetInstance().GetWidth() / 2 - GetPosition().x, Game::GetInstance().GetHeight() / 2 - GetPosition().y);
+}
+
 Camera::~Camera()
 {
 }

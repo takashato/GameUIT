@@ -26,7 +26,7 @@ public:
 	~Entity();
 
 	virtual void Update(float deltaTime);
-	virtual void Draw();
+	virtual void Draw(D3DXVECTOR2 trans = D3DXVECTOR2(.0f, .0f));
 
 	D3DXVECTOR3 GetPosition();
 	void SetPosition(D3DXVECTOR3 position);
@@ -57,7 +57,7 @@ public:
 	virtual CollidableObjectType GetCollidableObjectType();
 
 	CollisionEvent* SweptAABBEx(Entity* other);
-	void CalcCollision(std::vector<Entity*> entities, std::vector<CollisionEvent*>& cEvent);
+	void CalcCollision(std::vector<Entity*> *entities, std::vector<CollisionEvent*>& cEvent);
 
 	void RenderBoundingBox(D3DXVECTOR2 transform);
 

@@ -35,10 +35,8 @@ void GameMap::LoadMap(const wchar_t* filePathIMap, const wchar_t* filePathMMap)
 	SpriteMap = new Sprite(filePathIMap);
 }
 
-void GameMap::Draw()
+void GameMap::Draw(D3DXVECTOR2 trans)
 {
-	D3DXVECTOR2 trans = D3DXVECTOR2(Game::GetInstance().GetWidth() / 2 - mCamera->GetPosition().x,
-		Game::GetInstance().GetHeight() / 2 - mCamera->GetPosition().y);
 	//Fix camera render error
 	int x, y;
 	x = trans.x;

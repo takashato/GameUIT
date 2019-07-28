@@ -81,3 +81,16 @@ std::vector<GridNode*> Grid::GetByViewPort(Camera* camera)
 	}
 	return res;
 }
+
+void Grid::GetEntities(Camera* camera, std::vector<Entity*>& entities)
+{
+	entities.clear();
+	std::vector<GridNode*> nodes = GetByViewPort(camera);
+	for (size_t i = 0; i < nodes.size(); ++i)
+	{
+		for (Entity* entity : nodes[i]->GetAll())
+		{
+			entities.push_back(entity);
+		}
+	}
+}

@@ -299,12 +299,6 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Resources\Sprites\Aladdin_dead.png" />
-    <Image Include="Resources\Sprites\Aladdin_normal.png" />
-    <Image Include="Resources\Sprites\Aladdin_run.png" />
-    <Image Include="Resources\Sprites\Aladdin_swing.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="MapReader\Tmx.h.in" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

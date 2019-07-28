@@ -1,4 +1,6 @@
 #pragma once
+#include "Game.h"
+
 class Camera
 {
 public:
@@ -12,6 +14,8 @@ public:
 
 	D3DXVECTOR3 GetPosition();
 	RECT GetBound();
+
+	D3DXVECTOR2 GetTransform();
 
 	~Camera();
 

@@ -16,6 +16,8 @@ public:
 	void Move(Entity* entity, D3DXVECTOR3 oldPosition);
 
 	std::vector<GridNode*> GetByViewPort(Camera* camera);
+	
+	void GetEntities(Camera* camera, std::vector<Entity*> &entities);
 
 private:
 	int mColNum, mRowNum;

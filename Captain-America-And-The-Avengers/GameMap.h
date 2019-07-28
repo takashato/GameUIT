@@ -11,7 +11,7 @@ public:
 	GameMap(int MapID, const wchar_t* filePathIMap, const wchar_t* filePathMMap, Camera* camera = NULL);//Imagepath vs MatrixMap
 	~GameMap();
 	void LoadMap(const wchar_t* filePathIMap, const wchar_t* filePathMMap);
-	void Draw();
+	void Draw(D3DXVECTOR2 trans);
 
 	void SetCamera(Camera* camera);
 
