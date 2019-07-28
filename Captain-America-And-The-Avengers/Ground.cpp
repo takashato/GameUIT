@@ -63,7 +63,7 @@ RECT Ground::GetBoundingBox()
 	return rect;
 }
 
-CollidableObjectType Ground::GetCollidableType()
+CollidableObjectType Ground::GetCollidableObjectType()
 {
 	return EPlatform;
 }

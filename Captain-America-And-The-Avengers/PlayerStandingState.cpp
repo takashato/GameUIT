@@ -17,6 +17,7 @@ void PlayerStandingState::HandleKeyboard(Keyboard* keyboard)
 	int counter = 0;
 	if (keyboard->IsPressing(GAME_KEY_LEFT) || keyboard->IsPressing(GAME_KEY_RIGHT))
 	{
+		mPlayer->AddPositionY(mPlayer->mAniStanding->GetHeight() - mPlayer->mAniRunning->GetHeight());
 		mPlayer->SetState(new PlayerRunningState(mPlayer));
 	}
 	else if (keyboard->IsPressing(GAME_KEY_JUMP))
@@ -25,6 +26,7 @@ void PlayerStandingState::HandleKeyboard(Keyboard* keyboard)
 	}
 	else if (keyboard->IsPressing(GAME_KEY_DOWN))
 	{
+		mPlayer->AddPositionY(mPlayer->mAniStanding->GetHeight() - mPlayer->mAniSitting->GetHeight());
 		mPlayer->SetState(new PlayerSittingState(mPlayer));
 	}
 	else if (keyboard->IsPressing(GAME_KEY_UP))

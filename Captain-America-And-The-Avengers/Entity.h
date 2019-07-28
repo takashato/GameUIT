@@ -51,10 +51,12 @@ public:
 	virtual void OnSetPosition();
 	
 	virtual RECT GetBoundingBox() = 0;
-	virtual CollidableObjectType GetCollidableObjectType();
+	virtual CollidableObjectType GetCollidableObjectType() = 0;
 
 	CollisionEvent* SweptAABBEx(Entity* other);
 	void CalcCollision(std::vector<Entity*> *entities, std::vector<CollisionEvent*>& cEvent);
+
+	virtual void OnCollision(CollisionEvent* ce);
 
 	void RenderBoundingBox(D3DXVECTOR2 transform);
 

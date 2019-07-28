@@ -12,6 +12,9 @@ public:
 	void Update(float deltaTime);
 
 	EPlayerState GetState();
+
+	void OnCollision(CollisionEvent* ce);
+
 private:
 	float mTimeUpdater = .0f;
 };

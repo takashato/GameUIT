@@ -3,6 +3,7 @@
 
 class Entity;
 class Player;
+struct CollisionEvent;
 
 enum EPlayerState {
 	Standing,
@@ -35,6 +36,8 @@ public:
 
 	virtual EPlayerState GetState();
 	virtual void HandleKeyboard(Keyboard* keyboard);
+
+	virtual void OnCollision(CollisionEvent* ce);
 
 protected:
 	Player* mPlayer = nullptr;

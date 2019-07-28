@@ -128,11 +128,6 @@ void Entity::OnSetPosition()
 
 }
 
-CollidableObjectType Entity::GetCollidableObjectType()
-{
-	return EDefault;
-}
-
 CollisionEvent* Entity::SweptAABBEx(Entity* other)
 {
 	float t, nx, ny;
@@ -156,6 +151,8 @@ CollisionEvent* Entity::SweptAABBEx(Entity* other)
 
 void Entity::CalcCollision(std::vector<Entity*> *entities, std::vector<CollisionEvent*>& cEvent)
 {
+	cEvent.clear();
+
 	for (size_t i = 0; i < entities->size(); ++i)
 	{
 		CollisionEvent* e = SweptAABBEx(entities->at(i));
@@ -167,6 +164,10 @@ void Entity::CalcCollision(std::vector<Entity*> *entities, std::vector<Collision
 	}
 
 	std::sort(cEvent.begin(), cEvent.end(), CollisionEvent::compare);
+}
+
+void Entity::OnCollision(CollisionEvent* ce)
+{
 }
 
 void Entity::RenderBoundingBox(D3DXVECTOR2 transform)

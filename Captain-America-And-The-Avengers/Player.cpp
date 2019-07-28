@@ -32,6 +32,7 @@ void Player::LoadAnimations()
 	mAniSwimming = new Animation(mSprite, mAniScripts->GetRectList("Swimming", "0"), 0.1F);
 	mAniCling = new Animation(mSprite, mAniScripts->GetRectList("Cling", "0"), 0.2F);
 
+
 	mCurrentAni = mAniStanding;
 }
 
@@ -51,10 +52,7 @@ void Player::Update(float deltaTime)
 		else
 			mCurrentAni->Update(deltaTime);
 
-		// Dynamically set width, height
-		RECT rect = mCurrentAni->GetCurrentFrameRect();
-		SetWidth(rect.right - rect.left);
-		SetHeight(rect.bottom - rect.top);
+		UpdateSize();
 	}
 
 	if (mState != nullptr) mState->Update(deltaTime);
@@ -82,74 +80,76 @@ PlayerState* Player::GetState()
 void Player::SetState(PlayerState *state)
 {
 	if (state == nullptr || this == (void*)0xDDDDDDDD) return;
-
+	mLastState = mState->GetState();
 	delete mState;
 	mState = state;
 	ChangeAnimationByState(mState->GetState());
 }
 
-void Player::ChangeAnimationByState(EPlayerState state)
+EPlayerState Player::GetLastState()
+{
+	return mLastState;
+}
+
+Animation* Player::StateToAnimation(EPlayerState state)
 {
 	switch (state)
 	{
 	case EPlayerState::Standing:
-		mCurrentAni = mAniStanding;
-		break;
+		return mAniStanding;
 	case EPlayerState::Jumping:
 	case EPlayerState::Falling:
-		mCurrentAni = mAniLowJumping;
-		break;
+		return mAniLowJumping;
 	case EPlayerState::HighJumping:
-		mCurrentAni = mAniHighJumping;
-		break;
+		return mAniHighJumping;
 	case EPlayerState::Sitting:
-		mCurrentAni = mAniSitting;
-		break;
+		return mAniSitting;
 	case EPlayerState::HighShielding:
-		mCurrentAni = mAniHighShielding;
-		break;
+		return mAniHighShielding;
 	case EPlayerState::Punching:
-		mCurrentAni = mAniPunching;
-		break;
+		return mAniPunching;
 	case EPlayerState::LowPunching:
-		mCurrentAni = mAniLowPunching;
-		break;
+		return mAniLowPunching;
 	case EPlayerState::ThrowingShield:
-		mCurrentAni = mAniThrowingShield;
-		break;
+		return mAniThrowingShield;
 	case EPlayerState::Kicking:
-		mCurrentAni = mAniKicking;
-		break;
+		return mAniKicking;
 	case EPlayerState::TakeDamage:
-		mCurrentAni = mAniTakeDamage;
-		break;
+		return mAniTakeDamage;
 	case EPlayerState::TakeDown:
-		mCurrentAni = mAniTakeDown;
-		break;
+		return mAniTakeDown;
 	case EPlayerState::InvincibleStand:
-		mCurrentAni = mAniInvincibleStand;
-		break;
+		return mAniInvincibleStand;
 	case EPlayerState::Surfing:
-		mCurrentAni = mAniSurfing;
-		break;
+		return mAniSurfing;
 	case EPlayerState::SittingOnShield:
-		mCurrentAni = mAniSittingOnShield;
-		break;
+		return mAniSittingOnShield;
 	case EPlayerState::Swimming:
-		mCurrentAni = mAniSwimming;
-		break;
+		return mAniSwimming;
 	case EPlayerState::Cling:
-		mCurrentAni = mAniCling;
-		break;
+		return mAniCling;
 	case EPlayerState::Running:
 	default:
-		mCurrentAni = mAniRunning;
-		break;
+		return mAniRunning;
 	}
+}
+
+void Player::ChangeAnimationByState(EPlayerState state)
+{
+	mCurrentAni = StateToAnimation(state);
+	UpdateSize();
 }
 
 void Player::OnSetPosition()
 {
+}
+
+void Player::UpdateSize()
+{
+	// Dynamically set width, height
+	RECT rect = mCurrentAni->GetCurrentFrameRect();
+	SetWidth((float)(rect.right - rect.left));
+	SetHeight((float)(rect.bottom - rect.top));
 }
 
 void Player::SetCamera(Camera* camera)
@@ -162,15 +162,20 @@ RECT Player::GetBoundingBox()
 	if (mCurrentAni == nullptr) return RECT();
 
 	RECT rect;
-	rect.left = mPosition.x;
-	rect.top = mPosition.y;
-	rect.right = rect.left + GetWidth();
-	rect.bottom = rect.top + GetHeight();
+	rect.left = (long)mPosition.x;
+	rect.top = (long)mPosition.y;
+	rect.right = (long)(rect.left + GetWidth());
+	rect.bottom = (long)(rect.top + GetHeight());
 
 	return rect;
 }
 
-CollidableObjectType Player::GetCollidableType()
+CollidableObjectType Player::GetCollidableObjectType()
 {
 	return EPlayer;
+}
+
+void Player::OnCollision(CollisionEvent* ce)
+{
+	mState->OnCollision(ce);
 }

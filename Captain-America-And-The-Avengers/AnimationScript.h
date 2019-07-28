@@ -1,6 +1,4 @@
 #pragma once
-#include <Windows.h>
-#include <vector>
 #include "./MapReader/tinyxml2.h"
 
 class AnimationScript

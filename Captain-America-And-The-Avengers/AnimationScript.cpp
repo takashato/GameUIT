@@ -7,11 +7,13 @@ AnimationScript::AnimationScript(const char* filePath)
 	if (eRes != tinyxml2::XML_SUCCESS)
 	{
 		ThrowGameException("Error when loading animation scripts");
+		return;
 	}
 	pRoot = xmlDoc.FirstChildElement();
 	if (pRoot == nullptr || pRoot->FirstChildElement() == nullptr)
 	{
 		ThrowGameException("Error when loading animation scripts");
+		return;
 	}
 }
 

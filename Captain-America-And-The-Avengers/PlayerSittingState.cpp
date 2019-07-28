@@ -3,7 +3,8 @@
 
 PlayerSittingState::PlayerSittingState(Player* player) : PlayerState(player)
 {
-
+	mPlayer->SetVelocityX(.0f);
+	mPlayer->SetVelocityY(.0f);
 }
 
 EPlayerState PlayerSittingState::GetState()
@@ -13,17 +14,33 @@ EPlayerState PlayerSittingState::GetState()
 
 void PlayerSittingState::HandleKeyboard(Keyboard* keyboard)
 {
-	if (keyboard->IsPressing(GAME_KEY_JUMP))
-	{
-		mPlayer->SetState(new PlayerJumpingState(mPlayer));
+	if (mPlayer->GetLastState() != Falling) {
+		if (keyboard->IsPressing(GAME_KEY_JUMP))
+		{
+			mPlayer->SetState(new PlayerJumpingState(mPlayer));
+		}
+		else if (keyboard->IsPressing(GAME_KEY_ATTACK))
+		{
+			mPlayer->SetState(new PlayerLowPunchingState(mPlayer));
+		}
+
+		if (!keyboard->IsPressing(GAME_KEY_DOWN))
+		{
+			mPlayer->AddPositionY(mPlayer->mAniSitting->GetHeight() - mPlayer->mAniStanding->GetHeight());
+			mPlayer->SetState(new PlayerStandingState(mPlayer));
+		}
 	}
-	else if (keyboard->IsPressing(GAME_KEY_ATTACK))
+}
+
+void PlayerSittingState::Update(float deltaTime)
+{
+	mCounter += deltaTime;
+	if (mPlayer->GetLastState() == Falling)
 	{
-		mPlayer->SetState(new PlayerLowPunchingState(mPlayer));
-	}
-	
-	if (!keyboard->IsPressing(GAME_KEY_DOWN))
-	{
-		mPlayer->SetState(new PlayerStandingState(mPlayer));
+		if (mCounter >= 0.3f)
+		{
+			mPlayer->AddPositionY(mPlayer->mAniSitting->GetHeight() - mPlayer->mAniStanding->GetHeight());
+			mPlayer->SetState(new PlayerStandingState(mPlayer));
+		}
 	}
 }

@@ -18,20 +18,21 @@ public:
 
 	PlayerState* GetState();
 	void SetState(PlayerState* state);
+	EPlayerState GetLastState();
 
+	Animation* StateToAnimation(EPlayerState state);
 	void ChangeAnimationByState(EPlayerState state);
 
 	void OnSetPosition();
+	void UpdateSize();
 
 	void SetCamera(Camera* camera);
 
 	RECT GetBoundingBox();
-	CollidableObjectType GetCollidableType();
+	CollidableObjectType GetCollidableObjectType();
 
-private:
-	Sprite* mSprite = NULL;
-	AnimationScript* mAniScripts = NULL;
-	
+	void OnCollision(CollisionEvent* ce);
+
 	Animation* mAniStanding = NULL;
 	Animation* mAniPunching = NULL;
 	Animation* mAniThrowingShield = NULL;
@@ -50,9 +51,14 @@ private:
 	Animation* mAniSwimming = NULL;
 	Animation* mAniCling = NULL;
 
+private:
+	Sprite* mSprite = NULL;
+	AnimationScript* mAniScripts = NULL;
+
 	Animation* mCurrentAni = NULL;
 
 	PlayerState* mState;
+	EPlayerState mLastState;
 
 	Camera* mCamera;
 

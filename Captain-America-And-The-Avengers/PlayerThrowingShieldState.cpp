@@ -33,7 +33,7 @@ void PlayerThrowingShieldState::HandleKeyboard(Keyboard* keyboard)
 		mPlayer->SetState(new PlayerRunningState(mPlayer));
 	}
 
-	if (!keyboard->IsPressing(GAME_KEY_ATTACK))
+	if (!keyboard->IsPressing(GAME_KEY_ATTACK)) // This cause access violation, above if conditions may have happened, and mPlayer is inaccessible
 	{
 		mPlayer->SetState(new PlayerStandingState(mPlayer));
 	}

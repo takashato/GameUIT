@@ -107,7 +107,16 @@ void DemoScene::Update(float deltaTime)
 {
 	Scene::Update(deltaTime);
 
+	// Check collision
+	std::vector<CollisionEvent*> cEvents;
 	mGrid->GetEntities(mCamera, mEntities);
+	mPlayer->CalcCollision(&mEntities, cEvents);
+	for (size_t i = 0; i < cEvents.size(); ++i)
+	{
+		mPlayer->OnCollision(cEvents[i]);
+		delete cEvents[i];
+	}
+
 
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->Update(deltaTime);

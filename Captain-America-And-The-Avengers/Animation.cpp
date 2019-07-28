@@ -87,12 +87,14 @@ float Animation::GetTimePerFrame()
 
 int Animation::GetWidth()
 {
-	return 0;
+	RECT rect = GetCurrentFrameRect();
+	return rect.right - rect.left;
 }
 
 int Animation::GetHeight()
 {
-	return 0;
+	RECT rect = GetCurrentFrameRect();
+	return rect.bottom - rect.top;
 }
 
 bool Animation::IsFlippedHorizontally()

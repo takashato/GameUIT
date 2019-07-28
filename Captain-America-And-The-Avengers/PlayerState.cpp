@@ -23,3 +23,7 @@ EPlayerState PlayerState::GetState()
 void PlayerState::HandleKeyboard(Keyboard* keyboard)
 {
 }
+
+void PlayerState::OnCollision(CollisionEvent* ce)
+{
+}

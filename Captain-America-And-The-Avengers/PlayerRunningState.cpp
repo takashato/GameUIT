@@ -17,6 +17,7 @@ void PlayerRunningState::HandleKeyboard(Keyboard* keyboard)
 	}
 	else
 	{
+		mPlayer->AddPositionY(mPlayer->mAniRunning->GetHeight() - mPlayer->mAniStanding->GetHeight());
 		mPlayer->SetState(new PlayerStandingState(mPlayer));
 	}
 
