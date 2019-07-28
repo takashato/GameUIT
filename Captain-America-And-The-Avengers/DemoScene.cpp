@@ -95,6 +95,13 @@ void DemoScene::Setup()
 		mGrid->Add(ground);
 	}
 
+	for (int i = 0; i < 3; ++i)
+	{
+		ground = new Ground(D3DXVECTOR3(48.0f + 16.0f * i, 318.0f, .0f));
+		mGrounds.push_back(ground);
+		mGrid->Add(ground);
+	}
+
 	//----------------
 	mCamera = new Camera(Game::GetInstance().GetWidth(), Game::GetInstance().GetHeight());
 	mMap->SetCamera(mCamera);
