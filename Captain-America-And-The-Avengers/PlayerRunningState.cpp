@@ -30,6 +30,12 @@ void PlayerRunningState::HandleKeyboard(Keyboard* keyboard)
 
 void PlayerRunningState::Update(float deltaTime)
 {
+	if (mPlayer->shouldFall)
+	{
+		mPlayer->SetState(new PlayerFallingState(mPlayer));
+		return;
+	}
+
 	if (mPlayer->GetDirection() == EntityDirection::Left)
 	{
 		if (mPlayer->GetVelocityX() > -PLAYER_VELOCITY_X_MAX)

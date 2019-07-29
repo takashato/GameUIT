@@ -114,26 +114,40 @@ void DemoScene::Update(float deltaTime)
 {
 	Scene::Update(deltaTime);
 
-	// Check collision
-	std::vector<CollisionEvent*> cEvents;
 	mGrid->GetEntities(mCamera, mEntities);
 
+	bool collisionWithGround = false;
 	for (size_t i = 0; i < mEntities.size(); ++i)
 	{
-		switch (mEntities[i]->GetCollidableObjectType())
+		auto type = mEntities[i]->GetCollidableObjectType();
+		switch (type)
 		{
 		case EEnemy:
 			((Enemy*)mEntities[i])->Update(deltaTime, mPlayer);
 			break;
 		default:
 			mEntities[i]->Update(deltaTime);
+			if (type == EPlatform)
+			{
+				RECT pB = mPlayer->GetBoundingBox();
+				RECT eB = mEntities[i]->GetBoundingBox();
+
+				if (eB.top - pB.bottom <= 5 && (pB.left >= eB.left && pB.left <= eB.right || pB.right >= eB.left && pB.right <= eB.right))
+				{
+					collisionWithGround = true;
+				}
+			}
 			break;
 		}
 	}
+	mPlayer->shouldFall = !collisionWithGround;
 
+	// Check collision
+	std::vector<CollisionEvent*> cEvents;
 	mPlayer->CalcCollision(&mEntities, cEvents);
 	for (size_t i = 0; i < cEvents.size(); ++i)
 	{
+		if (cEvents[i]->entity->GetCollidableObjectType() == EPlatform && cEvents[i]->ny == -1.0f) collisionWithGround = true;
 		mPlayer->OnCollision(cEvents[i]);
 		delete cEvents[i];
 	}

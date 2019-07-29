@@ -51,6 +51,8 @@ public:
 	Animation* mAniSwimming = NULL;
 	Animation* mAniCling = NULL;
 
+	bool shouldFall = false;
+
 private:
 	Sprite* mSprite = NULL;
 	AnimationScript* mAniScripts = NULL;
