@@ -12,6 +12,7 @@ enum CollidableObjectType
 {
 	EPlayer,
 	EEnemy,
+	EWeapon,
 	EPlatform,
 	EDefault
 };
