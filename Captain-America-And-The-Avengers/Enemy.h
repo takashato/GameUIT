@@ -25,4 +25,7 @@ public:
 	virtual RECT GetBoundingBox();
 	virtual CollidableObjectType GetCollidableObjectType() override;
 	virtual EnemyType GetEnemyType();
+
+protected:
+	Animation* mCurrentAni = NULL;
 };

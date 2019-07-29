@@ -27,9 +27,6 @@ public:
 
 	void OnSetPosition();
 
-	/*void SetCamera(Camera* camera);*/
-	RECT GetBoundingBox();
-
 	EnemyType GetEnemyType();
 
 private:
@@ -39,7 +36,6 @@ private:
 	Animation* mAniStanding = NULL;
 	Animation* mAniRunning = NULL;
 	Animation* mAniDying = NULL;
-	Animation* mCurrentAni = NULL;
 	int mState = -1;
 
 	/*Camera* mCamera;*/

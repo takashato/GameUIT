@@ -188,6 +188,7 @@ void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
 
 	//mSpriteBB->SetRect(rect);
 	//mSpriteBB->Draw(mPosition, D3DXVECTOR2(), transform, 100); //render mau` nhat
+
 	RECT bb = GetBoundingBox();
 	std::vector<D3DXVECTOR2> vertexList;
 	vertexList.push_back(D3DXVECTOR2(bb.left, bb.top));

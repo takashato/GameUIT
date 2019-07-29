@@ -186,18 +186,6 @@ void MissileEnemy::OnSetPosition()
 {
 }
 
-
-RECT MissileEnemy::GetBoundingBox()
-{
-	if (mCurrentAni == nullptr) return RECT();
-	RECT rect = mCurrentAni->GetCurrentFrameRect();
-	rect.right -= rect.left;
-	rect.bottom -= rect.top;
-	rect.left = 0;
-	rect.top = 0;
-	return rect;
-}
-
 EnemyType MissileEnemy::GetEnemyType()
 {
 	return EnemyType::EMissileEnemy;
