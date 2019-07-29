@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Game.h"
 #include "DemoScene.h"
+#include "SoundManager.h"
 
 DemoScene::DemoScene() : Scene()
 {
@@ -21,7 +22,8 @@ void DemoScene::Setup()
 	switch (MapID)
 	{
 	case ID_MAP_CHARLESTON:
-		mMap = new GameMap(ID_MAP_CHARLESTON, L"Resources\\Map\\Chaleston_Map.png", L"Resources\\Map\\Matrix_Chaleston_Map.txt"/*,Truyen Grid*/);
+		mMap = new GameMap(ID_MAP_CHARLESTON, L"Resources\\Map\\Chaleston_Map.png", L"Resources\\Map\\Matrix_Chaleston_Map.txt");
+		SoundManager::GetInstance().CLoopSound(ThemeOfCaptainAmerica);
 		break;
 	case ID_MAP_CHARLESTON_BOSS_LIGHT:
 		mMap = new GameMap(ID_MAP_CHARLESTON_BOSS_LIGHT, L"Resources\\Map\\Chaleston_MapBoss.png", L"Resources\\Map\\Matrix_Chaleston_MapBoss.txt");

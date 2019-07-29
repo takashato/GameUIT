@@ -41,6 +41,9 @@
     <Filter Include="Entities\Weapon">
       <UniqueIdentifier>{1ff6c670-7b66-4d18-9689-e194e8b0083c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Sound">
+      <UniqueIdentifier>{b62ab0e5-b083-471e-9d2d-bd660eee5244}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameException.cpp">
@@ -195,6 +198,15 @@
       <Filter>Entities\Player</Filter>
     </ClCompile>
     <ClCompile Include="ExtraDrawer.cpp" />
+    <ClCompile Include="dsutil.cpp">
+      <Filter>Framework\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="dxutil.cpp">
+      <Filter>Framework\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Framework\Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -352,6 +364,15 @@
     </ClInclude>
     <ClInclude Include="ExtraDrawer.h">
       <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="dsutil.h">
+      <Filter>Framework\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="dxutil.h">
+      <Filter>Framework\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Framework\Sound</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
