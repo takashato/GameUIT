@@ -76,6 +76,7 @@ std::vector<GridNode*> Grid::GetByViewPort(Camera* camera)
 	{
 		for (int j = ys; j <= ye; ++j)
 		{
+			if (i >= mColNum || j >= mRowNum) continue;
 			res.push_back(mCells[i][j]);
 		}
 	}
