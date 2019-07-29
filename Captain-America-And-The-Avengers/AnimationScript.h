@@ -1,4 +1,5 @@
 #pragma once
+#include "pch.h"
 #include "./MapReader/tinyxml2.h"
 
 class AnimationScript

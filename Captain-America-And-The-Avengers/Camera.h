@@ -5,8 +5,12 @@ class Camera
 public:
 	Camera(int width, int height);
 
-	void SetPosition(int x, int y);
+	void SetPosition(float x, float y);
 	void SetPosition(D3DXVECTOR3 position);
+	void SetPositionX(float val);
+	void SetPositionY(float val);
+	void AddPositionX(float val);
+	void AddPositionY(float val);
 
 	int GetWidth();
 	int GetHeight();

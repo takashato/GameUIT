@@ -107,7 +107,7 @@ void DemoScene::Setup()
 	mMap->SetCamera(mCamera);
 	mPlayer->SetCamera(mCamera);
 
-	CheckCamera();
+	CheckCamera(.0f);
 }
 
 void DemoScene::Update(float deltaTime)
@@ -117,6 +117,20 @@ void DemoScene::Update(float deltaTime)
 	// Check collision
 	std::vector<CollisionEvent*> cEvents;
 	mGrid->GetEntities(mCamera, mEntities);
+
+	for (size_t i = 0; i < mEntities.size(); ++i)
+	{
+		switch (mEntities[i]->GetCollidableObjectType())
+		{
+		case EEnemy:
+			((Enemy*)mEntities[i])->Update(deltaTime, mPlayer);
+			break;
+		default:
+			mEntities[i]->Update(deltaTime);
+			break;
+		}
+	}
+
 	mPlayer->CalcCollision(&mEntities, cEvents);
 	for (size_t i = 0; i < cEvents.size(); ++i)
 	{
@@ -128,7 +142,7 @@ void DemoScene::Update(float deltaTime)
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->Update(deltaTime);
 
-	CheckCamera();	
+	CheckCamera(deltaTime);	
 	CheckChageMap();
 }
 
@@ -151,9 +165,29 @@ void DemoScene::Draw()
 	Scene::Draw();
 }
 
-void DemoScene::CheckCamera()
+void DemoScene::CheckCamera(float deltaTime)
 {
-	mCamera->SetPosition(mPlayer->GetPosition());
+	D3DXVECTOR3 playerPos = mPlayer->GetPosition();
+	playerPos.x += mPlayer->GetWidth() / 2.0f;
+	playerPos.y += mPlayer->GetHeight() / 2.0f;
+
+	if (mCamera->GetPosition() == D3DXVECTOR3(.0f, .0f, .0f))
+	{
+		mCamera->SetPosition(playerPos);
+	}
+	else
+	{
+		float lerpX = 4.0f;
+		float lerpY = 2.5f;
+		D3DXVECTOR3 camPos = mCamera->GetPosition();
+
+		float dX = 1.0f * (playerPos.x - camPos.x) * lerpX * deltaTime;
+		float dY = 1.0f * (playerPos.y - camPos.y) * lerpY * deltaTime;
+
+		mCamera->AddPositionX(dX);
+		mCamera->AddPositionY(dY);
+	}
+
 
 	if (mCamera->GetBound().left < 0)
 	{

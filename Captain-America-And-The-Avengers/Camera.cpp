@@ -9,14 +9,34 @@ Camera::Camera(int width, int height)
 	mPosition = D3DXVECTOR3(.0f, .0f, .0f);
 }
 
-void Camera::SetPosition(int x, int y)
+void Camera::SetPosition(float x, float y)
 {
-	mPosition = D3DXVECTOR3(1.0f * x, 1.0f * y, .0f);
+	mPosition = D3DXVECTOR3(x, y, .0f);
 }
 
 void Camera::SetPosition(D3DXVECTOR3 position)
 {
 	mPosition = position;
+}
+
+void Camera::SetPositionX(float val)
+{
+	mPosition.x = val;
+}
+
+void Camera::SetPositionY(float val)
+{
+	mPosition.y = val;
+}
+
+void Camera::AddPositionX(float val)
+{
+	mPosition.x += val;
+}
+
+void Camera::AddPositionY(float val)
+{
+	mPosition.y += val;
 }
 
 int Camera::GetWidth()

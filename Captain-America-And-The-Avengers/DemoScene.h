@@ -22,7 +22,7 @@ public:
 	void Update(float deltaTime);
 	void Draw();
 
-	void CheckCamera();
+	void CheckCamera(float deltaTime);
 
 	void SetMapId(int ID) { MapID = ID; }
 
