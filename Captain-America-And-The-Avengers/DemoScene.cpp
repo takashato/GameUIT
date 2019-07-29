@@ -193,8 +193,8 @@ void DemoScene::CheckCamera(float deltaTime)
 	}
 	else
 	{
-		float lerpX = 4.0f;
-		float lerpY = 2.5f;
+		float lerpX = 5.0f;
+		float lerpY = 5.0f;
 		D3DXVECTOR3 camPos = mCamera->GetPosition();
 
 		float dX = 1.0f * (playerPos.x - camPos.x) * lerpX * deltaTime;
