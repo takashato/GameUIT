@@ -1,6 +1,7 @@
 #pragma once
 #include "CollisionEvent.h"
 #include "Sprite.h"
+#include "ExtraDrawer.h"
 
 enum EntityDirection
 {
@@ -60,6 +61,8 @@ public:
 	virtual void OnCollision(CollisionEvent* ce);
 
 	void RenderBoundingBox(D3DXVECTOR2 transform);
+
+	static bool shouldRenderBoundingBox;
 
 protected:
 	D3DXVECTOR3 mPosition; // Position (x, y)

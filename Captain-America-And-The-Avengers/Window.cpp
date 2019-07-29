@@ -81,15 +81,20 @@ LRESULT Window::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	case WM_KEYDOWN:
 	case WM_SYSKEYDOWN:
-		/* if (!(lParam & 0x40000000)) // if key is not holding 
+		if (!(lParam & 0x40000000))
 		{
-			SceneManager::GetInstance().OnKeyDown((BYTE)wParam);
-		}*/
+			switch ((BYTE)wParam)
+			{
+			case KEY_TOGGLE_DEBUG: // KEY D for debug
+				Entity::shouldRenderBoundingBox = !Entity::shouldRenderBoundingBox;
+				break;
+			}
+		}
 		break;
 
 	case WM_KEYUP:
 	case WM_SYSKEYUP:
-		/*SceneManager::GetInstance().OnKeyUp((BYTE)wParam);*/
+		
 		break;
 
 	default:

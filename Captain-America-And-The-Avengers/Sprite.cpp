@@ -70,6 +70,8 @@ Sprite::~Sprite()
 
 void Sprite::Draw(D3DXVECTOR3 position, D3DXVECTOR2 scale, D3DXVECTOR2 transform, int alpha)
 {
+	mSpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
+
 	D3DXVECTOR2 inScale, inTransform;
 	D3DXVECTOR2 inScalingCenter(position.x, position.y);
 
@@ -104,6 +106,8 @@ void Sprite::Draw(D3DXVECTOR3 position, D3DXVECTOR2 scale, D3DXVECTOR2 transform
 		D3DCOLOR_ARGB(alpha, 255, 255, 255)
 	);
 	mSpriteHandler->SetTransform(&oldMatrix);
+
+	mSpriteHandler->End();
 }
 
 

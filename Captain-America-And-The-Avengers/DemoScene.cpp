@@ -153,7 +153,9 @@ void DemoScene::Update(float deltaTime)
 	}
 
 
-	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
+	Keyboard* keyboard = SceneManager::GetInstance().GetKeyboard();
+
+	mPlayer->HandleKeyboard(keyboard);
 	mPlayer->Update(deltaTime);
 
 	CheckCamera(deltaTime);	
@@ -182,8 +184,8 @@ void DemoScene::Draw()
 void DemoScene::CheckCamera(float deltaTime)
 {
 	D3DXVECTOR3 playerPos = mPlayer->GetPosition();
-	playerPos.x += mPlayer->GetWidth() / 2.0f;
-	playerPos.y += mPlayer->GetHeight() / 2.0f;
+	//playerPos.x += mPlayer->GetWidth() / 2.0f;
+	//playerPos.y += mPlayer->GetHeight() / 2.0f;
 
 	if (mCamera->GetPosition() == D3DXVECTOR3(.0f, .0f, .0f))
 	{
@@ -198,8 +200,8 @@ void DemoScene::CheckCamera(float deltaTime)
 		float dX = 1.0f * (playerPos.x - camPos.x) * lerpX * deltaTime;
 		float dY = 1.0f * (playerPos.y - camPos.y) * lerpY * deltaTime;
 
-		mCamera->AddPositionX(dX);
-		mCamera->AddPositionY(dY);
+		mCamera->AddPositionX((int)dX);
+		mCamera->AddPositionY((int)dY);
 	}
 
 

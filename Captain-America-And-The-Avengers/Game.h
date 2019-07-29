@@ -26,6 +26,7 @@ public:
 	void Run();
 	~Game();
 	LPD3DXSPRITE GetSpriteHandler();
+	LPD3DXLINE GetLineHandler();
 
 	int GetWidth();
 	int GetHeight();

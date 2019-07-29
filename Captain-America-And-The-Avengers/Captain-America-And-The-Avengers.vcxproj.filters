@@ -110,7 +110,6 @@
     <ClCompile Include="GunStock.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerHighJumpState.cpp" />
     <ClCompile Include="Grid.cpp">
       <Filter>Framework\Grid</Filter>
     </ClCompile>
@@ -192,6 +191,10 @@
     <ClCompile Include="Shield.cpp">
       <Filter>Entities\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerHighJumpState.cpp">
+      <Filter>Entities\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtraDrawer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -346,6 +349,9 @@
     </ClInclude>
     <ClInclude Include="Shield.h">
       <Filter>Entities\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtraDrawer.h">
+      <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

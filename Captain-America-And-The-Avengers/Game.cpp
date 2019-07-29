@@ -21,6 +21,11 @@ LPD3DXSPRITE Game::GetSpriteHandler()
 	return spriteHandler;
 }
 
+LPD3DXLINE Game::GetLineHandler()
+{
+	return lineDraw;
+}
+
 int Game::GetWidth()
 {
 	return BUFFER_WIDTH;
@@ -120,11 +125,9 @@ void Game::Render()
 	d3ddv->Clear(0, NULL, D3DCLEAR_TARGET, NULL, 0.0f, 0);
 
 	d3ddv->BeginScene();
-	spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 
 	SceneManager::GetInstance().Draw();
 
-	spriteHandler->End();
 	d3ddv->EndScene();
 
 	d3ddv->Present(NULL, NULL, NULL, NULL);

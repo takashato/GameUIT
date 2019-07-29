@@ -165,6 +165,7 @@
     <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="ExtraDrawer.cpp" />
     <ClCompile Include="FlyEnemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameException.cpp" />
@@ -216,6 +217,7 @@
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="ExtraDrawer.h" />
     <ClInclude Include="FlyEnemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameException.h" />

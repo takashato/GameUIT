@@ -172,20 +172,32 @@ void Entity::OnCollision(CollisionEvent* ce)
 
 void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
 {
-	if (mSpriteBB == nullptr)
-	{
-		mSpriteBB = new Sprite(L"Resources\\Sprites\\BoudingBox\\bbox.png");
-	}
+	if (!shouldRenderBoundingBox) return;
 
-	RECT boundingBox = GetBoundingBox();
+	//if (mSpriteBB == nullptr)
+	//{
+	//	mSpriteBB = new Sprite(L"Resources\\Sprites\\BoudingBox\\bbox.png");
+	//}
 
-	RECT rect;
-	rect.left = rect.top = 0;
-	rect.right = boundingBox.right - boundingBox.left;
-	rect.bottom = boundingBox.bottom - boundingBox.top;
+	//RECT boundingBox = GetBoundingBox();
 
-	mSpriteBB->SetRect(rect);
-	mSpriteBB->Draw(mPosition, D3DXVECTOR2(), transform, 100); //render mau` nhat
+	//RECT rect;
+	//rect.left = rect.top = 0;
+	//rect.right = boundingBox.right - boundingBox.left;
+	//rect.bottom = boundingBox.bottom - boundingBox.top;
+
+	//mSpriteBB->SetRect(rect);
+	//mSpriteBB->Draw(mPosition, D3DXVECTOR2(), transform, 100); //render mau` nhat
+	RECT bb = GetBoundingBox();
+	std::vector<D3DXVECTOR2> vertexList;
+	vertexList.push_back(D3DXVECTOR2(bb.left, bb.top));
+	vertexList.push_back(D3DXVECTOR2(bb.right, bb.top));
+	vertexList.push_back(D3DXVECTOR2(bb.right, bb.bottom));
+	vertexList.push_back(D3DXVECTOR2(bb.left, bb.bottom));
+	vertexList.push_back(D3DXVECTOR2(bb.left, bb.top));
+
+	ExtraDrawer::GetInstance().DrawTransform(vertexList, transform);
 }
 
 Sprite* Entity::mSpriteBB = NULL;
+bool Entity::shouldRenderBoundingBox = false;

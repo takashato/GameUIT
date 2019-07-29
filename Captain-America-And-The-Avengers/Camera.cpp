@@ -68,7 +68,7 @@ RECT Camera::GetBound()
 
 D3DXVECTOR2 Camera::GetTransform()
 {
-	return D3DXVECTOR2(mWidth / 2 - GetPosition().x, mHeight / 2 - GetPosition().y);
+	return D3DXVECTOR2((long)(mWidth / 2 - GetPosition().x), (long)(mHeight / 2 - GetPosition().y));
 }
 
 Camera::~Camera()
