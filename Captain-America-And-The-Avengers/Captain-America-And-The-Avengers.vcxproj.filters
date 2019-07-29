@@ -38,6 +38,9 @@
     <Filter Include="Entities\Player\State">
       <UniqueIdentifier>{c25a6409-f29b-4cd9-a4da-dc166453c552}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entities\Weapon">
+      <UniqueIdentifier>{1ff6c670-7b66-4d18-9689-e194e8b0083c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameException.cpp">
@@ -182,6 +185,12 @@
     </ClCompile>
     <ClCompile Include="PlayerThrowingShieldState.cpp">
       <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Entities\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Shield.cpp">
+      <Filter>Entities\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +340,12 @@
     </ClInclude>
     <ClInclude Include="PlayerThrowingShieldState.h">
       <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Entities\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Shield.h">
+      <Filter>Entities\Weapon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
