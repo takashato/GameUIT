@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Idle" imagePath="Captain America.png" width="400" height="368">
+	<Sprites type="0">  
+		<sprite x="116" y="272" w="15" h="16" />
+	</Sprites>
+  </Animation>
+  <Animation name="HighShield" imagePath="Captain America.png" width="400" height="368">
+	<Sprites type="0">  
+		<sprite x="140" y="274" w="16" h="9" />
+	</Sprites>
+  </Animation>
+  <Animation name="SitShield" imagePath="Captain America.png" width="400" height="368">
+	<Sprites type="0">  
+		<sprite x="165" y="282" w="23" h="6" />
+	</Sprites>
+  </Animation>
+  <Animation name="RunShield" imagePath="Captain America.png" width="400" height="368">
+	<Sprites type="0">  
+		<sprite x="100" y="272" w="7" h="16" />
+	</Sprites>
+  </Animation>
+</Animations>
