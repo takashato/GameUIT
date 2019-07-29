@@ -10,6 +10,16 @@ Animation::Animation(Sprite* sprite, std::vector<RECT> frames, float timePerFram
 
 	mFrames = frames;
 
+	// Determine width / height
+	for (size_t i = 0; i < frames.size(); ++i)
+	{
+		int width = frames[i].right - frames[i].left;
+		int height = frames[i].bottom - frames[i].top;
+
+		if (width > mWidth) mWidth = width;
+		if (height > mHeight) mHeight = height;
+	}
+
 	SetFrame(0);
 }
 
@@ -87,14 +97,12 @@ float Animation::GetTimePerFrame()
 
 int Animation::GetWidth()
 {
-	RECT rect = GetCurrentFrameRect();
-	return rect.right - rect.left;
+	return mWidth;
 }
 
 int Animation::GetHeight()
 {
-	RECT rect = GetCurrentFrameRect();
-	return rect.bottom - rect.top;
+	return mHeight;
 }
 
 bool Animation::IsFlippedHorizontally()

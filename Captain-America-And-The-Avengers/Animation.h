@@ -16,6 +16,8 @@ private:
 
 	bool mHorizontallyFlip = false; // Flip horizontally
 
+	int mWidth = -1, mHeight = -1;
+
 public:
 	Animation(Sprite* sprite, std::vector<RECT> frames, float timePerFrame = 0.1F);
 

@@ -147,9 +147,8 @@ void Player::OnSetPosition()
 void Player::UpdateSize()
 {
 	// Dynamically set width, height
-	RECT rect = mCurrentAni->GetCurrentFrameRect();
-	SetWidth((float)(rect.right - rect.left));
-	SetHeight((float)(rect.bottom - rect.top));
+	SetWidth((float)mCurrentAni->GetWidth());
+	SetHeight((float)mCurrentAni->GetHeight());
 }
 
 void Player::SetCamera(Camera* camera)
