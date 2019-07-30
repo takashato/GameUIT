@@ -193,7 +193,21 @@ void Shield::Update(float deltaTime, Player* player)
 	}
 	else if (player->GetState()->GetState() == EPlayerState::SittingOnShield)
 	{
+		mCurrentAni = mAniSitShield;
+		mState = SHIELD_SITSHIELD_STATE;
 
+		if (player->GetDirection() == Right)
+		{
+			shieldPosition.x = playerPosition.x - 2;
+			shieldPosition.y = playerPosition.y + player->GetHeight() - 2;
+			SetPosition(shieldPosition);
+		}
+		else
+		{
+			shieldPosition.x = playerPosition.x;
+			shieldPosition.y = playerPosition.y + player->GetHeight() - 2;
+			SetPosition(shieldPosition);
+		}
 	}
 	else if (player->GetState()->GetState() == EPlayerState::Surfing)
 	{

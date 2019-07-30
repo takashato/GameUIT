@@ -12,12 +12,11 @@ PlayerHighJumpState::~PlayerHighJumpState()
 
 void PlayerHighJumpState::HandleKeyboard(Keyboard* keyboard)
 {
-	/*if (keyboard->IsPressing(GAME_KEY_DOWN))
+	if (keyboard->IsPressing(GAME_KEY_DOWN))
 	{
 		mPlayer->SetState(new PlayerSittingOnShieldState(mPlayer));
-	}*/
-
-	if (!keyboard->IsPressing(GAME_KEY_JUMP))
+	}
+	else if (!keyboard->IsPressing(GAME_KEY_JUMP))
 	{
 		mPlayer->SetState(new PlayerFallingState(mPlayer));
 	}

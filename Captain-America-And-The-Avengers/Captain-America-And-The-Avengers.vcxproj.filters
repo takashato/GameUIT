@@ -194,9 +194,6 @@
     <ClCompile Include="Shield.cpp">
       <Filter>Entities\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerHighJumpState.cpp">
-      <Filter>Entities\Player</Filter>
-    </ClCompile>
     <ClCompile Include="ExtraDrawer.cpp" />
     <ClCompile Include="dsutil.cpp">
       <Filter>Framework\Sound</Filter>
@@ -206,6 +203,9 @@
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
       <Filter>Framework\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHighJumpState.cpp">
+      <Filter>Entities\Player\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
