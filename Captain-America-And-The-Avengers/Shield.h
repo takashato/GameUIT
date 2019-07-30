@@ -41,5 +41,9 @@ private:
 
 	/*Camera* mCamera;*/
 	float mCounter = 0;
+	D3DXVECTOR3 throwPos;
+	bool isThrown = false;
+	bool flyDirection = 1;
+	EntityDirection throwingStateDirection;
 };
 
