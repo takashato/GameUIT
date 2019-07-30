@@ -234,55 +234,35 @@ void Shield::Update(float deltaTime, Player* player)
 
 		if (player->GetDirection() == Right)
 		{
-			/*shieldPosition.x = playerPosition.x + player->GetWidth() - 4;
-			shieldPosition.y = playerPosition.y + 9;
-			SetPosition(shieldPosition);*/
-
-			if (mCounter >= MOVEMENT_UPDATE_TIME)
+			if (player->mAniThrowingShield->GetCurrentFrame() == 0)
 			{
-				if (shieldPosition.x + GetWidth() < 200.0f)
-				{
-					if (GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
-						AddVelocityX(-PLAYER_ACC_X);
-					if (GetVelocityX() != 0.f)
-						AddPositionX(GetVelocityX() * mCounter);
-				}
-				else
-				{
-					if (GetVelocityX() < PLAYER_VELOCITY_X_MAX)
-						AddVelocityX(PLAYER_ACC_X);
-					if (GetVelocityX() != 0.f)
-						AddPositionX(GetVelocityX() * mCounter);
-				}
+				shieldPosition.x = playerPosition.x - 14;
+				shieldPosition.y = playerPosition.y - 2;
+				SetPosition(shieldPosition);
+			}
+			else
+			{
+				shieldPosition.x = playerPosition.x + player->GetWidth() - 4;
+				shieldPosition.y = playerPosition.y + 9;
+				SetPosition(shieldPosition);
 			}
 		}
 		else
 		{
-			/*shieldPosition.x = playerPosition.x - 11;
-			shieldPosition.y = playerPosition.y + 9;
-			SetPosition(shieldPosition);*/
-
-			if (mCounter >= MOVEMENT_UPDATE_TIME)
+			if (player->mAniThrowingShield->GetCurrentFrame() == 0)
 			{
-				if (shieldPosition.x + GetWidth() < 200.0f)
-				{
-					if (GetVelocityX() < PLAYER_VELOCITY_X_MAX)
-						AddVelocityX(PLAYER_ACC_X);
-					if (GetVelocityX() != 0.f)
-						AddPositionX(GetVelocityX() * mCounter);
-				}
-				else
-				{
-					if (GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
-						AddVelocityX(-PLAYER_ACC_X);
-					if (GetVelocityX() != 0.f)
-						AddPositionX(GetVelocityX() * mCounter);
-				}
+				shieldPosition.x = playerPosition.x + player->GetWidth() - 6;
+				shieldPosition.y = playerPosition.y - 2;
+				SetPosition(shieldPosition);
+			}
+			else
+			{
+				shieldPosition.x = playerPosition.x - 12;
+				shieldPosition.y = playerPosition.y + 9;
+				SetPosition(shieldPosition);
 			}
 		}
-		mCounter = 0;
 	}
-
 }
 
 void Shield::Draw(D3DXVECTOR2 transform)
