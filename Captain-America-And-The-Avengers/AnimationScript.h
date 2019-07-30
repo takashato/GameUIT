@@ -1,6 +1,8 @@
 #pragma once
 #include "pch.h"
 #include "./MapReader/tinyxml2.h"
+#include <Windows.h>
+#include <vector>
 
 class AnimationScript
 {

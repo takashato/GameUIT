@@ -12,5 +12,7 @@ public:
 	virtual void Draw(D3DXVECTOR2 transform) = 0;
 	virtual RECT GetBoundingBox();
 	virtual CollidableObjectType GetCollidableObjectType() override;
+protected:
+	Animation* mCurrentAni = NULL;
 };
 

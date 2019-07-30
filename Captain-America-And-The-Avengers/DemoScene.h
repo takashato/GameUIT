@@ -3,6 +3,7 @@
 #include "Animation.h"
 #include "Entity.h"
 #include "Player.h"
+#include "Shield.h"
 #include "GunEnemy.h"
 #include "MissileEnemy.h"
 #include "RunEnemy.h"
@@ -35,7 +36,7 @@ protected:
 	Grid* mGrid = NULL;
 
 	Player* mPlayer = NULL;
-
+	Shield* mShield = NULL;
 	std::vector<Enemy*> mEnemies;
 	std::vector<Ground*> mGrounds;
 
