@@ -67,18 +67,18 @@ void DemoScene::Setup()
 	enemy = new GunEnemy();
 	mEnemies.push_back(enemy);
 	mGrid->Add(enemy);
-	enemy = new GunEnemy(D3DXVECTOR3(688.0f, 338.0f, 0.f));
+	enemy = new GunEnemy(D3DXVECTOR3(688.0f, 320.0f, 0.f));
 	mEnemies.push_back(enemy);
 	mGrid->Add(enemy);
 	/*gunEnemy3 = new GunEnemy(D3DXVECTOR3(776.0f, 416.0f, 0.f));*/
-	enemy = new GunEnemy(D3DXVECTOR3(944.0f, 338.0f, 0.f));
+	enemy = new GunEnemy(D3DXVECTOR3(944.0f, 320.0f, 0.f));
 	mEnemies.push_back(enemy);
 	mGrid->Add(enemy);
 	// ------------------
 
 	// -----MissileEnemy-----
-	enemy = new MissileEnemy(D3DXVECTOR3(344.0f, 416.0f, 0.f), 1);
-	enemy = new MissileEnemy(D3DXVECTOR3(1568.0f, 416.0f, 0.f), 2);
+	enemy = new MissileEnemy(D3DXVECTOR3(344.0f, 402.0f, 0.f), 1);
+	enemy = new MissileEnemy(D3DXVECTOR3(1568.0f, 402.0f, 0.f), 2);
 	mEnemies.push_back(enemy);
 	mGrid->Add(enemy);
 	// ----------------------

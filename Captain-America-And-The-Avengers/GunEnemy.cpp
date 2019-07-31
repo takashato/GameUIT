@@ -49,11 +49,13 @@ void GunEnemy::Update(float deltaTime, Player* player)
 		{
 			mCurrentAni = mAniSitting;
 			mState = GUNENEMY_SITTING_STATE;
+			this->SetPositionY(gunEnemyPosition.y + this->mAniStanding->GetHeight() - this->mAniSitting->GetHeight());
 		}
 		else
 		{
 			mCurrentAni = mAniStanding;
 			mState = GUNENEMY_STANDING_STATE;
+			this->SetPositionY(gunEnemyPosition.y - this->mAniStanding->GetHeight() + this->mAniSitting->GetHeight());
 		}
 		mCounter = 0;
 	}
