@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MapObjects>
   <Objects type="NormalGround" > 
-	<Object x="0" y="448" wcells="6" hcells="1" />
-	<Object x="160" y="448" wcells="76" hcells="1" />
-	<Object x="1440" y="448" wcells="22" hcells="1" />
-	<Object x="48" y="318" wcells="3" hcells="1" />
-	<Object x="32" y="206" wcells="14" hcells="1" />
-	<Object x="288" y="206" wcells="14" hcells="1" />
-	<Object x="544" y="206" wcells="14" hcells="1" />
-	<Object x="800" y="206" wcells="14" hcells="1" />
-	<Object x="1056" y="206" wcells="14" hcells="1" />
-	<Object x="1312" y="206" wcells="14" hcells="1" />
-	<Object x="1568" y="206" wcells="14" hcells="1" />
-	<Object x="672" y="366" wcells="3" hcells="1" />
-	<Object x="576" y="366" wcells="2" hcells="1" />
-	<Object x="624" y="286" wcells="2" hcells="1" />
-	<Object x="880" y="286" wcells="2" hcells="1" />
-	<Object x="832" y="366" wcells="2" hcells="1" />
-	<Object x="928" y="366" wcells="3" hcells="1" />
-	<Object x="1328" y="318" wcells="3" hcells="1" />
+	<Object x="0" y="448" wcells="5" hcells="1" />
+	<Object x="176" y="448" wcells="74" hcells="1" />
+	<Object x="1456" y="448" wcells="21" hcells="1" />
+	<Object x="56" y="318" wcells="2" hcells="1" />
+	<Object x="48" y="206" wcells="12" hcells="1" />
+	<Object x="304" y="206" wcells="12" hcells="1" />
+	<Object x="560" y="206" wcells="12" hcells="1" />
+	<Object x="816" y="206" wcells="12" hcells="1" />
+	<Object x="1072" y="206" wcells="12" hcells="1" />
+	<Object x="1328" y="206" wcells="12" hcells="1" />
+	<Object x="1584" y="206" wcells="12" hcells="1" />
+	<Object x="680" y="366" wcells="2" hcells="1" />
+	<Object x="584" y="366" wcells="1" hcells="1" />
+	<Object x="632" y="286" wcells="1" hcells="1" />
+	<Object x="888" y="286" wcells="1" hcells="1" />
+	<Object x="840" y="366" wcells="1" hcells="1" />
+	<Object x="936" y="366" wcells="2" hcells="1" />
+	<Object x="1336" y="318" wcells="2" hcells="1" />
   </Objects>
   <Objects type="HardGround" > 
 	<Object x="1792" y="318" wcells="16" hcells="3" />

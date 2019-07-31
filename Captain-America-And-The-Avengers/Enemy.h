@@ -10,7 +10,8 @@ enum EnemyType
 	EGunEnemy,
 	EGunStockEnemy,
 	EMissileEnemy,
-	EDefaultEnemy
+	EDefaultEnemy,
+	EBossCharleston
 };
 
 class Enemy : public Entity

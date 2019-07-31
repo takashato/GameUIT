@@ -12,6 +12,12 @@ void PlayerFallingState::HandleKeyboard(Keyboard* keyboard)
 	{
 		mPlayer->SetState(new PlayerKickingState(mPlayer));
 	}
+	if (keyboard->IsPressing(DIK_A))
+	{
+		mPlayer->SetPositionY(0.f);
+		if (mPlayer->GetPosition().x < 0)
+			mPlayer->SetPositionX(50.f);
+	}
 }
 
 void PlayerFallingState::Update(float deltaTime)

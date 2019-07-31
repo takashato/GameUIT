@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MapObjects>
   <Objects type="NormalGround" > 
-	<Object x="48" y="101" wcells="3" hcells="1" />
+	<Object x="56" y="101" wcells="2" hcells="1" />
   </Objects>
   <Objects type="HardGround" > 
 	<Object x="0" y="197" wcells="16" hcells="1" />

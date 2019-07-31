@@ -211,6 +211,9 @@
       <Filter>Entities\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="MapObjectReader.cpp" />
+    <ClCompile Include="BossCharleston.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -386,6 +389,9 @@
     </ClInclude>
     <ClInclude Include="AnimationScript.h">
       <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="BossCharleston.h">
+      <Filter>Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
