@@ -29,6 +29,8 @@ public:
 
 	RECT GetBoundingBox();
 
+	float CalYOfLinearEquation(float x1, float y1, float x2, float y2, float posX);
+
 private:
 	Sprite* mSprite = NULL;
 	AnimationScript* mAniScripts = NULL;
@@ -45,5 +47,7 @@ private:
 	bool isThrown = false;
 	bool flyDirection = 1;
 	EntityDirection throwingStateDirection;
+	float maxLengthFly;
+	float YChangeDirection;
 };
 

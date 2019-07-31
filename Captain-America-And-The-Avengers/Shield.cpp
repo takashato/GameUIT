@@ -76,7 +76,7 @@ void Shield::Update(float deltaTime, Player* player)
 			SetPosition(shieldPosition);
 		}
 	}
-	else if (player->GetState()->GetState() == EPlayerState::Falling || player->GetState()->GetState() == EPlayerState::Jumping)
+	else if ((player->GetState()->GetState() == EPlayerState::Falling || player->GetState()->GetState() == EPlayerState::Jumping) && isThrown == false)
 	{
 		mCurrentAni = mAniIdle;
 		mState = SHIELD_IDLE_STATE;
@@ -94,7 +94,7 @@ void Shield::Update(float deltaTime, Player* player)
 			SetPosition(shieldPosition);
 		}
 	}
-	else if (player->GetState()->GetState() == EPlayerState::HighShielding)
+	else if (player->GetState()->GetState() == EPlayerState::HighShielding && isThrown == false)
 	{
 		mCurrentAni = mAniHighShield;
 		mState = SHIELD_HIGHSHIELD_STATE;
@@ -112,7 +112,7 @@ void Shield::Update(float deltaTime, Player* player)
 			SetPosition(shieldPosition);
 		}
 	}
-	else if (player->GetState()->GetState() == EPlayerState::Cling)
+	else if (player->GetState()->GetState() == EPlayerState::Cling && isThrown == false)
 	{
 
 	}
@@ -134,7 +134,7 @@ void Shield::Update(float deltaTime, Player* player)
 		}
 
 	}
-	else if (player->GetState()->GetState() == EPlayerState::Kicking)
+	else if (player->GetState()->GetState() == EPlayerState::Kicking && isThrown == false)
 	{
 		mCurrentAni = mAniRunShield;
 		mState = SHIELD_RUNSHIELD_STATE;
@@ -155,7 +155,7 @@ void Shield::Update(float deltaTime, Player* player)
 		}
 		mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 	}
-	else if (player->GetState()->GetState() == EPlayerState::Sitting)
+	else if (player->GetState()->GetState() == EPlayerState::Sitting && isThrown == false)
 	{
 		mCurrentAni = mAniRunShield;
 		mState = SHIELD_RUNSHIELD_STATE;
@@ -173,7 +173,7 @@ void Shield::Update(float deltaTime, Player* player)
 			SetPosition(shieldPosition);
 		}
 	}
-	else if (player->GetState()->GetState() == EPlayerState::LowPunching)
+	else if (player->GetState()->GetState() == EPlayerState::LowPunching && isThrown == false)
 	{
 		mCurrentAni = mAniIdle;
 		mState = SHIELD_IDLE_STATE;
@@ -209,7 +209,7 @@ void Shield::Update(float deltaTime, Player* player)
 			SetPosition(shieldPosition);
 		}
 	}
-	else if (player->GetState()->GetState() == EPlayerState::Surfing)
+	else if (player->GetState()->GetState() == EPlayerState::Surfing && isThrown == false)
 	{
 		mCurrentAni = mAniRunShield;
 		mState = SHIELD_RUNSHIELD_STATE;
@@ -231,7 +231,7 @@ void Shield::Update(float deltaTime, Player* player)
 	{
 		mCurrentAni = mAniHighShield;
 		mState = SHIELD_HIGHSHIELD_STATE;
-		isThrown = true;
+		
 
 		if (player->GetDirection() == Right)
 		{
@@ -250,6 +250,7 @@ void Shield::Update(float deltaTime, Player* player)
 				SetPosition(shieldPosition);
 				throwPos = shieldPosition;
 			}
+			SetPosition(D3DXVECTOR3(playerPosition.x + 10, playerPosition.y + 9, 0.f));
 		}
 		else
 		{
@@ -268,8 +269,9 @@ void Shield::Update(float deltaTime, Player* player)
 				SetPosition(shieldPosition);
 				throwPos = shieldPosition;
 			}
+			SetPosition(D3DXVECTOR3(playerPosition.x - 12, playerPosition.y + 9, 0.f));
 		}
-		SetPosition(shieldPosition);
+		isThrown = true;
 	}
 
 	// Shield fly
@@ -278,63 +280,109 @@ void Shield::Update(float deltaTime, Player* player)
 		mCurrentAni = mAniHighShield;
 		mState = SHIELD_HIGHSHIELD_STATE;
 
-		if (mCounter >= MOVEMENT_UPDATE_TIME)
+		if (throwingStateDirection == Left)
 		{
-			if (throwingStateDirection == Left)
+			if (flyDirection == 0)
 			{
-				if (flyDirection == 0)
+				if (GetVelocityX() > -100)
+					AddVelocityX(-15);
+				if (GetVelocityX() != 0.f)
+					AddPositionX(GetVelocityX()*0.08);
+				if (this->GetPosition().x - playerPosition.x < -50 - player->GetWidth())
+					flyDirection = 1;
+			}
+			else
+			{
+				if (this->GetPosition().x >= playerPosition.x && abs(this->GetPosition().y - playerPosition.y) < player->GetHeight())
 				{
-					if (GetVelocityX() > -100)
-						AddVelocityX(-15);
-					if (GetVelocityX() != 0.f)
-						AddPositionX(GetVelocityX()*0.15);
-					if (this->GetPosition().x  - playerPosition.x < -105)
-						flyDirection = 1;
+					isThrown = false;
 				}
 				else
 				{
-					if (this->GetPosition().x >= playerPosition.x)
-					{
-						isThrown = false;
-					}
-					else
+					if (this->GetPosition().x < playerPosition.x)
 					{
 						if (GetVelocityX() < 100)
 							AddVelocityX(15);
 						if (GetVelocityX() != 0.f)
-							AddPositionX(GetVelocityX()*0.15);
+							AddPositionX(GetVelocityX()*0.08);
 					}
+
+					if (this->GetPosition().y - playerPosition.y > player->GetHeight())
+					{
+						if (GetVelocityY() > -100)
+							AddVelocityY(-playerPosition.y / 15);
+						if (GetVelocityY() != 0.f)
+							AddPositionY(GetVelocityY()*0.08);
+					}
+
+					if (playerPosition.y - this->GetPosition().y > player->GetHeight())
+					{
+						if (GetVelocityY() > 100)
+							AddVelocityY(playerPosition.y / 15);
+						if (GetVelocityY() != 0.f)
+							AddPositionY(GetVelocityY()*0.08);
+					}
+				}
+			}
+		}
+		else
+		{
+			if (flyDirection == 1)
+			{
+				if (GetVelocityX() < 100)
+					AddVelocityX(15);
+				if (GetVelocityX() != 0.f)
+					AddPositionX(GetVelocityX()*0.08);
+				if (this->GetPosition().x - playerPosition.x - player->GetWidth() > 50)
+				{
+					flyDirection = 0;
+					maxLengthFly = this->GetPosition().x;
+					YChangeDirection = this->GetPosition().x;
 				}
 			}
 			else
 			{
-				if (flyDirection == 1)
+				if (this->GetPosition().x <= playerPosition.x + player->GetWidth() && abs(this->GetPosition().y - playerPosition.y) < player->GetHeight())
 				{
-					if (GetVelocityX() < 100)
-						AddVelocityX(15);
-					if (GetVelocityX() != 0.f)
-						AddPositionX(GetVelocityX()*0.15);
-					if (this->GetPosition().x - playerPosition.x - player->GetWidth() > 105)
-						flyDirection = 0;
+					isThrown = false;
 				}
 				else
 				{
-					if (this->GetPosition().x <= playerPosition.x + player->GetWidth())
-					{
-						isThrown = false;
-					}
-					else
+					if (this->GetPosition().x > playerPosition.x + player->GetWidth())
 					{
 						if (GetVelocityX() > -100)
 							AddVelocityX(-15);
 						if (GetVelocityX() != 0.f)
-							AddPositionX(GetVelocityX()*0.15);
+							AddPositionX(GetVelocityX()*0.08);
+					}
+
+					if (this->GetPosition().y - playerPosition.y > player->GetHeight())
+					{
+						if (GetVelocityY() > -100)
+							AddVelocityY(-playerPosition.y / 15);
+						if (GetVelocityY() != 0.f)
+							AddPositionY(GetVelocityY()*0.08);
+					}
+
+					if (playerPosition.y - this->GetPosition().y > player->GetHeight())
+					{
+						if (GetVelocityY() > 100)
+							AddVelocityY(playerPosition.y / 15);
+						if (GetVelocityY() != 0.f)
+							AddPositionY(GetVelocityY()*0.08);
 					}
 				}
 			}
-			mCounter = 0;
 		}
 	}
+}
+
+float Shield::CalYOfLinearEquation(float x1, float y1, float x2, float y2, float posX)
+{
+	float a = (y1 - y2) / (x1 - x2);
+	float b = y1 - a * x1;
+
+	return a*posX + b;
 }
 
 void Shield::Draw(D3DXVECTOR2 transform)
