@@ -13,7 +13,7 @@
 class RunEnemy : public Enemy
 {
 public:
-	RunEnemy(D3DXVECTOR3 position = D3DXVECTOR3(776.0f, 416.0f, 0.f));
+	RunEnemy(D3DXVECTOR3 position = D3DXVECTOR3(776.0f, 402.0f, 0.f));
 	~RunEnemy();
 	void LoadAnimations();
 
