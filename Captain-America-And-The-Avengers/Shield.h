@@ -2,26 +2,27 @@
 #include "Weapon.h"
 #include "AnimationScript.h"
 #include "Player.h"
-#include "Camera.h"
 
-#define SHIELD_IDLE_STATE 0
-#define SHIELD_RUNSHIELD_STATE 1
-#define SHIELD_HIGHSHIELD_STATE 2
-#define SHIELD_SITSHIELD_STATE 3
+enum ShieldState {
+	EShieldIdle,
+	EShieldRun,
+	EShieldHigh,
+	EShieldSit
+};
 
 class Shield : public Weapon
 {
 public:
-	Shield();
+	Shield(Player* player);
 	~Shield();
 
 	void LoadAnimations();
 
-	void Update(float deltaTime, Player* player);
+	void Update(float deltaTime);
 	void Draw(D3DXVECTOR2 transform);
 
-	int GetState();
-	void SetState(int state);
+	ShieldState GetState();
+	void SetState(ShieldState state);
 
 	void ChangeAnimationByState(int state);
 
@@ -31,7 +32,16 @@ public:
 
 	float CalYOfLinearEquation(float x1, float y1, float x2, float y2, float posX);
 
+	float GetWidth();
+	float GetHeight();
+
+	D3DXVECTOR3 GetReturnPoint();
+	ShieldState GetStateByPlayerState();
+	bool IsThrown();
+
 private:
+	Player* mPlayer = nullptr;
+
 	Sprite* mSprite = NULL;
 	AnimationScript* mAniScripts = NULL;
 
@@ -39,13 +49,13 @@ private:
 	Animation* mAniSitShield = NULL;
 	Animation* mAniHighShield = NULL;
 	Animation* mAniRunShield = NULL;
-	int mState = -1;
+	ShieldState mState = EShieldIdle;
 
 	/*Camera* mCamera;*/
 	float mCounter = 0;
 	D3DXVECTOR3 throwPos;
 	bool isThrown = false;
-	bool flyDirection = 1;
+	bool flyDirection = true;  // fly right
 	EntityDirection throwingStateDirection;
 	float maxLengthFly;
 	float YChangeDirection;

@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "PlayerPunchingState.h"
-
+#include "Shield.h"
 
 PlayerPunchingState::PlayerPunchingState(Player* player) : PlayerState(player)
 {
@@ -13,8 +13,9 @@ EPlayerState PlayerPunchingState::GetState()
 
 void PlayerPunchingState::HandleKeyboard(Keyboard* keyboard)
 {
-	if (!keyboard->IsPressing(GAME_KEY_ATTACK))
+	if (mPlayer->GetCurrentAnimation()->IsDoneCycle() || !mPlayer->GetShield()->IsThrown())
 	{
+		mPlayer->AddPositionY(mPlayer->mAniPunching->GetHeight() - mPlayer->mAniStanding->GetHeight());
 		mPlayer->SetState(new PlayerStandingState(mPlayer));
 	}
 }

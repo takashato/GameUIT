@@ -54,12 +54,11 @@ void DemoScene::Setup()
 
 	
 	mPlayer = new Player();
-	mShield = new Shield();
 	auto spawnPoint = mMap->GetPlayerSpawnPoint();
 	spawnPoint.y -= 100.0f;
 	mPlayer->SetPosition(spawnPoint);
 	mPlayer->SetState(new PlayerFallingState(mPlayer));
-	//mGrid->Add(mPlayer);
+	mPlayer->SetShield(new Shield(mPlayer));
 
 	// Setup Enemies
 	Enemy* enemy = nullptr;
@@ -159,7 +158,7 @@ void DemoScene::Update(float deltaTime)
 
 	mPlayer->HandleKeyboard(keyboard);
 	mPlayer->Update(deltaTime);
-	mShield->Update(deltaTime, mPlayer);
+	mPlayer->GetShield()->Update(deltaTime);
 	CheckCamera(deltaTime);	
 	CheckChageMap();
 }
@@ -179,9 +178,8 @@ void DemoScene::Draw()
 
 	// Draw player
 	mPlayer->Draw(trans);
-	//Draw shield
-	if (mPlayer->GetState()->GetState() != EPlayerState::HighJumping)
-		mShield->Draw(trans);
+	// Draw shield
+	mPlayer->GetShield()->Draw(trans);
 	Scene::Draw();
 }
 

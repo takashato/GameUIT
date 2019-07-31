@@ -36,7 +36,7 @@ protected:
 	Grid* mGrid = NULL;
 
 	Player* mPlayer = NULL;
-	Shield* mShield = NULL;
+
 	std::vector<Enemy*> mEnemies;
 	std::vector<Ground*> mGrounds;
 

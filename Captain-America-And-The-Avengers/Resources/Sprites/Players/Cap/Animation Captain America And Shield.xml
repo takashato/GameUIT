@@ -21,7 +21,7 @@
   <Animation name="ThrowingShield" imagePath="Captain America.png" width="400" height="368">
     <Sprites type="0">
 		<sprite x="9" y="73" w="34" h="39" />
-		<sprite x="57" y="76" w="39" h="36" />
+		<sprite x="57" y="73" w="39" h="39" />
     </Sprites>
   </Animation>
   <Animation name="HighJump" imagePath="Captain America.png" width="400" height="368">

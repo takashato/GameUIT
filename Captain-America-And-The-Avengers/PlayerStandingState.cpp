@@ -3,6 +3,7 @@
 
 PlayerStandingState::PlayerStandingState(Player* player) : PlayerState(player)
 {
+	if (player == nullptr) return;
 	player->SetVelocityX(0.0f);
 	player->SetVelocityY(0.0f);
 }
@@ -35,7 +36,16 @@ void PlayerStandingState::HandleKeyboard(Keyboard* keyboard)
 	}
 	else if (keyboard->IsPressing(GAME_KEY_ATTACK))
 	{
-		mPlayer->SetState(new PlayerThrowingShieldState(mPlayer));
+		if (mPlayer->GetShield()->IsThrown())
+		{
+			mPlayer->AddPositionY(mPlayer->mAniStanding->GetHeight() - mPlayer->mAniPunching->GetHeight());
+			mPlayer->SetState(new PlayerPunchingState(mPlayer));
+		}
+		else
+		{
+			mPlayer->AddPositionY(mPlayer->mAniStanding->GetHeight() - mPlayer->mAniThrowingShield->GetHeight());
+			mPlayer->SetState(new PlayerThrowingShieldState(mPlayer));
+		}
 	}
 	else if (keyboard->IsPressing(GAME_KEY_SURF))
 	{

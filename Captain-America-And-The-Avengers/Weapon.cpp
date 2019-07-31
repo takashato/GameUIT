@@ -28,3 +28,13 @@ CollidableObjectType Weapon::GetCollidableObjectType()
 {
 	return EWeapon;
 }
+
+float Weapon::GetWidth()
+{
+	return 0.0f;
+}
+
+float Weapon::GetHeight()
+{
+	return 0.0f;
+}

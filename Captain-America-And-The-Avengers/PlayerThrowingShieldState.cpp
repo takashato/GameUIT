@@ -14,31 +14,29 @@ void PlayerThrowingShieldState::HandleKeyboard(Keyboard* keyboard)
 {
 	if (mPlayer->GetCurrentAnimation()->IsDoneCycle())
 	{
-		if (isHaveShield == false && keyboard->IsPressing(GAME_KEY_ATTACK))
-		{
-			mPlayer->SetState(new PlayerPunchingState(mPlayer));
-		}
-		else if (keyboard->IsPressing(GAME_KEY_JUMP))
-		{
-			mPlayer->SetState(new PlayerJumpingState(mPlayer));
-		}
-		else if (keyboard->IsPressing(GAME_KEY_DOWN))
-		{
-			mPlayer->SetState(new PlayerSittingState(mPlayer));
-		}
-		else if (keyboard->IsPressing(GAME_KEY_UP))
-		{
-			mPlayer->SetState(new PlayerHighShieldingState(mPlayer));
-		}
-		else if (keyboard->IsPressing(GAME_KEY_LEFT) || keyboard->IsPressing(GAME_KEY_RIGHT))
-		{
-			mPlayer->SetState(new PlayerRunningState(mPlayer));
-		}
-
-		if (!keyboard->IsPressing(GAME_KEY_ATTACK)) // This cause access violation, above if conditions may have happened, and mPlayer is inaccessible
-		{
-			mPlayer->SetState(new PlayerStandingState(mPlayer));
-		}
+		auto player = mPlayer; // Store mPlayer before this->mPlayer gone, lmao
+		//if (isHaveShield == false && keyboard->IsPressing(GAME_KEY_ATTACK))
+		//{
+		//	player->SetState(new PlayerPunchingState(player));
+		//}
+		//else if (keyboard->IsPressing(GAME_KEY_JUMP))
+		//{
+		//	player->SetState(new PlayerJumpingState(player));
+		//}
+		//else if (keyboard->IsPressing(GAME_KEY_DOWN))
+		//{
+		//	player->SetState(new PlayerSittingState(player));
+		//}
+		//else if (keyboard->IsPressing(GAME_KEY_UP))
+		//{
+		//	player->SetState(new PlayerHighShieldingState(player));
+		//}
+		//else if (keyboard->IsPressing(GAME_KEY_LEFT) || keyboard->IsPressing(GAME_KEY_RIGHT))
+		//{
+		//	player->SetState(new PlayerRunningState(player));
+		//}
+		player->AddPositionY(player->mAniThrowingShield->GetHeight() - player->mAniStanding->GetHeight());
+		player->SetState(new PlayerStandingState(player));
 	}
 }
 

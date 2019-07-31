@@ -6,6 +6,8 @@
 #include "AnimationScript.h"
 #include "Camera.h"
 
+class Shield;
+
 class Player : public Entity
 {
 public:
@@ -34,6 +36,9 @@ public:
 
 	void OnCollision(CollisionEvent* ce);
 
+	Shield* GetShield();
+	void SetShield(Shield* shield);
+
 	Animation* mAniStanding = NULL;
 	Animation* mAniPunching = NULL;
 	Animation* mAniThrowingShield = NULL;
@@ -53,7 +58,6 @@ public:
 	Animation* mAniCling = NULL;
 
 	bool shouldFall = false;
-
 private:
 	Sprite* mSprite = NULL;
 	AnimationScript* mAniScripts = NULL;
@@ -62,6 +66,8 @@ private:
 
 	PlayerState* mState;
 	EPlayerState mLastState;
+
+	Shield* mShield = nullptr;
 
 	Camera* mCamera;
 

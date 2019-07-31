@@ -7,6 +7,7 @@
 #include "PlayerThrowingShieldState.h"
 #include "PlayerSurfingState.h"
 #include "CollisionEvent.h"
+#include "Shield.h"
 
 class PlayerStandingState : public PlayerState
 {

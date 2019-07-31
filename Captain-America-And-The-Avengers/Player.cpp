@@ -16,7 +16,7 @@ void Player::LoadAnimations()
 
 	mAniStanding = new Animation(mSprite, mAniScripts->GetRectList("Standing", "0"), 0.1F);
 	mAniPunching = new Animation(mSprite, mAniScripts->GetRectList("Punching", "0"), 0.15F);
-	mAniThrowingShield = new Animation(mSprite, mAniScripts->GetRectList("ThrowingShield", "0"), 0.15F, false);
+	mAniThrowingShield = new Animation(mSprite, mAniScripts->GetRectList("ThrowingShield", "0"), 0.1F, false);
 	mAniHighShielding = new Animation(mSprite, mAniScripts->GetRectList("HighShielding", "0"), 0.1F);
 	mAniSitting = new Animation(mSprite, mAniScripts->GetRectList("Sitting", "0"), 0.1F);
 	mAniLowPunching = new Animation(mSprite, mAniScripts->GetRectList("LowPunching", "0"), 0.15F);
@@ -183,4 +183,14 @@ CollidableObjectType Player::GetCollidableObjectType()
 void Player::OnCollision(CollisionEvent* ce)
 {
 	mState->OnCollision(ce);
+}
+
+Shield* Player::GetShield()
+{
+	return mShield;
+}
+
+void Player::SetShield(Shield* shield)
+{
+	mShield = shield;
 }

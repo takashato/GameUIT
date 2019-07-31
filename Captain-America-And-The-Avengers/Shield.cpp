@@ -1,12 +1,12 @@
 #include "pch.h"
 #include "Shield.h"
 
-Shield::Shield() : Weapon()
+Shield::Shield(Player* player) : Weapon()
 {
+	mPlayer = player;
 	LoadAnimations();
-	mState = SHIELD_RUNSHIELD_STATE;
+	SetState(EShieldIdle);
 }
-
 
 Shield::~Shield()
 {
@@ -21,358 +21,59 @@ void Shield::LoadAnimations()
 	mAniHighShield = new Animation(mSprite, mAniScripts->GetRectList("HighShield", "0"), 0.1F);
 	mAniRunShield = new Animation(mSprite, mAniScripts->GetRectList("RunShield", "0"), 0.1F);
 	mAniSitShield = new Animation(mSprite, mAniScripts->GetRectList("SitShield", "0"), 0.1F);
-
-	mCurrentAni = mAniIdle;
 }
 
-void Shield::Update(float deltaTime, Player* player)
+void Shield::Update(float deltaTime)
 {
-	D3DXVECTOR3 playerPosition = player->GetPosition();
+	D3DXVECTOR3 playerPosition = mPlayer->GetPosition();
 	D3DXVECTOR3 shieldPosition;
 	shieldPosition.z = 0.f;
 
-	if (player->GetDirection() == Left)
-		SetDirection(EntityDirection::Left);
-	else
-		SetDirection(EntityDirection::Right);
-
+	SetDirection(mPlayer->GetDirection());
 
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
+
 	mCounter += deltaTime;
 
-	if (player->GetState()->GetState() == EPlayerState::Standing && isThrown == false)
-	{
-		mCurrentAni = mAniRunShield;
-		mState = SHIELD_RUNSHIELD_STATE;
+	D3DXVECTOR3 returnPos = GetReturnPoint();
 
-		if (player->GetDirection() == Right)
-		{
-			shieldPosition.x = playerPosition.x + player->GetWidth() - 4;
-			shieldPosition.y = playerPosition.y + 8;
-			SetPosition(shieldPosition);
-		}
-		else
-		{
-			shieldPosition.x = playerPosition.x - 3;
-			shieldPosition.y = playerPosition.y + 8;
-			SetPosition(shieldPosition);
-		}
-	}
-	else if (player->GetState()->GetState() == EPlayerState::Running && isThrown == false)
+	if (mPlayer->GetState()->GetState() == ThrowingShield && mPlayer->GetCurrentAnimation()->IsDoneCycle() && GetVelocityX() == 0.0f && !isThrown)	// Start throwing shield after throwing animation!!!
 	{
-		mCurrentAni = mAniRunShield;
-		mState = SHIELD_RUNSHIELD_STATE;
-
-		if (player->GetDirection() == Right)
-		{
-			shieldPosition.x = playerPosition.x + player->GetWidth() - 4;
-			shieldPosition.y = playerPosition.y + 6;
-			SetPosition(shieldPosition);
-		}
-		else
-		{
-			shieldPosition.x = playerPosition.x - 3;
-			shieldPosition.y = playerPosition.y + 6;
-			SetPosition(shieldPosition);
-		}
-	}
-	else if ((player->GetState()->GetState() == EPlayerState::Falling || player->GetState()->GetState() == EPlayerState::Jumping) && isThrown == false)
-	{
-		mCurrentAni = mAniIdle;
-		mState = SHIELD_IDLE_STATE;
-
-		if (player->GetDirection() == Right)
-		{
-			shieldPosition.x = playerPosition.x + 2;
-			shieldPosition.y = playerPosition.y + 2;
-			SetPosition(shieldPosition);
-		}
-		else
-		{
-			shieldPosition.x = playerPosition.x + 5;
-			shieldPosition.y = playerPosition.y + 2;
-			SetPosition(shieldPosition);
-		}
-	}
-	else if (player->GetState()->GetState() == EPlayerState::HighShielding && isThrown == false)
-	{
-		mCurrentAni = mAniHighShield;
-		mState = SHIELD_HIGHSHIELD_STATE;
-
-		if (player->GetDirection() == Right)
-		{
-			shieldPosition.x = playerPosition.x + 6;
-			shieldPosition.y = playerPosition.y - 1;
-			SetPosition(shieldPosition);
-		}
-		else
-		{
-			shieldPosition.x = playerPosition.x;
-			shieldPosition.y = playerPosition.y - 1;
-			SetPosition(shieldPosition);
-		}
-	}
-	else if (player->GetState()->GetState() == EPlayerState::Cling && isThrown == false)
-	{
-
-	}
-	else if (player->GetState()->GetState() == EPlayerState::InvincibleStand)
-	{
-		mCurrentAni = mAniRunShield;
-		mState = SHIELD_RUNSHIELD_STATE;
-		if (player->GetDirection() == Right)
-		{
-			shieldPosition.x = playerPosition.x + player->GetWidth() - 4;
-			shieldPosition.y = playerPosition.y + 8;
-			SetPosition(shieldPosition);
-		}
-		else
-		{
-			shieldPosition.x = playerPosition.x - 3;
-			shieldPosition.y = playerPosition.y + 8;
-			SetPosition(shieldPosition);
-		}
-
-	}
-	else if (player->GetState()->GetState() == EPlayerState::Kicking && isThrown == false)
-	{
-		mCurrentAni = mAniRunShield;
-		mState = SHIELD_RUNSHIELD_STATE;
-
-		if (player->GetDirection() == Right)
-		{
-			SetDirection(EntityDirection::Left);
-			shieldPosition.x = playerPosition.x - 2;
-			shieldPosition.y = playerPosition.y + 5;
-			SetPosition(shieldPosition);
-		}
-		else
-		{
-			SetDirection(EntityDirection::Right);
-			shieldPosition.x = playerPosition.x + player->GetWidth() - 5;
-			shieldPosition.y = playerPosition.y + 5;
-			SetPosition(shieldPosition);
-		}
-		mCurrentAni->SetFlippedHorizontally(mDirection == Right);
-	}
-	else if (player->GetState()->GetState() == EPlayerState::Sitting && isThrown == false)
-	{
-		mCurrentAni = mAniRunShield;
-		mState = SHIELD_RUNSHIELD_STATE;
-
-		if (player->GetDirection() == Right)
-		{
-			shieldPosition.x = playerPosition.x + player->GetWidth() - 4;
-			shieldPosition.y = playerPosition.y + 8;
-			SetPosition(shieldPosition);
-		}
-		else
-		{
-			shieldPosition.x = playerPosition.x - 3;
-			shieldPosition.y = playerPosition.y + 8;
-			SetPosition(shieldPosition);
-		}
-	}
-	else if (player->GetState()->GetState() == EPlayerState::LowPunching && isThrown == false)
-	{
-		mCurrentAni = mAniIdle;
-		mState = SHIELD_IDLE_STATE;
-
-		if (player->GetDirection() == Right)
-		{
-			shieldPosition.x = playerPosition.x + 8;
-			shieldPosition.y = playerPosition.y + 6;
-			SetPosition(shieldPosition);
-		}
-		else
-		{
-			shieldPosition.x = playerPosition.x + 5;
-			shieldPosition.y = playerPosition.y + 6;
-			SetPosition(shieldPosition);
-		}
-	}
-	else if (player->GetState()->GetState() == EPlayerState::SittingOnShield)
-	{
-		mCurrentAni = mAniSitShield;
-		mState = SHIELD_SITSHIELD_STATE;
-
-		if (player->GetDirection() == Right)
-		{
-			shieldPosition.x = playerPosition.x - 2;
-			shieldPosition.y = playerPosition.y + player->GetHeight() - 2;
-			SetPosition(shieldPosition);
-		}
-		else
-		{
-			shieldPosition.x = playerPosition.x;
-			shieldPosition.y = playerPosition.y + player->GetHeight() - 2;
-			SetPosition(shieldPosition);
-		}
-	}
-	else if (player->GetState()->GetState() == EPlayerState::Surfing && isThrown == false)
-	{
-		mCurrentAni = mAniRunShield;
-		mState = SHIELD_RUNSHIELD_STATE;
-
-		if (player->GetDirection() == Right)
-		{
-			shieldPosition.x = playerPosition.x + player->GetWidth() - 3;
-			shieldPosition.y = playerPosition.y;
-			SetPosition(shieldPosition);
-		}
-		else
-		{
-			shieldPosition.x = playerPosition.x - 4;
-			shieldPosition.y = playerPosition.y;
-			SetPosition(shieldPosition);
-		}
-	}
-	else if (player->GetState()->GetState() == EPlayerState::ThrowingShield && isThrown == false)
-	{
-		mCurrentAni = mAniHighShield;
-		mState = SHIELD_HIGHSHIELD_STATE;
-		
-
-		if (player->GetDirection() == Right)
-		{
-			flyDirection = 1;
-			throwingStateDirection = Right;
-			if (player->mAniThrowingShield->GetCurrentFrame() == 0)
-			{
-				shieldPosition.x = playerPosition.x - 14;
-				shieldPosition.y = playerPosition.y - 2;
-				SetPosition(shieldPosition);
-			}
-			else
-			{
-				shieldPosition.x = playerPosition.x + player->GetWidth() - 4;
-				shieldPosition.y = playerPosition.y + 9;
-				SetPosition(shieldPosition);
-				throwPos = shieldPosition;
-			}
-			SetPosition(D3DXVECTOR3(playerPosition.x + 10, playerPosition.y + 9, 0.f));
-		}
-		else
-		{
-			flyDirection = 0;
-			throwingStateDirection = Left;
-			if (player->mAniThrowingShield->GetCurrentFrame() == 0)
-			{
-				shieldPosition.x = playerPosition.x + player->GetWidth() - 6;
-				shieldPosition.y = playerPosition.y - 2;
-				SetPosition(shieldPosition);
-			}
-			else
-			{
-				shieldPosition.x = playerPosition.x - 12;
-				shieldPosition.y = playerPosition.y + 9;
-				SetPosition(shieldPosition);
-				throwPos = shieldPosition;
-			}
-			SetPosition(D3DXVECTOR3(playerPosition.x - 12, playerPosition.y + 9, 0.f));
-		}
 		isThrown = true;
+		flyDirection = mPlayer->GetDirection() == Right;
+		maxLengthFly = 100.0f;
+		SetVelocityX((flyDirection ? 1 : -1) * 444.44f);
+		SetVelocityY(.0f);
+		std::cout << "Started throwing shield!!!\n";
 	}
 
-	// Shield fly
-	if (isThrown)
+	if (!isThrown)
 	{
-		mCurrentAni = mAniHighShield;
-		mState = SHIELD_HIGHSHIELD_STATE;
+		SetState(GetStateByPlayerState());
+		SetPosition(returnPos);
+	}
+	else
+	{
+		float acc = 987.65f;
 
-		if (throwingStateDirection == Left)
+		if (mState != EShieldHigh) SetState(EShieldHigh);
+
+		D3DXVECTOR3 oldPosition = mPosition;
+
+		AddVelocityX((flyDirection ? -1 : 1) * acc * deltaTime);
+		Entity::Update(deltaTime); // Update velocity
+
+		if (flyDirection && GetVelocityX() <= 0.0f || !flyDirection && GetVelocityX() >= 0.0f)
 		{
-			if (flyDirection == 0)
-			{
-				if (GetVelocityX() > -100)
-					AddVelocityX(-15);
-				if (GetVelocityX() != 0.f)
-					AddPositionX(GetVelocityX()*0.08);
-				if (this->GetPosition().x - playerPosition.x < -50 - player->GetWidth())
-					flyDirection = 1;
-			}
-			else
-			{
-				if (this->GetPosition().x >= playerPosition.x && abs(this->GetPosition().y - playerPosition.y) < player->GetHeight())
-				{
-					isThrown = false;
-				}
-				else
-				{
-					if (this->GetPosition().x < playerPosition.x)
-					{
-						if (GetVelocityX() < 100)
-							AddVelocityX(15);
-						if (GetVelocityX() != 0.f)
-							AddPositionX(GetVelocityX()*0.08);
-					}
-
-					if (this->GetPosition().y - playerPosition.y > player->GetHeight())
-					{
-						if (GetVelocityY() > -100)
-							AddVelocityY(-playerPosition.y / 15);
-						if (GetVelocityY() != 0.f)
-							AddPositionY(GetVelocityY()*0.08);
-					}
-
-					if (playerPosition.y - this->GetPosition().y > player->GetHeight())
-					{
-						if (GetVelocityY() > 100)
-							AddVelocityY(playerPosition.y / 15);
-						if (GetVelocityY() != 0.f)
-							AddPositionY(GetVelocityY()*0.08);
-					}
-				}
-			}
+			SetPositionY(CalYOfLinearEquation(oldPosition.x, oldPosition.y, returnPos.x, returnPos.y, mPosition.x));
 		}
-		else
+
+		if (flyDirection && mPosition.x <= mPlayer->GetPosition().x || !flyDirection && mPosition.x >= mPlayer->GetPosition().x)
 		{
-			if (flyDirection == 1)
-			{
-				if (GetVelocityX() < 100)
-					AddVelocityX(15);
-				if (GetVelocityX() != 0.f)
-					AddPositionX(GetVelocityX()*0.08);
-				if (this->GetPosition().x - playerPosition.x - player->GetWidth() > 50)
-				{
-					flyDirection = 0;
-					maxLengthFly = this->GetPosition().x;
-					YChangeDirection = this->GetPosition().x;
-				}
-			}
-			else
-			{
-				if (this->GetPosition().x <= playerPosition.x + player->GetWidth() && abs(this->GetPosition().y - playerPosition.y) < player->GetHeight())
-				{
-					isThrown = false;
-				}
-				else
-				{
-					if (this->GetPosition().x > playerPosition.x + player->GetWidth())
-					{
-						if (GetVelocityX() > -100)
-							AddVelocityX(-15);
-						if (GetVelocityX() != 0.f)
-							AddPositionX(GetVelocityX()*0.08);
-					}
-
-					if (this->GetPosition().y - playerPosition.y > player->GetHeight())
-					{
-						if (GetVelocityY() > -100)
-							AddVelocityY(-playerPosition.y / 15);
-						if (GetVelocityY() != 0.f)
-							AddPositionY(GetVelocityY()*0.08);
-					}
-
-					if (playerPosition.y - this->GetPosition().y > player->GetHeight())
-					{
-						if (GetVelocityY() > 100)
-							AddVelocityY(playerPosition.y / 15);
-						if (GetVelocityY() != 0.f)
-							AddPositionY(GetVelocityY()*0.08);
-					}
-				}
-			}
+			isThrown = false;
+			SetPosition(returnPos);
+			SetVelocityX(0.0f);
+			SetVelocityY(0.0f);
 		}
 	}
 }
@@ -385,8 +86,200 @@ float Shield::CalYOfLinearEquation(float x1, float y1, float x2, float y2, float
 	return a*posX + b;
 }
 
+float Shield::GetWidth()
+{
+	return mWidth;
+}
+
+float Shield::GetHeight()
+{
+	return mHeight;
+}
+
+D3DXVECTOR3 Shield::GetReturnPoint()
+{
+	D3DXVECTOR3 shieldPosition(.0f, .0f, .0f);
+	D3DXVECTOR3 playerPosition = mPlayer->GetPosition();
+	bool isFacedRight = mPlayer->GetDirection() == Right;
+
+#pragma region SET_RETURN_POINT_BY_PLAYER_POS_AND_STATE
+	switch (mPlayer->GetState()->GetState())
+	{
+	default:
+	case InvincibleStand:
+	case Standing:
+		if (isFacedRight)
+		{
+			shieldPosition.x = playerPosition.x + mPlayer->GetWidth() - 4;
+			shieldPosition.y = playerPosition.y + 8;
+		}
+		else
+		{
+			shieldPosition.x = playerPosition.x - 3;
+			shieldPosition.y = playerPosition.y + 8;
+		}
+		break;
+	case Running:
+		if (isFacedRight)
+		{
+			shieldPosition.x = playerPosition.x + mPlayer->GetWidth() - 4;
+			shieldPosition.y = playerPosition.y + 6;
+		}
+		else
+		{
+			shieldPosition.x = playerPosition.x - 3;
+			shieldPosition.y = playerPosition.y + 6;
+		}
+		break;
+	case Falling:
+		if (isFacedRight)
+		{
+			shieldPosition.x = playerPosition.x + 2;
+			shieldPosition.y = playerPosition.y + 2;
+		}
+		else
+		{
+			shieldPosition.x = playerPosition.x + 5;
+			shieldPosition.y = playerPosition.y + 2;
+		}
+		break;
+	case HighShielding:
+		if (isFacedRight)
+		{
+			shieldPosition.x = playerPosition.x + 6;
+			shieldPosition.y = playerPosition.y - 1;
+		}
+		else
+		{
+			shieldPosition.x = playerPosition.x;
+			shieldPosition.y = playerPosition.y - 1;
+		}
+		break;
+	case Cling:
+
+		break;
+	case Kicking:
+		if (isFacedRight)
+		{
+			SetDirection(EntityDirection::Left);
+			shieldPosition.x = playerPosition.x - 2;
+			shieldPosition.y = playerPosition.y + 5;
+		}
+		else
+		{
+			SetDirection(EntityDirection::Right);
+			shieldPosition.x = playerPosition.x + mPlayer->GetWidth() - 5;
+			shieldPosition.y = playerPosition.y + 5;
+		}
+		break;
+	case Sitting:
+		if (isFacedRight)
+		{
+			shieldPosition.x = playerPosition.x + mPlayer->GetWidth() - 4;
+			shieldPosition.y = playerPosition.y + 8;
+		}
+		else
+		{
+			shieldPosition.x = playerPosition.x - 3;
+			shieldPosition.y = playerPosition.y + 8;
+		}
+		break;
+	case LowPunching:
+		if (isFacedRight)
+		{
+			shieldPosition.x = playerPosition.x + 8;
+			shieldPosition.y = playerPosition.y + 6;
+		}
+		else
+		{
+			shieldPosition.x = playerPosition.x + 5;
+			shieldPosition.y = playerPosition.y + 6;
+		}
+		break;
+	case SittingOnShield:
+		if (isFacedRight)
+		{
+			shieldPosition.x = playerPosition.x - 2;
+			shieldPosition.y = playerPosition.y + mPlayer->GetHeight() - 2;
+		}
+		else
+		{
+			shieldPosition.x = playerPosition.x;
+			shieldPosition.y = playerPosition.y + mPlayer->GetHeight() - 2;
+		}
+		break;
+	case Surfing:
+		if (isFacedRight)
+		{
+			shieldPosition.x = playerPosition.x + mPlayer->GetWidth() - 3;
+			shieldPosition.y = playerPosition.y;
+		}
+		else
+		{
+			shieldPosition.x = playerPosition.x - 4;
+			shieldPosition.y = playerPosition.y;
+		}
+		break;
+	case ThrowingShield:
+		if (isFacedRight)
+		{
+			if (mPlayer->mAniThrowingShield->GetCurrentFrame() == 0)
+			{
+				shieldPosition.x = playerPosition.x - 14;
+				shieldPosition.y = playerPosition.y - 2;
+			}
+			else
+			{
+				shieldPosition.x = playerPosition.x + mPlayer->GetWidth() - 8;
+				shieldPosition.y = playerPosition.y + 9;
+			}
+		}
+		else
+		{
+			if (mPlayer->mAniThrowingShield->GetCurrentFrame() == 0)
+			{
+				shieldPosition.x = playerPosition.x + mPlayer->GetWidth() - 6;
+				shieldPosition.y = playerPosition.y - 2;
+			}
+			else
+			{
+				shieldPosition.x = playerPosition.x - 16;
+				shieldPosition.y = playerPosition.y + 9;
+			}
+		}
+		break;
+	}
+#pragma endregion
+	
+	return shieldPosition;
+}
+
+ShieldState Shield::GetStateByPlayerState()
+{
+	switch (mPlayer->GetState()->GetState())
+	{
+	case LowPunching:
+	case Falling:
+		return EShieldIdle;
+	case HighShielding:
+	case ThrowingShield:
+		return EShieldHigh;
+	case SittingOnShield:
+		return EShieldSit;
+	default:
+		return EShieldRun;
+	}
+}
+
+bool Shield::IsThrown()
+{
+	return isThrown;
+}
+
 void Shield::Draw(D3DXVECTOR2 transform)
 {
+	if (mPlayer->GetState()->GetState() == EPlayerState::HighJumping && !IsThrown()) return;
+
 	if (mCurrentAni != nullptr && mState != -1)
 	{
 		mCurrentAni->Draw(GetPosition(), transform);
@@ -399,31 +292,33 @@ void Shield::Draw(D3DXVECTOR2 transform)
 	}
 }
 
-int Shield::GetState()
+ShieldState Shield::GetState()
 {
 	return mState;
 }
 
-void Shield::SetState(int state)
+void Shield::SetState(ShieldState state)
 {
 	mState = state;
 	ChangeAnimationByState(mState);
+	mHeight = mCurrentAni->GetHeight();
+	mWidth = mCurrentAni->GetWidth();
 }
 
 void Shield::ChangeAnimationByState(int state)
 {
 	switch (state)
 	{
-	case SHIELD_IDLE_STATE:
+	case EShieldIdle:
 		mCurrentAni = mAniIdle;
 		break;
-	case SHIELD_HIGHSHIELD_STATE:
+	case EShieldHigh:
 		mCurrentAni = mAniHighShield;
 		break;
-	case SHIELD_RUNSHIELD_STATE:
+	case EShieldRun:
 		mCurrentAni = mAniRunShield;
 		break;
-	case SHIELD_SITSHIELD_STATE:
+	case EShieldSit:
 		mCurrentAni = mAniSitShield;
 		break;
 	}
