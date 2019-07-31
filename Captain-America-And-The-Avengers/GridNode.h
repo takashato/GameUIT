@@ -5,6 +5,7 @@ class GridNode
 {
 public:
 	GridNode();
+	~GridNode();
 
 	void Add(Entity* collidable);
 	void Remove(Entity* entity);

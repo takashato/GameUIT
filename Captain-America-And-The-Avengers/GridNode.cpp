@@ -5,6 +5,14 @@ GridNode::GridNode()
 {
 }
 
+GridNode::~GridNode()
+{
+	for (Entity* entity : mList)
+	{
+		delete entity;
+	}
+}
+
 void GridNode::Add(Entity* entity)
 {
 	mList.push_back(entity);

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MapObjects>
+  <Objects type="NormalGround" > 
+	<Object x="0" y="448" wcells="6" hcells="1" />
+	<Object x="160" y="448" wcells="76" hcells="1" />
+	<Object x="1440" y="448" wcells="22" hcells="1" />
+	<Object x="48" y="318" wcells="3" hcells="1" />
+	<Object x="32" y="206" wcells="14" hcells="1" />
+	<Object x="288" y="206" wcells="14" hcells="1" />
+	<Object x="544" y="206" wcells="14" hcells="1" />
+	<Object x="800" y="206" wcells="14" hcells="1" />
+	<Object x="1056" y="206" wcells="14" hcells="1" />
+	<Object x="1312" y="206" wcells="14" hcells="1" />
+	<Object x="1568" y="206" wcells="14" hcells="1" />
+	<Object x="672" y="366" wcells="3" hcells="1" />
+	<Object x="576" y="366" wcells="2" hcells="1" />
+	<Object x="624" y="286" wcells="2" hcells="1" />
+	<Object x="880" y="286" wcells="2" hcells="1" />
+	<Object x="832" y="366" wcells="2" hcells="1" />
+	<Object x="928" y="366" wcells="3" hcells="1" />
+	<Object x="1328" y="318" wcells="3" hcells="1" />
+  </Objects>
+  <Objects type="HardGround" > 
+	<Object x="1792" y="318" wcells="16" hcells="3" />
+	<Object x="1792" y="432" wcells="4" hcells="3" />
+	<Object x="1856" y="448" wcells="10" hcells="2" />
+  </Objects>
+  <Objects type="Capsule" > 
+	<Object x="320" y="392" wcells="1" hcells="1" />
+	<Object x="128" y="374" wcells="1" hcells="1" />
+	<Object x="64" y="277" wcells="1" hcells="1" />
+	<Object x="416" y="296" wcells="1" hcells="1" />
+	<Object x="576" y="328" wcells="1" hcells="1" />
+	<Object x="832" y="328" wcells="1" hcells="1" />
+	<Object x="1088" y="392" wcells="1" hcells="1" />
+	<Object x="1408" y="374" wcells="1" hcells="1" />
+	<Object x="1184" y="296" wcells="1" hcells="1" />
+	<Object x="1344" y="277" wcells="1" hcells="1" />
+	<Object x="1600" y="392" wcells="1" hcells="1" />
+	<Object x="1696" y="296" wcells="1" hcells="1" />
+  </Objects>
+</MapObjects>

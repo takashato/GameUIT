@@ -213,6 +213,7 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Entities\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="MapObjectReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -382,6 +383,9 @@
     </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>Entities\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="MapObjectReader.h">
+      <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

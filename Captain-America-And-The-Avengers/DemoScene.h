@@ -11,6 +11,7 @@
 #include "GameMap.h"
 #include "Grid.h"
 #include "Ground.h"
+#include "MapObjectReader.h"
 
 class DemoScene : public Scene
 {
