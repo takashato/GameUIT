@@ -22,6 +22,7 @@ public:
 
 	Animation* StateToAnimation(EPlayerState state);
 	void ChangeAnimationByState(EPlayerState state);
+	Animation* GetCurrentAnimation();
 
 	void OnSetPosition();
 	void UpdateSize();

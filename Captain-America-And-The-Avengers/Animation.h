@@ -18,8 +18,10 @@ private:
 
 	int mWidth = -1, mHeight = -1;
 
+	bool mCycle = false, mLoop;
+
 public:
-	Animation(Sprite* sprite, std::vector<RECT> frames, float timePerFrame = 0.1F);
+	Animation(Sprite* sprite, std::vector<RECT> frames, float timePerFrame = 0.1F, bool loop = true);
 
 	void Draw(D3DXVECTOR3 position, D3DXVECTOR2 translation = D3DXVECTOR2());
 	virtual void Update(float deltaTime);
@@ -40,4 +42,7 @@ public:
 
 	bool IsFlippedHorizontally();
 	void SetFlippedHorizontally(bool flag);
+
+	void Reset();
+	bool IsDoneCycle();
 };

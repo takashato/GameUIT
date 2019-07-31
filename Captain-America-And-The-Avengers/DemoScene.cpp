@@ -150,7 +150,6 @@ void DemoScene::Update(float deltaTime)
 	mPlayer->CalcCollision(&mEntities, cEvents);
 	for (size_t i = 0; i < cEvents.size(); ++i)
 	{
-		if (cEvents[i]->entity->GetCollidableObjectType() == EPlatform && cEvents[i]->ny == -1.0f) collisionWithGround = true;
 		mPlayer->OnCollision(cEvents[i]);
 		delete cEvents[i];
 	}

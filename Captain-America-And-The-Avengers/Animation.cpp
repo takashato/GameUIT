@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Animation.h"
 
-Animation::Animation(Sprite* sprite, std::vector<RECT> frames, float timePerFrame)
+Animation::Animation(Sprite* sprite, std::vector<RECT> frames, float timePerFrame, bool loop)
 {
 	mSprite = sprite;
 
@@ -21,6 +21,9 @@ Animation::Animation(Sprite* sprite, std::vector<RECT> frames, float timePerFram
 	}
 
 	SetFrame(0);
+	mCycle = true;
+
+	mLoop = loop;
 }
 
 void Animation::Draw(D3DXVECTOR3 position, D3DXVECTOR2 translation)
@@ -53,7 +56,15 @@ void Animation::SetFrame(int frame)
 	int frameNum = GetFrameNumber();
 	if (frame >= frameNum)
 	{
-		mFrame = 0;
+		if (mLoop)
+		{
+			mFrame = 0;
+		}
+		else
+		{
+			mFrame = frameNum - 1;
+		}
+		mCycle = true;
 	}
 	else if (frame < 0)
 	{
@@ -113,4 +124,15 @@ bool Animation::IsFlippedHorizontally()
 void Animation::SetFlippedHorizontally(bool flag)
 {
 	mHorizontallyFlip = flag;
+}
+
+void Animation::Reset()
+{
+	mFrame = 0;
+	mCycle = false;
+}
+
+bool Animation::IsDoneCycle()
+{
+	return mCycle;
 }
