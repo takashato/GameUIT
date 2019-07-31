@@ -29,7 +29,10 @@ void Shield::Update(float deltaTime)
 	D3DXVECTOR3 shieldPosition;
 	shieldPosition.z = 0.f;
 
-	SetDirection(mPlayer->GetDirection());
+	if (mPlayer->GetState()->GetState() == Kicking)
+		SetDirection(mPlayer->GetDirection() == Left ? Right : Left);
+	else
+		SetDirection(mPlayer->GetDirection());
 
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 
@@ -42,7 +45,7 @@ void Shield::Update(float deltaTime)
 		isThrown = true;
 		flyDirection = mPlayer->GetDirection() == Right;
 		maxLengthFly = 100.0f;
-		SetVelocityX((flyDirection ? 1 : -1) * 444.44f);
+		SetVelocityX((flyDirection ? 1 : -1) * 666.66f);
 		SetVelocityY(.0f);
 		std::cout << "Started throwing shield!!!\n";
 	}
@@ -54,7 +57,7 @@ void Shield::Update(float deltaTime)
 	}
 	else
 	{
-		float acc = 987.65f;
+		float acc = 2222.2125f;
 
 		if (mState != EShieldHigh) SetState(EShieldHigh);
 
@@ -161,13 +164,11 @@ D3DXVECTOR3 Shield::GetReturnPoint()
 	case Kicking:
 		if (isFacedRight)
 		{
-			SetDirection(EntityDirection::Left);
 			shieldPosition.x = playerPosition.x - 2;
 			shieldPosition.y = playerPosition.y + 5;
 		}
 		else
 		{
-			SetDirection(EntityDirection::Right);
 			shieldPosition.x = playerPosition.x + mPlayer->GetWidth() - 5;
 			shieldPosition.y = playerPosition.y + 5;
 		}
