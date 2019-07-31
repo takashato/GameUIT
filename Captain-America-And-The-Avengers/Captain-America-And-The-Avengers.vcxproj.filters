@@ -83,9 +83,6 @@
     <ClCompile Include="MapReader\tinyxml2.cpp">
       <Filter>Utils\MapReader</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationScript.h">
-      <Filter>Framework</Filter>
-    </ClCompile>
     <ClCompile Include="AnimationScript.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
@@ -385,6 +382,9 @@
       <Filter>Entities\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="MapObjectReader.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationScript.h">
       <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>

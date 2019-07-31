@@ -160,7 +160,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationScript.cpp" />
-    <ClCompile Include="AnimationScript.h" />
+    <ClInclude Include="AnimationScript.h" />
     <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
