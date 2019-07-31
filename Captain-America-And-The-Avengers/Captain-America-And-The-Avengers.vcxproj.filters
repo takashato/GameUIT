@@ -44,6 +44,9 @@
     <Filter Include="Framework\Sound">
       <UniqueIdentifier>{b62ab0e5-b083-471e-9d2d-bd660eee5244}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entities\Bullet">
+      <UniqueIdentifier>{a0ad0acc-5b3e-4ab9-a9cd-00cd6b503a24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameException.cpp">
@@ -206,6 +209,9 @@
     </ClCompile>
     <ClCompile Include="PlayerHighJumpState.cpp">
       <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Entities\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -373,6 +379,9 @@
     </ClInclude>
     <ClInclude Include="SoundManager.h">
       <Filter>Framework\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Entities\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -161,6 +161,7 @@
     <ClCompile Include="AnimationScript.cpp" />
     <ClCompile Include="AnimationScript.h" />
     <ClCompile Include="Bat.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="dsutil.cpp" />
@@ -216,6 +217,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Bat.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="define.h" />
