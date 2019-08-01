@@ -30,11 +30,16 @@ void Animation::Draw(D3DXVECTOR3 position, D3DXVECTOR2 translation)
 {
 	RECT rect = GetCurrentFrameRect();
 	mSprite->SetRect(rect);
+	D3DXVECTOR3 flipExtra(.0f, .0f, .0f);
 	if (mHorizontallyFlip)
 	{
 		position.x += (rect.right - rect.left);
 	}
-	mSprite->Draw(position, D3DXVECTOR2(mHorizontallyFlip ? -1.0f : 1.0f, 1.0f), translation, mIsBlinking ? 150 : 255);
+	else
+	{
+		flipExtra.x += GetWidth() - (rect.right - rect.left);
+	}
+	mSprite->Draw(position, D3DXVECTOR2(mHorizontallyFlip ? -1.0f : 1.0f, 1.0f), translation, mIsBlinking ? 150 : 255, flipExtra);
 }
 
 void Animation::Update(float deltaTime)

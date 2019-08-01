@@ -4,7 +4,7 @@ public:
 	Sprite(const wchar_t* filePath, RECT sourceRect = RECT(), int width = NULL, int height = NULL, D3DCOLOR colorKey = NULL);
 	~Sprite();
 
-	void Draw(D3DXVECTOR3 postion, D3DXVECTOR2 scale = D3DXVECTOR2(1.0f, 1.0f), D3DXVECTOR2 transform = D3DXVECTOR2(),int alpha = 255);
+	void Draw(D3DXVECTOR3 postion, D3DXVECTOR2 scale = D3DXVECTOR2(1.0f, 1.0f), D3DXVECTOR2 transform = D3DXVECTOR2(), int alpha = 255, D3DXVECTOR3 flipExtra = D3DXVECTOR3(.0f, .0f, .0f));
 	void SetRect(RECT rect);
 
 	D3DXIMAGE_INFO GetImageInfo();

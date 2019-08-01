@@ -68,7 +68,7 @@ Sprite::~Sprite()
 	delete mTexture;
 }
 
-void Sprite::Draw(D3DXVECTOR3 position, D3DXVECTOR2 scale, D3DXVECTOR2 transform, int alpha)
+void Sprite::Draw(D3DXVECTOR3 position, D3DXVECTOR2 scale, D3DXVECTOR2 transform, int alpha, D3DXVECTOR3 flipExtra)
 {
 	mSpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 
@@ -97,6 +97,10 @@ void Sprite::Draw(D3DXVECTOR3 position, D3DXVECTOR2 scale, D3DXVECTOR2 transform
 	mSpriteHandler->SetTransform(&mMatrix);
 
 	D3DXVECTOR3 center(mWidth / 2.0f, mHeight / 2.0f, .0f);
+	if (flipExtra.x != 0)
+	{
+		position.x += flipExtra.x;
+	}
 
 	mSpriteHandler->Draw(
 		mTexture,
