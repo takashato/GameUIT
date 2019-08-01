@@ -53,6 +53,9 @@ void DemoScene::Setup()
 	int gridRowNum = (int)ceil(1.0f * mMap->GetHeight() / gridCellSize);
 	mGrid = new Grid(gridColNum, gridRowNum, gridCellSize);
 
+	// Setup Enemies
+	Enemy* enemy = nullptr;
+
 	// Setup map object
 	switch (MapID)
 	{
@@ -62,6 +65,10 @@ void DemoScene::Setup()
 		break;
 	case ID_MAP_CHARLESTON_BOSS_LIGHT:
 		MapObjectReader::LoadFromFile("Resources\\Map\\CharlestonBossMapObjects.xml", mGrid);
+		//-----Add Boss
+		enemy = new BossCharleston(D3DXVECTOR3(189.0f, 145.0f, .0f));
+		mEnemies.push_back(enemy);
+		mGrid->Add(enemy);
 		break;
 	}
 
@@ -72,8 +79,7 @@ void DemoScene::Setup()
 	mPlayer->SetState(new PlayerFallingState(mPlayer));
 	mPlayer->SetShield(new Shield(mPlayer));
 
-	// Setup Enemies
-	Enemy* enemy = nullptr;
+	
 	// -----GunEnemy-----
 	enemy = new GunEnemy(D3DXVECTOR3(688.0f, 320.0f, 0.f));
 	mEnemies.push_back(enemy);
@@ -126,10 +132,7 @@ void DemoScene::Setup()
 			break;
 		}
 	}
-	//-----Add Boss
-	enemy = new BossCharleston(D3DXVECTOR3(189.0f, 145.0f, .0f));
-	mEnemies.push_back(enemy);
-	mGrid->Add(enemy);
+	
 
 	mCamera = new Camera(Game::GetInstance().GetWidth(), Game::GetInstance().GetHeight());
 	mMap->SetCamera(mCamera);
