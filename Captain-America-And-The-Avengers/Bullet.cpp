@@ -25,7 +25,7 @@ RECT Bullet::GetBoundingBox()
 
 CollidableObjectType Bullet::GetCollidableObjectType()
 {
-	return EEnemy;
+	return EBullet;
 }
 
 BulletType Bullet::GetBulletType()

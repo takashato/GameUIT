@@ -126,9 +126,11 @@ void DemoScene::Setup()
 			break;
 		case ERunEnemy:
 			mEnemies[i]->SetBullet(new NormalBullet(mEnemies[i]));
+			mGrid->Add(mEnemies[i]->GetBullet());
 			break;
 		case EGunEnemy:
 			mEnemies[i]->SetBullet(new NormalBullet(mEnemies[i]));
+			mGrid->Add(mEnemies[i]->GetBullet());
 			break;
 		case EGunStockEnemy:
 			break;

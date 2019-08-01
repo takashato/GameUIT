@@ -17,7 +17,8 @@ enum CollidableObjectType
 	EEnemy,
 	EWeapon,
 	EPlatform,
-	EDefault
+	EDefault,
+	EBullet
 };
 
 class Entity 
