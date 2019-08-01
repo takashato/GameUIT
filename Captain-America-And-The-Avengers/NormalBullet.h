@@ -29,6 +29,8 @@ public:
 
 	BulletType GetBulletType();
 
+	void HitShield();
+
 private:
 	Sprite* mSprite = NULL;
 	AnimationScript* mAniScripts = NULL;

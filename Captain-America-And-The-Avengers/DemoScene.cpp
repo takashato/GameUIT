@@ -81,11 +81,11 @@ void DemoScene::Setup()
 
 	
 	// -----GunEnemy-----
-	enemy = new GunEnemy(D3DXVECTOR3(688.0f, 325.0f, 0.f));
+	enemy = new GunEnemy(D3DXVECTOR3(688.0f, 323.0f, 0.f));
 	mEnemies.push_back(enemy);
 	mGrid->Add(enemy);
 	/*gunEnemy3 = new GunEnemy(D3DXVECTOR3(776.0f, 416.0f, 0.f));*/
-	enemy = new GunEnemy(D3DXVECTOR3(944.0f, 325.0f, 0.f));
+	enemy = new GunEnemy(D3DXVECTOR3(944.0f, 323.0f, 0.f));
 	mEnemies.push_back(enemy);
 	mGrid->Add(enemy);
 	// ------------------
@@ -131,6 +131,7 @@ void DemoScene::Setup()
 		case EGunEnemy:
 			mEnemies[i]->SetBullet(new NormalBullet(mEnemies[i]));
 			mGrid->Add(mEnemies[i]->GetBullet());
+			std::cout << "Test bullet" << mEnemies[i]->GetBullet() << std::endl;
 			break;
 		case EGunStockEnemy:
 			break;
@@ -165,6 +166,8 @@ void DemoScene::Update(float deltaTime)
 		auto type = mEntities[i]->GetCollidableObjectType();
 		switch (type)
 		{
+		case EBullet:
+			break;
 		case EEnemy:
 			((Enemy*)mEntities[i])->Update(deltaTime, mPlayer);
 			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::EGunEnemy)

@@ -128,12 +128,12 @@ D3DXVECTOR3 Shield::GetReturnPoint()
 		if (isFacedRight)
 		{
 			shieldPosition.x = playerPosition.x + mPlayer->GetWidth() - 4;
-			shieldPosition.y = playerPosition.y + 6;
+			shieldPosition.y = playerPosition.y + 4;
 		}
 		else
 		{
 			shieldPosition.x = playerPosition.x - 3;
-			shieldPosition.y = playerPosition.y + 6;
+			shieldPosition.y = playerPosition.y + 4;
 		}
 		break;
 	case Falling:
@@ -285,6 +285,18 @@ void Shield::OnCollision(CollisionEvent* ce)
 	{
 		auto enemy = ((Enemy*)ce->entity);
 		enemy->TakeDamage(this);
+	}
+	else if (ce->entity->GetCollidableObjectType() == EBullet)
+	{
+		if (mState == ShieldState::EShieldRun && (((Bullet*)ce->entity)->GetBulletType() == BNormalBullet))
+		{
+			if (GetDirection() == Right && ce->nx == -1.0f || GetDirection() == Left && ce->nx == 1.0f)
+			{
+				((Bullet*)ce->entity)->HitShield();
+				SoundManager::GetInstance().CResetSound(SmallBulletsHitShields);
+				SoundManager::GetInstance().CPlaySound(SmallBulletsHitShields);
+			}
+		}
 	}
 }
 

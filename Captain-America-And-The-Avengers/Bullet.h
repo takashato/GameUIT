@@ -25,9 +25,15 @@ public:
 	virtual CollidableObjectType GetCollidableObjectType() override;
 	virtual BulletType GetBulletType();
 
+	void OnSetPosition();
+
+	void HitShield();
+
 protected:
 	Animation* mCurrentAni = NULL;
 
 	int mFlyDirection = 0;
+
+	bool mIsHitShield = false;
 };
 

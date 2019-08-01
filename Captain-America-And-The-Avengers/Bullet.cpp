@@ -32,3 +32,16 @@ BulletType Bullet::GetBulletType()
 {
 	return BDefaultBullet;
 }
+
+void Bullet::OnSetPosition()
+{
+	if (Grid::instance != nullptr)
+	{
+		Grid::instance->Move(this);
+	}
+}
+
+void Bullet::HitShield()
+{
+	mIsHitShield = true;
+}

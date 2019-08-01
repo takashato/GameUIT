@@ -54,24 +54,34 @@ void NormalBullet::Update(float deltaTime)
 			isFired = true;
 			if (mFlyDirection == -1)
 			{
-				if (GetVelocityX() < 150)
+				if (GetVelocityX() < 100)
 					AddVelocityX(15);
-				if (GetVelocityX() != 0.f)
-					AddPositionX(GetVelocityX()* deltaTime);
 			}
 			else if (mFlyDirection == 1)
 			{
-				if (GetVelocityX() > -150)
+				if (GetVelocityX() > -100)
 					AddVelocityX(-15);
+
+			}
+
+			if (!mIsHitShield)
+			{
 				if (GetVelocityX() != 0.f)
 					AddPositionX(GetVelocityX() * deltaTime);
+			}
+			else
+			{
+				if (GetVelocityX() != 0.f)
+					AddPositionY(-abs(GetVelocityX()) * deltaTime);
 			}
 
 			if (mGunEnemy->GetState() == GUNENEMY_SITTING_STATE)
 			{
+				mIsHitShield = false;
 				SetVelocityX(0.0f);
+				SetVelocityY(0.0f);
 				mFlyDirection = 0;
-				gunEnemyPosition.y = gunEnemyPosition.y - 12;
+				gunEnemyPosition.y = gunEnemyPosition.y - 10;
 				SetPosition(gunEnemyPosition);
 				isFired = false;
 			}
@@ -79,7 +89,7 @@ void NormalBullet::Update(float deltaTime)
 		else
 		{
 			mFlyDirection = 0;
-			gunEnemyPosition.y = gunEnemyPosition.y - 12;
+			gunEnemyPosition.y = gunEnemyPosition.y - 10;
 			SetPosition(gunEnemyPosition);
 			isFired = false;
 		}
@@ -162,9 +172,15 @@ int NormalBullet::GetState()
 
 void NormalBullet::OnSetPosition()
 {
+	Bullet::OnSetPosition();
 }
 
 BulletType NormalBullet::GetBulletType()
 {
 	return BulletType::BNormalBullet;
+}
+
+void NormalBullet::HitShield()
+{
+	mIsHitShield = true;
 }
