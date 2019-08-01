@@ -16,17 +16,21 @@ void PlayerHighJumpState::HandleKeyboard(Keyboard* keyboard)
 	{
 		mPlayer->SetState(new PlayerSittingOnShieldState(mPlayer));
 	}
-	else if (!keyboard->IsPressing(GAME_KEY_JUMP))
+	/*else if (!keyboard->IsPressing(GAME_KEY_JUMP))
 	{
 		mPlayer->SetState(new PlayerFallingState(mPlayer));
-	}
+	}*/
 }
 
 void PlayerHighJumpState::Update(float deltaTime)
 {
 	mTimeUpdater += deltaTime;
 	mPlayer->AddVelocityY(PLAYER_GRAVITY * deltaTime);
-	mTimeUpdater = .0f;
+	if (mTimeUpdater > 0.5f)
+	{
+		mPlayer->SetState(new PlayerFallingState(mPlayer));
+		mTimeUpdater = .0f;
+	}
 }
 
 EPlayerState PlayerHighJumpState::GetState()
