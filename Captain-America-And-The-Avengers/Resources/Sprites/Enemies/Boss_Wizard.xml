@@ -50,11 +50,11 @@
   <Animation name="Fly" imagePath="Boss_Wizard.png" width="312" height="232">
     <Sprites type="0">
       <sprite x="48" y="130" w="29" h="51" />
-      <sprite x="88" y="130" w="29" h="51" />
     </Sprites>
   </Animation>
   <Animation name="FlyGun" imagePath="Boss_Wizard.png" width="312" height="232">
     <Sprites type="0">
+      <sprite x="88" y="130" w="29" h="51" />
       <sprite x="128" y="130" w="29" h="51" />
       <sprite x="168" y="130" w="29" h="51" />
     </Sprites>

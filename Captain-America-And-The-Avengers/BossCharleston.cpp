@@ -38,13 +38,40 @@ void BossCharleston::LoadAnimations()
 
 void BossCharleston::Update(float deltaTime, Player* player)
 {
+
+
 	Entity::Update(deltaTime); // Update position
+	if (BOSS_CHARLESTON_IDLE_STATE)
+	{
+		SetVelocityX(0.f);
+		SetVelocityY(0.f);
+	}
+	switch (mNumChangeMode)
+	{
+	case 1:
+		ModeOne(deltaTime, player);
+		break;
+	case 2:
+		ModeTwo(deltaTime, player);
+		break;
+	default:
+		break;
+	}
+	if (mCountMisc == 3)
+	{
+		if (mNumChangeMode == 1)
+			mNumChangeMode = 2;
+		else
+			mNumChangeMode = 1;
+		mCountMisc = 0;
+		SetState(BOSS_CHARLESTON_IDLE_STATE);
+	}
 
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 
 	mCounter += deltaTime;
 
-	ModeOne(deltaTime, player);
+
 
 	mCurrentAni->Update(deltaTime);
 }
@@ -85,24 +112,6 @@ void BossCharleston::ChangeAnimationByState(int state)
 		break;
 	case BOSS_CHARLESTON_RUNNING_STATE:
 		mCurrentAni = mAniRunning;
-		if (mDirection == EntityDirection::Left)
-		{
-			if (mVelocityX > -PLAYER_VELOCITY_X_MAX)
-			{
-				AddVelocityX(-50);
-				if (mVelocityX < -PLAYER_VELOCITY_X_MAX)
-					SetVelocityX(-PLAYER_VELOCITY_X_MAX);
-			}
-		}
-		else
-		{
-			if (mVelocityX < PLAYER_VELOCITY_X_MAX)
-			{
-				AddVelocityX(50);
-				if (mVelocityX > PLAYER_VELOCITY_X_MAX)
-					SetVelocityX(PLAYER_VELOCITY_X_MAX);
-			}
-		}
 		break;
 	case BOSS_CHARLESTON_DYING_STATE:
 		mCurrentAni = mAniDying;
@@ -112,7 +121,6 @@ void BossCharleston::ChangeAnimationByState(int state)
 		break;
 	case BOSS_CHARLESTON_GUN_STATE:
 		mCurrentAni = mAniGun;
-		SetVelocityX(0.f);
 		break;
 	case BOSS_CHARLESTON_HIT_STATE:
 		mCurrentAni = mAniHit;
@@ -151,6 +159,32 @@ void BossCharleston::ModeOne(float deltaTime, Player* player)
 		SetState(BOSS_CHARLESTON_RUNNING_STATE);
 		mCounter = 0;
 	}
+	if (mState == BOSS_CHARLESTON_GUN_STATE)
+	{
+		SetVelocityX(0.f);
+		SetVelocityY(0.f);
+	}
+	if (mState == BOSS_CHARLESTON_RUNNING_STATE)
+	{
+		if (mDirection == EntityDirection::Left)
+		{
+			if (mVelocityX > -PLAYER_VELOCITY_X_MAX)
+			{
+				AddVelocityX(-50);
+				if (mVelocityX < -PLAYER_VELOCITY_X_MAX)
+					SetVelocityX(-PLAYER_VELOCITY_X_MAX);
+			}
+		}
+		else
+		{
+			if (mVelocityX < PLAYER_VELOCITY_X_MAX)
+			{
+				AddVelocityX(50);
+				if (mVelocityX > PLAYER_VELOCITY_X_MAX)
+					SetVelocityX(PLAYER_VELOCITY_X_MAX);
+			}
+		}
+	}
 	if (mState == BOSS_CHARLESTON_RUNNING_STATE && mCounter > 0.9f)
 	{
 		SetState(BOSS_CHARLESTON_GUN_STATE);
@@ -164,6 +198,7 @@ void BossCharleston::ModeOne(float deltaTime, Player* player)
 			if (coutGun == 3) {
 				SetState(BOSS_CHARLESTON_KAMEHAMEHA_STATE);
 				coutGun = 1;
+				mCountMisc++;
 			}
 			else {
 				SetState(BOSS_CHARLESTON_GUN_STATE);
@@ -180,22 +215,138 @@ void BossCharleston::ModeOne(float deltaTime, Player* player)
 			SetState(BOSS_CHARLESTON_RUNNING_STATE);
 		}
 	}
-	if (player->GetPosition().x > mPosition.x+20)
-	{
+	CheckDirection(player);
+	if (mPosition.x < 0) {
+		mPosition.x = 0;
 		mDirection = Right;
 	}
-	if (player->GetPosition().x< mPosition.x-20)
+	if (mPosition.x > 216) {
+		mPosition.x = 216;
+		mDirection = Left;
+	}
+
+}
+void BossCharleston::ModeTwo(float deltaTime, Player* player)
+{
+	if (mState == BOSS_CHARLESTON_PLY_STATE)
 	{
-		mDirection = Left;
+		if (mFlyHorizontal)
+		{
+			if (mDirection == EntityDirection::Left)
+			{
+
+				if (mVelocityX > -PLAYER_VELOCITY_X_MAX)
+				{
+					AddVelocityX(-150);
+					if (mVelocityX < -PLAYER_VELOCITY_X_MAX)
+						SetVelocityX(-PLAYER_VELOCITY_X_MAX);
+				}
+			}
+			else
+			{
+
+				if (mVelocityX < PLAYER_VELOCITY_X_MAX)
+				{
+					AddVelocityX(150);
+					if (mVelocityX > PLAYER_VELOCITY_X_MAX)
+						SetVelocityX(PLAYER_VELOCITY_X_MAX);
+				}
+
+
+			}
+		}
+		if (mFlyUp)
+		{
+			if (mVelocityY > -PLAYER_VELOCITY_Y_MAX)
+			{
+				AddVelocityY(-100);
+				if (mVelocityY < -PLAYER_VELOCITY_Y_MAX)
+					SetVelocityY(-PLAYER_VELOCITY_Y_MAX);
+			}
+		}
+		if (mFlyDown)
+		{
+			if (mVelocityY < PLAYER_VELOCITY_Y_MAX)
+			{
+				AddVelocityY(100);
+				if (mVelocityY > PLAYER_VELOCITY_Y_MAX)
+					SetVelocityY(PLAYER_VELOCITY_Y_MAX);
+			}
+		}
+
+		if (mPosition.y < 30.f)
+		{
+			mFlyUp = false;
+			mFlyHorizontal = true;
+			mFlyDown = false;
+			SetVelocityY(0.f);
+		}
+		if (mPosition.x < 5.f)
+		{
+			mFlyUp = false;
+			mFlyHorizontal = false;
+			mFlyDown = true;
+			SetVelocityX(0.f);
+		}
+		if (mPosition.y > 145.f&&mPosition.x == 5.f&&mDirection == Left)
+		{
+			mDirection = Right;
+			mFlyUp = true;
+			mFlyHorizontal = false;
+			mFlyDown = false;
+			SetState(BOSS_CHARLESTON_IDLE_STATE);
+			mCountMisc++;
+
+		}
+		if (mPosition.x > 189)
+		{
+			mFlyUp = false;
+			mFlyHorizontal = false;
+			mFlyDown = true;
+			SetVelocityX(0.f);
+		}
+		if (mPosition.y > 145.f&&mPosition.x == 189.f&&mDirection == Right)
+		{
+			mDirection = Left;
+			mFlyUp = true;
+			mFlyHorizontal = false;
+			mFlyDown = false;
+			SetState(BOSS_CHARLESTON_IDLE_STATE);
+			mCountMisc++;
+
+		}
+
+
+
 	}
-	if (mPosition.x < 8) {
-		mDirection = Right;
+	if (mPosition.y < 30.f)
+		mPosition.y = 30.f;
+	if (mPosition.x < 5.f)
+		mPosition.x = 5.f;
+	if (mPosition.y > 145.f)
+		mPosition.y = 145.f;
+	if (mPosition.x > 189.f)
+		mPosition.x = 189.f;
+	if (mState == BOSS_CHARLESTON_IDLE_STATE && mCounter > 1.f)
+	{
+		SetState(BOSS_CHARLESTON_PLY_STATE);
+		mCounter = 0;
 	}
-	if (mPosition.x > 180) {
-		mDirection = Left;
-	}
+
 }
 Bullet* BossCharleston::GetBullet()
 {
 	return mBullet;
+}
+void BossCharleston::CheckDirection(Player* player)
+{
+	if (player->GetPosition().x > mPosition.x + 20 && mDirection == Left)
+	{
+		mDirection = Right;
+	}
+	if (player->GetPosition().x < mPosition.x - 20 && mDirection == Right)
+	{
+		mDirection = Left;
+	}
+
 }

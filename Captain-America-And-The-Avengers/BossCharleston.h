@@ -5,7 +5,6 @@
 #include "PlayerStandingState.h" 
 #include "AnimationScript.h"
 #include "Camera.h"
-
 //Tam thoi
 #define BOSS_CHARLESTON_IDLE_STATE 0
 #define BOSS_CHARLESTON_LAUGH_STATE 1
@@ -42,9 +41,19 @@ public:
 	void SetBullet(Bullet* Bullet);
 	Bullet* GetBullet();
 
+	void CheckDirection(Player* player);
+
+
 	void ModeOne(float deltaTime, Player* player);
-	 
+	void ModeTwo(float deltaTime, Player* player);
+	int mNumChangeMode = 1;
+	int mCountMisc = 0;
+
 	int coutGun = 1;
+	//Logic for fly
+	bool mFlyUp = true;
+	bool mFlyDown = false;
+	bool mFlyHorizontal = false;
 
 private:
 	Sprite* mSprite = NULL;
