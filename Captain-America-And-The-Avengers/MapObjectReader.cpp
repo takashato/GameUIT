@@ -22,6 +22,7 @@ void MapObjectReader::LoadFromFile(const char* filePath, Grid* grid)
 	{
 		if (element->Attribute("type", "NormalGround") || element->Attribute("type", "HardGround"))
 		{
+			GroundType type = element->Attribute("type", "NormalGround") ? EGroundNormal : EGroundHard;
 			tinyxml2::XMLElement* subElement = element->FirstChildElement();
 			while (subElement != nullptr)
 			{
@@ -34,7 +35,7 @@ void MapObjectReader::LoadFromFile(const char* filePath, Grid* grid)
 				{
 					for (int j = 0; j < hcells; ++j)
 					{
-						grid->Add(new Ground(D3DXVECTOR3(x + 16.0f * i, y + 16.0f * j, .0f)));
+						grid->Add(new Ground(D3DXVECTOR3(x + 16.0f * i, y + 16.0f * j, .0f), type));
 					}
 				}
 				subElement = subElement->NextSiblingElement();

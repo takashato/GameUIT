@@ -128,8 +128,9 @@ void DemoScene::Update(float deltaTime)
 			{
 				RECT pB = mPlayer->GetBoundingBox();
 				RECT eB = mEntities[i]->GetBoundingBox();
-
-				if (eB.top - pB.bottom <= 5 && (pB.left >= eB.left && pB.left <= eB.right || pB.right >= eB.left && pB.right <= eB.right))
+				GroundType type = ((Ground*)mEntities[i])->GetGroundType();
+				
+				if (abs(eB.top - pB.bottom) <= 5 && (pB.left >= eB.left && pB.left <= eB.right || pB.right >= eB.left && pB.right <= eB.right))
 				{
 					collisionWithGround = true;
 				}

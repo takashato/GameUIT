@@ -182,6 +182,35 @@ CollidableObjectType Player::GetCollidableObjectType()
 
 void Player::OnCollision(CollisionEvent* ce)
 {
+	if (ce->entity->GetCollidableObjectType() == EPlatform)
+	{
+		GroundType type = ((Ground*)ce->entity)->GetGroundType();
+		if (type == EGroundHard)
+		{
+			RECT pB = GetBoundingBox();
+			RECT eB = ce->entity->GetBoundingBox();
+
+			if (ce->nx == -1.0f && ((pB.top - eB.top) * (pB.bottom - eB.bottom) <= 0.0f))
+			{
+				SetVelocityX(.0);
+				SetPositionX(eB.left - GetWidth());
+			}
+			else if (ce->nx == 1.0f && ((pB.top - eB.top) * (pB.bottom - eB.bottom) <= 0.0f))
+			{
+				SetVelocityX(.0);
+				SetPositionX(eB.right);
+			}
+
+			if (mState->GetState() != Falling)
+			{
+				if (ce->ny == 1.0f && (pB.left >= eB.left && pB.left <= eB.right || pB.right >= eB.left && pB.right <= eB.right))
+				{
+					SetPositionY(eB.bottom);
+					SetState(new PlayerFallingState(this));
+				}
+			}
+		}
+	}
 	mState->OnCollision(ce);
 }
 

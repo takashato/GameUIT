@@ -21,8 +21,8 @@
 	<Object x="1336" y="318" wcells="2" hcells="1" />
   </Objects>
   <Objects type="HardGround" > 
-	<Object x="1792" y="318" wcells="16" hcells="3" />
-	<Object x="1792" y="432" wcells="4" hcells="3" />
+	<Object x="1792" y="318" wcells="16" hcells="2" />
+	<Object x="1800" y="432" wcells="3" hcells="3" />
 	<Object x="1856" y="448" wcells="10" hcells="2" />
   </Objects>
   <Objects type="Capsule" > 

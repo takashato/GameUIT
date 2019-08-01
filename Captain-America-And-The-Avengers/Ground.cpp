@@ -2,8 +2,9 @@
 #include "Game.h"
 #include "Ground.h"
 
-Ground::Ground(D3DXVECTOR3 position) : Entity()
+Ground::Ground(D3DXVECTOR3 position, GroundType groundType) : Entity()
 {
+	mGroundType = groundType;
 	mWidth = mHeight = 16;
 	LoadAnimations();
 	SetPosition(position);
@@ -51,6 +52,11 @@ void Ground::ChangeAnimationByState(int state)
 
 void Ground::OnSetPosition()
 {
+}
+
+GroundType Ground::GetGroundType()
+{
+	return mGroundType;
 }
 
 RECT Ground::GetBoundingBox() 
