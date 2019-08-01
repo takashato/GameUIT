@@ -146,7 +146,7 @@ void MissileEnemy::Update(float deltaTime, Player* player)
 			mCurrentAni = mAniRunning;
 			mState = MISSILEENEMY_RUNNING_STATE;
 
-			if (spawnPosition.x - GetPosition().x > 500)
+			if (spawnPosition.x - GetPosition().x > 256)
 				SetPosition(spawnPosition);
 			else
 			{

@@ -10,12 +10,13 @@
 #define NORMALBULLET_FLYING_STATE 0
 
 class GunEnemy;
+class RunEnemy;
 class Bullet;
 
 class NormalBullet : public Bullet
 {
 public:
-	NormalBullet(Enemy* gunEnemy);
+	NormalBullet(Enemy* Enemy);
 	~NormalBullet();
 	void LoadAnimations();
 
@@ -35,6 +36,7 @@ private:
 	int mState = -1;
 	float mCounter = 0;
 	bool isFired = true;
-	GunEnemy* mGunEnemy;
+	GunEnemy* mGunEnemy = NULL;
+	RunEnemy* mRunEnemy = NULL;
 };
 

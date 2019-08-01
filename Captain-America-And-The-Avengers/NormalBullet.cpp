@@ -2,11 +2,14 @@
 #include "Game.h"
 #include "NormalBullet.h"
 
-NormalBullet::NormalBullet(Enemy* gunEnemy) : Bullet()
+NormalBullet::NormalBullet(Enemy* Enemy) : Bullet()
 {
-	mGunEnemy = (GunEnemy*)gunEnemy;
+	if (Enemy->GetEnemyType() == EnemyType::EGunEnemy)
+		mGunEnemy = (GunEnemy*)Enemy;
+	else
+		mRunEnemy = (RunEnemy*)Enemy;
 	LoadAnimations();
-	D3DXVECTOR3 position = gunEnemy->GetPosition();
+	D3DXVECTOR3 position = Enemy->GetPosition();
 	position.y = position.y + 4;
 	SetPosition(position);
 	mState = NORMALBULLET_FLYING_STATE;
@@ -28,55 +31,110 @@ void NormalBullet::LoadAnimations()
 
 void NormalBullet::Update(float deltaTime)
 {
-	D3DXVECTOR3 gunEnemyPosition = mGunEnemy->GetPosition();
-
-	if (mGunEnemy->GetState() == GUNENEMY_STANDING_STATE || mGunEnemy->GetState() == GUNENEMY_SITTING_STATE)
+	if (mGunEnemy != NULL)
 	{
-		if (mGunEnemy->GetState() == GUNENEMY_STANDING_STATE)
+		D3DXVECTOR3 gunEnemyPosition = mGunEnemy->GetPosition();
+
+		if (mGunEnemy->GetState() == GUNENEMY_STANDING_STATE || mGunEnemy->GetState() == GUNENEMY_SITTING_STATE)
 		{
-			if (mFlyDirection == 0)
+			if (mGunEnemy->GetState() == GUNENEMY_STANDING_STATE)
 			{
-				if (mGunEnemy->GetDirection() == Left)
+				if (mFlyDirection == 0)
 				{
-					mFlyDirection = -1;
-				}
-				else
-				{
-					mFlyDirection = 1;
+					if (mGunEnemy->GetDirection() == Left)
+					{
+						mFlyDirection = -1;
+					}
+					else
+					{
+						mFlyDirection = 1;
+					}
 				}
 			}
-		}
-		isFired = true;
-		if (mFlyDirection == -1)
-		{
-			if (GetVelocityX() < 150)
-				AddVelocityX(15);
-			if (GetVelocityX() != 0.f)
-				AddPositionX(GetVelocityX()* deltaTime);
-		}
-		else if (mFlyDirection == 1)
-		{		
-			if (GetVelocityX() > -150)
-				AddVelocityX(-15);
-			if (GetVelocityX() != 0.f)
-				AddPositionX(GetVelocityX() * deltaTime);
-		}
+			isFired = true;
+			if (mFlyDirection == -1)
+			{
+				if (GetVelocityX() < 150)
+					AddVelocityX(15);
+				if (GetVelocityX() != 0.f)
+					AddPositionX(GetVelocityX()* deltaTime);
+			}
+			else if (mFlyDirection == 1)
+			{
+				if (GetVelocityX() > -150)
+					AddVelocityX(-15);
+				if (GetVelocityX() != 0.f)
+					AddPositionX(GetVelocityX() * deltaTime);
+			}
 
-		if (mGunEnemy->GetState() == GUNENEMY_SITTING_STATE)
+			if (mGunEnemy->GetState() == GUNENEMY_SITTING_STATE)
+			{
+				SetVelocityX(0.0f);
+				mFlyDirection = 0;
+				gunEnemyPosition.y = gunEnemyPosition.y - 12;
+				SetPosition(gunEnemyPosition);
+				isFired = false;
+			}
+		}
+		else
 		{
-			SetVelocityX(0.0f);
 			mFlyDirection = 0;
 			gunEnemyPosition.y = gunEnemyPosition.y - 12;
 			SetPosition(gunEnemyPosition);
 			isFired = false;
 		}
 	}
-	else
+	
+	if (mRunEnemy != NULL)
 	{
-		mFlyDirection = 0;
-		gunEnemyPosition.y = gunEnemyPosition.y - 12;
-		SetPosition(gunEnemyPosition);
-		isFired = false;
+		D3DXVECTOR3 runEnemyPosition = mRunEnemy->GetPosition();
+
+		if (mRunEnemy->GetState() == RUNENEMY_STANDING_STATE || mRunEnemy->GetState() == RUNENEMY_RUNNING_STATE)
+		{
+			if (mRunEnemy->GetState() == RUNENEMY_STANDING_STATE)
+			{
+				if (mFlyDirection == 0)
+				{
+					if (mRunEnemy->GetDirection() == Right)
+					{
+						mFlyDirection = -1;
+					}
+					else
+					{
+						mFlyDirection = 1;
+					}
+				}
+			}
+			isFired = true;
+			if (mFlyDirection == -1)
+			{
+				if (GetVelocityX() < 150)
+					AddVelocityX(15);
+				if (GetVelocityX() != 0.f)
+					AddPositionX(GetVelocityX()* deltaTime);
+			}
+			else if (mFlyDirection == 1)
+			{
+				if (GetVelocityX() > -150)
+					AddVelocityX(-15);
+				if (GetVelocityX() != 0.f)
+					AddPositionX(GetVelocityX() * deltaTime);
+			}
+
+			if (mRunEnemy->GetState() == RUNENEMY_RUNNING_STATE)
+			{
+				SetVelocityX(0.0f);
+				mFlyDirection = 0;
+				SetPosition(runEnemyPosition);
+				isFired = false;
+			}
+		}
+		else
+		{
+			mFlyDirection = 0;
+			SetPosition(runEnemyPosition);
+			isFired = false;
+		}
 	}
 }
 

@@ -45,6 +45,7 @@ private:
 	NormalBullet* mBullet;
 	int mSubTypeID = 0;
 	D3DXVECTOR3 spawnPosition;
+	D3DXVECTOR3 lastPosition;
 	bool isShoot = false;
 };
 

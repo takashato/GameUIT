@@ -48,14 +48,14 @@ void RunEnemy::Update(float deltaTime, Player* player)
 				if (mDirection == Left)
 				{
 					if (GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
-						AddVelocityX(-PLAYER_ACC_X);
+						AddVelocityX(-100);
 					if (GetVelocityX() != 0.f)
 						AddPositionX(GetVelocityX() * mCounter);
 				}
 				else
 				{
 					if (GetVelocityX() < PLAYER_VELOCITY_X_MAX)
-						AddVelocityX(PLAYER_ACC_X);
+						AddVelocityX(100);
 					if (GetVelocityX() != 0.f)
 						AddPositionX(GetVelocityX() * mCounter);
 				}
@@ -78,24 +78,26 @@ void RunEnemy::Update(float deltaTime, Player* player)
 
 	if (mSubTypeID == 1)
 	{
-		//SetDirection(EntityDirection::Right);
+		SetDirection(EntityDirection::Right);
+		/*if(mCurrentAni == mAniStanding && mState == RUNENEMY_STANDING_STATE)
+			lastPosition = this->GetPosition();*/
 		if (!isShoot)
 		{
 			mCurrentAni = mAniRunning;
 			mState = RUNENEMY_RUNNING_STATE;
 
-			if (GetPosition().x - spawnPosition.x > 500)
+			if (runEnemyPosition.x - spawnPosition.x > 256)
 				SetPosition(spawnPosition);
 			else
 			{
 				if (GetVelocityX() < PLAYER_VELOCITY_X_MAX)
-					AddVelocityX(PLAYER_ACC_X);
+					AddVelocityX(20);
 				if (GetVelocityX() != 0.f)
-					AddPositionX(GetVelocityX() * 0.005f);
+					AddPositionX(GetVelocityX() * deltaTime);
 			}
 		}
 
-		if ((int)runEnemyPosition.x % 50 > 48)
+		if ((int)runEnemyPosition.x % 31 > 29)
 			isShoot = true;
 
 		if (isShoot)
@@ -103,6 +105,7 @@ void RunEnemy::Update(float deltaTime, Player* player)
 			mCounter += deltaTime;
 			mCurrentAni = mAniStanding;
 			mState = RUNENEMY_STANDING_STATE;
+			
 			if (mCounter > 0.4f)
 			{
 				isShoot = false;

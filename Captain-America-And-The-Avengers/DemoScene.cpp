@@ -101,6 +101,9 @@ void DemoScene::Setup()
 	enemy = new MissileEnemy(D3DXVECTOR3(600.0f, 402.0f, 0.f), 0);
 	mEnemies.push_back(enemy);
 	mGrid->Add(enemy);
+	enemy = new MissileEnemy(D3DXVECTOR3(1577, 402.0f, 0.f), 1);
+	mEnemies.push_back(enemy);
+	mGrid->Add(enemy);
 	// ----------------------
 
 	// -----RunEnemy-----
@@ -122,6 +125,7 @@ void DemoScene::Setup()
 		case EFlyEnemy:
 			break;
 		case ERunEnemy:
+			mEnemies[i]->SetBullet(new NormalBullet(mEnemies[i]));
 			break;
 		case EGunEnemy:
 			mEnemies[i]->SetBullet(new NormalBullet(mEnemies[i]));
@@ -164,6 +168,10 @@ void DemoScene::Update(float deltaTime)
 			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::EGunEnemy)
 			{
 				((GunEnemy*)mEntities[i])->GetBullet()->Update(deltaTime);
+			}
+			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::ERunEnemy)
+			{
+				((RunEnemy*)mEntities[i])->GetBullet()->Update(deltaTime);
 			}
 			break;
 		default:
@@ -237,7 +245,7 @@ void DemoScene::Draw()
 			}
 			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::ERunEnemy)
 			{
-				/*((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);*/
+				((RunEnemy*)mEntities[i])->GetBullet()->Draw(trans);
 			}
 			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::EBossCharleston)
 			{
