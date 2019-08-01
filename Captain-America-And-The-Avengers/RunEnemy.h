@@ -13,7 +13,7 @@
 class RunEnemy : public Enemy
 {
 public:
-	RunEnemy(D3DXVECTOR3 position = D3DXVECTOR3(776.0f, 402.0f, 0.f));
+	RunEnemy(D3DXVECTOR3 position = D3DXVECTOR3(800.0f, 402.0f, 0.f));
 	~RunEnemy();
 	void LoadAnimations();
 
@@ -28,6 +28,8 @@ public:
 	void OnSetPosition();
 
 	EnemyType GetEnemyType();
+	Bullet* GetBullet();
+	void SetBullet(Bullet* Bullet);
 
 private:
 	Sprite* mSprite = NULL;
@@ -40,5 +42,6 @@ private:
 
 	/*Camera* mCamera;*/
 	float mCounter = 0;
+	NormalBullet* mBullet;
 };
 

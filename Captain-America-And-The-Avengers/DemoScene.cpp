@@ -95,9 +95,9 @@ void DemoScene::Setup()
 	// ----------------------
 
 	// -----RunEnemy-----
-	/*enemy = new RunEnemy();
+	enemy = new RunEnemy();
 	mEnemies.push_back(enemy);
-	mGrid->Add(enemy);*/
+	mGrid->Add(enemy);
 	//----------------
 
 	for (size_t i = 0; i < mEnemies.size(); ++i)
@@ -219,6 +219,10 @@ void DemoScene::Draw()
 				((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);
 			}
 			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::EMissileEnemy)
+			{
+				/*((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);*/
+			}
+			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::ERunEnemy)
 			{
 				/*((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);*/
 			}
