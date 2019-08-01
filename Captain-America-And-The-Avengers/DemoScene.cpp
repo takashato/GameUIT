@@ -98,6 +98,9 @@ void DemoScene::Setup()
 	enemy = new MissileEnemy(D3DXVECTOR3(380.0f, 402.0f, 0.f), 2);
 	mEnemies.push_back(enemy);
 	mGrid->Add(enemy);
+	enemy = new MissileEnemy(D3DXVECTOR3(600.0, 402.0f, 0.f), 0);
+	mEnemies.push_back(enemy);
+	mGrid->Add(enemy);
 	// ----------------------
 
 	// -----RunEnemy-----
@@ -230,6 +233,10 @@ void DemoScene::Draw()
 				/*((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);*/
 			}
 			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::ERunEnemy)
+			{
+				/*((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);*/
+			}
+			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::EBossCharleston)
 			{
 				/*((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);*/
 			}
