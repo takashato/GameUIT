@@ -41,37 +41,42 @@ void BossCharleston::Update(float deltaTime, Player* player)
 
 
 	Entity::Update(deltaTime); // Update position
-	if (BOSS_CHARLESTON_IDLE_STATE)
-	{
-		SetVelocityX(0.f);
-		SetVelocityY(0.f);
-	}
-	switch (mNumChangeMode)
-	{
-	case 1:
-		ModeOne(deltaTime, player);
-		break;
-	case 2:
-		ModeTwo(deltaTime, player);
-		break;
-	default:
-		break;
-	}
-	if (mCountMisc == 3)
-	{
-		if (mNumChangeMode == 1)
-			mNumChangeMode = 2;
-		else
-			mNumChangeMode = 1;
-		mCountMisc = 0;
-		SetState(BOSS_CHARLESTON_IDLE_STATE);
-	}
 
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 
 	mCounter += deltaTime;
-
-
+	if (player->GetPosition().y < 60 && mPosition.y == 145)
+		SetState(BOSS_CHARLESTON_LAUGH_STATE);
+	if (mState == BOSS_CHARLESTON_LAUGH_STATE)
+	{
+		if (player->GetPosition().y > 60)
+			SetState(BOSS_CHARLESTON_IDLE_STATE);
+	}
+		if (BOSS_CHARLESTON_IDLE_STATE)
+		{
+			SetVelocityX(0.f);
+			SetVelocityY(0.f);
+		}
+		switch (mNumChangeMode)
+		{
+		case 1:
+			ModeOne(deltaTime, player);
+			break;
+		case 2:
+			ModeTwo(deltaTime, player);
+			break;
+		default:
+			break;
+		}
+		if (mCountMisc == 3)
+		{
+			if (mNumChangeMode == 1)
+				mNumChangeMode = 2;
+			else
+				mNumChangeMode = 1;
+			mCountMisc = 0;
+			SetState(BOSS_CHARLESTON_IDLE_STATE);
+		}
 
 	mCurrentAni->Update(deltaTime);
 }
@@ -129,6 +134,8 @@ void BossCharleston::ChangeAnimationByState(int state)
 		mCurrentAni = mAniKamehameha;
 		break;
 	case BOSS_CHARLESTON_LAUGH_STATE:
+		SetVelocityX(0.f);
+		SetVelocityY(0.f);
 		mCurrentAni = mAniLaugh;
 		break;
 	case BOSS_CHARLESTON_PLYGUN_STATE:
