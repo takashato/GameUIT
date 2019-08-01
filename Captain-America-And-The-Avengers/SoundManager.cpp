@@ -38,6 +38,7 @@ SoundManager::SoundManager() : ISingleton(NULL)
 	AddSound(SoundType::ThemeOfCaptainAmerica, L"Resources\\Sound\\ThemeOfCaptainAmerica.wav");
 	AddSound(SoundType::ThrowShield, L"Resources\\Sound\\ThrowShield.wav");
 	AddSound(SoundType::TouchTheGround, L"Resources\\Sound\\TouchTheGround.wav");
+	AddSound(SoundType::JumpTurn, L"Resources\\Sound\\Turn.wav");
 }
 void SoundManager::AddSound(SoundType soundType, const wchar_t* filePath)
 {

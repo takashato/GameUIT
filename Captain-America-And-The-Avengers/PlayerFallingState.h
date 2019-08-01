@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "PlayerState.h"
 #include "PlayerKickingState.h"
+#include "SoundManager.h"
 
 class PlayerFallingState : public PlayerState
 {

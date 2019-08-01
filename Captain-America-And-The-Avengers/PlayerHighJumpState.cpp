@@ -1,8 +1,11 @@
 #include "pch.h"
 #include "PlayerHighJumpState.h"
+#include "SoundManager.h"
 
 PlayerHighJumpState::PlayerHighJumpState(Player* player) : PlayerState(player)
 {
+	SoundManager::GetInstance().CResetSound(JumpTurn);
+	SoundManager::GetInstance().CPlaySound(JumpTurn);
 }
 
 

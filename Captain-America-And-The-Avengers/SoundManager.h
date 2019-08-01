@@ -21,7 +21,8 @@ enum SoundType
 	FallingWater = 14,
 	RedAlert = 15,
 	ThemeOfCaptainAmerica = 16,
-	TouchTheGround = 17
+	TouchTheGround = 17,
+	JumpTurn = 18
 };
 
 class SoundManager : ISingleton

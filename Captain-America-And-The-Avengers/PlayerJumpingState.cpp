@@ -3,7 +3,7 @@
 
 PlayerJumpingState::PlayerJumpingState(Player* player) : PlayerState(player)
 {
-	mPlayer->SetVelocityY(-225);
+	mPlayer->SetVelocityY(-240);
 }
 
 void PlayerJumpingState::HandleKeyboard(Keyboard* keyboard)

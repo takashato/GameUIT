@@ -80,5 +80,7 @@ void PlayerFallingState::OnCollision(CollisionEvent* ce)
 		Player* player = mPlayer; // Avoid null
 		player->SetState(new PlayerStandingState(player));
 		player->SetPositionY(ce->entity->GetPosition().y - player->GetHeight());
+		SoundManager::GetInstance().CResetSound(TouchTheGround);
+		SoundManager::GetInstance().CPlaySound(TouchTheGround);
 	}
 }
