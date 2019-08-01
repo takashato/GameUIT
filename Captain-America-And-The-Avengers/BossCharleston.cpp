@@ -7,7 +7,7 @@ BossCharleston::BossCharleston(D3DXVECTOR3 position)
 	mDirection = Left;
 	LoadAnimations();
 	SetPosition(position);
-	mState = BOSS_CHARLESTON_RUNNING_STATE;
+	mState = BOSS_CHARLESTON_IDLE_STATE;
 	SetVelocityX(0.f);
 	SetVelocityY(0.f);
 }
@@ -28,12 +28,12 @@ void BossCharleston::LoadAnimations()
 	mAniLaugh = new Animation(mSprite, mAniScripts->GetRectList("Laugh", "0"), 0.1F);
 	mAniBeHit = new Animation(mSprite, mAniScripts->GetRectList("BeHit", "0"), 0.1F);
 	mAniGun = new Animation(mSprite, mAniScripts->GetRectList("Gun", "0"), 0.2F, false);
-	mAniKamehameha = new Animation(mSprite, mAniScripts->GetRectList("Kamehameha", "0"), 0.1F);
+	mAniKamehameha = new Animation(mSprite, mAniScripts->GetRectList("Kamehameha", "0"), 0.15F);
 	mAniHit = new Animation(mSprite, mAniScripts->GetRectList("Hit", "0"), 0.1F);
 	mAniFly = new Animation(mSprite, mAniScripts->GetRectList("Fly", "0"), 0.1F);
 	mAniFlyGun = new Animation(mSprite, mAniScripts->GetRectList("FlyGun", "0"), 0.1F);
 
-	mCurrentAni = mAniRunning;
+	mCurrentAni = mAniStanding;
 }
 
 void BossCharleston::Update(float deltaTime, Player* player)
@@ -43,34 +43,9 @@ void BossCharleston::Update(float deltaTime, Player* player)
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 
 	mCounter += deltaTime;
-	if (mState == BOSS_CHARLESTON_RUNNING_STATE && mCounter > 0.9f)
-	{
-		SetState(BOSS_CHARLESTON_GUN_STATE);
-		mCounter = 0;
-	}
-	if (mState == BOSS_CHARLESTON_GUN_STATE)
-	{
-		if (mCurrentAni->IsDoneCycle())
-		{
-			mCurrentAni->Reset();
-			if (coutGun == 3) {
-				SetState(BOSS_CHARLESTON_RUNNING_STATE);
-				coutGun = 1;
-			}
-			else {
-				SetState(BOSS_CHARLESTON_GUN_STATE);
-				++coutGun;
-			}
-			mCounter = 0;
-		}
-	}
-	if (mPosition.x < 8) {
-		mDirection = Right;
-	}
-	if (mPosition.x > 180) {
-		mDirection = Left;
-	}
-	ModeOne();
+
+	ModeOne(deltaTime, player);
+
 	mCurrentAni->Update(deltaTime);
 }
 
@@ -105,6 +80,8 @@ void BossCharleston::ChangeAnimationByState(int state)
 	{
 	case BOSS_CHARLESTON_IDLE_STATE:
 		mCurrentAni = mAniStanding;
+		SetVelocityX(0.f);
+		SetVelocityY(0.f);
 		break;
 	case BOSS_CHARLESTON_RUNNING_STATE:
 		mCurrentAni = mAniRunning;
@@ -167,9 +144,56 @@ void BossCharleston::SetBullet(Bullet* Bullet)
 {
 
 }
-void BossCharleston::ModeOne()
+void BossCharleston::ModeOne(float deltaTime, Player* player)
 {
-
+	if (mState == BOSS_CHARLESTON_IDLE_STATE && mCounter > 0.9f)
+	{
+		SetState(BOSS_CHARLESTON_RUNNING_STATE);
+		mCounter = 0;
+	}
+	if (mState == BOSS_CHARLESTON_RUNNING_STATE && mCounter > 0.9f)
+	{
+		SetState(BOSS_CHARLESTON_GUN_STATE);
+		mCounter = 0;
+	}
+	if (mState == BOSS_CHARLESTON_GUN_STATE)
+	{
+		if (mCurrentAni->IsDoneCycle())
+		{
+			mCurrentAni->Reset();
+			if (coutGun == 3) {
+				SetState(BOSS_CHARLESTON_KAMEHAMEHA_STATE);
+				coutGun = 1;
+			}
+			else {
+				SetState(BOSS_CHARLESTON_GUN_STATE);
+				++coutGun;
+			}
+			mCounter = 0;
+		}
+	}
+	if (mState == BOSS_CHARLESTON_KAMEHAMEHA_STATE)
+	{
+		if (mCurrentAni->IsDoneCycle())
+		{
+			mCurrentAni->Reset();
+			SetState(BOSS_CHARLESTON_RUNNING_STATE);
+		}
+	}
+	if (player->GetPosition().x > mPosition.x+20)
+	{
+		mDirection = Right;
+	}
+	if (player->GetPosition().x< mPosition.x-20)
+	{
+		mDirection = Left;
+	}
+	if (mPosition.x < 8) {
+		mDirection = Right;
+	}
+	if (mPosition.x > 180) {
+		mDirection = Left;
+	}
 }
 Bullet* BossCharleston::GetBullet()
 {

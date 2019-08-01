@@ -42,7 +42,7 @@ public:
 	void SetBullet(Bullet* Bullet);
 	Bullet* GetBullet();
 
-	void ModeOne();
+	void ModeOne(float deltaTime, Player* player);
 	 
 	int coutGun = 1;
 
