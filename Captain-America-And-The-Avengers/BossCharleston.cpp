@@ -25,6 +25,13 @@ void BossCharleston::LoadAnimations()
 	mAniStanding = new Animation(mSprite, mAniScripts->GetRectList("Idle", "0"), 0.1F);
 	mAniRunning = new Animation(mSprite, mAniScripts->GetRectList("Running", "0"), 0.15F);
 	mAniDying = new Animation(mSprite, mAniScripts->GetRectList("Dying", "0"), 0.1F);
+	mAniLaugh = new Animation(mSprite, mAniScripts->GetRectList("Laugh", "0"), 0.1F);
+	mAniBeHit = new Animation(mSprite, mAniScripts->GetRectList("BeHit", "0"), 0.1F);
+	mAniGun = new Animation(mSprite, mAniScripts->GetRectList("Gun", "0"), 0.3F, false);
+	mAniKamehameha = new Animation(mSprite, mAniScripts->GetRectList("Kamehameha", "0"), 0.1F);
+	mAniHit = new Animation(mSprite, mAniScripts->GetRectList("Hit", "0"), 0.1F);
+	mAniFly = new Animation(mSprite, mAniScripts->GetRectList("Fly", "0"), 0.1F);
+	mAniFlyGun = new Animation(mSprite, mAniScripts->GetRectList("FlyGun", "0"), 0.1F);
 
 	mCurrentAni = mAniRunning;
 }
@@ -36,29 +43,24 @@ void BossCharleston::Update(float deltaTime, Player* player)
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 
 	mCounter += deltaTime;
-
-	if (mDirection == EntityDirection::Left)
+	if (mState == BOSS_CHARLESTON_RUNNING_STATE && mCounter > 0.9f)
 	{
-		if (mVelocityX > -PLAYER_VELOCITY_X_MAX)
-		{
-			AddVelocityX(-PLAYER_ACC_X * deltaTime);
-			if (mVelocityX < -PLAYER_VELOCITY_X_MAX)
-				SetVelocityX(-PLAYER_VELOCITY_X_MAX);
-		}
+		SetState(BOSS_CHARLESTON_GUN_STATE);
+		mCounter = 0;
 	}
-	else
+	if (mState == BOSS_CHARLESTON_GUN_STATE)
 	{
-		if (mVelocityX < PLAYER_VELOCITY_X_MAX)
+		if (mCurrentAni->IsDoneCycle())
 		{
-			AddVelocityX(PLAYER_ACC_X * deltaTime);
-			if (mVelocityX > PLAYER_VELOCITY_X_MAX)
-				SetVelocityX(PLAYER_VELOCITY_X_MAX);
+			mCurrentAni->Reset();
+			SetState(BOSS_CHARLESTON_RUNNING_STATE);
 		}
 	}
 	if (mPosition.x < 8)
 		mDirection = Right;
 	if (mPosition.x > 230)
 		mDirection = Left;
+	ModeOne();
 	mCurrentAni->Update(deltaTime);
 }
 
@@ -96,9 +98,49 @@ void BossCharleston::ChangeAnimationByState(int state)
 		break;
 	case BOSS_CHARLESTON_RUNNING_STATE:
 		mCurrentAni = mAniRunning;
+		if (mDirection == EntityDirection::Left)
+		{
+			if (mVelocityX > -PLAYER_VELOCITY_X_MAX)
+			{
+				AddVelocityX(-100);
+				if (mVelocityX < -PLAYER_VELOCITY_X_MAX)
+					SetVelocityX(-PLAYER_VELOCITY_X_MAX);
+			}
+		}
+		else
+		{
+			if (mVelocityX < PLAYER_VELOCITY_X_MAX)
+			{
+				AddVelocityX(100);
+				if (mVelocityX > PLAYER_VELOCITY_X_MAX)
+					SetVelocityX(PLAYER_VELOCITY_X_MAX);
+			}
+		}
 		break;
 	case BOSS_CHARLESTON_DYING_STATE:
 		mCurrentAni = mAniDying;
+		break;
+	case BOSS_CHARLESTON_BEHIT_STATE:
+		mCurrentAni = mAniBeHit;
+		break;
+	case BOSS_CHARLESTON_GUN_STATE:
+		mCurrentAni = mAniGun;
+		SetVelocityX(0.f);
+		break;
+	case BOSS_CHARLESTON_HIT_STATE:
+		mCurrentAni = mAniHit;
+		break;
+	case BOSS_CHARLESTON_KAMEHAMEHA_STATE:
+		mCurrentAni = mAniKamehameha;
+		break;
+	case BOSS_CHARLESTON_LAUGH_STATE:
+		mCurrentAni = mAniLaugh;
+		break;
+	case BOSS_CHARLESTON_PLYGUN_STATE:
+		mCurrentAni = mAniFlyGun;
+		break;
+	case BOSS_CHARLESTON_PLY_STATE:
+		mCurrentAni = mAniFly;
 		break;
 	}
 }
@@ -111,4 +153,11 @@ EnemyType BossCharleston::GetEnemyType()
 {
 	return EnemyType::EBossCharleston;
 }
+void BossCharleston::SetBullet(Bullet* Bullet)
+{
 
+}
+void BossCharleston::ModeOne()
+{
+
+}

@@ -21,7 +21,7 @@ Animation::Animation(Sprite* sprite, std::vector<RECT> frames, float timePerFram
 	}
 
 	SetFrame(0);
-	mCycle = true;
+	mCycle = false;
 
 	mLoop = loop;
 }

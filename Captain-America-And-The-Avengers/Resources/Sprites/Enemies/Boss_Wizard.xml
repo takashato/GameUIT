@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Idle" imagePath="Boss_Wizard.png" width="312" height="232">
+    <Sprites type="0">
+      <sprite x="9" y="13" w="23" h="51" />
+    </Sprites>
+  </Animation>
+  <Animation name="Laugh" imagePath="Boss_Wizard.png" width="312" height="232">
+    <Sprites type="0">
+      <sprite x="41" y="13" w="23" h="51" />
+    </Sprites>
+  </Animation>
+  <Animation name="Running" imagePath="Boss_Wizard.png" width="312" height="232">
+    <Sprites type="0">
+      <sprite x="73" y="13" w="31" h="51" />
+      <sprite x="108" y="13" w="26" h="51" />
+      <sprite x="140" y="13" w="28" h="51" />
+    </Sprites>
+  </Animation>
+  <Animation name="BeHit" imagePath="Boss_Wizard.png" width="312" height="232">
+    <Sprites type="0">
+      <sprite x="176" y="13" w="29" h="51" />
+    </Sprites>
+  </Animation>
+  <Animation name="Dying" imagePath="Boss_Wizard.png" width="312" height="232">
+    <Sprites type="0">
+      <sprite x="220" y="13" w="33" h="51" />
+      <sprite x="268" y="13" w="36" h="51" />
+    </Sprites>
+  </Animation>
+  <Animation name="Kamehameha" imagePath="Boss_Wizard.png" width="312" height="232">
+    <Sprites type="0">
+      <sprite x="16" y="69" w="40" h="51" />
+      <sprite x="66" y="69" w="38" h="51" />
+      <sprite x="112" y="69" w="40" h="51" />
+    </Sprites>
+  </Animation>
+  <Animation name="Gun" imagePath="Boss_Wizard.png" width="312" height="232">
+    <Sprites type="0">
+      <sprite x="24" y="69" w="32" h="51" />
+      <sprite x="160" y="69" w="32" h="51" />
+    </Sprites>
+  </Animation>
+  <Animation name="Hit" imagePath="Boss_Wizard.png" width="312" height="232">
+    <Sprites type="0">
+      <sprite x="203" y="69" w="36" h="51" />
+      <sprite x="243" y="69" w="36" h="51" />
+    </Sprites>
+  </Animation>
+  <Animation name="Fly" imagePath="Boss_Wizard.png" width="312" height="232">
+    <Sprites type="0">
+      <sprite x="48" y="130" w="29" h="51" />
+      <sprite x="88" y="130" w="29" h="51" />
+    </Sprites>
+  </Animation>
+  <Animation name="FlyGun" imagePath="Boss_Wizard.png" width="312" height="232">
+    <Sprites type="0">
+      <sprite x="128" y="130" w="29" h="51" />
+      <sprite x="168" y="130" w="29" h="51" />
+    </Sprites>
+  </Animation>
+</Animations>
