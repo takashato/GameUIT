@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Animations>
-  <Animation name="Bullet" imagePath="Enemies.png" width="440" height="432">
+  <Animation name="Flying" imagePath="Enemies.png" width="440" height="432">
 	<Sprites type="0">  
 		<sprite x="265" y="33" w="6" h="6" />
 	</Sprites>
