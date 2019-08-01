@@ -9,6 +9,19 @@ Enemy::~Enemy()
 {
 }
 
+void Enemy::Update(float deltaTime, Player* player)
+{
+	if (mIsInvincible)
+	{
+		mInvincibleCounter += deltaTime;
+		if (mInvincibleCounter >= 0.5f)
+		{
+			mInvincibleCounter = .0f;
+			SetInvincible(false);
+		}
+	}
+}
+
 RECT Enemy::GetBoundingBox()
 {
 	if (mCurrentAni == nullptr) {
@@ -44,8 +57,7 @@ void Enemy::TakeDamage(Entity* source, int hp)
 	{
 		if (source->GetCollidableObjectType() == EWeapon) // Damage done by weapon!
 		{
-			mHP -= hp;
-			//SetInvincible(true);
+			//mHP -= hp;
 			if (mHP <= 0)
 			{
 				OnDie();

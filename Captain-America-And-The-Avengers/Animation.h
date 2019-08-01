@@ -11,6 +11,7 @@ private:
 
 	float mTimePerFrame; // Time interval
 	float mTimer; // Time counter
+	float mBlinkTimer = .0f;
 
 	RECT mRect;
 
@@ -19,6 +20,8 @@ private:
 	int mWidth = -1, mHeight = -1;
 
 	bool mCycle = false, mLoop;
+
+	bool mBlink = false, mIsBlinking = false;
 
 public:
 	Animation(Sprite* sprite, std::vector<RECT> frames, float timePerFrame = 0.1F, bool loop = true);
@@ -39,6 +42,9 @@ public:
 
 	int GetWidth();
 	int GetHeight();
+
+	void SetBlink(bool val);
+	bool GetBlink();
 
 	bool IsFlippedHorizontally();
 	void SetFlippedHorizontally(bool flag);

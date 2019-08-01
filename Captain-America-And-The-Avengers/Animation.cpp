@@ -34,12 +34,21 @@ void Animation::Draw(D3DXVECTOR3 position, D3DXVECTOR2 translation)
 	{
 		position.x += (rect.right - rect.left);
 	}
-	mSprite->Draw(position, D3DXVECTOR2(mHorizontallyFlip ? -1.0f : 1.0f, 1.0f), translation);
+	mSprite->Draw(position, D3DXVECTOR2(mHorizontallyFlip ? -1.0f : 1.0f, 1.0f), translation, mIsBlinking ? 150 : 255);
 }
 
 void Animation::Update(float deltaTime)
 {
-	//std::cout << "mTimer: " << mTimer << ", delta: " << deltaTime << std::endl;
+	if (mBlink)
+	{
+		mBlinkTimer += deltaTime;
+		if (mBlinkTimer > 0.075f)
+		{
+			mBlinkTimer = .0f;
+			mIsBlinking = !mIsBlinking;
+		}
+	}
+
 	if (GetFrameNumber() <= 1) return; // Not need update, static animation, lol
 
 	mTimer += deltaTime;
@@ -114,6 +123,21 @@ int Animation::GetWidth()
 int Animation::GetHeight()
 {
 	return mHeight;
+}
+
+void Animation::SetBlink(bool val)
+{
+	mBlink = val;
+	if (!mBlink)
+	{
+		mIsBlinking = false;
+		mBlinkTimer = .0f;
+	}
+}
+
+bool Animation::GetBlink()
+{
+	return mBlink;
 }
 
 bool Animation::IsFlippedHorizontally()

@@ -7,24 +7,26 @@ PlayerRunningState::PlayerRunningState(Player* player) : PlayerState(player)
 
 void PlayerRunningState::HandleKeyboard(Keyboard* keyboard)
 {
+	Player* player = mPlayer;
 	if (keyboard->IsPressing(GAME_KEY_LEFT))
 	{
-		mPlayer->SetDirection(EntityDirection::Left);
+		player->SetDirection(EntityDirection::Left);
 	}
 	else if (keyboard->IsPressing(GAME_KEY_RIGHT))
 	{
-		mPlayer->SetDirection(EntityDirection::Right);
+		player->SetDirection(EntityDirection::Right);
 	}
-	else
-	{
-		mPlayer->AddPositionY(mPlayer->mAniRunning->GetHeight() - mPlayer->mAniStanding->GetHeight());
-		mPlayer->SetState(new PlayerStandingState(mPlayer));
-	}
-
+	
 	if (keyboard->IsPressing(GAME_KEY_JUMP))
 	{
-		mPlayer->SetState(new PlayerJumpingState(mPlayer));
+		player->SetState(new PlayerJumpingState(player));
 	}
+	else if (!keyboard->IsPressing(GAME_KEY_LEFT) && !keyboard->IsPressing(GAME_KEY_RIGHT))
+	{
+		player->AddPositionY(player->mAniRunning->GetHeight() - player->mAniStanding->GetHeight());
+		player->SetState(new PlayerStandingState(player));
+	}
+
 	
 }
 

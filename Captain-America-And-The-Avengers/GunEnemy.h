@@ -32,7 +32,10 @@ public:
 	Bullet* GetBullet();
 	void SetBullet(Bullet* Bullet);
 
+	void OnAttacked();
 	void OnDie();
+
+	void SetInvincible(bool val);
 
 private:
 	Sprite* mSprite = NULL;

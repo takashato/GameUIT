@@ -23,7 +23,7 @@ public:
 	Enemy();
 	~Enemy();
 
-	virtual void Update(float deltaTime, Player* player) = 0;
+	virtual void Update(float deltaTime, Player* player);
 	virtual void Draw(D3DXVECTOR2 transform) = 0;
 
 	virtual RECT GetBoundingBox();
