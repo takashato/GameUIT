@@ -254,6 +254,7 @@ void MissileEnemy::ChangeAnimationByState(int state)
 
 void MissileEnemy::OnSetPosition()
 {
+	Enemy::OnSetPosition();
 }
 
 EnemyType MissileEnemy::GetEnemyType()

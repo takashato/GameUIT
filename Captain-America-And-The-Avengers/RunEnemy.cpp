@@ -159,6 +159,7 @@ void RunEnemy::ChangeAnimationByState(int state)
 
 void RunEnemy::OnSetPosition()
 {
+	Enemy::OnSetPosition();
 }
 
 EnemyType RunEnemy::GetEnemyType()

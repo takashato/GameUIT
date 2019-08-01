@@ -3,6 +3,7 @@
 
 Grid::Grid(int colNum, int rowNum, int cellSize)
 {
+	Grid::instance = this;
 	mColNum = colNum;
 	mRowNum = rowNum;
 	mCellSize = cellSize;
@@ -51,17 +52,28 @@ void Grid::Add(Entity* entity)
 		return; // Do not add this
 	}
 	mCells[col][row]->Add(entity);
-	std::cout << "An entity has been added to grid <" << col << "; " << row << "> based on position (" << entity->GetPosition().x << "; " << entity->GetPosition().y << ")\n";
 }
 
-void Grid::Move(Entity* entity, D3DXVECTOR3 oldPosition)
+void Grid::Move(Entity* entity)
 {
-	int oldCol = static_cast<int>(oldPosition.x / mCellSize);
-	int oldRow = static_cast<int>(oldPosition.y / mCellSize);
-	if (oldCol >= mColNum || oldRow >= mRowNum)
-		ThrowGameException("Old position is out of grid range.");
-	mCells[oldCol][oldRow]->Remove(entity); // Remove from old placed grid
-	Add(entity); // Add to new grid
+	int col = static_cast<int>(entity->GetPosition().x / mCellSize);
+	if (col >= mColNum) col = mColNum - 1;
+	int row = static_cast<int>(entity->GetPosition().y / mCellSize);
+	if (row >= mRowNum) row = mRowNum - 1;
+	//std::cout << "Change (" << oldCol << "; " << oldRow << ") to " << "(" << col << "; " << row << ")\n";
+
+	if (entity->GetGridNode() == nullptr)
+	{
+		mCells[col][row]->Add(entity);
+		return;
+	}
+
+	if (entity->GetGridNode() == mCells[col][row]) return;
+
+	entity->GetGridNode()->Remove(entity);
+	mCells[col][row]->Add(entity);
+
+	std::cout << "Changed to " << "(" << col << "; " << row << ")\n";
 }
 
 std::vector<GridNode*> Grid::GetByViewPort(Camera* camera)
@@ -95,3 +107,5 @@ void Grid::GetEntities(Camera* camera, std::vector<Entity*>& entities)
 		}
 	}
 }
+
+Grid* Grid::instance = nullptr;

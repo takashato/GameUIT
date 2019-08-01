@@ -82,3 +82,11 @@ void Enemy::OnAttacked()
 void Enemy::OnDie()
 {
 }
+
+void Enemy::OnSetPosition()
+{
+	if (Grid::instance != nullptr)
+	{
+		Grid::instance->Move(this);
+	}
+}

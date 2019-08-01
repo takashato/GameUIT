@@ -10,6 +10,8 @@ public:
 	void Add(Entity* collidable);
 	void Remove(Entity* entity);
 
+	bool Has(Entity* entity);
+
 	std::list<Entity*> GetAll();
 
 private:

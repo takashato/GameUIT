@@ -3,6 +3,8 @@
 #include "Sprite.h"
 #include "ExtraDrawer.h"
 
+class GridNode;
+
 enum EntityDirection
 {
 	Left,
@@ -62,6 +64,9 @@ public:
 
 	void RenderBoundingBox(D3DXVECTOR2 transform);
 
+	void SetGridNode(GridNode* gridNode);
+	GridNode* GetGridNode();
+
 	static bool shouldRenderBoundingBox;
 
 protected:
@@ -71,6 +76,8 @@ protected:
 	EntityDirection mDirection;
 	
 	float deltaTime;
+
+	GridNode* mGridNode;
 
 	static Sprite* mSpriteBB;
 };

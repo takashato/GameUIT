@@ -200,5 +200,15 @@ void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
 	ExtraDrawer::GetInstance().DrawTransform(vertexList, transform);
 }
 
+void Entity::SetGridNode(GridNode* gridNode)
+{
+	mGridNode = gridNode;
+}
+
+GridNode* Entity::GetGridNode()
+{
+	return mGridNode;
+}
+
 Sprite* Entity::mSpriteBB = NULL;
 bool Entity::shouldRenderBoundingBox = false;

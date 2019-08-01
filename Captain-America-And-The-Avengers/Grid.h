@@ -6,6 +6,8 @@
 class Grid
 {
 public:
+	static Grid* instance;
+
 	Grid(int colNum, int rowNum, int cellSize);
 	~Grid();
 	
@@ -13,7 +15,7 @@ public:
 	GridNode* GetNode(int col, int row);
 
 	void Add(Entity* entity);
-	void Move(Entity* entity, D3DXVECTOR3 oldPosition);
+	void Move(Entity* entity);
 
 	std::vector<GridNode*> GetByViewPort(Camera* camera);
 	

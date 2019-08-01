@@ -15,13 +15,20 @@ GridNode::~GridNode()
 
 void GridNode::Add(Entity* entity)
 {
+	entity->SetGridNode(this);
 	mList.push_back(entity);
 	mList.unique();
 }
 
 void GridNode::Remove(Entity* entity)
 {
+	entity->SetGridNode(nullptr);
 	mList.remove(entity);
+}
+
+bool GridNode::Has(Entity* entity)
+{
+	return (std::find(mList.begin(), mList.end(), entity) != mList.end());
 }
 
 std::list<Entity*> GridNode::GetAll()

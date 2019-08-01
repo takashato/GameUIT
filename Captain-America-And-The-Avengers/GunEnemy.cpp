@@ -140,6 +140,7 @@ void GunEnemy::ChangeAnimationByState(int state)
 
 void GunEnemy::OnSetPosition()
 {
+	Enemy::OnSetPosition();
 }
 
 EnemyType GunEnemy::GetEnemyType()

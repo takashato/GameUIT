@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "Player.h"
 #include "Bullet.h"
+#include "Grid.h"
 
 enum EnemyType
 {
@@ -37,6 +38,8 @@ public:
 
 	virtual void OnAttacked();
 	virtual void OnDie();
+	
+	void OnSetPosition();
 
 protected:
 	int mHP = 1;
