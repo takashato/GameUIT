@@ -32,6 +32,8 @@ public:
 	void OnSetPosition();
 
 	EnemyType GetEnemyType();
+	Bullet* GetBullet();
+	void SetBullet(Bullet* Bullet);
 
 private:
 	Sprite* mSprite = NULL;
@@ -45,10 +47,11 @@ private:
 	Animation* mAniTakeDamage = NULL;
 	Animation* mAniDying = NULL;
 	int mState = -1;
-
+	D3DXVECTOR3 spawnPosition;
 	/*Camera* mCamera;*/
 	float mCounter = 0;
-	
+	NormalBullet* mBullet;
 	int mSubTypeID = 0;
+	bool isMeetPlayer = false;
 };
 

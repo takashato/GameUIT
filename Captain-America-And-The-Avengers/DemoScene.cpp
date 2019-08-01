@@ -64,7 +64,7 @@ void DemoScene::Setup()
 		MapObjectReader::LoadFromFile("Resources\\Map\\CharlestonBossMapObjects.xml", mGrid);
 		break;
 	}
-	
+
 	mPlayer = new Player();
 	auto spawnPoint = mMap->GetPlayerSpawnPoint();
 	spawnPoint.y -= 100.0f;
@@ -75,9 +75,6 @@ void DemoScene::Setup()
 	// Setup Enemies
 	Enemy* enemy = nullptr;
 	// -----GunEnemy-----
-	enemy = new GunEnemy();
-	mEnemies.push_back(enemy);
-	mGrid->Add(enemy);
 	enemy = new GunEnemy(D3DXVECTOR3(688.0f, 320.0f, 0.f));
 	mEnemies.push_back(enemy);
 	mGrid->Add(enemy);
@@ -88,16 +85,19 @@ void DemoScene::Setup()
 	// ------------------
 
 	// -----MissileEnemy-----
-	/*enemy = new MissileEnemy(D3DXVECTOR3(344.0f, 402.0f, 0.f), 1);
-	enemy = new MissileEnemy(D3DXVECTOR3(1568.0f, 402.0f, 0.f), 2);
+	/*enemy = new MissileEnemy(D3DXVECTOR3(344.0f, 402.0f, 0.f), 1);*/
+	enemy = new MissileEnemy(D3DXVECTOR3(470.0f, 402.0f, 0.f), 2);
 	mEnemies.push_back(enemy);
-	mGrid->Add(enemy);*/
+	mGrid->Add(enemy);
+	enemy = new MissileEnemy(D3DXVECTOR3(380.0f, 402.0f, 0.f), 2);
+	mEnemies.push_back(enemy);
+	mGrid->Add(enemy);
 	// ----------------------
 
 	// -----RunEnemy-----
-	/*enemy = new RunEnemy();
+	enemy = new RunEnemy();
 	mEnemies.push_back(enemy);
-	mGrid->Add(enemy);*/
+	mGrid->Add(enemy);
 	//----------------
 
 	for (size_t i = 0; i < mEnemies.size(); ++i)
@@ -164,7 +164,7 @@ void DemoScene::Update(float deltaTime)
 				RECT pB = mPlayer->GetBoundingBox();
 				RECT eB = mEntities[i]->GetBoundingBox();
 				GroundType type = ((Ground*)mEntities[i])->GetGroundType();
-				
+
 				if (abs(eB.top - pB.bottom) <= 5 && (pB.left >= eB.left && pB.left <= eB.right || pB.right >= eB.left && pB.right <= eB.right))
 				{
 					collisionWithGround = true;
@@ -183,7 +183,7 @@ void DemoScene::Update(float deltaTime)
 		mPlayer->OnCollision(cEvents[i]);
 		delete cEvents[i];
 	}
-	
+
 	// Check shield collision
 	cEvents.clear();
 	mPlayer->GetShield()->CalcCollision(&mEntities, cEvents);
@@ -198,7 +198,7 @@ void DemoScene::Update(float deltaTime)
 	mPlayer->HandleKeyboard(keyboard);
 	mPlayer->Update(deltaTime);
 	mPlayer->GetShield()->Update(deltaTime);
-	CheckCamera(deltaTime);	
+	CheckCamera(deltaTime);
 	CheckChageMap();
 }
 
@@ -212,14 +212,24 @@ void DemoScene::Draw()
 	// Draw Entities
 	for (size_t i = 0; i < mEntities.size(); ++i)
 	{
-		
+
 		auto type = mEntities[i]->GetCollidableObjectType();
 		switch (type)
 		{
 		case EEnemy:
 			((Enemy*)mEntities[i])->Draw(trans);
-			if(((Enemy*)mEntities[i])->GetBullet()!=NULL)
-				((Enemy*)mEntities[i])->GetBullet()->Draw(trans);
+			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::EGunEnemy)
+			{
+				((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);
+			}
+			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::EMissileEnemy)
+			{
+				/*((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);*/
+			}
+			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::ERunEnemy)
+			{
+				/*((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);*/
+			}
 			break;
 		default:
 			mEntities[i]->Draw(trans);
@@ -292,7 +302,7 @@ void DemoScene::CheckChageMap()//Demo
 	{
 		if (mPlayer->GetPosition().x >= EXIT_CHARLESTON)
 			this->ChangeMap(ID_MAP_CHARLESTON_BOSS_LIGHT);
-		
+
 	}
 	else if (MapID == ID_MAP_CHARLESTON_BOSS_LIGHT)
 	{
