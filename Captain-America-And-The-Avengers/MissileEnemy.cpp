@@ -137,20 +137,63 @@ void MissileEnemy::Update(float deltaTime, Player* player)
 		}
 		if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
 	}
-	else if (mSubTypeID == 0) // Only Run Not Shoot
+	else if (mSubTypeID == 0) // Only Run and Jump Not Shoot
 	{
+		
 		SetDirection(EntityDirection::Left);
-		mCurrentAni = mAniRunning;
-		mState = MISSILEENEMY_RUNNING_STATE;
-
-		if (spawnPosition.x - GetPosition().x > 500)
-			SetPosition(spawnPosition);
-		else
+		if (!isJump)
 		{
-			if (GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
-				AddVelocityX(-PLAYER_ACC_X);
-			if (GetVelocityX() != 0.f)
-				AddPositionX(GetVelocityX() * 0.005f);
+			mCurrentAni = mAniRunning;
+			mState = MISSILEENEMY_RUNNING_STATE;
+
+			if (spawnPosition.x - GetPosition().x > 500)
+				SetPosition(spawnPosition);
+			else
+			{
+				if (GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
+					AddVelocityX(-PLAYER_ACC_X);
+				if (GetVelocityX() != 0.f)
+					AddPositionX(GetVelocityX() * 0.005f);
+			}
+		}
+
+		if (missileEnemyPosition.x - player->GetShield()->GetPosition().x < 50 && player->GetShield()->GetState() == ShieldState::EShieldHigh)
+			isJump = true;
+
+		if (isJump)
+		{
+			mCounter += deltaTime;
+			if (mCounter < 0.4f)
+			{
+				mCurrentAni = mAniJumping;
+				mState = MISSILEENEMY_JUMPING_STATE;
+
+				AddPositionY(-120 * deltaTime);
+
+				if (GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
+					AddVelocityX(-PLAYER_ACC_X);
+				if (GetVelocityX() != 0.f)
+					AddPositionX(GetVelocityX() * 0.005f);
+			}
+			else
+			{
+				mCurrentAni = mAniFalling;
+				mState = MISSILEENEMY_FALLING_STATE;
+
+				AddPositionY(120 * deltaTime);
+
+				if (GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
+					AddVelocityX(-PLAYER_ACC_X);
+				if (GetVelocityX() != 0.f)
+					AddPositionX(GetVelocityX() * 0.005f);
+
+				if (missileEnemyPosition.y > 402.0f)
+				{
+					isJump = false;
+					SetPositionY(402.0f);
+					mCounter = 0;
+				}
+			}
 		}
 		if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
 	}

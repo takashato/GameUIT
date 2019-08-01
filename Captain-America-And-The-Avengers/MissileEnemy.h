@@ -53,5 +53,6 @@ private:
 	NormalBullet* mBullet;
 	int mSubTypeID = 0;
 	bool isMeetPlayer = false;
+	bool isJump = false;
 };
 
