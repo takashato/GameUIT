@@ -13,10 +13,10 @@
 	<Object x="1328" y="206" wcells="12" hcells="1" />
 	<Object x="1584" y="206" wcells="12" hcells="1" />
 	<Object x="680" y="366" wcells="2" hcells="1" />
-	<Object x="584" y="366" wcells="1" hcells="1" />
-	<Object x="632" y="286" wcells="1" hcells="1" />
-	<Object x="888" y="286" wcells="1" hcells="1" />
-	<Object x="840" y="366" wcells="1" hcells="1" />
+	<Object x="576" y="366" wcells="2" hcells="1" />
+	<Object x="626" y="286" wcells="2" hcells="1" />
+	<Object x="880" y="286" wcells="2" hcells="1" />
+	<Object x="832" y="366" wcells="2" hcells="1" />
 	<Object x="936" y="366" wcells="2" hcells="1" />
 	<Object x="1336" y="318" wcells="2" hcells="1" />
   </Objects>

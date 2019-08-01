@@ -3,7 +3,7 @@
 
 PlayerFallingState::PlayerFallingState(Player* player) : PlayerState(player)
 {
-	mPlayer->SetVelocityY(0);
+	mPlayer->SetVelocityY(50.0f);
 }
 
 void PlayerFallingState::HandleKeyboard(Keyboard* keyboard)

@@ -9,5 +9,7 @@ public:
 	EPlayerState GetState();
 
 	void HandleKeyboard(Keyboard *keyboard);
+
+	void OnCollision(CollisionEvent* ce);
 };
 

@@ -3,7 +3,7 @@
 
 PlayerJumpingState::PlayerJumpingState(Player* player) : PlayerState(player)
 {
-	mPlayer->SetVelocityY(-PLAYER_VELOCITY_Y_MAX);
+	mPlayer->SetVelocityY(-225);
 }
 
 void PlayerJumpingState::HandleKeyboard(Keyboard* keyboard)
@@ -29,7 +29,7 @@ void PlayerJumpingState::HandleKeyboard(Keyboard* keyboard)
 
 	if (!keyboard->IsPressing(GAME_KEY_JUMP))
 	{
-		player->SetState(new PlayerFallingState(player));
+		mKeyRelease = true;
 	}
 }
 
@@ -37,8 +37,17 @@ void PlayerJumpingState::Update(float deltaTime)
 {
 	mTimeCounter += deltaTime;
 	mTimeUpdater += deltaTime;
-	mPlayer->AddVelocityY(PLAYER_GRAVITY * deltaTime);
-	if (mTimeCounter >= 0.3f && mTimeCounter <= 0.5f)
+
+	if (mTimeCounter <= 0.2f)
+	{
+		mPlayer->AddVelocityY(375 * deltaTime);
+	}
+
+	if (mTimeCounter >= 0.2f && mKeyRelease)
+	{
+		mPlayer->SetState(new PlayerFallingState(mPlayer));
+	}
+	else if (mTimeCounter >= 0.3f && mTimeCounter <= 0.5f)
 	{
 		mPlayer->SetState(new PlayerHighJumpState(mPlayer));
 	}
