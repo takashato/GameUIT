@@ -2,8 +2,10 @@
 #include "Game.h"
 #include "RunEnemy.h"
 
-RunEnemy::RunEnemy(D3DXVECTOR3 position) : Enemy()
+RunEnemy::RunEnemy(D3DXVECTOR3 position, int subTypeID) : Enemy()
 {
+	mSubTypeID = subTypeID;
+	spawnPosition = position;
 	LoadAnimations();
 	SetPosition(position);
 	mState = RUNENEMY_STANDING_STATE;
@@ -33,45 +35,82 @@ void RunEnemy::Update(float deltaTime, Player* player)
 	D3DXVECTOR3 playerPosition = player->GetPosition();
 	D3DXVECTOR3 runEnemyPosition = this->GetPosition();
 	
-	mCurrentAni->SetFlippedHorizontally(mDirection == Left);
-	
-	if (abs(runEnemyPosition.x - playerPosition.x) < 200)
+	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
+	if (mSubTypeID == 0)
 	{
-		mCurrentAni = mAniRunning;
-		mState = RUNENEMY_RUNNING_STATE;
-		mCounter += deltaTime;
-		if (mCounter >= MOVEMENT_UPDATE_TIME)
+		if (abs(runEnemyPosition.x - playerPosition.x) < 200)
 		{
-			if (mDirection == Right)
+			mCurrentAni = mAniRunning;
+			mState = RUNENEMY_RUNNING_STATE;
+			mCounter += deltaTime;
+			if (mCounter >= MOVEMENT_UPDATE_TIME)
 			{
-				if (GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
-					AddVelocityX(-PLAYER_ACC_X);
-				if (GetVelocityX() != 0.f)
-					AddPositionX(GetVelocityX() * mCounter);
+				if (mDirection == Left)
+				{
+					if (GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
+						AddVelocityX(-PLAYER_ACC_X);
+					if (GetVelocityX() != 0.f)
+						AddPositionX(GetVelocityX() * mCounter);
+				}
+				else
+				{
+					if (GetVelocityX() < PLAYER_VELOCITY_X_MAX)
+						AddVelocityX(PLAYER_ACC_X);
+					if (GetVelocityX() != 0.f)
+						AddPositionX(GetVelocityX() * mCounter);
+				}
+				mCounter = 0;
 			}
+			if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
+		}
+		else
+		{
+			mCurrentAni = mAniStanding;
+			mState = RUNENEMY_STANDING_STATE;
+			if (runEnemyPosition.x < playerPosition.x)
+				mDirection = Right;
+			else
+				mDirection = Left;
+			SetVelocityX(0.f);
+			SetVelocityY(0.f);
+		}
+	}
+
+	if (mSubTypeID == 1)
+	{
+		//SetDirection(EntityDirection::Right);
+		if (!isShoot)
+		{
+			mCurrentAni = mAniRunning;
+			mState = RUNENEMY_RUNNING_STATE;
+
+			if (GetPosition().x - spawnPosition.x > 500)
+				SetPosition(spawnPosition);
 			else
 			{
 				if (GetVelocityX() < PLAYER_VELOCITY_X_MAX)
 					AddVelocityX(PLAYER_ACC_X);
 				if (GetVelocityX() != 0.f)
-					AddPositionX(GetVelocityX() * mCounter);
+					AddPositionX(GetVelocityX() * 0.005f);
 			}
-			mCounter = 0;
+		}
+
+		if ((int)runEnemyPosition.x % 50 > 48)
+			isShoot = true;
+
+		if (isShoot)
+		{
+			mCounter += deltaTime;
+			mCurrentAni = mAniStanding;
+			mState = RUNENEMY_STANDING_STATE;
+			if (mCounter > 0.4f)
+			{
+				isShoot = false;
+				mCounter = 0;
+			}
 		}
 		if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
 	}
-	else
-	{
-		mCurrentAni = mAniStanding;
-		mState = RUNENEMY_STANDING_STATE;
-		if (runEnemyPosition.x < playerPosition.x)
-			mDirection = Left;
-		else
-			mDirection = Right;
-		SetVelocityX(0.f);
-		SetVelocityY(0.f);
-	}
-	
 }
 
 void RunEnemy::Draw(D3DXVECTOR2 transform)
