@@ -75,9 +75,6 @@ void DemoScene::Setup()
 	// Setup Enemies
 	Enemy* enemy = nullptr;
 	// -----GunEnemy-----
-	enemy = new GunEnemy();
-	mEnemies.push_back(enemy);
-	mGrid->Add(enemy);
 	enemy = new GunEnemy(D3DXVECTOR3(688.0f, 320.0f, 0.f));
 	mEnemies.push_back(enemy);
 	mGrid->Add(enemy);
@@ -88,10 +85,13 @@ void DemoScene::Setup()
 	// ------------------
 
 	// -----MissileEnemy-----
-	/*enemy = new MissileEnemy(D3DXVECTOR3(344.0f, 402.0f, 0.f), 1);
-	enemy = new MissileEnemy(D3DXVECTOR3(1568.0f, 402.0f, 0.f), 2);
+	/*enemy = new MissileEnemy(D3DXVECTOR3(344.0f, 402.0f, 0.f), 1);*/
+	enemy = new MissileEnemy(D3DXVECTOR3(470.0f, 402.0f, 0.f), 2);
 	mEnemies.push_back(enemy);
-	mGrid->Add(enemy);*/
+	mGrid->Add(enemy);
+	enemy = new MissileEnemy(D3DXVECTOR3(380.0f, 402.0f, 0.f), 2);
+	mEnemies.push_back(enemy);
+	mGrid->Add(enemy);
 	// ----------------------
 
 	// -----RunEnemy-----
@@ -214,7 +214,14 @@ void DemoScene::Draw()
 		{
 		case EEnemy:
 			((Enemy*)mEntities[i])->Draw(trans);
-			((Enemy*)mEntities[i])->GetBullet()->Draw(trans);
+			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::EGunEnemy)
+			{
+				((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);
+			}
+			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::EMissileEnemy)
+			{
+				/*((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);*/
+			}
 			break;
 		default:
 			mEntities[i]->Draw(trans);
