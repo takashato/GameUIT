@@ -30,35 +30,59 @@ void NormalBullet::Update(float deltaTime)
 {
 	D3DXVECTOR3 gunEnemyPosition = mGunEnemy->GetPosition();
 
-	if (mGunEnemy->GetState() == GUNENEMY_STANDING_STATE)
+	if (mGunEnemy->GetState() == GUNENEMY_STANDING_STATE || mGunEnemy->GetState() == GUNENEMY_SITTING_STATE)
 	{
-		isDraw = true;
-		if (mGunEnemy->GetDirection() == Left)
+		if (mGunEnemy->GetState() == GUNENEMY_STANDING_STATE)
 		{
-			if (GetVelocityX() < 100)
+			if (mFlyDirection == 0)
+			{
+				if (mGunEnemy->GetDirection() == Left)
+				{
+					mFlyDirection = -1;
+				}
+				else
+				{
+					mFlyDirection = 1;
+				}
+			}
+		}
+		isFired = true;
+		if (mFlyDirection == -1)
+		{
+			if (GetVelocityX() < 150)
 				AddVelocityX(15);
 			if (GetVelocityX() != 0.f)
-				AddPositionX(GetVelocityX()*0.05);
+				AddPositionX(GetVelocityX()* deltaTime);
 		}
-		else
+		else if (mFlyDirection == 1)
 		{		
-			if (GetVelocityX() > -100)
+			if (GetVelocityX() > -150)
 				AddVelocityX(-15);
 			if (GetVelocityX() != 0.f)
-				AddPositionX(GetVelocityX()*0.05);
+				AddPositionX(GetVelocityX() * deltaTime);
+		}
+
+		if (mGunEnemy->GetState() == GUNENEMY_SITTING_STATE)
+		{
+			SetVelocityX(0.0f);
+			mFlyDirection = 0;
+			gunEnemyPosition.y = gunEnemyPosition.y - 12;
+			SetPosition(gunEnemyPosition);
+			isFired = false;
 		}
 	}
 	else
 	{
+		mFlyDirection = 0;
 		gunEnemyPosition.y = gunEnemyPosition.y - 12;
 		SetPosition(gunEnemyPosition);
-		isDraw = false;
+		isFired = false;
 	}
 }
 
 void NormalBullet::Draw(D3DXVECTOR2 transform)
 {
-	if (isDraw)
+	if (isFired)
 	{
 		if (mCurrentAni != nullptr && mState != -1)
 		{

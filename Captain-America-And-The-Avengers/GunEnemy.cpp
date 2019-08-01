@@ -47,36 +47,54 @@ void GunEnemy::Update(float deltaTime, Player* player)
 
 	if (mIsInvincible)
 	{
-		if (mCurrentAni == mAniStanding)
-		{
-			this->SetPositionY(gunEnemyPosition.y + this->mCurrentAni->GetHeight() - this->mAniDying->GetHeight());
-		}
-		else if (mCurrentAni == mAniSitting)
-		{
-			this->SetPositionY(gunEnemyPosition.y + this->mAniDying->GetHeight() - this->mCurrentAni->GetHeight());
-		}
-		mCurrentAni = mAniDying;
-		mState = GUNENEMY_DYING_STATE;
-	}
-	else
-	{
-		if (mCounter >= 0.9f)
+		if (mCurrentAni != mAniDying)
 		{
 			if (mCurrentAni == mAniStanding)
 			{
-				mCurrentAni = mAniSitting;
-				mState = GUNENEMY_SITTING_STATE;
-				this->SetPositionY(gunEnemyPosition.y + this->mAniStanding->GetHeight() - this->mAniSitting->GetHeight());
+				SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
 			}
-			else
+			else if (mCurrentAni == mAniSitting)
 			{
-				mCurrentAni = mAniStanding;
-				mState = GUNENEMY_STANDING_STATE;
-				this->SetPositionY(gunEnemyPosition.y - this->mAniStanding->GetHeight() + this->mAniSitting->GetHeight());
+				SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniDying->GetHeight());
 			}
-			mCounter = 0;
+			SetState(GUNENEMY_DYING_STATE);
+		}
+		mCounter = .0f;
+	}
+	else
+	{
+		if (mCounter >= 0.9f && mCounter <= 1.8f)
+		{
+			if (mCurrentAni == mAniStanding)
+			{
+				SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniSitting->GetHeight());
+			}
+			else if (mCurrentAni == mAniDying)
+			{
+				SetPositionY(mPosition.y +  mAniDying->GetHeight() - mAniSitting->GetHeight());
+			}
+
+			if (mCurrentAni != mAniSitting) SetState(GUNENEMY_SITTING_STATE);
+		}
+		else if (mCounter < 0.9f)
+		{
+			if (mCurrentAni == mAniDying)
+			{
+				SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniStanding->GetHeight());
+			}
+			else if (mCurrentAni == mAniSitting)
+			{
+				SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniStanding->GetHeight());
+			}
+			if (mCurrentAni != mAniStanding) SetState(GUNENEMY_STANDING_STATE);
+		}
+		else
+		{
+			mCounter = .0f;
 		}
 	}
+
+	if (mBullet != nullptr) mBullet->Update(deltaTime);
 }
 
 void GunEnemy::Draw(D3DXVECTOR2 transform)

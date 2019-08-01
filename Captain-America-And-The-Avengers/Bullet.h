@@ -27,5 +27,7 @@ public:
 
 protected:
 	Animation* mCurrentAni = NULL;
+
+	int mFlyDirection = 0;
 };
 

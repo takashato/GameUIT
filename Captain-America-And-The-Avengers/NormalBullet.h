@@ -34,7 +34,7 @@ private:
 	Animation* mAniFlying = NULL;
 	int mState = -1;
 	float mCounter = 0;
-	bool isDraw = true;
+	bool isFired = true;
 	GunEnemy* mGunEnemy;
 };
 
