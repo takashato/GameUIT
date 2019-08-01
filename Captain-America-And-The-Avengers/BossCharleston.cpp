@@ -161,3 +161,7 @@ void BossCharleston::ModeOne()
 {
 
 }
+Bullet* BossCharleston::GetBullet()
+{
+	return mBullet;
+}

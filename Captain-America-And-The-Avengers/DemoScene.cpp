@@ -126,6 +126,10 @@ void DemoScene::Setup()
 			break;
 		}
 	}
+	//-----Add Boss
+	enemy = new BossCharleston(D3DXVECTOR3(189.0f, 145.0f, .0f));
+	mEnemies.push_back(enemy);
+	mGrid->Add(enemy);
 
 	mCamera = new Camera(Game::GetInstance().GetWidth(), Game::GetInstance().GetHeight());
 	mMap->SetCamera(mCamera);
@@ -214,7 +218,8 @@ void DemoScene::Draw()
 		{
 		case EEnemy:
 			((Enemy*)mEntities[i])->Draw(trans);
-			((Enemy*)mEntities[i])->GetBullet()->Draw(trans);
+			if(((Enemy*)mEntities[i])->GetBullet()!=NULL)
+				((Enemy*)mEntities[i])->GetBullet()->Draw(trans);
 			break;
 		default:
 			mEntities[i]->Draw(trans);

@@ -40,8 +40,10 @@ public:
 	EnemyType GetEnemyType();
 
 	void SetBullet(Bullet* Bullet);
+	Bullet* GetBullet();
 
 	void ModeOne();
+
 
 private:
 	Sprite* mSprite = NULL;
