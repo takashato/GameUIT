@@ -179,7 +179,15 @@ void DemoScene::Update(float deltaTime)
 		mPlayer->OnCollision(cEvents[i]);
 		delete cEvents[i];
 	}
-
+	
+	// Check shield collision
+	cEvents.clear();
+	mPlayer->GetShield()->CalcCollision(&mEntities, cEvents);
+	for (size_t i = 0; i < cEvents.size(); ++i)
+	{
+		mPlayer->GetShield()->OnCollision(cEvents[i]);
+		delete cEvents[i];
+	}
 
 	Keyboard* keyboard = SceneManager::GetInstance().GetKeyboard();
 

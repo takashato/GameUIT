@@ -47,6 +47,8 @@ void Shield::Update(float deltaTime)
 		maxLengthFly = 100.0f;
 		SetVelocityX((flyDirection ? 1 : -1) * 666.66f);
 		SetVelocityY(.0f);
+		SoundManager::GetInstance().CResetSound(ThrowShield);
+		SoundManager::GetInstance().CPlaySound(ThrowShield);
 		std::cout << "Started throwing shield!!!\n";
 	}
 
@@ -277,6 +279,15 @@ bool Shield::IsThrown()
 	return isThrown;
 }
 
+void Shield::OnCollision(CollisionEvent* ce)
+{
+	if (ce->entity->GetCollidableObjectType() == EEnemy)
+	{
+		auto enemy = ((Enemy*)ce->entity);
+		enemy->TakeDamage(this);
+	}
+}
+
 void Shield::Draw(D3DXVECTOR2 transform)
 {
 	if (mPlayer->GetState()->GetState() == EPlayerState::HighJumping && !IsThrown()) return;
@@ -291,6 +302,8 @@ void Shield::Draw(D3DXVECTOR2 transform)
 		mCurrentAni->Draw(GetPosition());
 		this->RenderBoundingBox(D3DXVECTOR2(0, 0));
 	}
+
+	if (!isThrown) SoundManager::GetInstance().CStopsound(ThrowShield);
 }
 
 ShieldState Shield::GetState()

@@ -21,7 +21,7 @@ void GunEnemy::LoadAnimations()
 
 	mAniStanding = new Animation(mSprite, mAniScripts->GetRectList("Standing", "0"), 0.1F);
 	mAniSitting = new Animation(mSprite, mAniScripts->GetRectList("Sitting", "0"), 0.1F);
-	mAniDying = new Animation(mSprite, mAniScripts->GetRectList("Dying", "0"), 0.1F);
+	mAniDying = new Animation(mSprite, mAniScripts->GetRectList("Dying", "0"), 0.1F, false);
 
 	mCurrentAni = mAniStanding;
 }
@@ -119,4 +119,10 @@ Bullet* GunEnemy::GetBullet()
 void GunEnemy::SetBullet(Bullet* bullet)
 {
 	mBullet = (NormalBullet*)bullet;
+}
+
+void GunEnemy::OnDie()
+{
+	ChangeAnimationByState(GUNENEMY_DYING_STATE);
+	mCurrentAni->Reset();
 }

@@ -32,6 +32,7 @@ public:
 	void CPlaySound(SoundType soundType);
 	void CLoopSound(SoundType soundType);
 	void CStopsound(SoundType soundType);
+	void CResetSound(SoundType soundType);
 
 	void AddSound(SoundType soundType, const wchar_t* filePath);
 private:

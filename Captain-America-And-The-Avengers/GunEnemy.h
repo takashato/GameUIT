@@ -32,6 +32,8 @@ public:
 	Bullet* GetBullet();
 	void SetBullet(Bullet* Bullet);
 
+	void OnDie();
+
 private:
 	Sprite* mSprite = NULL;
 	AnimationScript* mAniScripts = NULL;

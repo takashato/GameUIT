@@ -53,6 +53,7 @@ void SoundManager::CPlaySound(SoundType soundType)
 {
 	listSound[soundType]->Play();
 }
+
 void SoundManager::CLoopSound(SoundType soundType)
 {
 	listSound[soundType]->Play(0, DSBPLAY_LOOPING);
@@ -60,4 +61,9 @@ void SoundManager::CLoopSound(SoundType soundType)
 void SoundManager::CStopsound(SoundType soundType)
 {
 	listSound[soundType]->Stop();
+}
+
+void SoundManager::CResetSound(SoundType soundType)
+{
+	listSound[soundType]->Reset();
 }

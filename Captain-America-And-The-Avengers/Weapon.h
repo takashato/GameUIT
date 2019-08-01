@@ -16,6 +16,8 @@ public:
 	virtual float GetWidth();
 	virtual float GetHeight();
 
+	virtual void OnCollision(CollisionEvent* ce);
+
 protected:
 	Animation* mCurrentAni = NULL;
 };

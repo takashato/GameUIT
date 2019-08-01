@@ -37,3 +37,36 @@ Bullet* Enemy::GetBullet()
 {
 	return mBullet;
 }
+
+void Enemy::TakeDamage(Entity* source, int hp)
+{
+	if (!mIsInvincible) // Can take damage!
+	{
+		if (source->GetCollidableObjectType() == EWeapon) // Damage done by weapon!
+		{
+			mHP -= hp;
+			//SetInvincible(true);
+			if (mHP <= 0)
+			{
+				OnDie();
+			}
+			else
+			{
+				OnAttacked();
+			}
+		}
+	}
+}
+
+void Enemy::SetInvincible(bool val)
+{
+	mIsInvincible = val;
+}
+
+void Enemy::OnAttacked()
+{
+}
+
+void Enemy::OnDie()
+{
+}

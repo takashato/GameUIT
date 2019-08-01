@@ -2,6 +2,8 @@
 #include "Weapon.h"
 #include "AnimationScript.h"
 #include "Player.h"
+#include "Enemy.h"
+#include "SoundManager.h"
 
 enum ShieldState {
 	EShieldIdle,
@@ -38,6 +40,8 @@ public:
 	D3DXVECTOR3 GetReturnPoint();
 	ShieldState GetStateByPlayerState();
 	bool IsThrown();
+
+	virtual void OnCollision(CollisionEvent* ce);
 
 private:
 	Player* mPlayer = nullptr;

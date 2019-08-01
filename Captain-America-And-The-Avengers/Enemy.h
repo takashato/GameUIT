@@ -32,7 +32,17 @@ public:
 	virtual Bullet* GetBullet();
 	virtual void SetBullet(Bullet* Bullet) = 0;
 
+	virtual void TakeDamage(Entity* source, int hp = 1);
+	virtual void SetInvincible(bool val);
+
+	virtual void OnAttacked();
+	virtual void OnDie();
+
 protected:
+	int mHP = 1;
+	bool mIsInvincible = false;
+	float mInvincibleCounter = .0f;
+
 	Animation* mCurrentAni = NULL;
 	Bullet* mBullet;
 };

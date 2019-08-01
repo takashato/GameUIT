@@ -194,7 +194,6 @@
     <ClCompile Include="Shield.cpp">
       <Filter>Entities\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="ExtraDrawer.cpp" />
     <ClCompile Include="dsutil.cpp">
       <Filter>Framework\Sound</Filter>
     </ClCompile>
@@ -210,12 +209,17 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Entities\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="MapObjectReader.cpp" />
     <ClCompile Include="BossCharleston.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="NormalBullet.cpp">
       <Filter>Entities\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtraDrawer.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="MapObjectReader.cpp">
+      <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
