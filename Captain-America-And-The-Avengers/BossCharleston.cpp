@@ -27,7 +27,7 @@ void BossCharleston::LoadAnimations()
 	mAniDying = new Animation(mSprite, mAniScripts->GetRectList("Dying", "0"), 0.1F);
 	mAniLaugh = new Animation(mSprite, mAniScripts->GetRectList("Laugh", "0"), 0.1F);
 	mAniBeHit = new Animation(mSprite, mAniScripts->GetRectList("BeHit", "0"), 0.1F);
-	mAniGun = new Animation(mSprite, mAniScripts->GetRectList("Gun", "0"), 0.3F, false);
+	mAniGun = new Animation(mSprite, mAniScripts->GetRectList("Gun", "0"), 0.2F, false);
 	mAniKamehameha = new Animation(mSprite, mAniScripts->GetRectList("Kamehameha", "0"), 0.1F);
 	mAniHit = new Animation(mSprite, mAniScripts->GetRectList("Hit", "0"), 0.1F);
 	mAniFly = new Animation(mSprite, mAniScripts->GetRectList("Fly", "0"), 0.1F);
@@ -53,13 +53,23 @@ void BossCharleston::Update(float deltaTime, Player* player)
 		if (mCurrentAni->IsDoneCycle())
 		{
 			mCurrentAni->Reset();
-			SetState(BOSS_CHARLESTON_RUNNING_STATE);
+			if (coutGun == 3) {
+				SetState(BOSS_CHARLESTON_RUNNING_STATE);
+				coutGun = 1;
+			}
+			else {
+				SetState(BOSS_CHARLESTON_GUN_STATE);
+				++coutGun;
+			}
+			mCounter = 0;
 		}
 	}
-	if (mPosition.x < 8)
+	if (mPosition.x < 8) {
 		mDirection = Right;
-	if (mPosition.x > 230)
+	}
+	if (mPosition.x > 180) {
 		mDirection = Left;
+	}
 	ModeOne();
 	mCurrentAni->Update(deltaTime);
 }
@@ -102,7 +112,7 @@ void BossCharleston::ChangeAnimationByState(int state)
 		{
 			if (mVelocityX > -PLAYER_VELOCITY_X_MAX)
 			{
-				AddVelocityX(-100);
+				AddVelocityX(-50);
 				if (mVelocityX < -PLAYER_VELOCITY_X_MAX)
 					SetVelocityX(-PLAYER_VELOCITY_X_MAX);
 			}
@@ -111,7 +121,7 @@ void BossCharleston::ChangeAnimationByState(int state)
 		{
 			if (mVelocityX < PLAYER_VELOCITY_X_MAX)
 			{
-				AddVelocityX(100);
+				AddVelocityX(50);
 				if (mVelocityX > PLAYER_VELOCITY_X_MAX)
 					SetVelocityX(PLAYER_VELOCITY_X_MAX);
 			}

@@ -43,7 +43,8 @@ public:
 	Bullet* GetBullet();
 
 	void ModeOne();
-
+	 
+	int coutGun = 1;
 
 private:
 	Sprite* mSprite = NULL;
