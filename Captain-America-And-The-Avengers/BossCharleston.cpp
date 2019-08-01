@@ -31,7 +31,7 @@ void BossCharleston::LoadAnimations()
 	mAniKamehameha = new Animation(mSprite, mAniScripts->GetRectList("Kamehameha", "0"), 0.15F);
 	mAniHit = new Animation(mSprite, mAniScripts->GetRectList("Hit", "0"), 0.1F);
 	mAniFly = new Animation(mSprite, mAniScripts->GetRectList("Fly", "0"), 0.1F);
-	mAniFlyGun = new Animation(mSprite, mAniScripts->GetRectList("FlyGun", "0"), 0.1F);
+	mAniFlyGun = new Animation(mSprite, mAniScripts->GetRectList("FlyGun", "0"), 0.1F, false);
 
 	mCurrentAni = mAniStanding;
 }
@@ -65,10 +65,13 @@ void BossCharleston::Update(float deltaTime, Player* player)
 		case 2:
 			ModeTwo(deltaTime, player);
 			break;
+		case 3:
+			ModeThree(deltaTime, player);
+			break;
 		default:
 			break;
 		}
-		if (mCountMisc == 3)
+		if (mCountMisc == 2)
 		{
 			if (mNumChangeMode == 1)
 				mNumChangeMode = 2;
@@ -143,6 +146,11 @@ void BossCharleston::ChangeAnimationByState(int state)
 		break;
 	case BOSS_CHARLESTON_PLY_STATE:
 		mCurrentAni = mAniFly;
+		break;
+	case BOSS_CHARLESTON_JUMP_STATE:
+		mCurrentAni = mAniFly;
+		bool mIsJump = true;
+		bool mIsFalling = false;
 		break;
 	}
 }
@@ -235,8 +243,22 @@ void BossCharleston::ModeOne(float deltaTime, Player* player)
 }
 void BossCharleston::ModeTwo(float deltaTime, Player* player)
 {
-	if (mState == BOSS_CHARLESTON_PLY_STATE)
+	if (mState == BOSS_CHARLESTON_PLY_STATE || mState == BOSS_CHARLESTON_PLYGUN_STATE)
 	{
+		if (player->GetPosition().x - mPosition.x <= 10 && player->GetPosition().x - mPosition.x >= -10) {
+			SetState(BOSS_CHARLESTON_PLYGUN_STATE);
+			mCounter = 0;
+		}
+		if (mState == BOSS_CHARLESTON_PLYGUN_STATE)
+		{
+			if (mCurrentAni->IsDoneCycle())
+			{
+				mCurrentAni->Reset();
+				SetState(BOSS_CHARLESTON_PLY_STATE);
+				mCounter = 0;
+			}
+
+		}
 		if (mFlyHorizontal)
 		{
 			if (mDirection == EntityDirection::Left)
@@ -357,3 +379,106 @@ void BossCharleston::CheckDirection(Player* player)
 	}
 
 }
+void BossCharleston::ModeThree(float deltaTime, Player* player)
+{
+	if (mState == BOSS_CHARLESTON_IDLE_STATE && mCounter > 1.f)
+	{
+		SetState(BOSS_CHARLESTON_JUMP_STATE);
+		mCounter = 0;
+	}
+	if (mState == BOSS_CHARLESTON_JUMP_STATE)
+	{
+		if (mDirection == EntityDirection::Left)
+		{
+
+			if (mVelocityX > -90)
+			{
+				AddVelocityX(-30);
+				if (mVelocityX < -90)
+					SetVelocityX(-90);
+			}
+		}
+		else
+		{
+
+			if (mVelocityX < 90)
+			{
+				AddVelocityX(30);
+				if (mVelocityX > 90)
+					SetVelocityX(90);
+			}
+
+
+		}
+		if (mIsJump)
+		{
+			if (mVelocityY > -90)
+			{
+				AddVelocityY(-30);
+				if (mVelocityY < -90)
+					SetVelocityY(-90);
+			}
+		}
+		if (mIsFalling)
+		{
+			if (mVelocityY < 90)
+			{
+				AddVelocityY(30);
+				if (mVelocityY > 90)
+					SetVelocityY(90);
+			}
+		}
+		if (mPosition.y < 110)
+		{
+			mIsJump = false;
+			mIsFalling = true;
+		}
+		if (mPosition.y > 145)
+		{
+			mPosition.y = 145;
+			mIsJump = true;
+			mIsFalling = false;
+			mCountMisc++;
+			SetState(BOSS_CHARLESTON_RUNNING_STATE);
+			mCounter = 0;
+
+		}
+		if (mPosition.x < 0 && mDirection == Left)
+		{
+			mDirection = Right;
+		}
+		if (mPosition.x > 240 && mDirection == Right)
+		{
+			mDirection = Left;
+		}
+	}
+	if (mState == BOSS_CHARLESTON_RUNNING_STATE)
+	{
+		if ((mPosition.x - player->GetPosition().x) <= 90 && (mPosition.x - player->GetPosition().x) >= -90)
+		{
+			SetState(BOSS_CHARLESTON_IDLE_STATE);
+			mCounter = 0;
+		}
+		else
+		{
+			if (mDirection == EntityDirection::Left)
+			{
+				SetVelocityX(-150);
+			}
+			else
+			{
+				SetVelocityX(150);
+			}
+			CheckDirection(player);
+			if (mPosition.x < 0) {
+				mPosition.x = 0;
+				mDirection = Right;
+			}
+			if (mPosition.x > 216) {
+				mPosition.x = 216;
+				mDirection = Left;
+			}
+		}
+	}
+}
+

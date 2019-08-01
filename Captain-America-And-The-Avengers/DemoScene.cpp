@@ -330,9 +330,9 @@ void DemoScene::CheckChageMap()//Demo
 			this->ChangeMap(ID_MAP_CHARLESTON_BOSS_LIGHT);
 
 	}
-	else if (MapID == ID_MAP_CHARLESTON_BOSS_LIGHT)
+	/*else if (MapID == ID_MAP_CHARLESTON_BOSS_LIGHT)
 	{
 		if (mPlayer->GetPosition().x >= DEMO_EXIT_MINIMAP)
 			this->ChangeMap(ID_MAP_PITTSBURGH_DARK);
-	}
+	}*/
 }

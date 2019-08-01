@@ -16,6 +16,7 @@
 #define BOSS_CHARLESTON_HIT_STATE 7
 #define BOSS_CHARLESTON_PLY_STATE 8
 #define BOSS_CHARLESTON_PLYGUN_STATE 9
+#define BOSS_CHARLESTON_JUMP_STATE 10
 
 
 
@@ -44,8 +45,9 @@ public:
 	void CheckDirection(Player* player);
 
 
-	void ModeOne(float deltaTime, Player* player);
-	void ModeTwo(float deltaTime, Player* player);
+	void ModeOne(float deltaTime, Player* player);//Run and Hit
+	void ModeTwo(float deltaTime, Player* player);//Fly and Shot when fly
+	void ModeThree(float deltaTime, Player* player);//Jump
 	int mNumChangeMode = 1;
 	int mCountMisc = 0;
 
@@ -54,6 +56,9 @@ public:
 	bool mFlyUp = true;
 	bool mFlyDown = false;
 	bool mFlyHorizontal = false;
+	//Logic for Jump
+	bool mIsJump = false;
+	bool mIsFalling = false;
 
 private:
 	Sprite* mSprite = NULL;
