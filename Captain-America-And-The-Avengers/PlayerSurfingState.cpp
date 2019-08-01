@@ -15,6 +15,7 @@ void PlayerSurfingState::HandleKeyboard(Keyboard* keyboard)
 {
 	if (!keyboard->IsPressing(GAME_KEY_SURF))
 	{
+		mPlayer->AddPositionY(mPlayer->mAniSurfing->GetHeight() - mPlayer->mAniStanding->GetHeight());
 		mPlayer->SetState(new PlayerStandingState(mPlayer));
 	}
 }
