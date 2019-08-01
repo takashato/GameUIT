@@ -81,11 +81,11 @@ void DemoScene::Setup()
 
 	
 	// -----GunEnemy-----
-	enemy = new GunEnemy(D3DXVECTOR3(688.0f, 320.0f, 0.f));
+	enemy = new GunEnemy(D3DXVECTOR3(688.0f, 325.0f, 0.f));
 	mEnemies.push_back(enemy);
 	mGrid->Add(enemy);
 	/*gunEnemy3 = new GunEnemy(D3DXVECTOR3(776.0f, 416.0f, 0.f));*/
-	enemy = new GunEnemy(D3DXVECTOR3(944.0f, 320.0f, 0.f));
+	enemy = new GunEnemy(D3DXVECTOR3(944.0f, 325.0f, 0.f));
 	mEnemies.push_back(enemy);
 	mGrid->Add(enemy);
 	// ------------------
