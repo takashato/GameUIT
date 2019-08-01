@@ -18,5 +18,6 @@ public:
 	EPlayerState GetState();
 private:
 	float mTimeCounter = .0f, mTimeUpdater = .0f;
+	int mRunState = 0;
 };
 

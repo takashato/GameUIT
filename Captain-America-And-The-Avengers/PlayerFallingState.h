@@ -17,4 +17,5 @@ public:
 
 private:
 	float mTimeUpdater = .0f;
+	int mRunState = 0;
 };
