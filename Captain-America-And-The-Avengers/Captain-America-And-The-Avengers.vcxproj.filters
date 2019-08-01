@@ -214,6 +214,9 @@
     <ClCompile Include="BossCharleston.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="NormalBullet.cpp">
+      <Filter>Entities\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -392,6 +395,9 @@
     </ClInclude>
     <ClInclude Include="BossCharleston.h">
       <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalBullet.h">
+      <Filter>Entities\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

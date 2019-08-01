@@ -32,3 +32,8 @@ EnemyType Enemy::GetEnemyType()
 {
 	return EDefaultEnemy;
 }
+
+Bullet* Enemy::GetBullet()
+{
+	return mBullet;
+}

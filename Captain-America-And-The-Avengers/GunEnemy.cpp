@@ -111,3 +111,12 @@ EnemyType GunEnemy::GetEnemyType()
 	return EnemyType::EGunEnemy;
 }
 
+Bullet* GunEnemy::GetBullet()
+{
+	return mBullet;
+}
+
+void GunEnemy::SetBullet(Bullet* bullet)
+{
+	mBullet = (NormalBullet*)bullet;
+}

@@ -5,6 +5,7 @@
 #include "PlayerStandingState.h" 
 #include "AnimationScript.h"
 #include "Camera.h"
+#include "NormalBullet.h"
 
 #define GUNENEMY_STANDING_STATE 0
 #define GUNENEMY_SITTING_STATE 1
@@ -28,6 +29,8 @@ public:
 	void OnSetPosition();
 
 	EnemyType GetEnemyType();
+	Bullet* GetBullet();
+	void SetBullet(Bullet* Bullet);
 
 private:
 	Sprite* mSprite = NULL;
@@ -40,5 +43,7 @@ private:
 
 	/*Camera* mCamera;*/
 	float mCounter = 0;
+
+	NormalBullet* mBullet;
 };
 

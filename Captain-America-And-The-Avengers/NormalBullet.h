@@ -9,14 +9,17 @@
 
 #define NORMALBULLET_FLYING_STATE 0
 
+class GunEnemy;
+class Bullet;
+
 class NormalBullet : public Bullet
 {
 public:
-	NormalBullet(D3DXVECTOR3 position = D3DXVECTOR3(304.0f, 402.0f, 0.f));
+	NormalBullet(Enemy* gunEnemy);
 	~NormalBullet();
 	void LoadAnimations();
 
-	void Update(float deltaTime, GunEnemy* gunEnemy);
+	void Update(float deltaTime);
 	void Draw(D3DXVECTOR2 transform);
 
 	int GetState();
@@ -32,5 +35,6 @@ private:
 	int mState = -1;
 	float mCounter = 0;
 	bool isDraw = true;
+	GunEnemy* mGunEnemy;
 };
 

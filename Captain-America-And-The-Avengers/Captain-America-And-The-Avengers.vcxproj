@@ -184,6 +184,7 @@
     <ClCompile Include="MapObjectReader.cpp" />
     <ClCompile Include="MapReader\tinyxml2.cpp" />
     <ClCompile Include="MissileEnemy.cpp" />
+    <ClCompile Include="NormalBullet.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerClingState.cpp" />
     <ClCompile Include="PlayerFallingState.cpp" />
@@ -243,6 +244,7 @@
     <ClInclude Include="MapObjectReader.h" />
     <ClInclude Include="MapReader\tinyxml2.h" />
     <ClInclude Include="MissileEnemy.h" />
+    <ClInclude Include="NormalBullet.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerClingState.h" />
     <ClInclude Include="PlayerFallingState.h" />

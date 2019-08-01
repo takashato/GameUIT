@@ -2,9 +2,12 @@
 #include "Game.h"
 #include "NormalBullet.h"
 
-NormalBullet::NormalBullet(D3DXVECTOR3 position) : Bullet()
+NormalBullet::NormalBullet(Enemy* gunEnemy) : Bullet()
 {
+	mGunEnemy = (GunEnemy*)gunEnemy;
 	LoadAnimations();
+	D3DXVECTOR3 position = gunEnemy->GetPosition();
+	position.y = position.y + 4;
 	SetPosition(position);
 	mState = NORMALBULLET_FLYING_STATE;
 }
@@ -23,26 +26,26 @@ void NormalBullet::LoadAnimations()
 	mCurrentAni = mAniFlying;
 }
 
-void NormalBullet::Update(float deltaTime, GunEnemy* gunEnemy)
+void NormalBullet::Update(float deltaTime)
 {
-	D3DXVECTOR3 gunEnemyPosition = gunEnemy->GetPosition();
+	D3DXVECTOR3 gunEnemyPosition = mGunEnemy->GetPosition();
 
-	if (gunEnemy->GetState() == GUNENEMY_STANDING_STATE)
+	if (mGunEnemy->GetState() == GUNENEMY_STANDING_STATE)
 	{
 		isDraw = true;
-		if (gunEnemy->GetDirection() == Left)
-		{
-			if (GetVelocityX() > -100)
-				AddVelocityX(-15);
-			if (GetVelocityX() != 0.f)
-				AddPositionX(GetVelocityX()*0.08);
-		}
-		else
+		if (mGunEnemy->GetDirection() == Left)
 		{
 			if (GetVelocityX() < 100)
 				AddVelocityX(15);
 			if (GetVelocityX() != 0.f)
-				AddPositionX(GetVelocityX()*0.08);
+				AddPositionX(GetVelocityX()*0.05);
+		}
+		else
+		{		
+			if (GetVelocityX() > -100)
+				AddVelocityX(-15);
+			if (GetVelocityX() != 0.f)
+				AddPositionX(GetVelocityX()*0.05);
 		}
 	}
 	else

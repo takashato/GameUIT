@@ -88,18 +88,45 @@ void DemoScene::Setup()
 	// ------------------
 
 	// -----MissileEnemy-----
-	enemy = new MissileEnemy(D3DXVECTOR3(344.0f, 402.0f, 0.f), 1);
+	/*enemy = new MissileEnemy(D3DXVECTOR3(344.0f, 402.0f, 0.f), 1);
 	enemy = new MissileEnemy(D3DXVECTOR3(1568.0f, 402.0f, 0.f), 2);
 	mEnemies.push_back(enemy);
-	mGrid->Add(enemy);
+	mGrid->Add(enemy);*/
 	// ----------------------
 
 	// -----RunEnemy-----
-	enemy = new RunEnemy();
+	/*enemy = new RunEnemy();
 	mEnemies.push_back(enemy);
-	mGrid->Add(enemy);
-
+	mGrid->Add(enemy);*/
 	//----------------
+
+	for (size_t i = 0; i < mEnemies.size(); ++i)
+	{
+		EnemyType type = mEnemies[i]->GetEnemyType();
+		switch (type)
+		{
+		case EBatEnemy:
+			break;
+		case EFlyEnemy:
+			break;
+		case ERunEnemy:
+			break;
+		case EGunEnemy:
+			mEnemies[i]->SetBullet(new NormalBullet(mEnemies[i]));
+			break;
+		case EGunStockEnemy:
+			break;
+		case EMissileEnemy:
+			break;
+		case EDefaultEnemy:
+			break;
+		case EBossCharleston:
+			break;
+		default:
+			break;
+		}
+	}
+
 	mCamera = new Camera(Game::GetInstance().GetWidth(), Game::GetInstance().GetHeight());
 	mMap->SetCamera(mCamera);
 	mPlayer->SetCamera(mCamera);
@@ -121,6 +148,10 @@ void DemoScene::Update(float deltaTime)
 		{
 		case EEnemy:
 			((Enemy*)mEntities[i])->Update(deltaTime, mPlayer);
+			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::EGunEnemy)
+			{
+				((GunEnemy*)mEntities[i])->GetBullet()->Update(deltaTime);
+			}
 			break;
 		default:
 			mEntities[i]->Update(deltaTime);
@@ -169,7 +200,18 @@ void DemoScene::Draw()
 	// Draw Entities
 	for (size_t i = 0; i < mEntities.size(); ++i)
 	{
-		mEntities[i]->Draw(trans);
+		
+		auto type = mEntities[i]->GetCollidableObjectType();
+		switch (type)
+		{
+		case EEnemy:
+			((Enemy*)mEntities[i])->Draw(trans);
+			((Enemy*)mEntities[i])->GetBullet()->Draw(trans);
+			break;
+		default:
+			mEntities[i]->Draw(trans);
+			break;
+		}
 	}
 
 	// Draw player

@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "Player.h"
+#include "Bullet.h"
 
 enum EnemyType
 {
@@ -14,6 +15,8 @@ enum EnemyType
 	EBossCharleston
 };
 
+class Bullet;
+
 class Enemy : public Entity
 {
 public:
@@ -26,7 +29,10 @@ public:
 	virtual RECT GetBoundingBox();
 	virtual CollidableObjectType GetCollidableObjectType() override;
 	virtual EnemyType GetEnemyType();
+	virtual Bullet* GetBullet();
+	virtual void SetBullet(Bullet* Bullet) = 0;
 
 protected:
 	Animation* mCurrentAni = NULL;
+	Bullet* mBullet;
 };
