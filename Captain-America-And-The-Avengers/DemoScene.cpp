@@ -27,6 +27,8 @@ void DemoScene::Setup()
 		SoundManager::GetInstance().CLoopSound(ThemeOfCaptainAmerica);
 		break;
 	case ID_MAP_CHARLESTON_BOSS_LIGHT:
+		SoundManager::GetInstance().CStopsound(ThemeOfCaptainAmerica);
+		SoundManager::GetInstance().CLoopSound(BossBattle);
 		mMap = new GameMap(ID_MAP_CHARLESTON_BOSS_LIGHT, L"Resources\\Map\\Chaleston_MapBoss.png", L"Resources\\Map\\Matrix_Chaleston_MapBoss.txt");
 		break;
 	case ID_MAP_PITTSBURGH_DARK:
