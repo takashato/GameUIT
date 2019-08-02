@@ -2,10 +2,10 @@
 #include "Game.h"
 #include "Ground.h"
 
-Ground::Ground(D3DXVECTOR3 position, GroundType groundType) : Entity()
+Ground::Ground(D3DXVECTOR3 position, GroundType groundType, int width, int height) : Entity()
 {
 	mGroundType = groundType;
-	mWidth = mHeight = 16;
+	mWidth = width; mHeight = height;
 	LoadAnimations();
 	SetPosition(position);
 	SetVelocityX(0.f);

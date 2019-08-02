@@ -1,5 +1,19 @@
 #include "pch.h"
+#include "Game.h"
 #include "Grid.h"
+
+Grid::Grid(int totalWidth, int totalHeight)
+{
+	Grid::instance = this;
+
+	mCellSize = Game::GetInstance().GetWidth() > Game::GetInstance().GetHeight() ?
+		Game::GetInstance().GetWidth() / 2
+		: Game::GetInstance().GetHeight() / 2;
+
+	mColNum = (int)ceil(1.0f * totalWidth / mCellSize);
+	mRowNum = (int)ceil(1.0f * totalHeight / mCellSize);
+	InitNodes();
+}
 
 Grid::Grid(int colNum, int rowNum, int cellSize)
 {
@@ -21,6 +35,24 @@ Grid::~Grid()
 		delete mCells[i];
 	}
 	delete mCells;
+}
+
+void Grid::Update(float deltaTime, RECT rect)
+{
+	mTemp.clear();
+	GetEntities(rect, mTemp);
+	for (Entity* entity : mTemp)
+	{
+		entity->Update(deltaTime);
+	}
+}
+
+void Grid::Draw(D3DXVECTOR2 trans)
+{
+	for (Entity* entity : mTemp)
+	{
+		entity->Draw(trans);
+	}
 }
 
 void Grid::InitNodes()
@@ -45,17 +77,38 @@ GridNode* Grid::GetNode(int col, int row)
 
 void Grid::Add(Entity* entity)
 {
-	int col = static_cast<int>(entity->GetPosition().x / mCellSize);
-	int row = static_cast<int>(entity->GetPosition().y / mCellSize);
-	if (col >= mColNum || row >= mRowNum) {
-		std::cout << "Grid reject col " << col << " row " << row << "\n";
-		return; // Do not add this
+	if (entity->GetCollidableObjectType() != CollidableObjectType::EPlatform)
+	{
+		int col = static_cast<int>(entity->GetPosition().x / mCellSize);
+		int row = static_cast<int>(entity->GetPosition().y / mCellSize);
+		if (col >= mColNum || row >= mRowNum) {
+			std::cout << "Grid reject col " << col << " row " << row << "\n";
+			return; // Do not add this
+		}
+		mCells[col][row]->Add(entity);
 	}
-	mCells[col][row]->Add(entity);
+	else
+	{
+		RECT bb = entity->GetBoundingBox();
+		int xs = bb.left / mCellSize;
+		int ys = bb.top / mCellSize;
+		int xe = bb.right / mCellSize;
+		int ye = bb.bottom / mCellSize;
+		for (int i = xs; i <= xe; ++i)
+		{
+			for (int j = ys; j <= ye; ++j)
+			{
+				if (i >= mColNum || j >= mRowNum || i < 0 || j < 0) continue;
+				mCells[i][j]->Add(entity);
+			}
+		}
+	}
 }
 
 void Grid::Move(Entity* entity)
 {
+	if (entity->GetCollidableObjectType() == EPlatform) return; // Not need to move???
+
 	int col = static_cast<int>(entity->GetPosition().x / mCellSize);
 	if (col >= mColNum) col = mColNum - 1;
 	if (col < 0) col = 0;
@@ -78,10 +131,9 @@ void Grid::Move(Entity* entity)
 	std::cout << "Changed to " << "(" << col << "; " << row << ")\n";
 }
 
-std::vector<GridNode*> Grid::GetByViewPort(Camera* camera)
+std::vector<GridNode*> Grid::GetByViewPort(RECT bound)
 {
 	std::vector<GridNode*> res;
-	RECT bound = camera->GetBound();
 	int xs = bound.left / mCellSize;
 	int ys = bound.top / mCellSize;
 	int xe = bound.right / mCellSize;
@@ -97,15 +149,15 @@ std::vector<GridNode*> Grid::GetByViewPort(Camera* camera)
 	return res;
 }
 
-void Grid::GetEntities(Camera* camera, std::vector<Entity*>& entities)
+void Grid::GetEntities(RECT rect, std::set<Entity*>& entities)
 {
 	entities.clear();
-	std::vector<GridNode*> nodes = GetByViewPort(camera);
+	std::vector<GridNode*> nodes = GetByViewPort(rect);
 	for (size_t i = 0; i < nodes.size(); ++i)
 	{
 		for (Entity* entity : nodes[i]->GetAll())
 		{
-			entities.push_back(entity);
+			entities.emplace(entity);
 		}
 	}
 }

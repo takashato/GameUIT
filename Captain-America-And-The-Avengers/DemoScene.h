@@ -42,7 +42,7 @@ protected:
 	std::vector<Enemy*> mEnemies;
 	std::vector<Ground*> mGrounds;
 
-	std::vector<Entity*> mEntities;
+	std::set<Entity*> mEntities;
 
 private:
 	int MapID, MapMaxID;

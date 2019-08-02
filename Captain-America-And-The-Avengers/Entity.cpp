@@ -128,6 +128,11 @@ void Entity::OnSetPosition()
 
 }
 
+D3DXVECTOR3 Entity::GetCenterPoint()
+{
+	return D3DXVECTOR3(mPosition.x + GetWidth() / 2.0f, mPosition.y + GetHeight() / 2.0f, .0f);
+}
+
 CollisionEvent* Entity::SweptAABBEx(Entity* other)
 {
 	float t, nx, ny;
@@ -149,13 +154,13 @@ CollisionEvent* Entity::SweptAABBEx(Entity* other)
 	return e;
 }
 
-void Entity::CalcCollision(std::vector<Entity*> *entities, std::vector<CollisionEvent*>& cEvent)
+void Entity::CalcCollision(std::set<Entity*> *entities, std::vector<CollisionEvent*>& cEvent)
 {
 	cEvent.clear();
 
-	for (size_t i = 0; i < entities->size(); ++i)
+	for (Entity* entity: *entities)
 	{
-		CollisionEvent* e = SweptAABBEx(entities->at(i));
+		CollisionEvent* e = SweptAABBEx(entity);
 
 		if (e->t >= .0f && e->t <= 1.0f)
 			cEvent.push_back(e);
@@ -196,6 +201,11 @@ void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
 	vertexList.push_back(D3DXVECTOR2(bb.right, bb.bottom));
 	vertexList.push_back(D3DXVECTOR2(bb.left, bb.bottom));
 	vertexList.push_back(D3DXVECTOR2(bb.left, bb.top));
+
+	if (GetCollidableObjectType() == EPlatform)
+	{
+		std::cout << "Render platform\n";
+	}
 
 	ExtraDrawer::GetInstance().DrawTransform(vertexList, transform);
 }

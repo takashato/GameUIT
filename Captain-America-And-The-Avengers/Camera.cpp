@@ -9,6 +9,36 @@ Camera::Camera(int width, int height)
 	mPosition = D3DXVECTOR3(.0f, .0f, .0f);
 }
 
+void Camera::Update(D3DXVECTOR3 position)
+{
+	if (!mIsLocked)
+	{
+		SetPosition(position);
+
+		if (GetBound().left < 0)
+		{
+			SetPosition(GetWidth() / 2, (int)GetPosition().y);
+		}
+
+		if (GetBound().right > mWorldBoundary.right)
+		{
+			SetPosition(mWorldBoundary.right - GetWidth() / 2,
+				(int)GetPosition().y);
+		}
+
+		if (GetBound().top < 0)
+		{
+			SetPosition((int)GetPosition().x, GetHeight() / 2);
+		}
+
+		if (GetBound().bottom > mWorldBoundary.bottom)
+		{
+			SetPosition((int)GetPosition().x,
+				mWorldBoundary.bottom - GetHeight() / 2);
+		}
+	}
+}
+
 void Camera::SetPosition(float x, float y)
 {
 	mPosition = D3DXVECTOR3(x, y, .0f);
@@ -48,6 +78,17 @@ int Camera::GetHeight()
 {
 	return mHeight;
 }
+
+void Camera::SetLock(bool lock)
+{
+	mIsLocked = lock;
+}
+
+void Camera::SetWorldBoundary(RECT boundary)
+{
+	mWorldBoundary = boundary;
+}
+
 
 D3DXVECTOR3 Camera::GetPosition()
 {

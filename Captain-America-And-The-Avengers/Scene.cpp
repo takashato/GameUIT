@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "Scene.h"
 
-Scene::Scene()
+Scene::Scene(LPCSTR filePath)
 {
+	mData.ReadData(filePath);
 }
 
 void Scene::Setup()

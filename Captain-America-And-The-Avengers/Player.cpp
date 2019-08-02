@@ -157,11 +157,6 @@ void Player::UpdateSize()
 	SetHeight((float)mCurrentAni->GetHeight());
 }
 
-void Player::SetCamera(Camera* camera)
-{
-	mCamera = camera;
-}
-
 RECT Player::GetBoundingBox()
 {
 	if (mCurrentAni == nullptr) return RECT();

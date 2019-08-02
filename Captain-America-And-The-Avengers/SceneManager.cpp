@@ -10,7 +10,7 @@ SceneManager& SceneManager::GetInstance()
 void SceneManager::Setup()
 {
 	mKeyboard = new Keyboard();
-	mCurrentScene = new DemoScene();
+	mCurrentScene = new CharlestonScene();
 }
 
 void SceneManager::Update(float deltaTime)

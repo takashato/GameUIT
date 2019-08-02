@@ -4,6 +4,7 @@
 //Sound 
 enum SoundType
 {
+	Invalid = -1,
 	Ambush = 0,
 	BeAttack = 1,
 	BossShootSmallBullets = 2,

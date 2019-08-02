@@ -14,6 +14,8 @@ public:
 
 	void SetCamera(Camera* camera);
 
+	RECT GetBoundary();
+
 	int GetWidth();
 	int GetHeight();
 

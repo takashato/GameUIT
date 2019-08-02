@@ -94,6 +94,14 @@ void GameMap::SetCamera(Camera* camera)
 	mCamera = camera;
 }
 
+RECT GameMap::GetBoundary()
+{
+	RECT bound;
+	bound.left = bound.top = 0;
+	bound.right = GetWidth();
+	bound.bottom = GetHeight();
+	return bound;
+}
 
 int GameMap::GetWidth()
 {

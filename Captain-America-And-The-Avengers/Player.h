@@ -29,8 +29,6 @@ public:
 	void OnSetPosition();
 	void UpdateSize();
 
-	void SetCamera(Camera* camera);
-
 	RECT GetBoundingBox();
 	CollidableObjectType GetCollidableObjectType();
 
@@ -68,8 +66,6 @@ private:
 	EPlayerState mLastState;
 
 	Shield* mShield = nullptr;
-
-	Camera* mCamera;
 
 	float mCounter;
 

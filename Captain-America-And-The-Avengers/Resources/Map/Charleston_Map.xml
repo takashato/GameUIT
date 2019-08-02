@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map>
+	<Tilemap matrixPath="Resources\\Map\\Chaleston_Map_Matrix.txt" imagePath="Resources\\Map\\Chaleston_Map.png"/>
+	<SpawnPoints>
+		<SpawnPoint name="Player" x="22.0" y="402.0"/>
+	</SpawnPoints>
+	<Transports>
+		<Transport nextSceneName="Charleston_Boss" x="1979" y="358" w="16" h="90"/>
+	</Transports>
+	<MapObjects>
+		<Enemies>
+			<Enemy type="RunEnemy" x="285.0" y="401.0" w="24" h="43" subType="1"/>
+			<Enemy type="RunEnemy" x="837.0" y="404.0" w="24" h="43" subType="0"/>
+			<Enemy type="MissileEnemy" x="546.0" y="401.0" w="22" h="46" subType="0"/>
+			<Enemy type="MissileEnemy" x="1602.0" y="159.0" w="22" h="46" subType="1"/>
+			<Enemy type="MissileEnemy" x="1568.0" y="401.0" w="22" h="46" subType="3"/>
+			<Enemy type="MissileEnemy" x="581.0" y="319.0" w="22" h="46" subType="3"/>
+			<Enemy type="MissileEnemy" x="398.0" y="401.0" w="22" h="46" subType="2"/>
+			<Enemy type="MissileEnemy" x="344.0" y="401.0" w="22" h="46" subType="2"/>
+			<Enemy type="GunEnemy" x="688.0" y="338.0" w="24" h="27" subType="0"/>
+			<Enemy type="GunEnemy" x="943.0" y="338.0" w="24" h="27" subType="0"/>
+		</Enemies>
+		<Grounds>
+			<Ground type="Normal" name="Ground" x="0" y="448" w="96" h="8"/>
+			<Ground type="Normal" name="Ground" x="160" y="448" w="1216" h="8"/>
+			<Ground type="Normal" name="Ground" x="1440" y="448" w="352" h="8"/>
+			<Ground type="Normal" name="Ground" x="48" y="318" w="48" h="8"/>
+			<Ground type="Normal" name="Ground" x="40" y="206" w="216" h="8"/>
+			<Ground type="Normal" name="Ground" x="296" y="206" w="216" h="8"/>
+			<Ground type="Normal" name="Ground" x="552" y="206" w="216" h="8"/>
+			<Ground type="Normal" name="Ground" x="808" y="206" w="216" h="8"/>
+			<Ground type="Normal" name="Ground" x="1064" y="206" w="216" h="8"/>
+			<Ground type="Normal" name="Ground" x="1320" y="206" w="216" h="8"/>
+			<Ground type="Normal" name="Ground" x="1576" y="206" w="216" h="8"/>
+			<Ground type="Normal" name="Ground" x="672" y="366" w="48" h="8"/>
+			<Ground type="Normal" name="Ground" x="576" y="366" w="32" h="8"/>
+			<Ground type="Normal" name="Ground" x="624" y="286" w="32" h="8"/>
+			<Ground type="Normal" name="Ground" x="832" y="366" w="32" h="8"/>
+			<Ground type="Normal" name="Ground" x="880" y="286" w="32" h="8"/>
+			<Ground type="Normal" name="Ground" x="928" y="366" w="48" h="8"/>
+			<Ground type="Normal" name="Ground" x="1328" y="318" w="48" h="8"/>
+			<Ground type="Hard" name="LeftBorder" x="0" y="0" w="8" h="480"/>
+			<Ground type="Hard" name="RightBorder" x="2040" y="0" w="8" h="320"/>
+			<Ground type="Hard" name="HardGround" x="1792" y="432" w="64" h="48"/>
+			<Ground type="Hard" name="HardGround" x="1856" y="448" w="160" h="32"/>
+			<Ground type="Hard" name="HardGround" x="1792" y="318" w="256" h="42"/>
+			<Ground type="Hard" name="HardGround" x="2016" y="360" w="32" h="120"/>
+		</Grounds>
+		<WaterArea>
+			<Water name="Water" x="0" y="456" w="1792" h="16"/>
+		</WaterArea>
+		<Capsules>
+			<Capsule x="320" y="392" w="16" h="16">
+				<Item type="PowerStone"/>
+				<Item type="FivePointItem"/>
+			</Capsule>
+			<Capsule x="128" y="374" w="16" h="16">
+				<Item type="PowerStone"/>
+				<Item type="FivePointItem"/>
+			</Capsule>
+			<Capsule x="64" y="277" w="16" h="16">
+				<Item type="PowerStone"/>
+				<Item type="FivePointItem"/>
+			</Capsule>
+			<Capsule x="416" y="296" w="16" h="16">
+				<Item type="HeartEnegy"/>
+				<Item type="FivePointItem"/>
+			</Capsule>
+			<Capsule x="576" y="328" w="16" h="16">
+				<Item type="KeyCrystal"/>
+				<Item type="FivePointItem"/>
+			</Capsule>
+			<Capsule x="832" y="328" w="16" h="16">
+				<Item type="HeartEnegy"/>
+				<Item type="FivePointItem"/>
+			</Capsule>
+			<Capsule x="1088" y="392" w="16" h="16">
+				<Item type="HeartEnegy"/>
+				<Item type="FivePointItem"/>
+			</Capsule>
+			<Capsule x="1408" y="374" w="16" h="16">
+				<Item type="HeartEnegy"/>
+				<Item type="FivePointItem"/>
+			</Capsule>
+			<Capsule x="1184" y="296" w="16" h="16">
+				<Item type="PowerStone"/>
+				<Item type="FivePointItem"/>
+			</Capsule>
+			<Capsule x="1344" y="277" w="16" h="16">
+				<Item type="PowerStone"/>
+				<Item type="FivePointItem"/>
+			</Capsule>
+			<Capsule x="1600" y="392" w="16" h="16">
+				<Item type="HeartEnegy"/>
+				<Item type="FivePointItem"/>
+			</Capsule>
+			<Capsule x="1696" y="296" w="16" h="16">
+				<Item type="FivePointItem"/>
+			</Capsule>
+		</Capsules>
+	</MapObjects>
+</Map>

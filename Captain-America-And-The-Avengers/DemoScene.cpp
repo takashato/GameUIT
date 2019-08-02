@@ -3,7 +3,7 @@
 #include "DemoScene.h"
 #include "SoundManager.h"
 
-DemoScene::DemoScene() : Scene()
+DemoScene::DemoScene() : Scene("Resources\\Map\\Charleston_Map.xml")
 {
 	MapID = 0;
 	MapMaxID = 6;
@@ -17,8 +17,6 @@ DemoScene::~DemoScene()
 
 void DemoScene::Setup()
 {
-	Scene::Setup();
-
 	//Setup Map
 	switch (MapID)
 	{
@@ -151,7 +149,6 @@ void DemoScene::Setup()
 
 	mCamera = new Camera(Game::GetInstance().GetWidth(), Game::GetInstance().GetHeight());
 	mMap->SetCamera(mCamera);
-	mPlayer->SetCamera(mCamera);
 
 	CheckCamera(.0f);
 }
@@ -160,34 +157,34 @@ void DemoScene::Update(float deltaTime)
 {
 	Scene::Update(deltaTime);
 
-	mGrid->GetEntities(mCamera, mEntities);
+	mGrid->GetEntities(mCamera->GetBound(), mEntities);
 
 	bool collisionWithGround = false;
-	for (size_t i = 0; i < mEntities.size(); ++i)
+	for (Entity* entity: mEntities)
 	{
-		auto type = mEntities[i]->GetCollidableObjectType();
+		auto type = entity->GetCollidableObjectType();
 		switch (type)
 		{
 		case EBullet:
 			break;
 		case EEnemy:
-			((Enemy*)mEntities[i])->Update(deltaTime, mPlayer);
-			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::EGunEnemy)
+			((Enemy*)entity)->Update(deltaTime, mPlayer);
+			if (((Enemy*)entity)->GetEnemyType() == EnemyType::EGunEnemy)
 			{
-				((GunEnemy*)mEntities[i])->GetBullet()->Update(deltaTime);
+				((GunEnemy*)entity)->GetBullet()->Update(deltaTime);
 			}
-			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::ERunEnemy)
+			if (((Enemy*)entity)->GetEnemyType() == EnemyType::ERunEnemy)
 			{
-				((RunEnemy*)mEntities[i])->GetBullet()->Update(deltaTime);
+				((RunEnemy*)entity)->GetBullet()->Update(deltaTime);
 			}
 			break;
 		default:
-			mEntities[i]->Update(deltaTime);
+			entity->Update(deltaTime);
 			if (type == EPlatform)
 			{
 				RECT pB = mPlayer->GetBoundingBox();
-				RECT eB = mEntities[i]->GetBoundingBox();
-				GroundType type = ((Ground*)mEntities[i])->GetGroundType();
+				RECT eB = entity->GetBoundingBox();
+				GroundType type = ((Ground*)entity)->GetGroundType();
 
 				if (abs(eB.top - pB.bottom) <= 5 && (pB.left >= eB.left && pB.left <= eB.right || pB.right >= eB.left && pB.right <= eB.right))
 				{
@@ -234,33 +231,33 @@ void DemoScene::Draw()
 	mMap->Draw(trans);
 
 	// Draw Entities
-	for (size_t i = 0; i < mEntities.size(); ++i)
+	for (Entity* entity: mEntities)
 	{
 
-		auto type = mEntities[i]->GetCollidableObjectType();
+		auto type = entity->GetCollidableObjectType();
 		switch (type)
 		{
 		case EEnemy:
-			((Enemy*)mEntities[i])->Draw(trans);
-			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::EGunEnemy)
+			((Enemy*)entity)->Draw(trans);
+			if (((Enemy*)entity)->GetEnemyType() == EnemyType::EGunEnemy)
 			{
-				((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);
+				((GunEnemy*)entity)->GetBullet()->Draw(trans);
 			}
-			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::EMissileEnemy)
+			if (((Enemy*)entity)->GetEnemyType() == EnemyType::EMissileEnemy)
 			{
-				/*((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);*/
+				/*((GunEnemy*)entity)->GetBullet()->Draw(trans);*/
 			}
-			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::ERunEnemy)
+			if (((Enemy*)entity)->GetEnemyType() == EnemyType::ERunEnemy)
 			{
-				((RunEnemy*)mEntities[i])->GetBullet()->Draw(trans);
+				((RunEnemy*)entity)->GetBullet()->Draw(trans);
 			}
-			if (((Enemy*)mEntities[i])->GetEnemyType() == EnemyType::EBossCharleston)
+			if (((Enemy*)entity)->GetEnemyType() == EnemyType::EBossCharleston)
 			{
-				/*((GunEnemy*)mEntities[i])->GetBullet()->Draw(trans);*/
+				/*((GunEnemy*)entity)->GetBullet()->Draw(trans);*/
 			}
 			break;
 		default:
-			mEntities[i]->Draw(trans);
+			entity->Draw(trans);
 			break;
 		}
 	}

@@ -1,16 +1,10 @@
 #pragma once
 #include "Entity.h"
 
-enum GroundType
-{
-	EGroundNormal,
-	EGroundHard
-};
-
 class Ground : public Entity
 {
 public:
-	Ground(D3DXVECTOR3 position, GroundType groundType = EGroundNormal);
+	Ground(D3DXVECTOR3 position, GroundType groundType = EGroundNormal, int width = 16, int height = 16);
 	~Ground();
 	void LoadAnimations();
 

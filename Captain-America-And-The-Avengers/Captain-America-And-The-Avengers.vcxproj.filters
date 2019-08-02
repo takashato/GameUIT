@@ -47,6 +47,9 @@
     <Filter Include="Entities\Bullet">
       <UniqueIdentifier>{a0ad0acc-5b3e-4ab9-a9cd-00cd6b503a24}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Resource Loader">
+      <UniqueIdentifier>{3edd909b-a866-4aee-97d9-21b2fec025b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameException.cpp">
@@ -64,9 +67,6 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
@@ -82,9 +82,6 @@
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="MapReader\tinyxml2.cpp">
       <Filter>Utils\MapReader</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationScript.cpp">
-      <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="GameMap.cpp">
       <Filter>Framework</Filter>
@@ -218,8 +215,20 @@
     <ClCompile Include="ExtraDrawer.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationScript.cpp">
+      <Filter>Framework\Resource Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Framework\Resource Loader</Filter>
+    </ClCompile>
     <ClCompile Include="MapObjectReader.cpp">
-      <Filter>Framework</Filter>
+      <Filter>Framework\Resource Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneData.cpp">
+      <Filter>Framework\Resource Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="CharlestonScene.cpp">
+      <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -245,9 +254,6 @@
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
@@ -391,17 +397,29 @@
     <ClInclude Include="Bullet.h">
       <Filter>Entities\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="MapObjectReader.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationScript.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
     <ClInclude Include="BossCharleston.h">
       <Filter>Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="NormalBullet.h">
       <Filter>Entities\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationScript.h">
+      <Filter>Framework\Resource Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Framework\Resource Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="MapObjectReader.h">
+      <Filter>Framework\Resource Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneData.h">
+      <Filter>Framework\Resource Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="CharlestonScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="enums.h">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

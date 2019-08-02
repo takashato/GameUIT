@@ -58,8 +58,10 @@ public:
 	virtual RECT GetBoundingBox() = 0;
 	virtual CollidableObjectType GetCollidableObjectType() = 0;
 
+	D3DXVECTOR3 GetCenterPoint();
+
 	CollisionEvent* SweptAABBEx(Entity* other);
-	void CalcCollision(std::vector<Entity*> *entities, std::vector<CollisionEvent*>& cEvent);
+	void CalcCollision(std::set<Entity*> *entities, std::vector<CollisionEvent*>& cEvent);
 
 	virtual void OnCollision(CollisionEvent* ce);
 
