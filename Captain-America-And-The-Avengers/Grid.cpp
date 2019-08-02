@@ -58,8 +58,10 @@ void Grid::Move(Entity* entity)
 {
 	int col = static_cast<int>(entity->GetPosition().x / mCellSize);
 	if (col >= mColNum) col = mColNum - 1;
+	if (col < 0) col = 0;
 	int row = static_cast<int>(entity->GetPosition().y / mCellSize);
 	if (row >= mRowNum) row = mRowNum - 1;
+	if (row < 0) row = 0;
 	//std::cout << "Change (" << oldCol << "; " << oldRow << ") to " << "(" << col << "; " << row << ")\n";
 
 	if (entity->GetGridNode() == nullptr)
