@@ -75,8 +75,9 @@ void BossCharleston::Update(float deltaTime, Player* player)
 		{
 			if (mNumChangeMode == 1)
 				mNumChangeMode = 2;
-			else
-				mNumChangeMode = 1;
+			else if(mNumChangeMode==2)
+				mNumChangeMode = 3;
+			else mNumChangeMode = 1;
 			mCountMisc = 0;
 			SetState(BOSS_CHARLESTON_IDLE_STATE);
 		}
@@ -119,6 +120,7 @@ void BossCharleston::ChangeAnimationByState(int state)
 		SetVelocityY(0.f);
 		break;
 	case BOSS_CHARLESTON_RUNNING_STATE:
+		SetVelocityY(0.f);
 		mCurrentAni = mAniRunning;
 		break;
 	case BOSS_CHARLESTON_DYING_STATE:
@@ -356,7 +358,7 @@ void BossCharleston::ModeTwo(float deltaTime, Player* player)
 		mPosition.y = 145.f;
 	if (mPosition.x > 189.f)
 		mPosition.x = 189.f;
-	if (mState == BOSS_CHARLESTON_IDLE_STATE && mCounter > 1.f)
+	if (mState == BOSS_CHARLESTON_IDLE_STATE && mCounter > 2.f)
 	{
 		SetState(BOSS_CHARLESTON_PLY_STATE);
 		mCounter = 0;

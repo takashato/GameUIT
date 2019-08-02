@@ -57,7 +57,7 @@ public:
 	bool mFlyDown = false;
 	bool mFlyHorizontal = false;
 	//Logic for Jump
-	bool mIsJump = false;
+	bool mIsJump = true;
 	bool mIsFalling = false;
 
 private:
