@@ -25,6 +25,8 @@ void Shield::LoadAnimations()
 
 void Shield::Update(float deltaTime)
 {
+	this->deltaTime = deltaTime;
+
 	D3DXVECTOR3 playerPosition = mPlayer->GetPosition();
 	D3DXVECTOR3 shieldPosition;
 	shieldPosition.z = 0.f;
