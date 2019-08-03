@@ -137,6 +137,7 @@ D3DXVECTOR3 Shield::GetReturnPoint()
 		}
 		break;
 	case Falling:
+	case Jumping:
 		if (isFacedRight)
 		{
 			shieldPosition.x = playerPosition.x + 2;
@@ -263,6 +264,7 @@ ShieldState Shield::GetStateByPlayerState()
 	{
 	case LowPunching:
 	case Falling:
+	case Jumping:
 		return EShieldIdle;
 	case HighShielding:
 	case ThrowingShield:

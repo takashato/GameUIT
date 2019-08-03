@@ -194,6 +194,9 @@
     <ClCompile Include="PlayerRunning.cpp">
       <Filter>Entities\Player\State</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerSitting.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -350,6 +353,9 @@
       <Filter>Entities\Player\State</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHighJumping.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSitting.h">
       <Filter>Entities\Player\State</Filter>
     </ClInclude>
   </ItemGroup>

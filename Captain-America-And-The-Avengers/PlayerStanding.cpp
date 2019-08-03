@@ -28,6 +28,10 @@ void PlayerStanding::HandleKeyboard(Player& player, Keyboard* keyboard)
 	{
 		player.SetState(EPlayerState::Running);
 	}
+	else if (keyboard->IsPressing(GAME_KEY_DOWN))
+	{
+		player.SetState(EPlayerState::Sitting);
+	}
 }
 
 void PlayerStanding::OnKeyDown(Player& player, BYTE code)
@@ -39,6 +43,10 @@ void PlayerStanding::OnKeyDown(Player& player, BYTE code)
 	else if (code == VK_KEY_JUMP)
 	{
 		player.SetState(EPlayerState::Jumping);
+	}
+	else if (code == VK_DOWN)
+	{
+		player.SetState(EPlayerState::Sitting);
 	}
 }
 
