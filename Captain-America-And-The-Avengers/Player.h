@@ -84,5 +84,6 @@ private:
 
 	float mCounter;
 
+	bool mIsCollisionLeftRightSide;
 	bool ExitIsOke;//Chap nhan qua man khi an cuc exit
 };

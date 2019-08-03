@@ -41,7 +41,10 @@ void Player::Update(float deltaTime)
 {
 	this->deltaTime = deltaTime;
 
-	this->AddPositionX(deltaTime * mVelocityX);
+	if (!mIsCollisionLeftRightSide)
+	{
+		this->AddPositionX(deltaTime * mVelocityX);
+	}
 
 	if (mState->GetState() != EPlayerState::Standing && mState->GetState() != EPlayerState::Running) // vY not affect when standing
 	{
@@ -209,6 +212,7 @@ CollidableObjectType Player::GetCollidableObjectType()
 
 void Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 {
+	mIsCollisionLeftRightSide = false;
 	bool collisionWithGround = false;
 	for (CollisionEvent* ce : cEvent)
 	{
@@ -232,11 +236,13 @@ void Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 
 				if (ce->nx == -1.0f)
 				{
+					mIsCollisionLeftRightSide = true;
 					SetVelocityX(.0);
 					SetPositionX(eB.left - GetWidth());
 				}
 				else if (ce->nx == 1.0f)
 				{
+					mIsCollisionLeftRightSide = true;
 					SetVelocityX(.0);
 					SetPositionX(eB.right);
 				}
