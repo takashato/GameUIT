@@ -12,5 +12,9 @@ public:
 	virtual void OnKeyUp(Player& player, BYTE code) override;
 	virtual void OnCollision(Player& player, std::vector<CollisionEvent*>& cEvent) override;
 	EPlayerState GetState();
+
+private:
+	bool isPressingKey = false;
+	float mCounter = .0f;
 };
 

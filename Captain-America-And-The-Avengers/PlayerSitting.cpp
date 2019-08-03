@@ -4,6 +4,9 @@
 
 void PlayerSitting::Enter(Player& player, EPlayerState fromState, Data&& data)
 {
+	isPressingKey = false;
+	mCounter = .0f;
+
 	player.SetVelocityX(.0f);
 	player.SetVelocityY(GRAVITY);
 }
@@ -15,11 +18,20 @@ Data PlayerSitting::Exit(Player& player, EPlayerState toState)
 
 void PlayerSitting::Update(Player& player, float deltaTime)
 {
+	if (!isPressingKey)
+	{
+		mCounter += deltaTime;
+		if (mCounter >= FALL_LANDING_TIME)
+		{
+			mCounter = 0.0f;
+			player.SetState(EPlayerState::Standing);
+		}
+	}
 }
 
 void PlayerSitting::HandleKeyboard(Player& player, Keyboard* keyboard)
 {
-
+	isPressingKey = keyboard->IsPressing(GAME_KEY_DOWN);
 }
 
 void PlayerSitting::OnKeyDown(Player& player, BYTE code)

@@ -232,7 +232,7 @@ void Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 				collisionWithGround = true;
 				if (mState->GetState() == EPlayerState::Falling || mState->GetState() == EPlayerState::HighJumping)
 				{
-					SetState(EPlayerState::Standing);
+					SetState(EPlayerState::Sitting);
 					SetPositionY(ce->entity->GetPosition().y - GetHeight());
 				}
 			}

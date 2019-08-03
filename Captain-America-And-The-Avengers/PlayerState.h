@@ -76,4 +76,5 @@ protected:
 	static constexpr auto SPIN_SPEED_HOR = JUMP_SPEED_HOR;
 	static constexpr auto TIME_KEEP_SPIN = 0.16f;
 
+	static constexpr auto FALL_LANDING_TIME = 0.1f;
 };
