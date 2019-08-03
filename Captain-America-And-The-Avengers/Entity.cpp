@@ -202,11 +202,6 @@ void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
 	vertexList.push_back(D3DXVECTOR2(bb.left, bb.bottom));
 	vertexList.push_back(D3DXVECTOR2(bb.left, bb.top));
 
-	if (GetCollidableObjectType() == EPlatform)
-	{
-		std::cout << "Render platform\n";
-	}
-
 	ExtraDrawer::GetInstance().DrawTransform(vertexList, transform);
 }
 

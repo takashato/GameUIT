@@ -2,6 +2,8 @@
 #include "Entity.h"
 #include "GridNode.h"
 
+class Player;
+
 class Grid
 {
 public:
@@ -11,7 +13,7 @@ public:
 	Grid(int colNum, int rowNum, int cellSize);
 	~Grid();
 	
-	void Update(float deltaTime, RECT rect);
+	void Update(float deltaTime, RECT rect, Player* player);
 	void Draw(D3DXVECTOR2 trans);
 
 	void InitNodes();

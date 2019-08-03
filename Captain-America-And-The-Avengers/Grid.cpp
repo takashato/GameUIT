@@ -37,12 +37,16 @@ Grid::~Grid()
 	delete mCells;
 }
 
-void Grid::Update(float deltaTime, RECT rect)
+void Grid::Update(float deltaTime, RECT rect, Player* player)
 {
 	mTemp.clear();
 	GetEntities(rect, mTemp);
 	for (Entity* entity : mTemp)
 	{
+		if (entity->GetCollidableObjectType() == EEnemy)
+		{
+			((Enemy*)entity)->Update(deltaTime, player);
+		}
 		entity->Update(deltaTime);
 	}
 }

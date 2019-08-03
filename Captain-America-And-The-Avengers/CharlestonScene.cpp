@@ -46,18 +46,40 @@ void CharlestonScene::Setup()
 	{
 		mGrid->Add(new Ground(D3DXVECTOR3(dataGround.x, dataGround.y, .0f), dataGround.type, dataGround.w, dataGround.h));
 	}
+	// Enemy
+	for (DataEnemy dataEnemy : mData.GetDataEnemy())
+	{
+		switch (dataEnemy.type)
+		{
+		case EGunEnemy:
+		{
+			GunEnemy* enemy = new GunEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f));
+			enemy->SetBullet(new NormalBullet(enemy));
+			mGrid->Add(enemy);
+		}
+			break;
+		case EMissileEnemy:
+			mGrid->Add(new MissileEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType));
+			break;
+		case ERunEnemy:
+			mGrid->Add(new RunEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType));
+			break;
+		}
+	}
 
 }
 
 void CharlestonScene::Update(float deltaTime)
 {
-	mGrid->Update(deltaTime, mCamera->GetBound());
-
+	mGrid->Update(deltaTime, mCamera->GetBound(), mPlayer.get());
 	std::vector<CollisionEvent*> cEvent;
 	mPlayer->CalcCollision(&mGrid->mTemp, cEvent);
 	mPlayer->OnCollision(cEvent);
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->Update(deltaTime);
+	cEvent.clear();
+	mPlayer->GetShield()->CalcCollision(&mGrid->mTemp, cEvent);
+	mPlayer->GetShield()->OnCollision(cEvent);
 	mPlayer->GetShield()->Update(deltaTime);
 	mCamera->Update(mPlayer->GetCenterPoint());
 }

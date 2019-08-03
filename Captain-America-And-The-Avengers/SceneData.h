@@ -13,6 +13,17 @@ struct DataGround {
 	};
 };
 
+struct DataEnemy {
+	EnemyType type;
+	int x, y, subType;
+	DataEnemy(EnemyType type, int x, int y, int subType) {
+		this->type = type;
+		this->x = x;
+		this->y = y;
+		this->subType = subType;
+	}
+};
+
 class SceneData
 {
 public:
@@ -27,6 +38,7 @@ public:
 
 	D3DXVECTOR3 GetSpawnPoint(LPCSTR name);
 	std::list<DataGround>& GetDataGround() { return mDataGrounds; };
+	std::list<DataEnemy>& GetDataEnemy() { return mDataEnemies; };
 
 private:
 	tinyxml2::XMLNode* pRoot = nullptr;
@@ -35,4 +47,5 @@ private:
 	std::string mTilemapMPath;
 	std::unordered_map<std::string, D3DXVECTOR3> mSpawnPoints;
 	std::list<DataGround> mDataGrounds;
+	std::list<DataEnemy> mDataEnemies;
 };

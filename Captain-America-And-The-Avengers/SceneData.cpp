@@ -77,6 +77,31 @@ void SceneData::ReadData(LPCSTR filePath)
 						groundNode = groundNode->NextSiblingElement();
 					}
 				}
+				else if (subName == "Enemies")
+				{
+					auto enemyNode = subNode->FirstChildElement();
+					while (enemyNode != nullptr)
+					{
+						std::string type(enemyNode->Attribute("type"));
+						EnemyType eType = EnemyType::EDefaultEnemy;
+						if (type == "RunEnemy")
+							eType = EnemyType::ERunEnemy;
+						else if (type == "MissileEnemy")
+							eType = EnemyType::EMissileEnemy;
+						else if (type == "GunEnemy")
+							eType = EnemyType::EGunEnemy;
+						if (eType != EnemyType::EDefaultEnemy)
+						{
+							mDataEnemies.push_back(DataEnemy(
+								eType,
+								enemyNode->IntAttribute("x"),
+								enemyNode->IntAttribute("y"),
+								enemyNode->IntAttribute("subType")
+							));
+						}
+						enemyNode = enemyNode->NextSiblingElement();
+					}
+				}
 				subNode = subNode->NextSiblingElement();
 			}
 		}

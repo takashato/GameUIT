@@ -4,18 +4,6 @@
 #include "Bullet.h"
 #include "Grid.h"
 
-enum EnemyType
-{
-	EBatEnemy,
-	EFlyEnemy,
-	ERunEnemy,
-	EGunEnemy,
-	EGunStockEnemy,
-	EMissileEnemy,
-	EDefaultEnemy,
-	EBossCharleston
-};
-
 class Bullet;
 
 class Enemy : public Entity
