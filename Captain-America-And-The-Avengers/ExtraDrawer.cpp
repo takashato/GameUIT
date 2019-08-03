@@ -19,7 +19,6 @@ void ExtraDrawer::DrawTransform(std::vector<D3DXVECTOR2> &vertexList, D3DXVECTOR
 	}
 
 	Game::GetInstance().GetLineHandler()->SetWidth(width);
-	Game::GetInstance().GetLineHandler()->SetAntialias(TRUE);
 	Game::GetInstance().GetLineHandler()->Begin();
 
 	D3DXVECTOR2* vertexData = vertexList.data();

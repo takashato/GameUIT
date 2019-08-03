@@ -62,8 +62,8 @@ void CharlestonScene::Update(float deltaTime)
 void CharlestonScene::Draw()
 {
 	auto trans = mCamera->GetTransform();
-	mGrid->Draw(trans);
 	mMap->Draw(trans);
+	mGrid->Draw(trans);
 	mPlayer->Draw(trans);
 	mPlayer->GetShield()->Draw(trans);
 }
