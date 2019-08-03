@@ -176,6 +176,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameException.cpp" />
     <ClCompile Include="GameMap.cpp" />
+    <ClCompile Include="GeoUtils.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="GridNode.cpp" />
     <ClCompile Include="Ground.cpp" />
@@ -238,6 +239,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameException.h" />
     <ClInclude Include="GameMap.h" />
+    <ClInclude Include="GeoUtils.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GridNode.h" />
     <ClInclude Include="Ground.h" />

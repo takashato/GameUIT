@@ -23,6 +23,7 @@ public:
 
 	D3DXVECTOR3 GetPosition();
 	RECT GetBound();
+	D3DXVECTOR3 GetCenter();
 
 	D3DXVECTOR2 GetTransform();
 

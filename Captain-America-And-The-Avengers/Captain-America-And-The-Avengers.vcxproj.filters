@@ -230,6 +230,7 @@
     <ClCompile Include="CharlestonScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="GeoUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -420,6 +421,9 @@
     </ClInclude>
     <ClInclude Include="enums.h">
       <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GeoUtils.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

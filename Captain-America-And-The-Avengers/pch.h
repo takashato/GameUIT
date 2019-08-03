@@ -30,3 +30,5 @@
 
 #include "GameException.h"
 #include "ISingleton.h"
+
+#include "GeoUtils.h"

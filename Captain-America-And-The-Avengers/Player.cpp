@@ -175,38 +175,42 @@ CollidableObjectType Player::GetCollidableObjectType()
 	return EPlayer;
 }
 
-void Player::OnCollision(CollisionEvent* ce)
+void Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 {
-	if (ce->entity->GetCollidableObjectType() == EPlatform)
+	for (CollisionEvent* ce : cEvent)
 	{
-		GroundType type = ((Ground*)ce->entity)->GetGroundType();
-		if (type == EGroundHard)
+		if (ce->entity->GetCollidableObjectType() == EPlatform)
 		{
-			RECT pB = GetBoundingBox();
-			RECT eB = ce->entity->GetBoundingBox();
+			GroundType type = ((Ground*)ce->entity)->GetGroundType();
+			if (type == EGroundHard)
+			{
+				RECT pB = GetBoundingBox();
+				RECT eB = ce->entity->GetBoundingBox();
 
-			if (ce->nx == -1.0f && ((pB.top - eB.top) * (pB.bottom - eB.bottom) <= 0.0f))
-			{
-				SetVelocityX(.0);
-				SetPositionX(eB.left - GetWidth());
-			}
-			else if (ce->nx == 1.0f && ((pB.top - eB.top) * (pB.bottom - eB.bottom) <= 0.0f))
-			{
-				SetVelocityX(.0);
-				SetPositionX(eB.right);
-			}
-
-			if (mState->GetState() != Falling)
-			{
-				if (ce->ny == 1.0f && (pB.left >= eB.left && pB.left <= eB.right || pB.right >= eB.left && pB.right <= eB.right))
+				if (ce->nx == -1.0f && ((pB.top - eB.top) * (pB.bottom - eB.bottom) <= 0.0f))
 				{
-					SetPositionY(eB.bottom);
-					SetState(new PlayerFallingState(this));
+					SetVelocityX(.0);
+					SetPositionX(eB.left - GetWidth());
+				}
+				else if (ce->nx == 1.0f && ((pB.top - eB.top) * (pB.bottom - eB.bottom) <= 0.0f))
+				{
+					SetVelocityX(.0);
+					SetPositionX(eB.right);
+				}
+
+				if (mState->GetState() != Falling)
+				{
+					if (ce->ny == 1.0f && (pB.left >= eB.left && pB.left <= eB.right || pB.right >= eB.left && pB.right <= eB.right))
+					{
+						SetPositionY(eB.bottom);
+						SetState(new PlayerFallingState(this));
+					}
 				}
 			}
 		}
+		mState->OnCollision(ce);
+		delete ce;
 	}
-	mState->OnCollision(ce);
 }
 
 Shield* Player::GetShield()

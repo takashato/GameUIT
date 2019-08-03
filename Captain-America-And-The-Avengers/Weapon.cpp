@@ -38,7 +38,3 @@ float Weapon::GetHeight()
 {
 	return 0.0f;
 }
-
-void Weapon::OnCollision(CollisionEvent* ce)
-{
-}

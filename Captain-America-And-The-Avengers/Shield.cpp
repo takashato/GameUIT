@@ -279,24 +279,28 @@ bool Shield::IsThrown()
 	return isThrown;
 }
 
-void Shield::OnCollision(CollisionEvent* ce)
+void Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 {
-	if (ce->entity->GetCollidableObjectType() == EEnemy)
+	for (CollisionEvent* ce : cEvent)
 	{
-		auto enemy = ((Enemy*)ce->entity);
-		enemy->TakeDamage(this);
-	}
-	else if (ce->entity->GetCollidableObjectType() == EBullet)
-	{
-		if (mState == ShieldState::EShieldRun && (((Bullet*)ce->entity)->GetBulletType() == BNormalBullet))
+		if (ce->entity->GetCollidableObjectType() == EEnemy)
 		{
-			if (GetDirection() == Right && ce->nx == -1.0f || GetDirection() == Left && ce->nx == 1.0f)
+			auto enemy = ((Enemy*)ce->entity);
+			enemy->TakeDamage(this);
+		}
+		else if (ce->entity->GetCollidableObjectType() == EBullet)
+		{
+			if (mState == ShieldState::EShieldRun && (((Bullet*)ce->entity)->GetBulletType() == BNormalBullet))
 			{
-				((Bullet*)ce->entity)->HitShield();
-				SoundManager::GetInstance().CResetSound(SmallBulletsHitShields);
-				SoundManager::GetInstance().CPlaySound(SmallBulletsHitShields);
+				if (GetDirection() == Right && ce->nx == -1.0f || GetDirection() == Left && ce->nx == 1.0f)
+				{
+					((Bullet*)ce->entity)->HitShield();
+					SoundManager::GetInstance().CResetSound(SmallBulletsHitShields);
+					SoundManager::GetInstance().CPlaySound(SmallBulletsHitShields);
+				}
 			}
 		}
+		delete ce;
 	}
 }
 

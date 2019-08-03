@@ -130,7 +130,7 @@ void Entity::OnSetPosition()
 
 D3DXVECTOR3 Entity::GetCenterPoint()
 {
-	return D3DXVECTOR3(mPosition.x + GetWidth() / 2.0f, mPosition.y + GetHeight() / 2.0f, .0f);
+	return GeoUtils::GetRectCenter(GetBoundingBox());
 }
 
 CollisionEvent* Entity::SweptAABBEx(Entity* other)
@@ -171,7 +171,7 @@ void Entity::CalcCollision(std::set<Entity*> *entities, std::vector<CollisionEve
 	std::sort(cEvent.begin(), cEvent.end(), CollisionEvent::compare);
 }
 
-void Entity::OnCollision(CollisionEvent* ce)
+void Entity::OnCollision(std::vector<CollisionEvent*>& cEvent)
 {
 }
 

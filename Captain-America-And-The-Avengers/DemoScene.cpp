@@ -199,20 +199,12 @@ void DemoScene::Update(float deltaTime)
 	// Check collision
 	std::vector<CollisionEvent*> cEvents;
 	mPlayer->CalcCollision(&mEntities, cEvents);
-	for (size_t i = 0; i < cEvents.size(); ++i)
-	{
-		mPlayer->OnCollision(cEvents[i]);
-		delete cEvents[i];
-	}
+	mPlayer->OnCollision(cEvents);
 
 	// Check shield collision
 	cEvents.clear();
 	mPlayer->GetShield()->CalcCollision(&mEntities, cEvents);
-	for (size_t i = 0; i < cEvents.size(); ++i)
-	{
-		mPlayer->GetShield()->OnCollision(cEvents[i]);
-		delete cEvents[i];
-	}
+	mPlayer->GetShield()->OnCollision(cEvents);
 
 	Keyboard* keyboard = SceneManager::GetInstance().GetKeyboard();
 

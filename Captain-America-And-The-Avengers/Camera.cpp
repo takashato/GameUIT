@@ -1,6 +1,11 @@
 #include "pch.h"
 #include "Camera.h"
 
+static constexpr auto LEFT_APPEND = 14.0f;
+static constexpr auto TOP_APPEND = 55.0f;
+static constexpr auto RIGHT_APPEND = 14.0f;
+static constexpr auto BOTTOM_APPEND = 63.0f;
+
 Camera::Camera(int width, int height)
 {
 	mWidth = width;
@@ -13,8 +18,25 @@ void Camera::Update(D3DXVECTOR3 position)
 {
 	if (!mIsLocked)
 	{
-		SetPosition(position);
+		D3DXVECTOR3 cc = GetPosition();
+		if (position.x < cc.x - LEFT_APPEND)
+		{
+			SetPositionX((int)(LEFT_APPEND + position.x));
+		}
+		else if (position.x > cc.x + RIGHT_APPEND)
+		{
+			SetPositionX((int)(position.x - LEFT_APPEND));
+		}
 
+		if (position.y < cc.y - TOP_APPEND)
+		{
+			SetPositionY((int)(TOP_APPEND + position.y));
+		}
+		else if (position.y > cc.y + BOTTOM_APPEND)
+		{
+			SetPositionY((int)(position.y - BOTTOM_APPEND));
+		}
+		
 		if (GetBound().left < 0)
 		{
 			SetPosition(GetWidth() / 2, (int)GetPosition().y);
@@ -105,6 +127,11 @@ RECT Camera::GetBound()
 	bound.bottom = (long)(bound.top + mHeight);
 
 	return bound;
+}
+
+D3DXVECTOR3 Camera::GetCenter()
+{
+	return GeoUtils::GetRectCenter(GetBound());
 }
 
 D3DXVECTOR2 Camera::GetTransform()

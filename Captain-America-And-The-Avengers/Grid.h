@@ -24,11 +24,11 @@ public:
 	
 	void GetEntities(RECT rect, std::set<Entity*> &entities);
 
+	std::set<Entity*> mTemp;
+
 private:
 	int mColNum, mRowNum;
 	int mCellSize;
-
-	std::set<Entity*> mTemp;
 
 	GridNode*** mCells = NULL;
 };

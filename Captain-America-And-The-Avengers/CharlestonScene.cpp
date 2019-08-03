@@ -53,7 +53,12 @@ void CharlestonScene::Setup()
 void CharlestonScene::Update(float deltaTime)
 {
 	mGrid->Update(deltaTime, mCamera->GetBound());
+
+	std::vector<CollisionEvent*> cEvent;
+	mPlayer->CalcCollision(&mGrid->mTemp, cEvent);
+	mPlayer->OnCollision(cEvent);
 	mPlayer->Update(deltaTime);
+
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->GetShield()->Update(deltaTime);
 	mCamera->Update(mPlayer->GetCenterPoint());

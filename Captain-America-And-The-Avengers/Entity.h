@@ -63,7 +63,7 @@ public:
 	CollisionEvent* SweptAABBEx(Entity* other);
 	void CalcCollision(std::set<Entity*> *entities, std::vector<CollisionEvent*>& cEvent);
 
-	virtual void OnCollision(CollisionEvent* ce);
+	virtual void OnCollision(std::vector<CollisionEvent*>& cEvent);
 
 	void RenderBoundingBox(D3DXVECTOR2 transform);
 

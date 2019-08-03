@@ -41,7 +41,7 @@ public:
 	ShieldState GetStateByPlayerState();
 	bool IsThrown();
 
-	virtual void OnCollision(CollisionEvent* ce);
+	void OnCollision(std::vector<CollisionEvent*>& cEvent);
 
 private:
 	Player* mPlayer = nullptr;
