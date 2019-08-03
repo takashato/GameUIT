@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Capsule" imagePath="Capsule.png" width="16" height="16">
+	<Sprites type="0">  
+		<sprite x="16" y="9" w="16" h="16" />
+	</Sprites>
+	<Sprites type="1">  
+		<sprite x="40" y="9" w="16" h="16" />
+	</Sprites>  
+  </Animation>
+</Animations>

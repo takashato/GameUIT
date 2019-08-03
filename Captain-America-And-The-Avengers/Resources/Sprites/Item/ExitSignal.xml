@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Static" imagePath="Captain America.png" width="400" height="368">
+	<Sprites type="0">  
+		<sprite x="280" y="304" w="29" h="16" />
+	</Sprites>
+  </Animation>
+</Animations>

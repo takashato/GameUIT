@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="FivePoint" imagePath="Captain America.png" width="400" height="368">
+	<Sprites type="0">  
+		<sprite x="168" y="306" w="8" h="14" />
+	</Sprites>
+  </Animation>
+   <Animation name="HeartEnergy" imagePath="Captain America.png" width="400" height="368">
+	<Sprites type="0">  
+		<sprite x="200" y="311" w="8" h="9" />
+	</Sprites>
+  </Animation>
+  <Animation name="KeyCrystal" imagePath="Captain America.png" width="400" height="368">
+	<Sprites type="0">
+		<sprite x="234" y="306" w="12" h="12" />
+		<sprite x="258" y="306" w="12" h="12" />
+	</Sprites>
+  </Animation>
+  <Animation name="OneUp" imagePath="Captain America.png" width="400" height="368">
+	<Sprites type="0">  
+		<sprite x="196" y="274" w="8" h="14" />
+	</Sprites>
+  </Animation>
+   <Animation name="PowerStone" imagePath="Captain America.png" width="400" height="368">
+	<Sprites type="0">  
+		<sprite x="123" y="304" w="11" h="16" />
+		<sprite x="147" y="304" w="11" h="16" />
+	</Sprites>
+  </Animation>
+</Animations>

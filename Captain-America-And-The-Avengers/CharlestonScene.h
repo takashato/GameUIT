@@ -13,6 +13,7 @@
 #include "Grid.h"
 #include "Ground.h"
 #include "MapObjectReader.h"
+#include "Capsule.h"
 
 class CharlestonScene : public Scene
 {

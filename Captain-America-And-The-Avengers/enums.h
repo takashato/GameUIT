@@ -17,3 +17,30 @@ enum EnemyType
 	EDefaultEnemy,
 	EBossCharleston
 };
+
+enum EntityDirection
+{
+	Left = -1,
+	Right = 1
+};
+
+enum CollidableObjectType
+{
+	EPlayer,
+	EEnemy,
+	EWeapon,
+	EPlatform,
+	EDefault,
+	EBullet,
+	ECapsule,
+	EItem
+};
+
+enum ItemType
+{
+	PowerStone,
+	KeyCrystal,
+	FivePoint,
+	HeartEnergy,
+	OneUp
+};

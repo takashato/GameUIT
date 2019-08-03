@@ -290,6 +290,10 @@ void Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 				}
 			}
 		}
+		else if (ce->entity->GetCollidableObjectType() == ECapsule)
+		{
+			((Capsule*)ce->entity)->Drop();
+		}
 		delete ce;
 	}
 }

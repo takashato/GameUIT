@@ -24,6 +24,17 @@ struct DataEnemy {
 	}
 };
 
+struct DataCapsule {
+	int x, y;
+	std::vector<ItemType> itemList;
+	DataCapsule(int x, int y, std::vector<ItemType> itemList)
+	{
+		this->x = x;
+		this->y = y;
+		this->itemList = std::move(itemList);
+	}
+};
+
 class SceneData
 {
 public:
@@ -39,6 +50,7 @@ public:
 	D3DXVECTOR3 GetSpawnPoint(LPCSTR name);
 	std::list<DataGround>& GetDataGround() { return mDataGrounds; };
 	std::list<DataEnemy>& GetDataEnemy() { return mDataEnemies; };
+	std::list<DataCapsule>& GetDataCapsule() { return mDataCapsules; };
 
 private:
 	tinyxml2::XMLNode* pRoot = nullptr;
@@ -48,4 +60,5 @@ private:
 	std::unordered_map<std::string, D3DXVECTOR3> mSpawnPoints;
 	std::list<DataGround> mDataGrounds;
 	std::list<DataEnemy> mDataEnemies;
+	std::list<DataCapsule> mDataCapsules;
 };

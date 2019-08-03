@@ -64,7 +64,7 @@
 				<Item type="FivePointItem"/>
 			</Capsule>
 			<Capsule x="416" y="296" w="16" h="16">
-				<Item type="HeartEnegy"/>
+				<Item type="HeartEnergy"/>
 				<Item type="FivePointItem"/>
 			</Capsule>
 			<Capsule x="576" y="328" w="16" h="16">
@@ -72,15 +72,15 @@
 				<Item type="FivePointItem"/>
 			</Capsule>
 			<Capsule x="832" y="328" w="16" h="16">
-				<Item type="HeartEnegy"/>
+				<Item type="HeartEnergy"/>
 				<Item type="FivePointItem"/>
 			</Capsule>
 			<Capsule x="1088" y="392" w="16" h="16">
-				<Item type="HeartEnegy"/>
+				<Item type="HeartEnergy"/>
 				<Item type="FivePointItem"/>
 			</Capsule>
 			<Capsule x="1408" y="374" w="16" h="16">
-				<Item type="HeartEnegy"/>
+				<Item type="HeartEnergy"/>
 				<Item type="FivePointItem"/>
 			</Capsule>
 			<Capsule x="1184" y="296" w="16" h="16">
@@ -92,10 +92,11 @@
 				<Item type="FivePointItem"/>
 			</Capsule>
 			<Capsule x="1600" y="392" w="16" h="16">
-				<Item type="HeartEnegy"/>
+				<Item type="HeartEnergy"/>
 				<Item type="FivePointItem"/>
 			</Capsule>
 			<Capsule x="1696" y="296" w="16" h="16">
+				<Item type="FivePointItem"/>
 				<Item type="FivePointItem"/>
 			</Capsule>
 		</Capsules>

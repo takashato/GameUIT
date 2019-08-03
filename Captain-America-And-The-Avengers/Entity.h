@@ -5,22 +5,6 @@
 
 class GridNode;
 
-enum EntityDirection
-{
-	Left = -1,
-	Right = 1
-}; 
-
-enum CollidableObjectType
-{
-	EPlayer,
-	EEnemy,
-	EWeapon,
-	EPlatform,
-	EDefault,
-	EBullet
-};
-
 class Entity 
 {
 public:

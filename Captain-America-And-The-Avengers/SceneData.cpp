@@ -102,6 +102,36 @@ void SceneData::ReadData(LPCSTR filePath)
 						enemyNode = enemyNode->NextSiblingElement();
 					}
 				}
+				else if (subName == "Capsules")
+				{
+					auto capsuleNode = subNode->FirstChildElement();
+					while (capsuleNode != nullptr)
+					{
+						int x = capsuleNode->IntAttribute("x");
+						int y = capsuleNode->IntAttribute("y");
+						std::vector<ItemType> itemList;
+						auto itemNode = capsuleNode->FirstChildElement();
+						while (itemNode != nullptr)
+						{
+							std::string type(itemNode->Attribute("type"));
+							ItemType iType;
+							if (type == "PowerStone")
+								iType = ItemType::PowerStone;
+							else if (type == "FivePointItem")
+								iType = ItemType::FivePoint;
+							else if (type == "HeartEnergy")
+								iType = ItemType::HeartEnergy;
+							else if (type == "KeyCrystal")
+								iType = ItemType::KeyCrystal;
+							else 
+								iType = ItemType::OneUp;
+							itemList.push_back(iType);
+							itemNode = itemNode->NextSiblingElement();
+						}
+						mDataCapsules.push_back(DataCapsule(x, y, std::move(itemList)));
+						capsuleNode = capsuleNode->NextSiblingElement();
+					}
+				}
 				subNode = subNode->NextSiblingElement();
 			}
 		}

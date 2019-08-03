@@ -50,6 +50,9 @@
     <Filter Include="Framework\Resource Loader">
       <UniqueIdentifier>{3edd909b-a866-4aee-97d9-21b2fec025b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entities\Items">
+      <UniqueIdentifier>{fd31c4ee-c0a3-4cc8-90c2-a057722a29f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameException.cpp">
@@ -197,9 +200,14 @@
     <ClCompile Include="PlayerSitting.cpp">
       <Filter>Entities\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerThrowing.cpp" />
     <ClCompile Include="PlayerHighShielding.cpp">
       <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerThrowing.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Capsule.cpp">
+      <Filter>Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -367,6 +375,9 @@
     </ClInclude>
     <ClInclude Include="PlayerHighShielding.h">
       <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Capsule.h">
+      <Filter>Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

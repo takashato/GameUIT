@@ -3,6 +3,7 @@
 #include "AnimationScript.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Capsule.h"
 #include "SoundManager.h"
 
 enum ShieldState {

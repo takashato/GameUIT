@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Explosive" imagePath="Captain America.png" width="400" height="368">
+	<Sprites type="0">   
+		<sprite x="244" y="272" w="16" h="16" />
+		<sprite x="269" y="266" w="30" h="28" />
+	</Sprites>
+  </Animation>
+</Animations>

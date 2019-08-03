@@ -66,7 +66,12 @@ void CharlestonScene::Setup()
 			break;
 		}
 	}
-
+	// Capsule
+	for (DataCapsule dataCapsule : mData.GetDataCapsule())
+	{
+		auto capsule = new Capsule(D3DXVECTOR3(dataCapsule.x, dataCapsule.y, .0f), dataCapsule.itemList);
+		mGrid->Add(capsule);
+	}
 }
 
 void CharlestonScene::Update(float deltaTime)
