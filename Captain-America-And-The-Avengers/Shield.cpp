@@ -40,18 +40,6 @@ void Shield::Update(float deltaTime)
 
 	D3DXVECTOR3 returnPos = GetReturnPoint();
 
-	if (mPlayer->GetState()->GetState() == ThrowingShield && mPlayer->GetCurrentAnimation()->IsDoneCycle() && GetVelocityX() == 0.0f && !isThrown)	// Start throwing shield after throwing animation!!!
-	{
-		isThrown = true;
-		flyDirection = mPlayer->GetDirection() == Right;
-		maxLengthFly = 100.0f;
-		SetVelocityX((flyDirection ? 1 : -1) * 666.66f);
-		SetVelocityY(.0f);
-		SoundManager::GetInstance().CResetSound(ThrowShield);
-		SoundManager::GetInstance().CPlaySound(ThrowShield);
-		std::cout << "Started throwing shield!!!\n";
-	}
-
 	if (!isThrown)
 	{
 		SetState(GetStateByPlayerState());
@@ -335,6 +323,18 @@ void Shield::SetState(ShieldState state)
 	ChangeAnimationByState(mState);
 	mHeight = mCurrentAni->GetHeight();
 	mWidth = mCurrentAni->GetWidth();
+}
+
+void Shield::Throw()
+{
+	isThrown = true;
+	flyDirection = mPlayer->GetDirection() == Right;
+	maxLengthFly = 100.0f;
+	SetVelocityX((flyDirection ? 1 : -1) * 666.66f);
+	SetVelocityY(.0f);
+	SoundManager::GetInstance().CResetSound(ThrowShield);
+	SoundManager::GetInstance().CPlaySound(ThrowShield);
+	std::cout << "Started throwing shield!!!\n";
 }
 
 void Shield::ChangeAnimationByState(int state)

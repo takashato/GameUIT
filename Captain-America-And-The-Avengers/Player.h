@@ -9,6 +9,7 @@
 #include "PlayerFalling.h"
 #include "PlayerSitting.h"
 #include "PlayerHighJumping.h"
+#include "PlayerThrowing.h"
 #include "AnimationScript.h"
 #include "Camera.h"
 
@@ -79,6 +80,7 @@ private:
 	friend class PlayerHighJumping;		PlayerHighJumping mStateHighJumping;
 	friend class PlayerFalling;			PlayerFalling mStateFalling;
 	friend class PlayerSitting;			PlayerSitting mStateSitting;
+	friend class PlayerThrowing;		PlayerThrowing mStateThrowing;
 
 	EPlayerState mLastState;
 

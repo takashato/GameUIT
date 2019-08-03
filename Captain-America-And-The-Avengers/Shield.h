@@ -26,6 +26,8 @@ public:
 	ShieldState GetState();
 	void SetState(ShieldState state);
 
+	void Throw();
+
 	void ChangeAnimationByState(int state);
 
 	void OnSetPosition();

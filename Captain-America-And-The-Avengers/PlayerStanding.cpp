@@ -48,6 +48,14 @@ void PlayerStanding::OnKeyDown(Player& player, BYTE code)
 	{
 		player.SetState(EPlayerState::Sitting);
 	}
+	else if (code == VK_KEY_ATTACK)
+	{
+		if (!player.GetShield()->IsThrown())
+		{
+			player.SetState(EPlayerState::ThrowingShield);
+		}
+		// Else punching
+	}
 }
 
 void PlayerStanding::OnKeyUp(Player& player, BYTE code)

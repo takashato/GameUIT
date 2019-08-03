@@ -36,6 +36,13 @@ void PlayerRunning::OnKeyDown(Player& player, BYTE code)
 	{
 		player.SetState(EPlayerState::Jumping);
 	}
+	else if (code == VK_KEY_ATTACK)
+	{
+		if (!player.GetShield()->IsThrown())
+		{
+			player.SetState(EPlayerState::ThrowingShield);
+		}
+	}
 }
 
 void PlayerRunning::OnKeyUp(Player& player, BYTE code)

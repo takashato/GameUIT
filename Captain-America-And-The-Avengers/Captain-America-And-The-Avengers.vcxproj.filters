@@ -197,6 +197,7 @@
     <ClCompile Include="PlayerSitting.cpp">
       <Filter>Entities\Player\State</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerThrowing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -356,6 +357,9 @@
       <Filter>Entities\Player\State</Filter>
     </ClInclude>
     <ClInclude Include="PlayerSitting.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerThrowing.h">
       <Filter>Entities\Player\State</Filter>
     </ClInclude>
   </ItemGroup>

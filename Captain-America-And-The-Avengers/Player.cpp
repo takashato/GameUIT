@@ -46,8 +46,11 @@ void Player::Update(float deltaTime)
 		this->AddPositionX(deltaTime * mVelocityX);
 	}
 
-	if (mState->GetState() != EPlayerState::Standing && mState->GetState() != EPlayerState::Running 
-		&& mState->GetState() != EPlayerState::Sitting) // vY not affect when standing
+	if (mState->GetState() != EPlayerState::Standing 
+		&& mState->GetState() != EPlayerState::Running
+		&& mState->GetState() != EPlayerState::Sitting
+		&& mState->GetState() != EPlayerState::ThrowingShield
+		) // vY not affect when standing
 	{
 		this->AddPositionY(deltaTime * mVelocityY);
 	}
@@ -113,6 +116,7 @@ void Player::SetState(EPlayerState state)
 	case HighJumping:	mState = &mStateHighJumping; break;
 	case Falling:		mState = &mStateFalling; break;
 	case Sitting:		mState = &mStateSitting; break;
+	case ThrowingShield:mState = &mStateThrowing; break;
 	}
 
 	mState->Enter(*this, mLastState, std::move(exitData));
