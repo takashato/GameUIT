@@ -32,6 +32,10 @@ void PlayerStanding::HandleKeyboard(Player& player, Keyboard* keyboard)
 	{
 		player.SetState(EPlayerState::Sitting);
 	}
+	else if (keyboard->IsPressing(GAME_KEY_UP))
+	{
+		player.SetState(EPlayerState::HighShielding);
+	}
 }
 
 void PlayerStanding::OnKeyDown(Player& player, BYTE code)
@@ -55,6 +59,10 @@ void PlayerStanding::OnKeyDown(Player& player, BYTE code)
 			player.SetState(EPlayerState::ThrowingShield);
 		}
 		// Else punching
+	}
+	else if (code == VK_UP)
+	{
+		player.SetState(EPlayerState::HighShielding);
 	}
 }
 

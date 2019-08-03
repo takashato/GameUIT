@@ -198,6 +198,9 @@
       <Filter>Entities\Player\State</Filter>
     </ClCompile>
     <ClCompile Include="PlayerThrowing.cpp" />
+    <ClCompile Include="PlayerHighShielding.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -360,6 +363,9 @@
       <Filter>Entities\Player\State</Filter>
     </ClInclude>
     <ClInclude Include="PlayerThrowing.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHighShielding.h">
       <Filter>Entities\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
