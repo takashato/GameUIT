@@ -4,6 +4,10 @@
 #include "PlayerState.h"
 #include "PlayerStandingState.h" 
 #include "PlayerStanding.h"
+#include "PlayerRunning.h"
+#include "PlayerJumping.h"
+#include "PlayerFalling.h"
+#include "PlayerHighJumping.h"
 #include "AnimationScript.h"
 #include "Camera.h"
 
@@ -69,6 +73,10 @@ private:
 
 	PlayerState* mState;
 	friend class PlayerStanding;		PlayerStanding mStateStanding;
+	friend class PlayerRunning;			PlayerRunning mStateRunning;
+	friend class PlayerJumping;			PlayerJumping mStateJumping;
+	friend class PlayerHighJumping;		PlayerHighJumping mStateHighJumping;
+	friend class PlayerFalling;			PlayerFalling mStateFalling;
 
 	EPlayerState mLastState;
 

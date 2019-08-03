@@ -34,7 +34,7 @@ void CharlestonScene::Setup()
 
 	// Create player
 	mPlayer = std::make_unique<Player>();
-	mPlayer->SetPosition(mData.GetSpawnPoint("Player"));
+	mPlayer->SetPosition(mData.GetSpawnPoint("Player1"));
 	mPlayer->SetShield(new Shield(mPlayer.get()));
 
 	// Update Camera for the first time
@@ -56,9 +56,8 @@ void CharlestonScene::Update(float deltaTime)
 	std::vector<CollisionEvent*> cEvent;
 	mPlayer->CalcCollision(&mGrid->mTemp, cEvent);
 	mPlayer->OnCollision(cEvent);
-	mPlayer->Update(deltaTime);
-
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
+	mPlayer->Update(deltaTime);
 	mPlayer->GetShield()->Update(deltaTime);
 	mCamera->Update(mPlayer->GetCenterPoint());
 }

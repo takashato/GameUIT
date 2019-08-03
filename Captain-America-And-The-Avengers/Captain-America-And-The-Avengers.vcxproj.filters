@@ -50,9 +50,6 @@
     <Filter Include="Framework\Resource Loader">
       <UniqueIdentifier>{3edd909b-a866-4aee-97d9-21b2fec025b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Entities\Player\State\OldState">
-      <UniqueIdentifier>{d11596e6-a8ce-4a0f-81a9-c8dd96db724f}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameException.cpp">
@@ -183,6 +180,18 @@
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="PlayerStanding.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFalling.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHighJumping.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerJumping.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerRunning.cpp">
       <Filter>Entities\Player\State</Filter>
     </ClCompile>
   </ItemGroup>
@@ -329,6 +338,18 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="PlayerStanding.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerRunning.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerJumping.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFalling.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHighJumping.h">
       <Filter>Entities\Player\State</Filter>
     </ClInclude>
   </ItemGroup>

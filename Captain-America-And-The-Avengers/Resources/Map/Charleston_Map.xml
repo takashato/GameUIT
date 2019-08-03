@@ -3,6 +3,7 @@
 	<Tilemap matrixPath="Resources\\Map\\Chaleston_Map_Matrix.txt" imagePath="Resources\\Map\\Chaleston_Map.png"/>
 	<SpawnPoints>
 		<SpawnPoint name="Player" x="22.0" y="402.0"/>
+		<SpawnPoint name="Player1" x="1700.0" y="402.0"/>
 	</SpawnPoints>
 	<Transports>
 		<Transport nextSceneName="Charleston_Boss" x="1979" y="358" w="16" h="90"/>

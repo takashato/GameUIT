@@ -7,7 +7,7 @@ Player::Player() : Entity()
 	ExitIsOke = true; //Chua xu lí an cuc exit
 	LoadAnimations();
 
-	SetState(EPlayerState::Standing);
+	SetState(EPlayerState::Falling);
 }
 
 void Player::LoadAnimations()

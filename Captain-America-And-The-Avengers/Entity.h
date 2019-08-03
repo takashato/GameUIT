@@ -7,9 +7,9 @@ class GridNode;
 
 enum EntityDirection
 {
-	Left,
-	Right
-};
+	Left = -1,
+	Right = 1
+}; 
 
 enum CollidableObjectType
 {

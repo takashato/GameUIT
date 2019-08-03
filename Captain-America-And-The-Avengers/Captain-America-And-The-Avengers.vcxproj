@@ -188,6 +188,10 @@
     <ClCompile Include="MissileEnemy.cpp" />
     <ClCompile Include="NormalBullet.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerFalling.cpp" />
+    <ClCompile Include="PlayerHighJumping.cpp" />
+    <ClCompile Include="PlayerJumping.cpp" />
+    <ClCompile Include="PlayerRunning.cpp" />
     <ClCompile Include="PlayerStanding.cpp" />
     <ClCompile Include="PlayerState.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -238,6 +242,10 @@
     <ClInclude Include="MissileEnemy.h" />
     <ClInclude Include="NormalBullet.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerFalling.h" />
+    <ClInclude Include="PlayerHighJumping.h" />
+    <ClInclude Include="PlayerJumping.h" />
+    <ClInclude Include="PlayerRunning.h" />
     <ClInclude Include="PlayerStanding.h" />
     <ClInclude Include="PlayerState.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
