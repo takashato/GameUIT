@@ -90,6 +90,9 @@ private:
 
 	float mCounter;
 
+	bool jumpThrough = false;
+	Entity* skipGround = nullptr;
+
 	bool mIsCollisionLeftRightSide;
 	bool ExitIsOke;//Chap nhan qua man khi an cuc exit
 };

@@ -227,13 +227,25 @@ void Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 		if (ce->entity->GetCollidableObjectType() == EPlatform)
 		{
 			GroundType type = ((Ground*)ce->entity)->GetGroundType();
-			if (ce->ny == -1.0f)
+			if (ce->ny == -1.0f && skipGround != ce->entity)
 			{
-				collisionWithGround = true;
-				if (mState->GetState() == EPlayerState::Falling || mState->GetState() == EPlayerState::HighJumping)
+				if (jumpThrough)
 				{
-					SetState(EPlayerState::Sitting);
-					SetPositionY(ce->entity->GetPosition().y - GetHeight());
+					jumpThrough = false;
+					if (type != EGroundHard)
+					{
+						skipGround = ce->entity;
+					}
+				}
+				else
+				{
+					collisionWithGround = true;
+					if (mState->GetState() == EPlayerState::Falling || mState->GetState() == EPlayerState::HighJumping)
+					{
+						skipGround = nullptr;
+						SetState(EPlayerState::Sitting);
+						SetPositionY(ce->entity->GetPosition().y - GetHeight());
+					}
 				}
 			}
 
