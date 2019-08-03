@@ -29,3 +29,19 @@ Keyboard* SceneManager::GetKeyboard()
 {
 	return mKeyboard;
 }
+
+void SceneManager::OnKeyUp(BYTE key)
+{
+	mCurrentScene->OnKeyUp(key);
+}
+
+void SceneManager::OnKeyDown(BYTE key)
+{
+	switch (key)
+	{
+	case KEY_TOGGLE_DEBUG: // KEY D for debug
+		Entity::shouldRenderBoundingBox = !Entity::shouldRenderBoundingBox;
+		break;
+	}
+	mCurrentScene->OnKeyDown(key);
+}

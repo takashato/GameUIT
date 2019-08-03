@@ -47,4 +47,10 @@ protected:
 private:
 	int MapID, MapMaxID;
 	
+
+	// Inherited via Scene
+	virtual void OnKeyUp(BYTE key) override;
+
+	virtual void OnKeyDown(BYTE key) override;
+
 };

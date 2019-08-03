@@ -6,7 +6,8 @@ Player::Player() : Entity()
 {	
 	ExitIsOke = true; //Chua xu lí an cuc exit
 	LoadAnimations();
-	mState = new PlayerStandingState(this);
+
+	SetState(EPlayerState::Standing);
 }
 
 void Player::LoadAnimations()
@@ -38,7 +39,14 @@ void Player::LoadAnimations()
 
 void Player::Update(float deltaTime)
 {
-	Entity::Update(deltaTime); // Update position
+	this->deltaTime = deltaTime;
+
+	this->AddPositionX(deltaTime * mVelocityX);
+
+	if (mState->GetState() != EPlayerState::Standing) // vY not affect when standing
+	{
+		this->AddPositionY(deltaTime * mVelocityY);
+	}
 
 	if (mCurrentAni != NULL)
 	{
@@ -72,18 +80,34 @@ void Player::HandleKeyboard(Keyboard* keyboard)
 	}
 }
 
+void Player::OnKeyDown(BYTE code)
+{
+	if (mState != nullptr) mState->OnKeyDown(code);
+}
+
+void Player::OnKeyUp(BYTE code)
+{
+	if (mState != nullptr) mState->OnKeyUp(code);
+}
+
 PlayerState* Player::GetState()
 {
 	return mState;
 }
 
-void Player::SetState(PlayerState *state)
+void Player::SetState(EPlayerState state)
 {
-	if (state == nullptr || this == (void*)0xDDDDDDDD) return;
-	mLastState = mState->GetState();
-	delete mState;
-	mState = state;
-	ChangeAnimationByState(mState->GetState());
+	mLastState = mState == nullptr ? state : mState->GetState();
+	Data exitData;
+	if (mState != nullptr) exitData = mState->Exit(*this, state);
+
+	switch (state)
+	{
+	case Standing: mState = &mStateStanding; break;
+	}
+
+	mState->Enter(*this, mLastState, std::move(exitData));
+	ChangeAnimationByState(state);
 }
 
 EPlayerState Player::GetLastState()
@@ -136,9 +160,13 @@ Animation* Player::StateToAnimation(EPlayerState state)
 
 void Player::ChangeAnimationByState(EPlayerState state)
 {
+	const auto oldHeight = GetHeight();
+	const auto oldWidth = GetWidth();
 	mCurrentAni = StateToAnimation(state);
 	mCurrentAni->Reset();
 	UpdateSize();
+	mPosition.x += float(oldWidth - GetWidth()) / 2.0f;
+	mPosition.y += float(oldHeight - GetHeight());
 }
 
 Animation* Player::GetCurrentAnimation()
@@ -203,7 +231,7 @@ void Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 					if (ce->ny == 1.0f && (pB.left >= eB.left && pB.left <= eB.right || pB.right >= eB.left && pB.right <= eB.right))
 					{
 						SetPositionY(eB.bottom);
-						SetState(new PlayerFallingState(this));
+						//SetState(new PlayerFallingState(this));
 					}
 				}
 			}

@@ -12,6 +12,9 @@ public:
 	virtual void Update(float deltaTime) = 0;
 	virtual void Draw() = 0;
 
+	virtual void OnKeyUp(BYTE key) = 0;
+	virtual void OnKeyDown(BYTE key) = 0;
+
 	virtual SoundType GetBgMusic() 
 	{
 		return SoundType::Invalid;

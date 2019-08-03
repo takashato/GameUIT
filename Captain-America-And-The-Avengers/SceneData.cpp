@@ -63,7 +63,10 @@ void SceneData::ReadData(LPCSTR filePath)
 					{
 						std::string type(groundNode->Attribute("type"));
 						GroundType gType = GroundType::EGroundHard;
-						if (type == "Normal") type = GroundType::EGroundNormal;
+						if (type == "Normal") 
+						{
+							gType = GroundType::EGroundNormal;
+						}
 						mDataGrounds.push_back(DataGround(
 							gType, 
 							groundNode->IntAttribute("x"),

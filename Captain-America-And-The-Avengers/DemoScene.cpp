@@ -76,7 +76,7 @@ void DemoScene::Setup()
 	auto spawnPoint = mMap->GetPlayerSpawnPoint();
 	spawnPoint.y -= 100.0f;
 	mPlayer->SetPosition(spawnPoint);
-	mPlayer->SetState(new PlayerFallingState(mPlayer));
+	//mPlayer->SetState(new PlayerFallingState(mPlayer));
 	mPlayer->SetShield(new Shield(mPlayer));
 
 	
@@ -312,6 +312,12 @@ void DemoScene::ChangeMap(int ID)
 {
 	MapID = ID;
 	Setup();
+}
+void DemoScene::OnKeyUp(BYTE key)
+{
+}
+void DemoScene::OnKeyDown(BYTE key)
+{
 }
 void DemoScene::CheckChageMap()//Demo
 {

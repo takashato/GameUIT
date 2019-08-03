@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "PlayerState.h"
 #include "PlayerStandingState.h" 
+#include "PlayerStanding.h"
 #include "AnimationScript.h"
 #include "Camera.h"
 
@@ -18,8 +19,11 @@ public:
 	void Draw(D3DXVECTOR2 trans = D3DXVECTOR2(.0f, .0f));
 	void HandleKeyboard(Keyboard* keyboard);
 
+	void OnKeyDown(BYTE code);
+	void OnKeyUp(BYTE code);
+
 	PlayerState* GetState();
-	void SetState(PlayerState* state);
+	void SetState(EPlayerState state);
 	EPlayerState GetLastState();
 
 	Animation* StateToAnimation(EPlayerState state);
@@ -36,6 +40,7 @@ public:
 
 	Shield* GetShield();
 	void SetShield(Shield* shield);
+
 
 	Animation* mAniStanding = NULL;
 	Animation* mAniPunching = NULL;
@@ -63,6 +68,8 @@ private:
 	Animation* mCurrentAni = NULL;
 
 	PlayerState* mState;
+	friend class PlayerStanding;		PlayerStanding mStateStanding;
+
 	EPlayerState mLastState;
 
 	Shield* mShield = nullptr;

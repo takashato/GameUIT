@@ -35,7 +35,6 @@ void CharlestonScene::Setup()
 	// Create player
 	mPlayer = std::make_unique<Player>();
 	mPlayer->SetPosition(mData.GetSpawnPoint("Player"));
-	mPlayer->SetState(new PlayerStandingState(mPlayer.get())); // TODO remove this
 	mPlayer->SetShield(new Shield(mPlayer.get()));
 
 	// Update Camera for the first time
@@ -76,4 +75,14 @@ void CharlestonScene::Draw()
 SoundType CharlestonScene::GetBgMusic()
 {
 	return SoundType::ThemeOfCaptainAmerica;
+}
+
+void CharlestonScene::OnKeyUp(BYTE key)
+{
+	mPlayer->OnKeyUp(key);
+}
+
+void CharlestonScene::OnKeyDown(BYTE key)
+{
+	mPlayer->OnKeyDown(key);
 }

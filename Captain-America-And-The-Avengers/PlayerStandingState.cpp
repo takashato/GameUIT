@@ -5,7 +5,7 @@ PlayerStandingState::PlayerStandingState(Player* player) : PlayerState(player)
 {
 	if (player == nullptr) return;
 	player->SetVelocityX(0.0f);
-	player->SetVelocityY(0.0f);
+	player->SetVelocityY(10.0f);
 }
 
 EPlayerState PlayerStandingState::GetState()

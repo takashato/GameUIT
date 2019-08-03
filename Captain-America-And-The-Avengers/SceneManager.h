@@ -15,6 +15,9 @@ public:
 
 	Keyboard* GetKeyboard();
 
+	void OnKeyUp(BYTE key);
+	void OnKeyDown(BYTE key);
+
 private:
 	SceneManager() : ISingleton(NULL) {}
 	Scene* mCurrentScene = NULL;

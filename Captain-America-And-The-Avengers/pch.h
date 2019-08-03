@@ -10,6 +10,8 @@
 #pragma comment (lib, "dinput8.lib")
 #pragma comment (lib, "dxguid.lib")
 
+#include <any>
+#include <utility>
 #include <atlbase.h>
 #include <atlconv.h>
 #include <math.h>
@@ -32,3 +34,4 @@
 #include "ISingleton.h"
 
 #include "GeoUtils.h"
+#include "Data.h"
