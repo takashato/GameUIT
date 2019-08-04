@@ -36,7 +36,7 @@ void PlayerSitting::HandleKeyboard(Player& player, Keyboard* keyboard)
 
 void PlayerSitting::OnKeyDown(Player& player, BYTE code)
 {
-	if (code == VK_KEY_JUMP)
+	if (code == VK_KEY_JUMP && isPressingKey)
 	{
 		player.jumpThrough = true;
 		player.SetState(EPlayerState::Falling);

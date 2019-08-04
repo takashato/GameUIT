@@ -307,7 +307,11 @@ void Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 
 void Shield::Draw(D3DXVECTOR2 transform)
 {
-	if (mPlayer->GetState()->GetState() == EPlayerState::HighJumping && !IsThrown()) return;
+	if (mPlayer->GetState()->GetState() == EPlayerState::HighJumping && !IsThrown())
+	{
+		this->RenderBoundingBox(transform);
+		return;
+	}
 
 	if (mCurrentAni != nullptr && mState != -1)
 	{
