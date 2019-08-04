@@ -67,6 +67,10 @@ void SceneData::ReadData(LPCSTR filePath)
 						{
 							gType = GroundType::EGroundNormal;
 						}
+						else if (type == "Water")
+						{
+							gType = GroundType::EGroundWater;
+						}
 						mDataGrounds.push_back(DataGround(
 							gType, 
 							groundNode->IntAttribute("x"),

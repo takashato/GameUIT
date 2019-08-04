@@ -27,7 +27,7 @@ SoundManager::SoundManager() : ISingleton(NULL)
 	AddSound(SoundType::BossShootSmallBullets, L"Resources\\Sound\\BossShootSmallBullets.wav");
 	AddSound(SoundType::Death, L"Resources\\Sound\\Death.wav");
 	AddSound(SoundType::Explosive, L"Resources\\Sound\\Explosive.wav");
-	AddSound(SoundType::FallingWater, L"Resources\\Sound\\FallingWaterFallingWater.wav");
+	AddSound(SoundType::FallingWater, L"Resources\\Sound\\FallingWater.wav");
 	AddSound(SoundType::Hit, L"Resources\\Sound\\Hit.wav");
 	AddSound(SoundType::ItemEnery, L"Resources\\Sound\\ItemEnery.wav");
 	AddSound(SoundType::ItemKeyKrystal, L"Resources\\Sound\\ItemKeyKrystal.wav");

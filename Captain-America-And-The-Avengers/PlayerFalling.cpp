@@ -91,7 +91,10 @@ void PlayerFalling::OnCollision(Player& player, std::vector<CollisionEvent*>& cE
 				else
 				{
 					player.jumpThrough = false;
-					player.skipGround = ce->entity;
+					if (((Ground*)ce->entity)->GetGroundType() == EGroundNormal)
+					{
+						player.skipGround = ce->entity;
+					}
 				}
 			}
 
@@ -115,7 +118,15 @@ void PlayerFalling::OnCollision(Player& player, std::vector<CollisionEvent*>& cE
 	if (collisionWithGround)
 	{
 		if (player.skipGround != nullptr) player.skipGround = nullptr;
-		player.SetState(EPlayerState::Sitting);
+		if (((Ground*)groundCe->entity)->GetGroundType() == EGroundWater)
+		{
+			SoundManager::GetInstance().CPlaySound(SoundType::FallingWater);
+			player.SetState(EPlayerState::Swimming);
+		}
+		else
+		{
+			player.SetState(EPlayerState::Sitting);
+		}
 		player.SetPositionY(groundCe->entity->GetPosition().y - player.GetHeight());
 	}
 }

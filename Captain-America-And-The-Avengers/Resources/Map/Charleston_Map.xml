@@ -2,8 +2,8 @@
 <Map>
 	<Tilemap matrixPath="Resources\\Map\\Chaleston_Map_Matrix.txt" imagePath="Resources\\Map\\Chaleston_Map.png"/>
 	<SpawnPoints>
-		<SpawnPoint name="Player" x="22.0" y="390.0"/>
-		<SpawnPoint name="Player1" x="1700.0" y="390.0"/>
+		<SpawnPoint name="Player" x="22.0" y="403.0"/>
+		<SpawnPoint name="Player1" x="1700.0" y="403.0"/>
 	</SpawnPoints>
 	<Transports>
 		<Transport nextSceneName="Charleston_Boss" x="1979" y="358" w="16" h="90"/>
@@ -46,10 +46,8 @@
 			<Ground type="Hard" name="HardGround" x="1856" y="448" w="160" h="32"/>
 			<Ground type="Hard" name="HardGround" x="1792" y="318" w="256" h="42"/>
 			<Ground type="Hard" name="HardGround" x="2016" y="360" w="32" h="120"/>
+			<Ground type="Water" name="WaterArea" x="0" y="465" w="1792" h="16"/>
 		</Grounds>
-		<WaterArea>
-			<Water name="Water" x="0" y="456" w="1792" h="16"/>
-		</WaterArea>
 		<Capsules>
 			<Capsule x="320" y="392" w="16" h="16">
 				<Item type="PowerStone"/>

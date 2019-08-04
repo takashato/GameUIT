@@ -5,6 +5,9 @@
 
 void PlayerJumping::Enter(Player& player, EPlayerState fromState, Data&& data)
 {
+	allowHighJump = fromState != EPlayerState::Swimming;
+	mCounter = .0f;
+
 	if (fromState != EPlayerState::Kicking) { JumpSpeed = JUMP_SPEED_VER_MAX; }
 
 	if (fromState == EPlayerState::Kicking)
@@ -34,6 +37,16 @@ Data PlayerJumping::Exit(Player& player, EPlayerState toState)
 
 void PlayerJumping::Update(Player& player, float deltaTime)
 {
+	if (!allowHighJump)
+	{
+		mCounter += deltaTime;
+		if (mCounter >= MAX_JUMP_TIME_FROM_WATER)
+		{
+			player.SetState(EPlayerState::Falling);
+			return;
+		}
+	}
+
 	if (JumpHeightNeedCounter < MAX_JUMP_HEIGHT) {
 		if (!isJumpReleased) {
 			JumpHeightNeedCounter += (JumpSpeed - 30) * deltaTime;

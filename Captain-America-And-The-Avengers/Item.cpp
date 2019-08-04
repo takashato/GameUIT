@@ -46,6 +46,7 @@ void Item::Update(float deltaTime)
 		}
 	}
 	AddPositionY(mVelocityY * deltaTime);
+	mCurrentAni->Update(deltaTime);
 }
 
 void Item::Draw(D3DXVECTOR2 trans)

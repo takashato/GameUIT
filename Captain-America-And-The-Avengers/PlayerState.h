@@ -23,7 +23,8 @@ enum EPlayerState {
 	Surfing,
 	SittingOnShield,
 	Swimming,
-	Cling
+	Cling,
+	Diving
 };
 
 class PlayerState
@@ -77,4 +78,8 @@ protected:
 	static constexpr auto TIME_KEEP_SPIN = 0.16f;
 
 	static constexpr auto FALL_LANDING_TIME = 0.1f;
+
+	static constexpr float WATER_FLOW_SPEED = -20.0f;
+	static constexpr float SWIMMING_SPEED = 50.0f;
+	static constexpr float MAX_JUMP_TIME_FROM_WATER = 0.3f;
 };

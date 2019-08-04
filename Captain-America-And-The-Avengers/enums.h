@@ -3,7 +3,8 @@
 enum GroundType
 {
 	EGroundNormal,
-	EGroundHard
+	EGroundHard,
+	EGroundWater
 };
 
 enum EnemyType

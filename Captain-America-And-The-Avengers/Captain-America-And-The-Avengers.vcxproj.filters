@@ -221,6 +221,9 @@
     <ClCompile Include="Item.cpp">
       <Filter>Entities\Items</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerSwimming.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -402,6 +405,9 @@
     </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>Entities\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSwimming.h">
+      <Filter>Entities\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

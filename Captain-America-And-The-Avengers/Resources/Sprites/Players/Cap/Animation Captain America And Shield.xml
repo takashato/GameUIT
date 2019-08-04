@@ -112,4 +112,11 @@
 		<sprite x="352" y="120" w="16" h="56" />
     </Sprites>
   </Animation>
+   <Animation name="Diving" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="188" y="245" w="16" h="7" />
+		<sprite x="208" y="245" w="16" h="7" />
+		<sprite x="232" y="245" w="16" h="7" />
+    </Sprites>
+  </Animation>
 </Animations>

@@ -14,6 +14,7 @@
 #include "PlayerLowPunching.h"
 #include "PlayerPunching.h"
 #include "PlayerSitOnShield.h"
+#include "PlayerSwimming.h"
 #include "AnimationScript.h"
 #include "Camera.h"
 
@@ -69,6 +70,7 @@ public:
 	Animation* mAniSittingOnShield = NULL;
 	Animation* mAniSwimming = NULL;
 	Animation* mAniCling = NULL;
+	Animation* mAniDiving = NULL;
 
 	bool shouldFall = false;
 private:
@@ -89,6 +91,7 @@ private:
 	friend class PlayerLowPunching;		PlayerLowPunching mStateLowPunching;
 	friend class PlayerPunching;		PlayerPunching mStatePunching;
 	friend class PlayerSitOnShield;		PlayerSitOnShield mStateSitOnShield;
+	friend class PlayerSwimming;		PlayerSwimming mStateSwimming;
 
 	EPlayerState mLastState;
 

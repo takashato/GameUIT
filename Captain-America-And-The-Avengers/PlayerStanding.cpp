@@ -83,10 +83,10 @@ void PlayerStanding::OnCollision(Player& player, std::vector<CollisionEvent*>& c
 			collisionWithGround = true;
 		}
 	}
-	if (!collisionWithGround)
+	/*if (!collisionWithGround)
 	{
 		player.SetState(EPlayerState::Falling);
-	}
+	}*/
 }
 
 EPlayerState PlayerStanding::GetState()

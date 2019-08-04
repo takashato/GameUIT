@@ -7,7 +7,7 @@ Player::Player() : Entity()
 	ExitIsOke = true; //Chua xu lí an cuc exit
 	LoadAnimations();
 
-	SetState(EPlayerState::Falling);
+	SetState(EPlayerState::Standing);
 }
 
 void Player::LoadAnimations()
@@ -32,6 +32,7 @@ void Player::LoadAnimations()
 	mAniSittingOnShield = new Animation(mSprite, mAniScripts->GetRectList("SittingOnShield", "0"), 0.1F);
 	mAniSwimming = new Animation(mSprite, mAniScripts->GetRectList("Swimming", "0"), 0.1F);
 	mAniCling = new Animation(mSprite, mAniScripts->GetRectList("Cling", "0"), 0.2F);
+	mAniDiving = new Animation(mSprite, mAniScripts->GetRectList("Diving", "0"), 0.2F);
 
 
 	mCurrentAni = mAniStanding;
@@ -53,6 +54,7 @@ void Player::Update(float deltaTime)
 		&& mState->GetState() != EPlayerState::HighShielding
 		&& mState->GetState() != EPlayerState::LowPunching
 		&& mState->GetState() != EPlayerState::Punching
+		&& mState->GetState() != EPlayerState::Swimming
 		) // vY not affect when standing
 	{
 		this->AddPositionY(deltaTime * mVelocityY);
@@ -124,6 +126,7 @@ void Player::SetState(EPlayerState state)
 	case LowPunching:	    mState = &mStateLowPunching; break;
 	case Punching:		    mState = &mStatePunching; break;
 	case SittingOnShield:   mState = &mStateSitOnShield; break;
+	case Swimming:			mState = &mStateSwimming; break;
 	}
 
 	mState->Enter(*this, mLastState, std::move(exitData));
@@ -172,6 +175,8 @@ Animation* Player::StateToAnimation(EPlayerState state)
 		return mAniSwimming;
 	case EPlayerState::Cling:
 		return mAniCling;
+	case EPlayerState::Diving:
+		return mAniDiving;
 	case EPlayerState::Running:
 	default:
 		return mAniRunning;
