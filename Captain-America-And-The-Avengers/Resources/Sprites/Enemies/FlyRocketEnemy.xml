@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Flying" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="36" y="131" w="28" h="37" />
+    <sprite x="292" y="131" w="28" h="37" />
+	</Sprites>
+  </Animation>
+  <Animation name="Dying" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">
+    <sprite x="36" y="131" w="28" h="37" />
+	</Sprites>
+  </Animation>
+</Animations>
