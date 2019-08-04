@@ -4,6 +4,8 @@
 
 void PlayerLowPunching::Enter(Player& player, EPlayerState fromState, Data&& data)
 {
+	SoundManager::GetInstance().CPlaySound(SoundType::Hit);
+
 	player.SetVelocityX(.0f);
 	player.SetVelocityY(GRAVITY);
 }

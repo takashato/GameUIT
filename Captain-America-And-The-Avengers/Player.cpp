@@ -16,7 +16,7 @@ void Player::LoadAnimations()
 	mAniScripts = new AnimationScript("Resources\\Sprites\\Players\\Cap\\Animation Captain America And Shield.xml");
 
 	mAniStanding = new Animation(mSprite, mAniScripts->GetRectList("Standing", "0"), 0.1F);
-	mAniPunching = new Animation(mSprite, mAniScripts->GetRectList("Punching", "0"), 0.15F);
+	mAniPunching = new Animation(mSprite, mAniScripts->GetRectList("Punching", "0"), 0.1F);
 	mAniThrowingShield = new Animation(mSprite, mAniScripts->GetRectList("ThrowingShield", "0"), 0.1F, false);
 	mAniHighShielding = new Animation(mSprite, mAniScripts->GetRectList("HighShielding", "0"), 0.1F);
 	mAniSitting = new Animation(mSprite, mAniScripts->GetRectList("Sitting", "0"), 0.1F);
@@ -52,6 +52,7 @@ void Player::Update(float deltaTime)
 		&& mState->GetState() != EPlayerState::ThrowingShield
 		&& mState->GetState() != EPlayerState::HighShielding
 		&& mState->GetState() != EPlayerState::LowPunching
+		&& mState->GetState() != EPlayerState::Punching
 		) // vY not affect when standing
 	{
 		this->AddPositionY(deltaTime * mVelocityY);
@@ -121,6 +122,7 @@ void Player::SetState(EPlayerState state)
 	case ThrowingShield: mState = &mStateThrowing; break;
 	case HighShielding:	 mState = &mStateHighShielding; break;
 	case LowPunching:	 mState = &mStateLowPunching; break;
+	case Punching:		 mState = &mStatePunching; break;
 	}
 
 	mState->Enter(*this, mLastState, std::move(exitData));

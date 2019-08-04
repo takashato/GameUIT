@@ -12,6 +12,7 @@
 #include "PlayerThrowing.h"
 #include "PlayerHighShielding.h"
 #include "PlayerLowPunching.h"
+#include "PlayerPunching.h"
 #include "AnimationScript.h"
 #include "Camera.h"
 
@@ -85,6 +86,7 @@ private:
 	friend class PlayerThrowing;		PlayerThrowing mStateThrowing;
 	friend class PlayerHighShielding;	PlayerHighShielding mStateHighShielding;
 	friend class PlayerLowPunching;		PlayerLowPunching mStateLowPunching;
+	friend class PlayerPunching;		PlayerPunching mStatePunching;
 
 	EPlayerState mLastState;
 
