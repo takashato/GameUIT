@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "PlayerJumping.h"
 #include "Player.h"
+#include "Ground.h"
 
 void PlayerJumping::Enter(Player& player, EPlayerState fromState, Data&& data)
 {
@@ -109,6 +110,35 @@ void PlayerJumping::OnKeyUp(Player& player, BYTE code)
 
 void PlayerJumping::OnCollision(Player& player, std::vector<CollisionEvent*>& cEvent)
 {
+	bool collisionWithGround = false;
+	CollisionEvent* groundCe = nullptr;
+	for (auto ce : cEvent)
+	{
+		if (ce->entity->GetCollidableObjectType() == EPlatform && ((Ground*)ce->entity)->GetGroundType() == EGroundHard)
+		{
+			if (ce->ny == 1.0f)
+			{
+				collisionWithGround = true;
+				groundCe = ce;
+			}
+
+			if (ce->nx == -1.0f)
+			{
+				player.SetVelocityX(.0f);
+				player.SetPositionX(ce->entity->GetPosition().x - player.GetWidth());
+			}
+			else if (ce->nx == 1.0f)
+			{
+				player.SetVelocityX(.0f);
+				player.SetPositionX(ce->entity->GetBoundingBox().right);
+			}
+		}
+	}
+	if (collisionWithGround)
+	{
+		player.SetState(EPlayerState::Falling);
+		player.SetPositionY(groundCe->entity->GetBoundingBox().bottom);
+	}
 }
 
 EPlayerState PlayerJumping::GetState()

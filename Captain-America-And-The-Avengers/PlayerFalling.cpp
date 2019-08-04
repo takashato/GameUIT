@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "PlayerFalling.h"
 #include "Player.h"
+#include "Ground.h"
 
 void PlayerFalling::Enter(Player& player, EPlayerState fromState, Data&& data)
 {
@@ -30,6 +31,11 @@ void PlayerFalling::HandleKeyboard(Player& player, Keyboard* keyboard)
 {
 	if (keyboard->IsPressing(GAME_KEY_LEFT))
 	{
+		if (player.mIsCollisionLeftRightSide && player.mDirectionUnblock == Left)
+		{
+			player.mIsCollisionLeftRightSide = false;
+		}
+
 		if (player.GetVelocityX() >= 0)
 		{
 			player.SetVelocityX(-MOVING_HOR);
@@ -38,6 +44,11 @@ void PlayerFalling::HandleKeyboard(Player& player, Keyboard* keyboard)
 	}
 	else if (keyboard->IsPressing(GAME_KEY_RIGHT))
 	{
+		if (player.mIsCollisionLeftRightSide && player.mDirectionUnblock == Right)
+		{
+			player.mIsCollisionLeftRightSide = false;
+		}
+
 		if (player.GetVelocityX() >= 0)
 		{
 			player.SetVelocityX(MOVING_HOR);
@@ -61,6 +72,52 @@ void PlayerFalling::OnKeyUp(Player& player, BYTE code)
 
 void PlayerFalling::OnCollision(Player& player, std::vector<CollisionEvent*>& cEvent)
 {
+	bool collisionWithGround = false;
+	CollisionEvent* groundCe = nullptr;
+	for (auto ce : cEvent)
+	{
+		if (ce->entity->GetCollidableObjectType() == EPlatform)
+		{
+			if (ce->ny == -1.0f)
+			{
+				if (!player.jumpThrough)
+				{
+					if (player.skipGround != ce->entity)
+					{
+						collisionWithGround = true;
+						groundCe = ce;
+					}
+				}
+				else
+				{
+					player.jumpThrough = false;
+					player.skipGround = ce->entity;
+				}
+			}
+
+			if (((Ground*)ce->entity)->GetGroundType() == EGroundHard)
+			{
+				if (ce->nx == -1.0f)
+				{
+					player.mIsCollisionLeftRightSide = true;
+					player.mDirectionUnblock = Left;
+					player.SetPositionX(ce->entity->GetPosition().x - player.GetWidth());
+				}
+				else if (ce->nx == 1.0f)
+				{
+					player.mIsCollisionLeftRightSide = true;
+					player.mDirectionUnblock = Right;
+					player.SetPositionX(ce->entity->GetBoundingBox().right);
+				}
+			}
+		}
+	}
+	if (collisionWithGround)
+	{
+		if (player.skipGround != nullptr) player.skipGround = nullptr;
+		player.SetState(EPlayerState::Sitting);
+		player.SetPositionY(groundCe->entity->GetPosition().y - player.GetHeight());
+	}
 }
 
 EPlayerState PlayerFalling::GetState()

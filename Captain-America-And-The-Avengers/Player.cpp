@@ -7,7 +7,7 @@ Player::Player() : Entity()
 	ExitIsOke = true; //Chua xu lí an cuc exit
 	LoadAnimations();
 
-	SetState(EPlayerState::Standing);
+	SetState(EPlayerState::Falling);
 }
 
 void Player::LoadAnimations()
@@ -225,7 +225,7 @@ CollidableObjectType Player::GetCollidableObjectType()
 
 void Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 {
-	mIsCollisionLeftRightSide = false;
+	/*mIsCollisionLeftRightSide = false;
 	bool collisionWithGround = false;
 	for (CollisionEvent* ce : cEvent)
 	{
@@ -288,7 +288,7 @@ void Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 	if (mState->GetState() == EPlayerState::Running && !collisionWithGround)
 	{
 		SetState(EPlayerState::Falling);
-	}
+	}*/
 
 	if (mState != nullptr) mState->OnCollision(*this, cEvent);
 

@@ -75,6 +75,18 @@ void PlayerStanding::OnKeyUp(Player& player, BYTE code)
 
 void PlayerStanding::OnCollision(Player& player, std::vector<CollisionEvent*>& cEvent)
 {
+	bool collisionWithGround = false;
+	for (auto ce : cEvent)
+	{
+		if (ce->entity->GetCollidableObjectType() == EPlatform && ce->ny == -1.0f) 
+		{
+			collisionWithGround = true;
+		}
+	}
+	if (!collisionWithGround)
+	{
+		player.SetState(EPlayerState::Falling);
+	}
 }
 
 EPlayerState PlayerStanding::GetState()

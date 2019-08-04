@@ -99,6 +99,8 @@ private:
 	bool jumpThrough = false;
 	Entity* skipGround = nullptr;
 
+	EntityDirection mDirectionUnblock;
+
 	bool mIsCollisionLeftRightSide;
 	bool ExitIsOke;//Chap nhan qua man khi an cuc exit
 };

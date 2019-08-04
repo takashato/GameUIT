@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "PlayerRunning.h"
 #include "Player.h"
+#include "Ground.h"
 
 void PlayerRunning::Enter(Player& player, EPlayerState fromState, Data&& data)
 {
@@ -22,10 +23,20 @@ void PlayerRunning::HandleKeyboard(Player& player, Keyboard* keyboard)
 {
 	if (keyboard->IsPressing(GAME_KEY_LEFT))
 	{
+		if (player.mIsCollisionLeftRightSide && player.mDirectionUnblock == Left)
+		{
+			player.mIsCollisionLeftRightSide = false;
+		}
+
 		player.SetDirection(EntityDirection::Left);
 	}
 	else if (keyboard->IsPressing(GAME_KEY_RIGHT))
 	{
+		if (player.mIsCollisionLeftRightSide && player.mDirectionUnblock == Right)
+		{
+			player.mIsCollisionLeftRightSide = false;
+		}
+
 		player.SetDirection(EntityDirection::Right);
 	}
 }
@@ -55,6 +66,36 @@ void PlayerRunning::OnKeyUp(Player& player, BYTE code)
 
 void PlayerRunning::OnCollision(Player& player, std::vector<CollisionEvent*>& cEvent)
 {
+	bool collisionWithGround = false;
+	for (auto ce : cEvent)
+	{
+		if (ce->entity->GetCollidableObjectType() == EPlatform)
+		{
+			if (ce->ny == -1.0f)
+			{
+				collisionWithGround = true;
+			}
+			
+			if (((Ground*)ce->entity)->GetGroundType() == EGroundHard)
+			{
+				if (ce->nx == -1.0f)
+				{
+					player.SetVelocityX(.0f);
+					player.SetPositionX(ce->entity->GetPosition().x - player.GetWidth());
+				}
+				else if (ce->nx == 1.0f)
+				{
+					player.SetVelocityX(.0f);
+					player.SetPositionX(ce->entity->GetBoundingBox().right);
+				}
+			}
+		}
+
+	}
+	if (!collisionWithGround)
+	{
+		player.SetState(EPlayerState::Falling);
+	}
 }
 
 EPlayerState PlayerRunning::GetState()
