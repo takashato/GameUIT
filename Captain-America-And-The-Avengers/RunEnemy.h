@@ -12,6 +12,8 @@
 
 class RunEnemy : public Enemy
 {
+	static constexpr auto RUN_SPEED = 55.0f;
+
 public:
 	RunEnemy(D3DXVECTOR3 position = D3DXVECTOR3(800.0f, 402.0f, 0.f), int subTypeID = 0);
 	~RunEnemy();
@@ -30,6 +32,11 @@ public:
 	EnemyType GetEnemyType();
 	Bullet* GetBullet();
 	void SetBullet(Bullet* Bullet);
+
+	void OnAttacked();
+	void OnDie();
+
+	void SetInvincible(bool val);
 
 private:
 	Sprite* mSprite = NULL;

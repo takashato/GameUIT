@@ -10,7 +10,7 @@
 	</Transports>
 	<MapObjects>
 		<Enemies>
-			<Enemy type="RunEnemy" x="285.0" y="401.0" w="24" h="43" subType="1"/>
+			<Enemy type="RunEnemy" x="285.0" y="404.0" w="24" h="43" subType="1"/>
 			<Enemy type="RunEnemy" x="837.0" y="404.0" w="24" h="43" subType="0"/>
 			<Enemy type="MissileEnemy" x="546.0" y="401.0" w="22" h="46" subType="0"/>
 			<Enemy type="MissileEnemy" x="1602.0" y="159.0" w="22" h="46" subType="1"/>
