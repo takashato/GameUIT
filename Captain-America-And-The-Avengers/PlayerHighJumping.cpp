@@ -77,7 +77,7 @@ void PlayerHighJumping::HandleKeyboard(Player& player, Keyboard* keyboard)
 	{
 		if (timeUp >= TIME_KEEP_SPIN && timeDown >= TIME_KEEP_SPIN)
 		{
-			//cap.SetState(State::Captain_CoverLow);
+			player.SetState(EPlayerState::SittingOnShield);
 			return;
 		}
 	}

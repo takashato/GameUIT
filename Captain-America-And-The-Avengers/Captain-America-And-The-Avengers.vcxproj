@@ -196,6 +196,7 @@
     <ClCompile Include="PlayerLowPunching.cpp" />
     <ClCompile Include="PlayerPunching.cpp" />
     <ClCompile Include="PlayerRunning.cpp" />
+    <ClCompile Include="PlayerSitOnShield.cpp" />
     <ClCompile Include="PlayerSitting.cpp" />
     <ClCompile Include="PlayerStanding.cpp" />
     <ClCompile Include="PlayerState.cpp">
@@ -256,6 +257,7 @@
     <ClInclude Include="PlayerLowPunching.h" />
     <ClInclude Include="PlayerPunching.h" />
     <ClInclude Include="PlayerRunning.h" />
+    <ClInclude Include="PlayerSitOnShield.h" />
     <ClInclude Include="PlayerSitting.h" />
     <ClInclude Include="PlayerStanding.h" />
     <ClInclude Include="PlayerState.h">

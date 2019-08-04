@@ -296,6 +296,11 @@ void Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 		{
 			((Capsule*)ce->entity)->Drop();
 		}
+		else if (mState == ShieldState::EShieldSit && ce->entity->GetCollidableObjectType() == EPlatform)
+		{
+			SoundManager::GetInstance().CResetSound(SmallBulletsHitShields);
+			SoundManager::GetInstance().CPlaySound(SmallBulletsHitShields);
+		}
 		delete ce;
 	}
 }

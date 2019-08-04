@@ -113,16 +113,17 @@ void Player::SetState(EPlayerState state)
 
 	switch (state)
 	{
-	case Standing:		 mState = &mStateStanding; break;
-	case Running:		 mState = &mStateRunning; break;
-	case Jumping:		 mState = &mStateJumping; break;
-	case HighJumping:	 mState = &mStateHighJumping; break;
-	case Falling:		 mState = &mStateFalling; break;
-	case Sitting:		 mState = &mStateSitting; break;
-	case ThrowingShield: mState = &mStateThrowing; break;
-	case HighShielding:	 mState = &mStateHighShielding; break;
-	case LowPunching:	 mState = &mStateLowPunching; break;
-	case Punching:		 mState = &mStatePunching; break;
+	case Standing:		    mState = &mStateStanding; break;
+	case Running:		    mState = &mStateRunning; break;
+	case Jumping:		    mState = &mStateJumping; break;
+	case HighJumping:	    mState = &mStateHighJumping; break;
+	case Falling:		    mState = &mStateFalling; break;
+	case Sitting:		    mState = &mStateSitting; break;
+	case ThrowingShield:    mState = &mStateThrowing; break;
+	case HighShielding:	    mState = &mStateHighShielding; break;
+	case LowPunching:	    mState = &mStateLowPunching; break;
+	case Punching:		    mState = &mStatePunching; break;
+	case SittingOnShield:   mState = &mStateSitOnShield; break;
 	}
 
 	mState->Enter(*this, mLastState, std::move(exitData));
