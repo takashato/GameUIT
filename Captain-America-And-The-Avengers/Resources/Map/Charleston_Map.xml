@@ -18,8 +18,8 @@
 			<Enemy type="MissileEnemy" x="581.0" y="319.0" w="22" h="46" subType="3"/>
 			<Enemy type="MissileEnemy" x="398.0" y="401.0" w="22" h="46" subType="2"/>
 			<Enemy type="MissileEnemy" x="344.0" y="401.0" w="22" h="46" subType="2"/>
-			<Enemy type="GunEnemy" x="688.0" y="338.0" w="24" h="27" subType="0"/>
-			<Enemy type="GunEnemy" x="943.0" y="338.0" w="24" h="27" subType="0"/>
+			<Enemy type="GunEnemy" x="688.0" y="322.0" w="24" h="43" subType="0"/>
+			<Enemy type="GunEnemy" x="943.0" y="322.0" w="24" h="43" subType="0"/>
 		</Enemies>
 		<Grounds>
 			<Ground type="Normal" name="Ground" x="0" y="448" w="96" h="8"/>
