@@ -209,6 +209,9 @@
     <ClCompile Include="Capsule.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerLowPunching.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -378,6 +381,9 @@
     </ClInclude>
     <ClInclude Include="Capsule.h">
       <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLowPunching.h">
+      <Filter>Entities\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

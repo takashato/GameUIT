@@ -186,7 +186,7 @@ D3DXVECTOR3 Shield::GetReturnPoint()
 		}
 		else
 		{
-			shieldPosition.x = playerPosition.x + 5;
+			shieldPosition.x = playerPosition.x + 14;
 			shieldPosition.y = playerPosition.y + 6;
 		}
 		break;

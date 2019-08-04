@@ -41,6 +41,10 @@ void PlayerSitting::OnKeyDown(Player& player, BYTE code)
 		player.jumpThrough = true;
 		player.SetState(EPlayerState::Falling);
 	}
+	else if (code == VK_KEY_ATTACK)
+	{
+		player.SetState(EPlayerState::LowPunching);
+	}
 }
 
 void PlayerSitting::OnKeyUp(Player& player, BYTE code)

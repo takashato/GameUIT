@@ -51,6 +51,7 @@ void Player::Update(float deltaTime)
 		&& mState->GetState() != EPlayerState::Sitting
 		&& mState->GetState() != EPlayerState::ThrowingShield
 		&& mState->GetState() != EPlayerState::HighShielding
+		&& mState->GetState() != EPlayerState::LowPunching
 		) // vY not affect when standing
 	{
 		this->AddPositionY(deltaTime * mVelocityY);
@@ -119,6 +120,7 @@ void Player::SetState(EPlayerState state)
 	case Sitting:		 mState = &mStateSitting; break;
 	case ThrowingShield: mState = &mStateThrowing; break;
 	case HighShielding:	 mState = &mStateHighShielding; break;
+	case LowPunching:	 mState = &mStateLowPunching; break;
 	}
 
 	mState->Enter(*this, mLastState, std::move(exitData));
@@ -180,7 +182,7 @@ void Player::ChangeAnimationByState(EPlayerState state)
 	mCurrentAni = StateToAnimation(state);
 	mCurrentAni->Reset();
 	UpdateSize();
-	mPosition.x += float(oldWidth - GetWidth()) / 2.0f;
+	mPosition.x += float(mDirection == Right ? 0 : oldWidth - GetWidth());
 	mPosition.y += float(oldHeight - GetHeight());
 }
 
