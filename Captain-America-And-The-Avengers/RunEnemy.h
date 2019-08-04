@@ -12,7 +12,7 @@
 
 class RunEnemy : public Enemy
 {
-	static constexpr auto RUN_SPEED = 55.0f;
+	static constexpr auto RUN_SPEED = 30.0f;
 
 public:
 	RunEnemy(D3DXVECTOR3 position = D3DXVECTOR3(800.0f, 402.0f, 0.f), int subTypeID = 0);

@@ -53,6 +53,8 @@ void RunEnemy::Update(float deltaTime, Player* player)
 					SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniDying->GetHeight());
 				}
 				SetState(RUNENEMY_DYING_STATE);
+				SetVelocityX(0.f);
+				SetVelocityY(0.f);
 			}
 			mCounter = .0f;
 		}
@@ -131,6 +133,8 @@ void RunEnemy::Update(float deltaTime, Player* player)
 					SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniDying->GetHeight());
 				}
 				SetState(RUNENEMY_DYING_STATE);
+				SetVelocityX(0.f);
+				SetVelocityY(0.f);
 			}
 			mCounter = .0f;
 		}

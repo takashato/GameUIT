@@ -11,11 +11,12 @@
 #define MISSILEENEMY_RUNNING_STATE 2
 #define MISSILEENEMY_JUMPING_STATE 3
 #define MISSILEENEMY_FALLING_STATE 4
-#define MISSILEENEMY_TAKEDAMAGE_STATE 5
-#define MISSILEENEMY_DYING_STATE 6
+#define MISSILEENEMY_DYING_STATE 5
 
 class MissileEnemy : public Enemy
 {
+	static constexpr auto RUN_SPEED = 25.0f;
+
 public:
 	MissileEnemy(D3DXVECTOR3 position = D3DXVECTOR3(344.0f, 416.0f, 0.f), int subTypeID = 1);
 	~MissileEnemy();
@@ -35,6 +36,11 @@ public:
 	Bullet* GetBullet();
 	void SetBullet(Bullet* Bullet);
 
+	void OnAttacked();
+	void OnDie();
+
+	void SetInvincible(bool val);
+
 private:
 	Sprite* mSprite = NULL;
 	AnimationScript* mAniScripts = NULL;
@@ -44,7 +50,6 @@ private:
 	Animation* mAniRunning = NULL;
 	Animation* mAniJumping = NULL;
 	Animation* mAniFalling = NULL;
-	Animation* mAniTakeDamage = NULL;
 	Animation* mAniDying = NULL;
 	int mState = -1;
 	D3DXVECTOR3 spawnPosition;
@@ -54,5 +59,6 @@ private:
 	int mSubTypeID = 0;
 	bool isMeetPlayer = false;
 	bool isJump = false;
+	int changeDirection = 1;
 };
 

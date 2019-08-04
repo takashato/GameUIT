@@ -2,7 +2,7 @@
 <Animations>
   <Animation name="Standing" imagePath="Enemies.png" width="440" height="432">
 	<Sprites type="0">  
-		<sprite x="105" y="66" w="22" h="46" />
+		<sprite x="72" y="66" w="23" h="46" />
 	</Sprites>
   </Animation>
   <Animation name="Sitting" imagePath="Enemies.png" width="440" height="432">
@@ -30,13 +30,6 @@
 		<sprite x="72" y="66" w="23" h="46" />
 		<sprite x="105" y="66" w="22" h="46" />
 		<sprite x="136" y="66" w="23" h="46" />
-	</Sprites>
-  </Animation>
-  <Animation name="TakeDamage" imagePath="Enemies.png" width="440" height="432">
-	<Sprites type="0">
-		<sprite x="280" y="66" w="23" h="46" />
-		<sprite x="312" y="66" w="23" h="46" />
-		<sprite x="344" y="66" w="23" h="46" />
 	</Sprites>
   </Animation>
 </Animations>
