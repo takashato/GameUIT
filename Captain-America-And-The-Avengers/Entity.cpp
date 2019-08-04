@@ -160,6 +160,8 @@ void Entity::CalcCollision(std::set<Entity*> *entities, std::vector<CollisionEve
 
 	for (Entity* entity: *entities)
 	{
+		if (entity == this) continue;
+
 		CollisionEvent* e = SweptAABBEx(entity);
 
 		if (e->t >= .0f && e->t <= 1.0f)
@@ -179,20 +181,10 @@ void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
 {
 	if (!shouldRenderBoundingBox) return;
 
-	//if (mSpriteBB == nullptr)
-	//{
-	//	mSpriteBB = new Sprite(L"Resources\\Sprites\\BoudingBox\\bbox.png");
-	//}
-
-	//RECT boundingBox = GetBoundingBox();
-
-	//RECT rect;
-	//rect.left = rect.top = 0;
-	//rect.right = boundingBox.right - boundingBox.left;
-	//rect.bottom = boundingBox.bottom - boundingBox.top;
-
-	//mSpriteBB->SetRect(rect);
-	//mSpriteBB->Draw(mPosition, D3DXVECTOR2(), transform, 100); //render mau` nhat
+	if (GetCollidableObjectType() == EItem)
+	{
+		std::cout << "Render item bb\n";
+	}
 
 	RECT bb = GetBoundingBox();
 	std::vector<D3DXVECTOR2> vertexList;

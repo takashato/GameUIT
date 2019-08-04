@@ -28,10 +28,6 @@ public:
 	SoundType GetBgMusic();
 
 private:
-	std::unique_ptr<Camera> mCamera;
-	std::unique_ptr<GameMap> mMap;
-	std::unique_ptr<Grid> mGrid;
-
 	std::unique_ptr<Player> mPlayer;
 
 	// Inherited via Scene

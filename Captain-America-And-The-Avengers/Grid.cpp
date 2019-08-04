@@ -85,7 +85,7 @@ void Grid::Add(Entity* entity)
 	{
 		int col = static_cast<int>(entity->GetPosition().x / mCellSize);
 		int row = static_cast<int>(entity->GetPosition().y / mCellSize);
-		if (col >= mColNum || row >= mRowNum) {
+		if (col >= mColNum || row >= mRowNum || col < 0 || row < 0) {
 			std::cout << "Grid reject col " << col << " row " << row << "\n";
 			return; // Do not add this
 		}

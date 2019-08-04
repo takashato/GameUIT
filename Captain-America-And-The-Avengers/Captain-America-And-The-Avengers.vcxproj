@@ -23,14 +23,14 @@
     <ProjectGuid>{AEC6CC9B-3245-4470-844F-19890AD30DA5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>GameProject</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>Captain-America-And-The-Avengers</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -183,6 +183,7 @@
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="GunEnemy.cpp" />
     <ClCompile Include="GunStock.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="MapObjectReader.cpp" />
     <ClCompile Include="MapReader\tinyxml2.cpp" />
@@ -243,6 +244,7 @@
     <ClInclude Include="Ground.h" />
     <ClInclude Include="GunEnemy.h" />
     <ClInclude Include="GunStock.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="MapObjectReader.h" />

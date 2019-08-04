@@ -18,6 +18,8 @@ public:
 	void OnKeyUp(BYTE key);
 	void OnKeyDown(BYTE key);
 
+	Scene* GetScene();
+
 private:
 	SceneManager() : ISingleton(NULL) {}
 	Scene* mCurrentScene = NULL;

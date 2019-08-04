@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "AnimationScript.h"
 #include "SceneManager.h"
+#include "Item.h"
 #include "Capsule.h"
 
 AnimationScript* Capsule::mAniScript = nullptr;
@@ -10,11 +11,6 @@ Animation* Capsule::mAniInvoked = nullptr;
 
 Capsule::Capsule(D3DXVECTOR3 position, std::vector<ItemType>& itemList)
 {
-	if (mAniScript == nullptr)
-	{
-		LoadAnimation();
-	}
-
 	if (itemList.size() < 2)
 	{
 		ThrowGameException("Item List size must be larger than 2.");
@@ -53,7 +49,19 @@ void Capsule::Drop()
 {
 	if (!mIsJustDrop)
 	{
-		std::cout << "Dropping item\n";
+		if (SceneManager::GetInstance().GetScene() != nullptr
+			&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
+		{ 
+			Item* item;
+			if (!mDroppedPrimary)
+			{
+				mDroppedPrimary = true;
+				item = new Item(mItemPrimary, mPosition);
+			}
+			else
+				item = new Item(mITemSecondary, mPosition);
+			SceneManager::GetInstance().GetScene()->GetGrid()->Add(item);
+		}
 		mIsJustDrop = true;
 		mCurrentAni = mAniInvoked;
 	}

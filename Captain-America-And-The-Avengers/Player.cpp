@@ -245,7 +245,8 @@ void Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 				else
 				{
 					collisionWithGround = true;
-					if (mState->GetState() == EPlayerState::Falling || mState->GetState() == EPlayerState::HighJumping)
+					if (mState->GetState() == EPlayerState::Falling 
+						|| mState->GetState() == EPlayerState::HighJumping)
 					{
 						skipGround = nullptr;
 						SetState(EPlayerState::Sitting);

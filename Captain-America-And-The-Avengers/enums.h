@@ -30,6 +30,7 @@ enum CollidableObjectType
 	EEnemy,
 	EWeapon,
 	EPlatform,
+	EWater,
 	EDefault,
 	EBullet,
 	ECapsule,

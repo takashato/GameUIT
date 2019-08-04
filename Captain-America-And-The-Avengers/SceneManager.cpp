@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "SceneManager.h"
+#include "Item.h"
 
 SceneManager& SceneManager::GetInstance()
 {
@@ -9,6 +10,8 @@ SceneManager& SceneManager::GetInstance()
 
 void SceneManager::Setup()
 {
+	Capsule::LoadAnimation();
+	Item::LoadAnimation();
 	mKeyboard = new Keyboard();
 	mCurrentScene = new CharlestonScene();
 }
@@ -44,4 +47,9 @@ void SceneManager::OnKeyDown(BYTE key)
 		break;
 	}
 	mCurrentScene->OnKeyDown(key);
+}
+
+Scene* SceneManager::GetScene()
+{
+	return mCurrentScene;
 }

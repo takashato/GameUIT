@@ -2,6 +2,9 @@
 #include "Keyboard.h"
 #include "SceneData.h"
 #include "SoundManager.h"
+#include "Grid.h"
+#include "Camera.h"
+#include "GameMap.h"
 
 class Scene {
 public:
@@ -25,6 +28,14 @@ public:
 		return GetBgMusic() != SoundType::Invalid;
 	}
 
+	Grid* GetGrid() { return mGrid.get(); }
+	Camera* GetCamera() { return mCamera.get(); }
+	GameMap* GetMap() { return mMap.get(); }
+
 protected:
+	std::unique_ptr<Camera> mCamera;
+	std::unique_ptr<GameMap> mMap;
+	std::unique_ptr<Grid> mGrid;
+
 	SceneData mData;
 };

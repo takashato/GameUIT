@@ -19,6 +19,7 @@ public:
 	virtual RECT GetBoundingBox() override;
 	virtual CollidableObjectType GetCollidableObjectType() override;
 
+	static void LoadAnimation();
 private:
 	Animation* mCurrentAni;
 	ItemType mItemPrimary;
@@ -30,5 +31,4 @@ private:
 	static AnimationScript* mAniScript;
 	static Sprite* mSprite;
 	static Animation* mAniNormal, *mAniInvoked;
-	static void LoadAnimation();
 };
