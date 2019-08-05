@@ -16,14 +16,18 @@ GunStock::~GunStock()
 
 void GunStock::LoadAnimations()
 {
-	mSprite = new Sprite(L"Resources\\Sprites\\Enemies\\Enemies.png");
+	mSprite = new Sprite(L"Resources\\Sprites\\Enemies\\GunStock.png");
 	mAniScripts = new AnimationScript("Resources\\Sprites\\Enemies\\GunStock.xml");
 
 	mAniRight = new Animation(mSprite, mAniScripts->GetRectList("Right", "0"), 0.1F);
 	mAniBottomRightt = new Animation(mSprite, mAniScripts->GetRectList("BottomRight", "0"), 0.1F);
 	mAniTop = new Animation(mSprite, mAniScripts->GetRectList("Top", "0"), 0.1F);
-	mAniRotating = new Animation(mSprite, mAniScripts->GetRectList("Rotating", "0"), 0.1F);
+	mAniRotating = new Animation(mSprite, mAniScripts->GetRectList("Rotating", "0"), 0.01F);
 	mAniTopRight = new Animation(mSprite, mAniScripts->GetRectList("TopRight", "0"), 0.1F);
+	mAniBottom = new Animation(mSprite, mAniScripts->GetRectList("Bottom", "0"), 0.1F);
+	mAniBottomLeft = new Animation(mSprite, mAniScripts->GetRectList("BottomLeft", "0"), 0.1F);
+	mAniLeft = new Animation(mSprite, mAniScripts->GetRectList("Left", "0"), 0.1F);
+	mAniTopLeft = new Animation(mSprite, mAniScripts->GetRectList("TopLeft", "0"), 0.1F);
 
 	mCurrentAni = mAniRight;
 }
@@ -43,13 +47,25 @@ void GunStock::Update(float deltaTime, Player* player)
 				SetState(GUNSTOCK_BOTTOMRIGHT_DIRECT);
 				break;
 			case GUNSTOCK_BOTTOMRIGHT_DIRECT:
+				SetState(GUNSTOCK_BOTTOM_DIRECT);
+				break;
+			case GUNSTOCK_BOTTOM_DIRECT:
+				SetState(GUNSTOCK_BOTTOMLEFT_DIRECT);
+				break;
+			case GUNSTOCK_BOTTOMLEFT_DIRECT:
+				SetState(GUNSTOCK_LEFT_DIRECT);
+				break;
+			case GUNSTOCK_LEFT_DIRECT:
+				SetState(GUNSTOCK_TOPLEFT_DIRECT);
+				break;
+			case GUNSTOCK_TOPLEFT_DIRECT:
 				SetState(GUNSTOCK_TOP_DIRECT);
+				break;
+			case GUNSTOCK_TOP_DIRECT:
+				SetState(GUNSTOCK_TOPRIGHT_DIRECT);				
 				break;
 			case GUNSTOCK_TOPRIGHT_DIRECT:
 				SetState(GUNSTOCK_RIGHT_DIRECT);
-				break;
-			case GUNSTOCK_TOP_DIRECT:
-				SetState(GUNSTOCK_TOPRIGHT_DIRECT);
 				break;
 			}
 			mCounter = 0;
@@ -103,6 +119,18 @@ void GunStock::ChangeAnimationByState(int state)
 		break;
 	case GUNSTOCK_TOP_DIRECT:
 		mCurrentAni = mAniTop;
+		break;
+	case GUNSTOCK_BOTTOM_DIRECT:
+		mCurrentAni = mAniBottom;
+		break;
+	case GUNSTOCK_BOTTOMLEFT_DIRECT:
+		mCurrentAni = mAniBottomLeft;
+		break;
+	case GUNSTOCK_LEFT_DIRECT:
+		mCurrentAni = mAniLeft;
+		break;
+	case GUNSTOCK_TOPLEFT_DIRECT:
+		mCurrentAni = mAniTopLeft;
 		break;
 	}
 }

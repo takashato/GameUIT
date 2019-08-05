@@ -1,32 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Animations>
-  <Animation name="Top" imagePath="Enemies.png" width="440" height="432">
+  <Animation name="Top" imagePath="GunStock.png" width="121" height="56">
 	<Sprites type="0">  
-		<sprite x="237" y="344" w="14" h="15" />
+		<sprite x="4" y="5" w="14" h="15" />
 	</Sprites>
   </Animation>
-  <Animation name="TopRight" imagePath="Enemies.png" width="440" height="432">
+  <Animation name="TopRight" imagePath="GunStock.png" width="121" height="56">
 	<Sprites type="0">  
-		<sprite x="261" y="345" w="14" h="14" />
+		<sprite x="28" y="6" w="14" h="14" />
 	</Sprites>
   </Animation>
-  <Animation name="Right" imagePath="Enemies.png" width="440" height="432"> 
-	<Sprites type="0">  
-		<sprite x="285" y="345" w="15" h="14" />
-	</Sprites>
-  </Animation>
-  <Animation name="BottomRight" imagePath="Enemies.png" width="440" height="432">
-	<Sprites type="0">  
-		<sprite x="309" y="345" w="14" h="14" />
-	</Sprites>
-  </Animation>
-  <Animation name="Rotating" imagePath="Enemies.png" width="440" height="432">
+  <Animation name="Right" imagePath="GunStock.png" width="121" height="56"> 
 	<Sprites type="0">
-		<sprite x="237" y="344" w="14" h="15" />
-		<sprite x="261" y="345" w="14" h="14" />
-		<sprite x="285" y="345" w="15" h="14" />
-		<sprite x="309" y="345" w="14" h="14" />
-		<sprite x="333" y="345" w="14" h="15" />
+		<sprite x="52" y="6" w="15" h="14" />
+	</Sprites>
+  </Animation>
+  <Animation name="BottomRight" imagePath="GunStock.png" width="121" height="56">
+	<Sprites type="0">  
+		<sprite x="76" y="6" w="14" h="14" />
+	</Sprites>
+  </Animation>
+  <Animation name="Bottom" imagePath="GunStock.png" width="121" height="56">
+	<Sprites type="0">  
+		<sprite x="100" y="6" w="14" h="15" />
+	</Sprites>
+  </Animation>
+  <Animation name="BottomLeft" imagePath="GunStock.png" width="121" height="56">
+	<Sprites type="0">  
+		<sprite x="30" y="34" w="14" h="14" />
+	</Sprites>
+  </Animation>
+  <Animation name="Left" imagePath="GunStock.png" width="121" height="56">
+	<Sprites type="0">  
+		<sprite x="53" y="34" w="15" h="14" />
+	</Sprites>
+  </Animation>
+  <Animation name="TopLeft" imagePath="GunStock.png" width="121" height="56">
+	<Sprites type="0">  
+		<sprite x="78" y="34" w="14" h="14" />
+	</Sprites>
+  </Animation>
+  <Animation name="Rotating" imagePath="GunStock.png" width="121" height="56">
+	<Sprites type="0">
+		<sprite x="4" y="5" w="14" h="15" />
+		<sprite x="28" y="6" w="14" h="14" />
+		<sprite x="52" y="6" w="15" h="14" />
+		<sprite x="76" y="6" w="14" h="14" />
+		<sprite x="100" y="6" w="14" h="15" />
+		<sprite x="30" y="34" w="14" h="14" />
+		<sprite x="53" y="34" w="15" h="14" />
+		<sprite x="78" y="34" w="14" h="14" />
 	</Sprites>
   </Animation>
 </Animations>

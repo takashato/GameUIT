@@ -10,7 +10,11 @@
 #define GUNSTOCK_TOPRIGHT_DIRECT 1
 #define GUNSTOCK_RIGHT_DIRECT 2
 #define GUNSTOCK_BOTTOMRIGHT_DIRECT 3
-#define GUNSTOCK_ROTATING_STATE 4
+#define GUNSTOCK_BOTTOM_DIRECT 4
+#define GUNSTOCK_BOTTOMLEFT_DIRECT 5
+#define GUNSTOCK_LEFT_DIRECT 6
+#define GUNSTOCK_TOPLEFT_DIRECT 7
+#define GUNSTOCK_ROTATING_STATE 8
 
 class GunStock : public Enemy
 {
@@ -46,6 +50,10 @@ private:
 	Animation* mAniTopRight = NULL;
 	Animation* mAniRight = NULL;
 	Animation* mAniBottomRightt = NULL;
+	Animation* mAniBottom = NULL;
+	Animation* mAniBottomLeft = NULL;
+	Animation* mAniLeft = NULL;
+	Animation* mAniTopLeft = NULL;
 	Animation* mAniRotating = NULL;
 
 	int mState = -1;
