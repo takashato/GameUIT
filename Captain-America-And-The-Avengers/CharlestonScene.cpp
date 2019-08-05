@@ -64,6 +64,9 @@ void CharlestonScene::Setup()
 		case ERunEnemy:
 			mGrid->Add(new RunEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType));
 			break;
+		case EGunStockEnemy:
+			mGrid->Add(new GunStock(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f)));
+			break;
 		}
 	}
 	// Capsule

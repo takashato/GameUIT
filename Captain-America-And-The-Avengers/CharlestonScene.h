@@ -7,6 +7,7 @@
 #include "GunEnemy.h"
 #include "MissileEnemy.h"
 #include "RunEnemy.h"
+#include "GunStock.h"
 #include "BossCharleston.h"
 #include "Camera.h"
 #include "GameMap.h"

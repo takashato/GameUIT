@@ -20,17 +20,8 @@
 		<sprite x="309" y="345" w="14" h="14" />
 	</Sprites>
   </Animation>
-  <Animation name="TakeDamage" imagePath="Enemies.png" width="440" height="432">
-	<Sprites type="0">
-		<!--Nhap nhay khi bi danh trung-->
-		<sprite x="357" y="344" w="14" h="15" />
-		<sprite x="381" y="344" w="14" h="15" />
-		<sprite x="405" y="344" w="14" h="15" />
-	</Sprites>
-  </Animation>
   <Animation name="Rotating" imagePath="Enemies.png" width="440" height="432">
 	<Sprites type="0">
-		<!--Xoay khi bi danh trung-->
 		<sprite x="237" y="344" w="14" h="15" />
 		<sprite x="261" y="345" w="14" h="14" />
 		<sprite x="285" y="345" w="15" h="14" />

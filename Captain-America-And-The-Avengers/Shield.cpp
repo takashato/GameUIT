@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Shield.h"
+#include "GunStock.h"
 
 Shield::Shield(Player* player) : Weapon()
 {
@@ -278,7 +279,10 @@ void Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 		if (ce->entity->GetCollidableObjectType() == EEnemy)
 		{
 			auto enemy = ((Enemy*)ce->entity);
-			enemy->TakeDamage(this);
+			if (enemy->GetEnemyType() == EGunStockEnemy)
+				((GunStock*)enemy)->BeAttacked();
+			else
+				enemy->TakeDamage(this);
 		}
 		else if (ce->entity->GetCollidableObjectType() == EBullet)
 		{

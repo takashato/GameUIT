@@ -1,8 +1,8 @@
 #pragma once
 #include "Weapon.h"
 #include "AnimationScript.h"
-#include "Player.h"
 #include "Enemy.h"
+#include "Player.h"
 #include "Capsule.h"
 #include "SoundManager.h"
 
@@ -12,6 +12,8 @@ enum ShieldState {
 	EShieldHigh,
 	EShieldSit
 };
+
+class GunStock;
 
 class Shield : public Weapon
 {
