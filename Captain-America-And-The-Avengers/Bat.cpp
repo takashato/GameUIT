@@ -28,7 +28,7 @@
 //	mAniCocoon = new Animation(mSprite, mAniScripts->GetRectList("Cocoon", "0"), 0.15F);
 //	mAniSwing = new Animation(mSprite, mAniScripts->GetRectList("Swing", "0"), 0.5F);
 //	mAniFlying = new Animation(mSprite, mAniScripts->GetRectList("Fly", "0"), 0.15F);
-//	mAniFlyWithShock = new Animation(mSprite, mAniScripts->GetRectList("FlyWithShock", "0"), 0.15F);
+//	mAniFlyWithShock = new Animation(mSprite, mAniScripts->GetRectList("FlyWithShock", "0"), 0.1F);
 //
 //	mCurrentAni = mAniCocoon;
 //}
@@ -44,7 +44,7 @@
 //	if (mState == BAT_COCOON_SATTE)
 //	{
 //		isDown = true;
-//		if (mCounter > 0.9)
+//		if (mCounter > 0.9f)
 //		{
 //			SetState(BAT_SWING_STATE);
 //			mCounter = 0;
@@ -52,7 +52,15 @@
 //	}
 //	if (mState == BAT_SWING_STATE)
 //	{
-//		if (mCurrentAni->IsDoneCycle())
+//		if (!isDown)
+//		{
+//			if (mCounter > 0.3f)
+//			{
+//				SetState(BAT_COCOON_SATTE);
+//				mCounter = 0;
+//			}
+//		}
+//		if (mCurrentAni->IsDoneCycle() && isDown)
 //		{
 //			mCurrentAni->Reset();
 //			SetState(BAT_FLY_STATE);
@@ -72,7 +80,7 @@
 //		}
 //		if (mPosition.y == mCenter.y - 15)
 //		{
-//			SetState(BAT_COCOON_SATTE);
+//			SetState(BAT_SWING_STATE);
 //			mCounter = 0;
 //		}
 //	}
