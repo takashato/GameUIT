@@ -38,7 +38,7 @@ void Item::Update(float deltaTime)
 				if (ce->ny == -1.0f)
 				{
 					isOnGround = true;
-					SetPositionY(ce->entity->GetPosition().y + mHeight);
+					SetPositionY(ce->entity->GetPosition().y - mHeight);
 					SetVelocityY(.0f);
 					break;
 				}
@@ -58,8 +58,8 @@ void Item::Draw(D3DXVECTOR2 trans)
 RECT Item::GetBoundingBox()
 {
 	RECT rect;
-	rect.top = mPosition.x;
-	rect.left = mPosition.y;
+	rect.left = mPosition.x;
+	rect.top = mPosition.y;
 	rect.bottom = rect.top + mHeight;
 	rect.right = rect.left + mWidth;
 	return rect;
