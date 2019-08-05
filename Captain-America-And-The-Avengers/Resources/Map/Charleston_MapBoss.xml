@@ -12,5 +12,10 @@
 			<Ground type="Hard" name="LeftBorder" x="0" y="0" w="8" h="224"/>
 			<Ground type="Hard" name="RightBorder" x="248" y="0" w="8" h="224"/>
 		</Grounds>
+    <Buttons>
+      <Button name="Button" x="16" y="128" w="16" h="16"/>
+      <Button name="Button" x="80" y="64" w="16" h="16"/>
+      <Button name="Button" x="176" y="96" w="16" h="16"/>
+    </Buttons>
 	</MapObjects>
 </Map>

@@ -22,10 +22,10 @@
 			<IronBar name="IronBar" x="194" y="108" w="44" h="2"/>
 		</IronBars>
 		<Capsules>
-			<Capsule x="127" y="136" w="16" h="16"/>
+			<Capsule x="127" y="136" w="16" h="16">
 				<Item type="HeartEnegy"/>
 			</Capsule>
-			<Capsule x="123" y="32" w="16" h="16"/>
+			<Capsule x="123" y="32" w="16" h="16">
 				<Item type="PowerStone"/>
 			</Capsule>
 		</Capsules>

@@ -106,49 +106,49 @@
 			<Ground type="Thorns" name="Thorns" x="795" y="441" w="212" h="8"/>
 		</Grounds>
 		<Capsules>
-			<Capsule x="92" y="48" w="16" h="16"/>
+			<Capsule x="92" y="48" w="16" h="16">
 				<Item type="KeyCrystal"/>
 			</Capsule>
-			<Capsule x="130" y="145" w="16" h="16"/>
+			<Capsule x="130" y="145" w="16" h="16">
 				<Item type="PowerStone"/>
 			</Capsule>
-			<Capsule x="437" y="56" w="16" h="16"/>
+			<Capsule x="437" y="56" w="16" h="16">
 				<Item type="HeartEnegy"/>
 			</Capsule>
-			<Capsule x="518" y="84" w="16" h="16"/>
+			<Capsule x="518" y="84" w="16" h="16">
 				<Item type="PowerStone"/>
 			</Capsule>
-			<Capsule x="864" y="54" w="16" h="16"/>
+			<Capsule x="864" y="54" w="16" h="16">
 				<Item type="HeartEnegy"/>
 			</Capsule>
-			<Capsule x="903" y="139" w="16" h="16"/>
+			<Capsule x="903" y="139" w="16" h="16">
 				<Item type="PowerStone"/>
 			</Capsule>
-			<Capsule x="984" y="323.5" w="16" h="16"/>
+			<Capsule x="984" y="323.5" w="16" h="16">
 				<Item type="OneUp"/>
 			</Capsule>
-			<Capsule x="972" y="540" w="16" h="16"/>
+			<Capsule x="972" y="540" w="16" h="16">
 				<Item type="HeartEnegy"/>
 			</Capsule>
-			<Capsule x="971" y="635" w="16" h="16"/>
+			<Capsule x="971" y="635" w="16" h="16">
 				<Item type="PowerStone"/>
 			</Capsule>
-			<Capsule x="526" y="768" w="16" h="16"/>
+			<Capsule x="526" y="768" w="16" h="16">
 				<Item type="HeartEnegy"/>
 			</Capsule>
-			<Capsule x="676" y="881" w="16" h="16"/>
+			<Capsule x="676" y="881" w="16" h="16">
 				<Item type="PowerStone"/>
 			</Capsule>
-			<Capsule x="176" y="869" w="16" h="16"/>
+			<Capsule x="176" y="869" w="16" h="16">
 				<Item type="PowerStone"/>
 			</Capsule>
-			<Capsule x="79" y="736" w="16" h="16"/>
+			<Capsule x="79" y="736" w="16" h="16">
 				<Item type="KeyCrystal"/>
 			</Capsule>
-			<Capsule x="458" y="641" w="16" h="16"/>
+			<Capsule x="458" y="641" w="16" h="16">
 				<Item type="PowerStone"/>
 			</Capsule>
-			<Capsule x="226" y="534" w="16" h="16"/>
+			<Capsule x="226" y="534" w="16" h="16">
 				<Item type="PowerStone"/>
 			</Capsule>
 		</Capsules>

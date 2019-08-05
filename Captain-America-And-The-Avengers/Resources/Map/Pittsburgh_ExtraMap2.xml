@@ -22,10 +22,10 @@
 			<Ground type="Normal" name="Ground" x="177" y="80" w="30" h="8"/>
 		</Grounds>
 		<Capsules>
-			<Capsule x="158" y="49" w="16" h="16"/>
+			<Capsule x="158" y="49" w="16" h="16">
 				<Item type="HeartEnegy"/>
 			</Capsule>
-			<Capsule x="184" y="123" w="16" h="16"/>
+			<Capsule x="184" y="123" w="16" h="16">
 				<Item type="PowerStone"/>
 			</Capsule>
 		</Capsules>
