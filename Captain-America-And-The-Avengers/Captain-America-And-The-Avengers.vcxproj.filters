@@ -224,6 +224,9 @@
     <ClCompile Include="PlayerSwimming.cpp">
       <Filter>Entities\Player\State</Filter>
     </ClCompile>
+    <ClCompile Include="CharlestonBossScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -408,6 +411,9 @@
     </ClInclude>
     <ClInclude Include="PlayerSwimming.h">
       <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="CharlestonBossScene.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

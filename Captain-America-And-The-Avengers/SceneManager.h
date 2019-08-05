@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "DemoScene.h"
 #include "CharlestonScene.h"
+#include "CharlestonBossScene.h"
 
 class SceneManager : ISingleton
 {
@@ -20,6 +21,7 @@ public:
 
 	Scene* GetScene();
 
+	/*void ChangeScene();*/
 private:
 	SceneManager() : ISingleton(NULL) {}
 	Scene* mCurrentScene = NULL;

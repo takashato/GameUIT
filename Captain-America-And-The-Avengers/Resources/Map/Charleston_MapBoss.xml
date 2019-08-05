@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map>
+	<Tilemap matrixPath="Resources\\Map\\Matrix_Chaleston_MapBoss.txt" imagePath="Resources\\Map\\Chaleston_MapBoss.png"/>
+	<SpawnPoints>
+		<SpawnPoint name="Player" x="59.0" y="152.0"/>
+	</SpawnPoints>
+	<MapObjects>
+		<Grounds>
+			<Ground type="Normal" name="Ground" x="0" y="197" w="256" h="8"/>
+			<Ground type="Normal" name="Ground" x="56" y="101" w="32" h="8"/>
+      <Ground type="Hard" name="HardGround" x="0" y="-8" w="256" h="8"/>
+			<Ground type="Hard" name="LeftBorder" x="0" y="0" w="8" h="224"/>
+			<Ground type="Hard" name="RightBorder" x="248" y="0" w="8" h="224"/>
+		</Grounds>
+	</MapObjects>
+</Map>

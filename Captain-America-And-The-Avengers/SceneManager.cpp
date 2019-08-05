@@ -13,7 +13,7 @@ void SceneManager::Setup()
 	Capsule::LoadAnimation();
 	Item::LoadAnimation();
 	mKeyboard = new Keyboard();
-	mCurrentScene = new CharlestonScene();
+	mCurrentScene = new CharlestonBossScene();
 }
 
 void SceneManager::Update(float deltaTime)
@@ -53,3 +53,4 @@ Scene* SceneManager::GetScene()
 {
 	return mCurrentScene;
 }
+

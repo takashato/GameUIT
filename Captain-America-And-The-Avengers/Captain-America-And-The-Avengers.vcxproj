@@ -166,6 +166,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Capsule.cpp" />
+    <ClCompile Include="CharlestonBossScene.cpp" />
     <ClCompile Include="CharlestonScene.cpp" />
     <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="dsutil.cpp" />
@@ -226,6 +227,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Capsule.h" />
+    <ClInclude Include="CharlestonBossScene.h" />
     <ClInclude Include="CharlestonScene.h" />
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="Data.h" />
