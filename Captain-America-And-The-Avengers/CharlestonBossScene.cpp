@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "CharlestonBossScene.h"
 
+
 CharlestonBossScene::CharlestonBossScene() : Scene("Resources\\Map\\Charleston_MapBoss.xml")
 {
 	Setup();
@@ -48,7 +49,16 @@ void CharlestonBossScene::Setup()
 	}
 	// Boss
 	
-
+	// Enemy
+	/*for (DataEnemy dataEnemy : mData.GetDataEnemy())
+	{
+		switch (dataEnemy.type)
+		{
+		case EBossCharleston:
+			mGrid->Add(new BossCharleston(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f)));
+			break;
+		}
+	}*/
 }
 
 void CharlestonBossScene::Update(float deltaTime)
@@ -59,6 +69,7 @@ void CharlestonBossScene::Update(float deltaTime)
 	mPlayer->CalcCollision(&mGrid->mTemp, cEvent);
 	mPlayer->OnCollision(cEvent);
 	mPlayer->Update(deltaTime);
+	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 	cEvent.clear();
 	mPlayer->GetShield()->CalcCollision(&mGrid->mTemp, cEvent);
 	mPlayer->GetShield()->OnCollision(cEvent);
@@ -88,4 +99,9 @@ void CharlestonBossScene::OnKeyUp(BYTE key)
 void CharlestonBossScene::OnKeyDown(BYTE key)
 {
 	mPlayer->OnKeyDown(key);
+}
+
+MapID CharlestonBossScene::GetMapID()
+{
+	return MapID::CharlestonBoss;
 }

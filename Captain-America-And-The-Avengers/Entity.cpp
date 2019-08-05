@@ -181,11 +181,6 @@ void Entity::RenderBoundingBox(D3DXVECTOR2 transform)
 {
 	if (!shouldRenderBoundingBox) return;
 
-	if (GetCollidableObjectType() == EItem)
-	{
-		std::cout << "Render item bb\n";
-	}
-
 	RECT bb = GetBoundingBox();
 	std::vector<D3DXVECTOR2> vertexList;
 	vertexList.push_back(D3DXVECTOR2(bb.left, bb.top));

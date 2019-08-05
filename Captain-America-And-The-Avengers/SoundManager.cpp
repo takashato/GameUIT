@@ -29,7 +29,7 @@ SoundManager::SoundManager() : ISingleton(NULL)
 	AddSound(SoundType::Explosive, L"Resources\\Sound\\Explosive.wav");
 	AddSound(SoundType::FallingWater, L"Resources\\Sound\\FallingWater.wav");
 	AddSound(SoundType::Hit, L"Resources\\Sound\\Hit.wav");
-	AddSound(SoundType::ItemEnery, L"Resources\\Sound\\ItemEnery.wav");
+	AddSound(SoundType::ItemEnery, L"Resources\\Sound\\ItemEnergy.wav");
 	AddSound(SoundType::ItemKeyKrystal, L"Resources\\Sound\\ItemKeyKrystal.wav");
 	AddSound(SoundType::ItemNormal, L"Resources\\Sound\\ItemNormal.wav");
 	AddSound(SoundType::RedAlert, L"Resources\\Sound\\RedAlert.wav");

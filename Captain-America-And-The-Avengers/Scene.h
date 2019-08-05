@@ -28,9 +28,13 @@ public:
 		return GetBgMusic() != SoundType::Invalid;
 	}
 
+	virtual MapID GetMapID() = 0;
+
 	Grid* GetGrid() { return mGrid.get(); }
 	Camera* GetCamera() { return mCamera.get(); }
 	GameMap* GetMap() { return mMap.get(); }
+
+	bool mCanTransport = false;
 
 protected:
 	std::unique_ptr<Camera> mCamera;

@@ -85,6 +85,7 @@ void CharlestonScene::Update(float deltaTime)
 	mPlayer->CalcCollision(&mGrid->mTemp, cEvent);
 	mPlayer->OnCollision(cEvent);
 	mPlayer->Update(deltaTime);
+	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 	cEvent.clear();
 	mPlayer->GetShield()->CalcCollision(&mGrid->mTemp, cEvent);
 	mPlayer->GetShield()->OnCollision(cEvent);
@@ -114,4 +115,9 @@ void CharlestonScene::OnKeyUp(BYTE key)
 void CharlestonScene::OnKeyDown(BYTE key)
 {
 	mPlayer->OnKeyDown(key);
+}
+
+MapID CharlestonScene::GetMapID()
+{
+	return MapID::Charleston;
 }

@@ -1,6 +1,5 @@
 #pragma once
 #include "Scene.h"
-#include "DemoScene.h"
 #include "CharlestonScene.h"
 #include "CharlestonBossScene.h"
 
@@ -20,6 +19,7 @@ public:
 	void OnKeyDown(BYTE key);
 
 	Scene* GetScene();
+	void ChangeScene(MapID mapID);
 
 	/*void ChangeScene();*/
 private:

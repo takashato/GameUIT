@@ -28,10 +28,13 @@ public:
 
 	SoundType GetBgMusic();
 
+	virtual MapID GetMapID() override;
+
 private:
 	std::unique_ptr<Player> mPlayer;
 
 	// Inherited via Scene
 	virtual void OnKeyUp(BYTE key) override;
 	virtual void OnKeyDown(BYTE key) override;
+
 };
