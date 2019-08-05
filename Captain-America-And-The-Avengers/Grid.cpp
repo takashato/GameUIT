@@ -131,8 +131,6 @@ void Grid::Move(Entity* entity)
 
 	entity->GetGridNode()->Remove(entity);
 	mCells[col][row]->Add(entity);
-
-	std::cout << "Changed to " << "(" << col << "; " << row << ")\n";
 }
 
 std::vector<GridNode*> Grid::GetByViewPort(RECT bound)

@@ -55,6 +55,16 @@ void Item::Draw(D3DXVECTOR2 trans)
 	this->RenderBoundingBox(trans);
 }
 
+void Item::Consume(Player& player)
+{
+	SoundType sound = SoundType::ItemNormal;
+	if (mType == ItemType::KeyCrystal) sound = SoundType::ItemKeyKrystal;
+	else if (mType == ItemType::HeartEnergy) sound = SoundType::ItemEnery;
+	SoundManager::GetInstance().CPlaySound(sound);
+	mGridNode->Remove(this);
+	delete this;
+}
+
 RECT Item::GetBoundingBox()
 {
 	RECT rect;

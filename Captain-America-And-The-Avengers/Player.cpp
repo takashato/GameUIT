@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Game.h"
+#include "Item.h"
 #include "Player.h"
 
 Player::Player() : Entity()
@@ -230,70 +231,16 @@ CollidableObjectType Player::GetCollidableObjectType()
 
 void Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 {
-	/*mIsCollisionLeftRightSide = false;
-	bool collisionWithGround = false;
-	for (CollisionEvent* ce : cEvent)
+	for (size_t i = 0; i < cEvent.size(); ++i)
 	{
-		if (ce->entity->GetCollidableObjectType() == EPlatform)
+		if (cEvent[i]->entity->GetCollidableObjectType() == EItem)
 		{
-			GroundType type = ((Ground*)ce->entity)->GetGroundType();
-			if (ce->ny == -1.0f && skipGround != ce->entity)
-			{
-				if (jumpThrough)
-				{
-					jumpThrough = false;
-					if (type != EGroundHard)
-					{
-						skipGround = ce->entity;
-					}
-				}
-				else
-				{
-					collisionWithGround = true;
-					if (mState->GetState() == EPlayerState::Falling 
-						|| mState->GetState() == EPlayerState::HighJumping)
-					{
-						skipGround = nullptr;
-						SetState(EPlayerState::Sitting);
-						SetPositionY(ce->entity->GetPosition().y - GetHeight());
-					}
-				}
-			}
-
-			if (type == EGroundHard)
-			{
-				RECT pB = GetBoundingBox();
-				RECT eB = ce->entity->GetBoundingBox();
-
-				if (ce->nx == -1.0f)
-				{
-					mIsCollisionLeftRightSide = true;
-					SetVelocityX(.0);
-					SetPositionX(eB.left - GetWidth());
-				}
-				else if (ce->nx == 1.0f)
-				{
-					mIsCollisionLeftRightSide = true;
-					SetVelocityX(.0);
-					SetPositionX(eB.right);
-				}
-
-				if (mState->GetState() != Falling)
-				{
-					if (ce->ny == 1.0f && (pB.left >= eB.left && pB.left <= eB.right || pB.right >= eB.left && pB.right <= eB.right))
-					{
-						SetPositionY(eB.bottom);
-						SetState(EPlayerState::Falling);
-					}
-				}
-			}
+			((Item*)cEvent[i]->entity)->Consume(*this);
+			delete cEvent[i];
+			cEvent.erase(cEvent.begin() + i);
+			--i;
 		}
 	}
-
-	if (mState->GetState() == EPlayerState::Running && !collisionWithGround)
-	{
-		SetState(EPlayerState::Falling);
-	}*/
 
 	if (mState != nullptr) mState->OnCollision(*this, cEvent);
 

@@ -12,6 +12,7 @@ public:
 	void Update(float deltaTime);
 	void Draw(D3DXVECTOR2 trans);
 
+	void Consume(Player &player);
 
 	virtual RECT GetBoundingBox() override;
 	virtual CollidableObjectType GetCollidableObjectType() override;
