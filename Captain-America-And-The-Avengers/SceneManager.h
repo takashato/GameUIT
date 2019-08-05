@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
-#include "DemoScene.h"
 #include "CharlestonScene.h"
+#include "CharlestonBossScene.h"
 
 class SceneManager : ISingleton
 {
@@ -19,6 +19,7 @@ public:
 	void OnKeyDown(BYTE key);
 
 	Scene* GetScene();
+	void ChangeScene(MapID mapID);
 
 private:
 	SceneManager() : ISingleton(NULL) {}

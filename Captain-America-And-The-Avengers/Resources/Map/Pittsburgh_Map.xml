@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map>
+	<Tilemap matrixPath="Resources\\Map\\Matrix_Pittsburgh_Dark_Map.txt" imagePath="Resources\\Map\\Pittsburgh_Dark_Map.png"/>
+	<SpawnPoints>
+		<SpawnPoint name="Player" x="22" y="154"/>
+		<SpawnPoint name="RunEnemy" x="282" y="880" w="24" h="43" type="1"/>
+		<SpawnPoint name="MissileEnemy" x="550" y="877" w="22" h="46" type="0"/>
+		<SpawnPoint name="GunEnemy" x="232" y="156" w="24" h="43"/>
+		<SpawnPoint name="GunEnemy" x="344" y="156" w="24" h="43"/>
+		<SpawnPoint name="FlyEnemy" x="133" y="732" w="24" h="37"/>
+		<SpawnPoint name="FlyEnemy" x="704" y="36" w="24" h="37"/>
+		<SpawnPoint name="Bat" x="807" y="240" w="23" h="18"/>
+		<SpawnPoint name="Bat" x="907" y="321" w="23" h="18"/>
+		<SpawnPoint name="GunStock" x="257" y="546" w="15" h="15"/>
+		<SpawnPoint name="GunStock" x="22" y="653" w="15" h="15"/>
+		<SpawnPoint name="GunStock" x="391" y="876" w="15" h="15"/>
+		<SpawnPoint name="GunStock" x="391" y="891" w="15" h="15"/>
+		<SpawnPoint name="GunStock" x="565" y="754" w="15" h="15"/>
+	</SpawnPoints>
+	<Transports>
+		<Transport nextSceneName="RedAlert_Map" x="981" y="736" w="12" h="192"/>
+		<Transport nextSceneName="Extra_Map1" x="568" y="157" w="23" h="43"/>
+		<Transport nextSceneName="Extra_Map2" x="825" y="640" w="23" h="43"/>
+	</Transports>
+	<MapObjects>
+		<Grounds>
+			<Ground type="Normal" name="Ground" x="0" y="448" w="96" h="8"/>
+			<Ground type="Normal" name="Ground" x="160" y="448" w="1216" h="8"/>
+			<Ground type="Normal" name="Ground" x="1440" y="448" w="352" h="8"/>
+			<Ground type="Normal" name="Ground" x="48" y="318" w="48" h="8"/>
+			<Ground type="Normal" name="Ground" x="40" y="206" w="216" h="8"/>
+			<Ground type="Normal" name="Ground" x="296" y="206" w="216" h="8"/>
+			<Ground type="Normal" name="Ground" x="552" y="206" w="216" h="8"/>
+			<Ground type="Normal" name="Ground" x="808" y="206" w="216" h="8"/>
+			<Ground type="Normal" name="Ground" x="1064" y="206" w="216" h="8"/>
+			<Ground type="Normal" name="Ground" x="1320" y="206" w="216" h="8"/>
+			<Ground type="Normal" name="Ground" x="1576" y="206" w="216" h="8"/>
+			<Ground type="Normal" name="Ground" x="672" y="366" w="48" h="8"/>
+			<Ground type="Normal" name="Ground" x="576" y="366" w="32" h="8"/>
+			<Ground type="Normal" name="Ground" x="624" y="286" w="32" h="8"/>
+			<Ground type="Normal" name="Ground" x="832" y="366" w="32" h="8"/>
+			<Ground type="Normal" name="Ground" x="880" y="286" w="32" h="8"/>
+			<Ground type="Normal" name="Ground" x="928" y="366" w="48" h="8"/>
+			<Ground type="Normal" name="Ground" x="1328" y="318" w="48" h="8"/>
+			<Ground type="Normal" name="Step" x="290" y="85" w="34" h="12"/>
+			<Ground type="Normal" name="Step" x="516" y="119" w="125" h="8"/>
+			<Ground type="Normal" name="Step" x="678" y="119" w="60" h="8"/>
+			<Ground type="Normal" name="Step" x="870" y="312" w="60" h="8"/>
+			<Ground type="Normal" name="Step" x="835" y="216" w="32" h="8"/>
+			<Ground type="Normal" name="Step" x="950" y="216" w="30" h="8"/>
+			<Ground type="Normal" name="Step" x="835" y="602" w="50" h="8"/>
+			<Ground type="Normal" name="Step" x="915" y="602" w="51" h="8"/>
+			<Ground type="Normal" name="Step" x="996" y="602" w="28" h="8"/>
+			<Ground type="Normal" name="Step" x="773" y="602" w="32" h="8"/>
+			<Ground type="Normal" name="Step" x="64" y="215" w="30" h="8"/>
+			<Ground type="Normal" name="Step" x="178" y="216" w="30" h="8"/>
+			<Ground type="Normal" name="Step" x="339" y="554" w="30" h="8"/>
+			<Ground type="Normal" name="Step" x="449" y="602" w="64" h="8"/>
+			<Ground type="Normal" name="Step" x="725" y="844" w="45" h="8"/>
+			<Ground type="Hard" name="HardGround" x="0" y="0" w="1024" h="16"/>
+			<Ground type="Hard" name="HardGround" x="0" y="924" w="1024" h="16"/>
+			<Ground type="Hard" name="LeftBorder" x="0" y="18" w="8" h="180"/>
+			<Ground type="Hard" name="LeftBorder" x="0" y="240" w="8" h="244"/>
+			<Ground type="Hard" name="LeftBorder" x="0" y="718" w="8" h="208"/>
+			<Ground type="Hard" name="RightBorder" x="1016" y="16" w="8" h="180"/>
+			<Ground type="Hard" name="LeftBorder" x="0" y="609" w="8" h="69"/>
+			<Ground type="Hard" name="RightBorder" x="1016" y="238" w="8" h="205"/>
+			<Ground type="Hard" name="RightBorder" x="1016" y="613" w="8" h="70"/>
+			<Ground type="Hard"  name="RightBorder" x="1016" y="480" w="8" h="122"/>
+			<Ground type="Hard"  name="RightBorder" x="1016" y="736" w="8" h="188"/>
+			<Ground type="Hard" name="HardGround" x="80" y="86" w="48" h="26"/>
+			<Ground type="Hard" name="HardGround" x="0" y="200" w="64" h="40"/>
+			<Ground type="Hard" name="HardGround" x="210" y="200" w="46" h="40"/>
+			<Ground type="Hard" name="HardGround" x="324" y="17" w="61" h="80"/>
+			<Ground type="Hard" name="HardGround" x="259" y="169" w="60" h="32"/>
+			<Ground type="Hard" name="HardGround" x="372" y="169" w="28" h="32"/>
+			<Ground type="Hard" name="HardGround" x="436" y="169" w="28" h="32"/>
+			<Ground type="Hard" name="HardGround" x="512" y="200" w="323" h="40"/>
+			<Ground type="Hard" name="HardGround" x="980" y="200" w="44" h="40"/>
+			<Ground type="Hard" name="HardGround" x="853" y="86" w="46" h="26"/>
+			<Ground type="Hard" name="HardGround" x="967" y="360" w="44" h="8"/>
+			<Ground type="Hard" name="HardGround" x="790" y="360" w="44" h="8"/>
+			<Ground type="Hard" name="HardGround" x="1007" y="441" w="16" h="8"/>
+			<Ground type="Hard" name="HardGround" x="774" y="441" w="21" h="8"/>
+			<Ground type="Hard" name="HardGround" x="805" y="570" w="30" h="40"/>
+			<Ground type="Hard" name="HardGround" x="885" y="570" w="30" h="40"/>
+			<Ground type="Hard" name="HardGround" x="966" y="570" w="30" h="40"/>
+			<Ground type="Hard" name="HardGround" x="772" y="683" w="252" h="56"/>
+			<Ground type="Hard" name="HardGround" x="805" y="828" w="30" h="112"/>
+			<Ground type="Hard" name="HardGround" x="611" y="796" w="80" h="24"/>
+			<Ground type="Hard" name="HardGround" x="513" y="809" w="64" h="40"/>
+			<Ground type="Hard" name="HardGround" x="872" y="737" w="73" h="127"/>
+			<Ground type="Hard" name="HardGround" x="256" y="200" w="256" h="281"/>
+			<Ground type="Hard" name="HardGround" x="0" y="490" w="63" h="118"/>
+			<Ground type="Hard" name="HardGround" x="226" y="571" w="30" h="40"/>
+			<Ground type="Hard" name="HardGround" x="0" y="683" w="31" h="40"/>
+			<Ground type="Hard" name="HardGround" x="31" y="700" w="31" h="23"/>
+			<Ground type="Hard" name="HardGround" x="210" y="699" w="47" h="25"/>
+			<Ground type="Hard" name="HardGround" x="242" y="683" w="15" h="16"/>
+			<Ground type="Hard" name="HardGround" x="257" y="603" w="46" h="80"/>
+			<Ground type="Hard" name="HardGround" x="258" y="683" w="255" h="85"/>
+			<Ground type="Hard" name="HardGround" x="258" y="769" w="92" h="80"/>
+			<Ground type="Hard" name="HardGround" x="421" y="769" w="92" h="80"/>
+			<Ground type="Hard" name="HardGround" x="420" y="570" w="29" h="40"/>
+			<Ground type="Hard" name="HardGround" x="774" y="451" w="249" h="26"/>
+			<Ground type="Thorns" name="Thorns" x="795" y="441" w="212" h="8"/>
+		</Grounds>
+		<Capsules>
+			<Capsule x="92" y="48" w="16" h="16"/>
+				<Item type="KeyCrystal"/>
+			</Capsule>
+			<Capsule x="130" y="145" w="16" h="16"/>
+				<Item type="PowerStone"/>
+			</Capsule>
+			<Capsule x="437" y="56" w="16" h="16"/>
+				<Item type="HeartEnegy"/>
+			</Capsule>
+			<Capsule x="518" y="84" w="16" h="16"/>
+				<Item type="PowerStone"/>
+			</Capsule>
+			<Capsule x="864" y="54" w="16" h="16"/>
+				<Item type="HeartEnegy"/>
+			</Capsule>
+			<Capsule x="903" y="139" w="16" h="16"/>
+				<Item type="PowerStone"/>
+			</Capsule>
+			<Capsule x="984" y="323.5" w="16" h="16"/>
+				<Item type="OneUp"/>
+			</Capsule>
+			<Capsule x="972" y="540" w="16" h="16"/>
+				<Item type="HeartEnegy"/>
+			</Capsule>
+			<Capsule x="971" y="635" w="16" h="16"/>
+				<Item type="PowerStone"/>
+			</Capsule>
+			<Capsule x="526" y="768" w="16" h="16"/>
+				<Item type="HeartEnegy"/>
+			</Capsule>
+			<Capsule x="676" y="881" w="16" h="16"/>
+				<Item type="PowerStone"/>
+			</Capsule>
+			<Capsule x="176" y="869" w="16" h="16"/>
+				<Item type="PowerStone"/>
+			</Capsule>
+			<Capsule x="79" y="736" w="16" h="16"/>
+				<Item type="KeyCrystal"/>
+			</Capsule>
+			<Capsule x="458" y="641" w="16" h="16"/>
+				<Item type="PowerStone"/>
+			</Capsule>
+			<Capsule x="226" y="534" w="16" h="16"/>
+				<Item type="PowerStone"/>
+			</Capsule>
+		</Capsules>
+		<Buttons>
+			<Button name="Button" x="274" y="52" w="15" h="10"/>
+		</Buttons>
+		<IronBars>
+			<IronBar name="IronBar" x="468" y="86" w="29" h="2"/>
+			<IronBar name="IronBar" x="67" y="536" w="92" h="2"/>
+			<IronBar name="IronBar" x="163" y="600" w="64" h="2"/>
+			<IronBar name="IronBar" x="82" y="617" w="28" h="2"/>
+			<IronBar name="IronBar" x="351" y="825" w="68" h="2"/>
+			<IronBar name="IronBar" x="853" y="375" w="29" h="2"/>
+			<IronBar name="IronBar" x="918" y="375" w="29" h="2"/>
+			<IronBar name="IronBar" x="934" y="117" w="61" h="2"/>
+			<IronBar name="IronBar" x="163" y="117" w="60" h="2"/>
+		</IronBars>
+	</MapObjects>
+</Map>

@@ -23,14 +23,14 @@
     <ProjectGuid>{AEC6CC9B-3245-4470-844F-19890AD30DA5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>GameProject</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>Captain-America-And-The-Avengers</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -166,6 +166,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Capsule.cpp" />
+    <ClCompile Include="CharlestonBossScene.cpp" />
     <ClCompile Include="CharlestonScene.cpp" />
     <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="dsutil.cpp" />
@@ -207,7 +208,6 @@
     <ClCompile Include="PlayerThrowing.cpp" />
     <ClCompile Include="RunEnemy.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="DemoScene.cpp" />
     <ClCompile Include="SceneData.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Shield.cpp" />
@@ -215,6 +215,7 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="StringUtils.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="TransportArea.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -226,6 +227,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Capsule.h" />
+    <ClInclude Include="CharlestonBossScene.h" />
     <ClInclude Include="CharlestonScene.h" />
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="Data.h" />
@@ -270,7 +272,6 @@
     <ClInclude Include="PlayerThrowing.h" />
     <ClInclude Include="RunEnemy.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="DemoScene.h" />
     <ClInclude Include="SceneData.h" />
     <ClInclude Include="Shield.h" />
     <ClInclude Include="SoundManager.h" />
@@ -280,6 +281,7 @@
     <ClInclude Include="ISingleton.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="TransportArea.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

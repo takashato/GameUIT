@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map>
+	<Tilemap matrixPath="Resources\\Map\\Matrix_pittsburgh_dark_extramap1.txt" imagePath="Resources\\Map\\pittsburgh_dark_extramap1.png"/>
+	<SpawnPoints>
+		<SpawnPoint name="Player" x="80" y="140"/>
+	</SpawnPoints>
+	<Transports>
+		<Transport nextSceneName="Pittsburgh_Dark_Map" x="52" y="140" w="24" h="45"/>
+	</Transports>
+	<MapObjects>
+		<Grounds>
+			<Ground type="Hard" name="HardGround" x="0" y="0" w="256" h="12"/>
+			<Ground type="Hard" name="HardGround" x="0" y="186" w="256" h="38"/>
+			<Ground type="Hard" name="HardGround" x="65" y="88" w="31" h="29"/>
+			<Ground type="Hard" name="HardGround" x="160" y="88" w="31" h="29"/>
+			<Ground type="Hard" name="HardGround" x="65" y="80" w="126" h="8"/>
+			<Ground type="Hard" name="LeftBorder" x="0" y="0" w="12" h="186"/>
+			<Ground type="Hard" name="RightBorder" x="244" y="0" w="12" h="186"/>
+		</Grounds>
+		<IronBars>
+			<IronBar name="IronBar" x="18" y="108" w="44" h="2"/>
+			<IronBar name="IronBar" x="194" y="108" w="44" h="2"/>
+		</IronBars>
+		<Capsules>
+			<Capsule x="127" y="136" w="16" h="16"/>
+				<Item type="HeartEnegy"/>
+			</Capsule>
+			<Capsule x="123" y="32" w="16" h="16"/>
+				<Item type="PowerStone"/>
+			</Capsule>
+		</Capsules>
+	</MapObjects>
+</Map>

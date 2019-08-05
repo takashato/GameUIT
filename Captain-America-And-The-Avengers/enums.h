@@ -35,7 +35,9 @@ enum CollidableObjectType
 	EDefault,
 	EBullet,
 	ECapsule,
-	EItem
+	EItem,
+	ETransportArea,
+	EDoor
 };
 
 enum ItemType
@@ -45,4 +47,14 @@ enum ItemType
 	FivePoint,
 	HeartEnergy,
 	OneUp
+};
+
+enum MapID
+{
+	Charleston,
+	CharlestonBoss,
+	Pittsburgh,
+	PittsburghExtra1,
+	PittsburghExtra2,
+	RedAlertBoss
 };

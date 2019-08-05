@@ -76,9 +76,6 @@
     <ClCompile Include="Keyboard.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="DemoScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Entities\Player</Filter>
     </ClCompile>
@@ -224,6 +221,8 @@
     <ClCompile Include="PlayerSwimming.cpp">
       <Filter>Entities\Player\State</Filter>
     </ClCompile>
+    <ClCompile Include="CharlestonBossScene.cpp" />
+    <ClCompile Include="TransportArea.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -255,9 +254,6 @@
     </ClInclude>
     <ClInclude Include="Keyboard.h">
       <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="DemoScene.h">
-      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Entities\Player</Filter>
@@ -408,6 +404,12 @@
     </ClInclude>
     <ClInclude Include="PlayerSwimming.h">
       <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="CharlestonBossScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="TransportArea.h">
+      <Filter>Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

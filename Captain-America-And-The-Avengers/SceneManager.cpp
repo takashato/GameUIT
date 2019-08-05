@@ -13,7 +13,7 @@ void SceneManager::Setup()
 	Capsule::LoadAnimation();
 	Item::LoadAnimation();
 	mKeyboard = new Keyboard();
-	mCurrentScene = new CharlestonScene();
+	ChangeScene(MapID::Charleston);
 }
 
 void SceneManager::Update(float deltaTime)
@@ -52,4 +52,15 @@ void SceneManager::OnKeyDown(BYTE key)
 Scene* SceneManager::GetScene()
 {
 	return mCurrentScene;
+}
+
+void SceneManager::ChangeScene(MapID mapID)
+{
+	if (mCurrentScene != nullptr && mCurrentScene->GetMapID() == mapID) return;
+	if (mCurrentScene != nullptr) delete mCurrentScene;
+	switch (mapID)
+	{
+	case MapID::Charleston:		mCurrentScene = new CharlestonScene(); break;
+	case MapID::CharlestonBoss:	mCurrentScene = new CharlestonBossScene(); break;
+	}
 }

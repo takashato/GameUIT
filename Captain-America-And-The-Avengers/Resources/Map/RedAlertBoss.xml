@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Map>
+	<Tilemap matrixPath="Resources\\Map\\Matrix_map_red-alert.txt" imagePath="Resources\\Map\\map_red-alert.png"/>
+	<SpawnPoints>
+		<SpawnPoint name="Player" x="108" y="146"/>
+		<SpawnPoint name="MiniBoss" x="195" y="148"/>
+	</SpawnPoints>
+	<MapObjects>
+		<Grounds>
+			<Ground type="Hard" name="HardGround" x="0" y="0" w="256" h="16"/>
+			<Ground type="Hard" name="HardGround" x="0" y="192" w="256" h="32"/>
+			<Ground type="Hard" name="LeftBorder" x="0" y="16" w="16" h="176"/>
+			<Ground type="Hard" name="RightBorder" x="240" y="16" w="16" h="176"/>
+		</Grounds>
+	</MapObjects>
+</Map>
