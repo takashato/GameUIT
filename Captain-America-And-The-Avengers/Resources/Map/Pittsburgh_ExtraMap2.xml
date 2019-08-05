@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Map>
-	<Tilemap matrixPath="Resources\\Map\\MMatrix_pittsburgh_dark_extramap2.txt" imagePath="Resources\\Map\\pittsburgh_dark_extramap2.png"/>
+	<Tilemap matrixPath="Resources\\Map\\Matrix_pittsburgh_dark_extramap2.txt" imagePath="Resources\\Map\\pittsburgh_dark_extramap2.png"/>
 	<SpawnPoints>
 		<SpawnPoint name="Player" x="52" y="140"/>
 	</SpawnPoints>

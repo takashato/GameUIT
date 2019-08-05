@@ -16,18 +16,17 @@
 #include "MapObjectReader.h"
 #include "Capsule.h"
 
-class CharlestonBossScene : public Scene
+class PittsburghScene : public Scene
 {
 public:
-	CharlestonBossScene();
-	~CharlestonBossScene();
+	PittsburghScene();
+	~PittsburghScene();
 
 	void Setup();
 	void Update(float deltaTime);
 	void Draw();
 
 	SoundType GetBgMusic();
-
 
 private:
 	std::unique_ptr<Player> mPlayer;

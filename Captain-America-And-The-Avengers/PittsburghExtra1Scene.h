@@ -16,11 +16,11 @@
 #include "MapObjectReader.h"
 #include "Capsule.h"
 
-class CharlestonBossScene : public Scene
+class PittsburghExtra1Scene : public Scene
 {
 public:
-	CharlestonBossScene();
-	~CharlestonBossScene();
+	PittsburghExtra1Scene();
+	~PittsburghExtra1Scene();
 
 	void Setup();
 	void Update(float deltaTime);

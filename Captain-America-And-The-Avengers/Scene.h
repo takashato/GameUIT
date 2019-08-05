@@ -28,7 +28,6 @@ public:
 		return GetBgMusic() != SoundType::Invalid;
 	}
 
-	virtual MapID GetMapID() = 0;
 
 	Grid* GetGrid() { return mGrid.get(); }
 	Camera* GetCamera() { return mCamera.get(); }

@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "Game.h"
-#include "CharlestonScene.h"
+#include "PittsburghScene.h"
 
-CharlestonScene::CharlestonScene() : Scene("Resources\\Map\\Charleston_Map.xml")
+
+PittsburghScene::PittsburghScene() : Scene("Resources\\Map\\Pittsburgh_Map.xml")
 {
 	Setup();
 	if (HasBgMusic())
@@ -11,7 +12,7 @@ CharlestonScene::CharlestonScene() : Scene("Resources\\Map\\Charleston_Map.xml")
 	}
 }
 
-CharlestonScene::~CharlestonScene()
+PittsburghScene::~PittsburghScene()
 {
 	if (HasBgMusic())
 	{
@@ -19,13 +20,13 @@ CharlestonScene::~CharlestonScene()
 	}
 }
 
-void CharlestonScene::Setup()
+void PittsburghScene::Setup()
 {
 	// Camera
 	mCamera = std::make_unique<Camera>(Game::GetInstance().GetWidth(), Game::GetInstance().GetHeight());
 
 	// Load map
-	mMap = std::make_unique<GameMap>(ID_MAP_CHARLESTON, CA2W(mData.GetTilemapImagePath()), CA2W(mData.GetTilemapMatrixPath()));
+	mMap = std::make_unique<GameMap>(ID_MAP_CHARLESTON_BOSS_LIGHT, CA2W(mData.GetTilemapImagePath()), CA2W(mData.GetTilemapMatrixPath()));
 	mMap->SetCamera(mCamera.get());
 	mCamera->SetWorldBoundary(mMap->GetBoundary());
 
@@ -46,38 +47,10 @@ void CharlestonScene::Setup()
 	{
 		mGrid->Add(new Ground(D3DXVECTOR3(dataGround.x, dataGround.y, .0f), dataGround.type, dataGround.w, dataGround.h));
 	}
-	// Enemy
-	for (DataEnemy dataEnemy : mData.GetDataEnemy())
-	{
-		switch (dataEnemy.type)
-		{
-		case EGunEnemy:
-		{
-			GunEnemy* enemy = new GunEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType);
-			enemy->SetBullet(new NormalBullet(enemy));
-			mGrid->Add(enemy);
-		}
-			break;
-		case EMissileEnemy:
-			mGrid->Add(new MissileEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType));
-			break;
-		case ERunEnemy:
-			mGrid->Add(new RunEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType));
-			break;
-		case EGunStockEnemy:
-			mGrid->Add(new GunStock(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f)));
-			break;
-		}
-	}
-	// Capsule
-	for (DataCapsule dataCapsule : mData.GetDataCapsule())
-	{
-		auto capsule = new Capsule(D3DXVECTOR3(dataCapsule.x, dataCapsule.y, .0f), dataCapsule.itemList);
-		mGrid->Add(capsule);
-	}
+
 }
 
-void CharlestonScene::Update(float deltaTime)
+void PittsburghScene::Update(float deltaTime)
 {
 	mGrid->Update(deltaTime, mCamera->GetBound(), mPlayer.get());
 	std::vector<CollisionEvent*> cEvent;
@@ -93,7 +66,7 @@ void CharlestonScene::Update(float deltaTime)
 	mCamera->Update(mPlayer->GetCenterPoint());
 }
 
-void CharlestonScene::Draw()
+void PittsburghScene::Draw()
 {
 	auto trans = mCamera->GetTransform();
 	mMap->Draw(trans);
@@ -102,18 +75,17 @@ void CharlestonScene::Draw()
 	mPlayer->GetShield()->Draw(trans);
 }
 
-SoundType CharlestonScene::GetBgMusic()
+SoundType PittsburghScene::GetBgMusic()
 {
 	return SoundType::ThemeOfCaptainAmerica;
 }
 
-void CharlestonScene::OnKeyUp(BYTE key)
+void PittsburghScene::OnKeyUp(BYTE key)
 {
 	mPlayer->OnKeyUp(key);
 }
 
-void CharlestonScene::OnKeyDown(BYTE key)
+void PittsburghScene::OnKeyDown(BYTE key)
 {
 	mPlayer->OnKeyDown(key);
 }
-

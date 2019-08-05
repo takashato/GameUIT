@@ -100,8 +100,3 @@ void CharlestonBossScene::OnKeyDown(BYTE key)
 {
 	mPlayer->OnKeyDown(key);
 }
-
-MapID CharlestonBossScene::GetMapID()
-{
-	return MapID::CharlestonBoss;
-}

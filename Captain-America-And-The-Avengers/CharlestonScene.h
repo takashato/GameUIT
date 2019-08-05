@@ -35,6 +35,5 @@ private:
 	virtual void OnKeyUp(BYTE key) override;
 	virtual void OnKeyDown(BYTE key) override;
 
-	// Inherited via Scene
-	virtual MapID GetMapID() override;
+
 };

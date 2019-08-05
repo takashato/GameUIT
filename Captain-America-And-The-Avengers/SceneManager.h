@@ -2,6 +2,10 @@
 #include "Scene.h"
 #include "CharlestonScene.h"
 #include "CharlestonBossScene.h"
+#include "PittsburghScene.h"
+#include "PittsburghExtra1Scene.h"
+#include "PittsburghExtra2Scene.h"
+#include "RedAlertBossScene.h"
 
 class SceneManager : ISingleton
 {
