@@ -48,7 +48,7 @@ void CharlestonBossScene::Setup()
 		mGrid->Add(new Ground(D3DXVECTOR3(dataGround.x, dataGround.y, .0f), dataGround.type, dataGround.w, dataGround.h));
 	}
 	// Boss
-	
+	mGrid->Add(new BossCharleston(D3DXVECTOR3(189.0f, 145.0f, .0f)));
 	// Enemy
 	/*for (DataEnemy dataEnemy : mData.GetDataEnemy())
 	{
