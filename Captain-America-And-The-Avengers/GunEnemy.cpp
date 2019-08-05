@@ -2,8 +2,9 @@
 #include "Game.h"
 #include "GunEnemy.h"
 
-GunEnemy::GunEnemy(D3DXVECTOR3 position) : Enemy()
+GunEnemy::GunEnemy(D3DXVECTOR3 position, int subTypeID) : Enemy()
 {
+	mSubTypeID = subTypeID;
 	LoadAnimations();
 	SetPosition(position);
 	mState = GUNENEMY_STANDING_STATE;
@@ -43,54 +44,110 @@ void GunEnemy::Update(float deltaTime, Player* player)
 	}
 
 	mCurrentAni->SetFlippedHorizontally(mDirection == Left);
-	mCounter += deltaTime;
-
-	if (mIsInvincible)
+	if (mSubTypeID == 0) // Normal
 	{
-		if (mCurrentAni != mAniDying)
-		{
-			if (mCurrentAni == mAniStanding)
-			{
-				SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
-			}
-			else if (mCurrentAni == mAniSitting)
-			{
-				SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniDying->GetHeight());
-			}
-			SetState(GUNENEMY_DYING_STATE);
-		}
-		mCounter = .0f;
-	}
-	else
-	{
-		if (mCounter >= 0.9f && mCounter <= 1.8f)
-		{
-			if (mCurrentAni == mAniStanding)
-			{
-				SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniSitting->GetHeight());
-			}
-			else if (mCurrentAni == mAniDying)
-			{
-				SetPositionY(mPosition.y +  mAniDying->GetHeight() - mAniSitting->GetHeight());
-			}
+		mCounter += deltaTime;
 
-			if (mCurrentAni != mAniSitting) SetState(GUNENEMY_SITTING_STATE);
-		}
-		else if (mCounter < 0.9f)
+		if (mIsInvincible)
 		{
-			if (mCurrentAni == mAniDying)
+			if (mCurrentAni != mAniDying)
 			{
-				SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniStanding->GetHeight());
+				if (mCurrentAni == mAniStanding)
+				{
+					SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
+				}
+				else if (mCurrentAni == mAniSitting)
+				{
+					SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniDying->GetHeight());
+				}
+				SetState(GUNENEMY_DYING_STATE);
 			}
-			else if (mCurrentAni == mAniSitting)
-			{
-				SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniStanding->GetHeight());
-			}
-			if (mCurrentAni != mAniStanding) SetState(GUNENEMY_STANDING_STATE);
+			mCounter = .0f;
 		}
 		else
 		{
+			if (mCounter >= 0.9f && mCounter <= 1.8f)
+			{
+				if (mCurrentAni == mAniStanding)
+				{
+					SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniSitting->GetHeight());
+				}
+				else if (mCurrentAni == mAniDying)
+				{
+					SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniSitting->GetHeight());
+				}
+
+				if (mCurrentAni != mAniSitting) SetState(GUNENEMY_SITTING_STATE);
+			}
+			else if (mCounter < 0.9f)
+			{
+				if (mCurrentAni == mAniDying)
+				{
+					SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniStanding->GetHeight());
+				}
+				else if (mCurrentAni == mAniSitting)
+				{
+					SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniStanding->GetHeight());
+				}
+				if (mCurrentAni != mAniStanding) SetState(GUNENEMY_STANDING_STATE);
+			}
+			else
+			{
+				mCounter = .0f;
+			}
+		}
+	}
+	else if (mSubTypeID == 1) // Shoot Fast
+	{
+		mCounter += deltaTime;
+
+		if (mIsInvincible)
+		{
+			if (mCurrentAni != mAniDying)
+			{
+				if (mCurrentAni == mAniStanding)
+				{
+					SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
+				}
+				else if (mCurrentAni == mAniSitting)
+				{
+					SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniDying->GetHeight());
+				}
+				SetState(GUNENEMY_DYING_STATE);
+			}
 			mCounter = .0f;
+		}
+		else
+		{
+			if (mCounter >= 0.3f && mCounter <= 0.6f)
+			{
+				if (mCurrentAni == mAniStanding)
+				{
+					SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniSitting->GetHeight());
+				}
+				else if (mCurrentAni == mAniDying)
+				{
+					SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniSitting->GetHeight());
+				}
+
+				if (mCurrentAni != mAniSitting) SetState(GUNENEMY_SITTING_STATE);
+			}
+			else if (mCounter < 0.3f)
+			{
+				if (mCurrentAni == mAniDying)
+				{
+					SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniStanding->GetHeight());
+				}
+				else if (mCurrentAni == mAniSitting)
+				{
+					SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniStanding->GetHeight());
+				}
+				if (mCurrentAni != mAniStanding) SetState(GUNENEMY_STANDING_STATE);
+			}
+			else
+			{
+				mCounter = .0f;
+			}
 		}
 	}
 

@@ -14,7 +14,7 @@
 class GunEnemy : public Enemy
 {
 public:
-	GunEnemy(D3DXVECTOR3 position = D3DXVECTOR3(300.0f, 402.0f, 0.f));
+	GunEnemy(D3DXVECTOR3 position = D3DXVECTOR3(300.0f, 402.0f, 0.f), int subTypeID = 0);
 	~GunEnemy();
 	void LoadAnimations();
 
@@ -48,7 +48,7 @@ private:
 
 	/*Camera* mCamera;*/
 	float mCounter = 0;
-
+	int mSubTypeID = 0;
 	NormalBullet* mBullet;
 };
 
