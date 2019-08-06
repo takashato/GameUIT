@@ -229,7 +229,7 @@ CollidableObjectType Player::GetCollidableObjectType()
 	return EPlayer;
 }
 
-void Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
+bool Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 {
 	for (size_t i = 0; i < cEvent.size(); ++i)
 	{
@@ -240,6 +240,11 @@ void Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 			cEvent.erase(cEvent.begin() + i);
 			--i;
 		}
+		else if (cEvent[i]->entity->GetCollidableObjectType() == ETransportArea)
+		{
+			SceneManager::GetInstance().GetScene()->Transport();
+			return false;
+		}
 	}
 
 	if (mState != nullptr) mState->OnCollision(*this, cEvent);
@@ -248,6 +253,8 @@ void Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 	{
 		delete ce;
 	}
+
+	return true;
 }
 
 Shield* Player::GetShield()

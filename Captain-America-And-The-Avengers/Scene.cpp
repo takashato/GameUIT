@@ -17,3 +17,7 @@ void Scene::Update(float deltaTime)
 void Scene::Draw()
 {
 }
+
+void Scene::Transport()
+{
+}

@@ -272,7 +272,7 @@ bool Shield::IsThrown()
 	return isThrown;
 }
 
-void Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
+bool Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 {
 	for (CollisionEvent* ce : cEvent)
 	{
@@ -307,6 +307,7 @@ void Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 		}
 		delete ce;
 	}
+	return true;
 }
 
 void Shield::Draw(D3DXVECTOR2 transform)

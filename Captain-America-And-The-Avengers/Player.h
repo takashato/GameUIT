@@ -47,7 +47,7 @@ public:
 	RECT GetBoundingBox();
 	CollidableObjectType GetCollidableObjectType();
 
-	void OnCollision(std::vector<CollisionEvent*>& cEvent);
+	bool OnCollision(std::vector<CollisionEvent*>& cEvent);
 
 	Shield* GetShield();
 	void SetShield(Shield* shield);

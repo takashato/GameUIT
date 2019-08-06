@@ -8,6 +8,11 @@ TransportArea::TransportArea(D3DXVECTOR3 position, int width, int height)
 	mHeight = height;
 }
 
+void TransportArea::Draw(D3DXVECTOR2 trans)
+{
+	this->RenderBoundingBox(trans);
+}
+
 RECT TransportArea::GetBoundingBox()
 {
 	RECT rect;

@@ -16,7 +16,7 @@ public:
 	virtual float GetWidth();
 	virtual float GetHeight();
 
-	virtual void OnCollision(std::vector<CollisionEvent*>& cEvent) = 0;
+	virtual bool OnCollision(std::vector<CollisionEvent*>& cEvent) = 0;
 
 protected:
 	Animation* mCurrentAni = NULL;

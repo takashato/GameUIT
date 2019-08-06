@@ -173,8 +173,9 @@ void Entity::CalcCollision(std::set<Entity*> *entities, std::vector<CollisionEve
 	std::sort(cEvent.begin(), cEvent.end(), CollisionEvent::compare);
 }
 
-void Entity::OnCollision(std::vector<CollisionEvent*>& cEvent)
+bool Entity::OnCollision(std::vector<CollisionEvent*>& cEvent)
 {
+	return true;
 }
 
 void Entity::RenderBoundingBox(D3DXVECTOR2 transform)

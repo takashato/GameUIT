@@ -13,10 +13,6 @@ CharlestonScene::CharlestonScene() : Scene("Resources\\Map\\Charleston_Map.xml")
 
 CharlestonScene::~CharlestonScene()
 {
-	if (HasBgMusic())
-	{
-		SoundManager::GetInstance().CStopsound(GetBgMusic());
-	}
 }
 
 void CharlestonScene::Setup()
@@ -34,7 +30,7 @@ void CharlestonScene::Setup()
 
 	// Create player
 	mPlayer = std::make_unique<Player>();
-	mPlayer->SetPosition(mData.GetSpawnPoint("Player"));
+	mPlayer->SetPosition(mData.GetSpawnPoint("Player1"));
 	mPlayer->SetShield(new Shield(mPlayer.get()));
 
 	// Update Camera for the first time
@@ -69,6 +65,9 @@ void CharlestonScene::Setup()
 			break;
 		}
 	}
+	// Transport Area
+	mGrid->Add(new TransportArea(D3DXVECTOR3(1979.0f, 358.0f, .0f), 16, 90));
+
 	// Capsule
 	for (DataCapsule dataCapsule : mData.GetDataCapsule())
 	{
@@ -83,7 +82,9 @@ void CharlestonScene::Update(float deltaTime)
 	std::vector<CollisionEvent*> cEvent;
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->CalcCollision(&mGrid->mTemp, cEvent);
-	mPlayer->OnCollision(cEvent);
+	if (!mPlayer->OnCollision(cEvent)) {
+		return;
+	}
 	mPlayer->Update(deltaTime);
 	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 	cEvent.clear();
@@ -105,6 +106,15 @@ void CharlestonScene::Draw()
 SoundType CharlestonScene::GetBgMusic()
 {
 	return SoundType::ThemeOfCaptainAmerica;
+}
+
+void CharlestonScene::Transport()
+{
+	if (HasBgMusic())
+	{
+		SoundManager::GetInstance().CStopsound(GetBgMusic());
+	}
+	SceneManager::GetInstance().ChangeScene(MapID::CharlestonBoss);
 }
 
 void CharlestonScene::OnKeyUp(BYTE key)

@@ -27,6 +27,8 @@ public:
 	void Draw();
 
 	SoundType GetBgMusic();
+	
+	MapID GetMapID() { return MapID::CharlestonBoss; }
 
 
 private:

@@ -9,6 +9,7 @@ GridNode::~GridNode()
 {
 	for (Entity* entity : mList)
 	{
+		if (entity->GetGridNode() == (void*)0xdddddddd) continue;
 		delete entity;
 	}
 }

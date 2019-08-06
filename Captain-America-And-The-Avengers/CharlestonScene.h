@@ -15,6 +15,7 @@
 #include "Ground.h"
 #include "MapObjectReader.h"
 #include "Capsule.h"
+#include "TransportArea.h"
 
 class CharlestonScene : public Scene
 {
@@ -27,6 +28,12 @@ public:
 	void Draw();
 
 	SoundType GetBgMusic();
+
+	MapID GetMapID() {
+		return MapID::Charleston;
+	};
+
+	void Transport();
 
 private:
 	std::unique_ptr<Player> mPlayer;

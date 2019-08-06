@@ -224,19 +224,8 @@
     <ClCompile Include="CharlestonBossScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="CharlestonBossScene.cpp" />
-    <ClCompile Include="TransportArea.cpp" />
-    <ClCompile Include="PittsburghScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="PittsburghExtra1Scene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="PittsburghExtra2Scene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="RedAlertBossScene.cpp">
-      <Filter>Scenes</Filter>
+    <ClCompile Include="TransportArea.cpp">
+      <Filter>Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -425,18 +414,6 @@
     </ClInclude>
     <ClInclude Include="TransportArea.h">
       <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="PittsburghScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="PittsburghExtra1Scene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="PittsburghExtra2Scene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="RedAlertBossScene.h">
-      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
