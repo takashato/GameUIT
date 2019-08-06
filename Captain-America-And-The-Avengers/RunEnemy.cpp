@@ -32,7 +32,7 @@ void RunEnemy::LoadAnimations()
 
 void RunEnemy::Update(float deltaTime, Player* player)
 {
-	/*Enemy::Update(deltaTime, player);*/
+	Enemy::Update(deltaTime, player);
 
 	D3DXVECTOR3 playerPosition = player->GetPosition();
 	D3DXVECTOR3 runEnemyPosition = this->GetPosition();

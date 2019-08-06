@@ -27,6 +27,11 @@ public:
 	void Draw();
 
 	SoundType GetBgMusic();
+	MapID GetMapID() {
+		return MapID::PittsburghExtra1;
+	};
+
+	void Transport();
 
 
 private:

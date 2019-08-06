@@ -15,7 +15,11 @@
 #include "Ground.h"
 #include "MapObjectReader.h"
 #include "Capsule.h"
-
+enum TypeExtra
+{
+	Type1,
+	Type2
+};
 class PittsburghScene : public Scene
 {
 public:
@@ -27,6 +31,12 @@ public:
 	void Draw();
 
 	SoundType GetBgMusic();
+
+	MapID GetMapID() {
+		return MapID::Pittsburgh;
+	};
+
+	void Transport(TypeExtra type);
 
 private:
 	std::unique_ptr<Player> mPlayer;

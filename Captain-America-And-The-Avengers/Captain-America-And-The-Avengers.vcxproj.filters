@@ -243,6 +243,15 @@
       <Filter>Entities\Player\State</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTakeDown.cpp" />
+    <ClCompile Include="PittsburghExtra1Scene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="PittsburghExtra2Scene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="PittsburghScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -445,6 +454,15 @@
     </ClInclude>
     <ClInclude Include="PlayerTakeDown.h">
       <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PittsburghExtra1Scene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="PittsburghExtra2Scene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="PittsburghScene.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

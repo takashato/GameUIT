@@ -60,12 +60,15 @@ Scene* SceneManager::GetScene()
 void SceneManager::ChangeScene(MapID mapID)
 {
 	if (mCurrentScene != nullptr && mCurrentScene->GetMapID() == mapID) return;
-	if (mCurrentScene != nullptr) 
+	if (mCurrentScene != nullptr)
 		delete mCurrentScene;
 	switch (mapID)
 	{
 	case MapID::Charleston:		mCurrentScene = new CharlestonScene(); break;
 	case MapID::CharlestonBoss:	mCurrentScene = new CharlestonBossScene(); break;
+	case MapID::Pittsburgh:		mCurrentScene = new PittsburghScene(); break;
+	case MapID::PittsburghExtra1:mCurrentScene = new PittsburghExtra1Scene(); break;
+	case MapID::PittsburghExtra2:mCurrentScene = new PittsburghExtra2Scene(); break;
 	}
 }
 

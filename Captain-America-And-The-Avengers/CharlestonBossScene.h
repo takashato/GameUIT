@@ -30,7 +30,7 @@ public:
 	
 	MapID GetMapID() { return MapID::CharlestonBoss; }
 
-
+	void Transport();
 private:
 	std::unique_ptr<Player> mPlayer;
 

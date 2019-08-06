@@ -14,10 +14,7 @@ PittsburghScene::PittsburghScene() : Scene("Resources\\Map\\Pittsburgh_Map.xml")
 
 PittsburghScene::~PittsburghScene()
 {
-	if (HasBgMusic())
-	{
-		SoundManager::GetInstance().CStopsound(GetBgMusic());
-	}
+	
 }
 
 void PittsburghScene::Setup()
@@ -79,7 +76,22 @@ SoundType PittsburghScene::GetBgMusic()
 {
 	return SoundType::ThemeOfCaptainAmerica;
 }
-
+void PittsburghScene::Transport(TypeExtra type)
+{
+	if (HasBgMusic())
+	{
+		SoundManager::GetInstance().CStopsound(GetBgMusic());
+	}
+	if(type==Type1)
+	{
+		SceneManager::GetInstance().ChangeScene(MapID::PittsburghExtra1);
+	}
+	else
+	{
+		SceneManager::GetInstance().ChangeScene(MapID::PittsburghExtra2);
+	}
+	//Notes: Chua luu lai vi tri player o map chinh
+}
 void PittsburghScene::OnKeyUp(BYTE key)
 {
 	mPlayer->OnKeyUp(key);

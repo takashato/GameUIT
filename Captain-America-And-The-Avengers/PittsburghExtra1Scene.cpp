@@ -80,6 +80,14 @@ SoundType PittsburghExtra1Scene::GetBgMusic()
 	return SoundType::ThemeOfCaptainAmerica;
 }
 
+void PittsburghExtra1Scene::Transport()
+{
+	if (HasBgMusic())
+	{
+		SoundManager::GetInstance().CStopsound(GetBgMusic());
+	}
+	SceneManager::GetInstance().ChangeScene(MapID::Pittsburgh);
+}
 void PittsburghExtra1Scene::OnKeyUp(BYTE key)
 {
 	mPlayer->OnKeyUp(key);

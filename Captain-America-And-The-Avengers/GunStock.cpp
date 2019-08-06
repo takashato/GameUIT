@@ -34,7 +34,7 @@ void GunStock::LoadAnimations()
 
 void GunStock::Update(float deltaTime, Player* player)
 {
-	/*Enemy::Update(deltaTime, player);*/
+	Enemy::Update(deltaTime, player);
 
 	if (mCurrentAni == mAniRotating)
 	{
