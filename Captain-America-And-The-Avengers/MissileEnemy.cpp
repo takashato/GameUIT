@@ -36,7 +36,7 @@ void MissileEnemy::LoadAnimations()
 
 void MissileEnemy::Update(float deltaTime, Player* player)
 {
-	Enemy::Update(deltaTime, player);
+	/*Enemy::Update(deltaTime, player);*/
 
 	D3DXVECTOR3 playerPosition = player->GetPosition();
 	D3DXVECTOR3 missileEnemyPosition = this->GetPosition();
