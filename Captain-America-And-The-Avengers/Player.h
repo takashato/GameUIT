@@ -16,6 +16,9 @@
 #include "PlayerSitOnShield.h"
 #include "PlayerSwimming.h"
 #include "PlayerKicking.h"
+#include "PlayerTakeDamage.h"
+#include "PlayerTakeDown.h"
+#include "PlayerHealth.h"
 #include "AnimationScript.h"
 #include "Camera.h"
 
@@ -23,6 +26,7 @@ class Shield;
 
 class Player : public Entity
 {
+	friend class PlayerHealth;
 public:
 	Player();
 	void LoadAnimations();
@@ -49,10 +53,12 @@ public:
 	CollidableObjectType GetCollidableObjectType();
 
 	bool OnCollision(std::vector<CollisionEvent*>& cEvent);
+	bool CheckAABB(std::set<Entity*> &entities);
 
 	Shield* GetShield();
 	void SetShield(Shield* shield);
 
+	void TakeDamage(int modifier = 1);
 
 	Animation* mAniStanding = NULL;
 	Animation* mAniPunching = NULL;
@@ -72,6 +78,7 @@ public:
 	Animation* mAniSwimming = NULL;
 	Animation* mAniCling = NULL;
 	Animation* mAniDiving = NULL;
+	Animation* mAniHealth = NULL;
 
 	bool shouldFall = false;
 private:
@@ -94,6 +101,8 @@ private:
 	friend class PlayerSitOnShield;		PlayerSitOnShield mStateSitOnShield;
 	friend class PlayerSwimming;		PlayerSwimming mStateSwimming;
 	friend class PlayerKicking;			PlayerKicking mStateKicking;
+	friend class PlayerTakeDamage;		PlayerTakeDamage mStateTakeDamage;
+	friend class PlayerTakeDown;		PlayerTakeDown mStateTakeDown;
 
 	EPlayerState mLastState;
 
@@ -109,5 +118,10 @@ private:
 	bool mIsCollisionLeftRightSide;
 	bool ExitIsOke;//Chap nhan qua man khi an cuc exit
 
+	PlayerHealth mHealth;
+	bool mIsInvincible = false;
+	float mInvincibleCounter = .0f;
+
 	static constexpr auto PLAYER_HITBOX_HALF = 5;
+	static constexpr auto INVINCIBLE_DURATION = 2;
 };

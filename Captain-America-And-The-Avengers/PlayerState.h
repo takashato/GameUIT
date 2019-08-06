@@ -7,6 +7,7 @@ class Player;
 struct CollisionEvent;
 
 enum EPlayerState {
+	NA,
 	Standing,
 	Running,
 	Jumping,
@@ -25,7 +26,8 @@ enum EPlayerState {
 	SittingOnShield,
 	Swimming,
 	Cling,
-	Diving
+	Diving,
+	ElectricShock
 };
 
 class PlayerState
@@ -73,6 +75,10 @@ protected:
 	static constexpr auto FALL_SPEED_VER_MAX = 210.0f;
 	static constexpr auto FALL_SPEED_VER_MIN = 20.0f;
 	static constexpr auto FALL_SPEED_HOR = MOVING_HOR;
+
+	static constexpr auto INJURE_FALL_SPEED = 40.0f;
+	static constexpr auto INJURE_DISTANCE = 10.0f;
+	static constexpr auto INJURE_STATE_HOLD_TIME = 0.5f;
 
 	static constexpr auto SPIN_SPEED_VER = 120.0f;
 	static constexpr auto SPIN_SPEED_HOR = JUMP_SPEED_HOR;

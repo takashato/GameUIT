@@ -8,6 +8,6 @@ D3DXVECTOR3 GeoUtils::GetRectCenter(RECT rect)
 
 bool GeoUtils::IsIntersect(RECT obj, RECT other)
 {
-	return obj.left < other.right&& obj.right > other.left
-		&& obj.top < other.bottom&& obj.bottom > other.top;
+	return obj.left < other.right && obj.right > other.left
+		&& obj.top < other.bottom && obj.bottom > other.top;
 }

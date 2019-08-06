@@ -236,6 +236,13 @@
     <ClCompile Include="PlayerKicking.cpp">
       <Filter>Entities\Player\State</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerHealth.cpp">
+      <Filter>Entities\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTakeDamage.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTakeDown.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -428,6 +435,15 @@
       <Filter>Entities\DynamicGround</Filter>
     </ClInclude>
     <ClInclude Include="PlayerKicking.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHealth.h">
+      <Filter>Entities\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTakeDamage.h">
+      <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTakeDown.h">
       <Filter>Entities\Player\State</Filter>
     </ClInclude>
   </ItemGroup>

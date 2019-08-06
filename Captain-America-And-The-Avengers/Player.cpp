@@ -6,6 +6,7 @@
 Player::Player() : Entity()
 {	
 	ExitIsOke = true; //Chua xu lí an cuc exit
+
 	LoadAnimations();
 
 	SetState(EPlayerState::Standing);
@@ -27,7 +28,7 @@ void Player::LoadAnimations()
 	mAniHighJumping = new Animation(mSprite, mAniScripts->GetRectList("HighJump", "0"), 0.05F);
 	mAniKicking = new Animation(mSprite, mAniScripts->GetRectList("Kicking", "0"), 0.1F);
 	mAniTakeDamage = new Animation(mSprite, mAniScripts->GetRectList("TakeDamage", "0"), 0.1F);
-	mAniTakeDown = new Animation(mSprite, mAniScripts->GetRectList("TakeDown", "0"), 0.2F);
+	mAniTakeDown = new Animation(mSprite, mAniScripts->GetRectList("TakeDown", "0"), 1.0F, false);
 	mAniInvincibleStand = new Animation(mSprite, mAniScripts->GetRectList("InvincibleStand", "0"), 0.05F);
 	mAniSurfing = new Animation(mSprite, mAniScripts->GetRectList("Surfing", "0"), 0.2F);
 	mAniSittingOnShield = new Animation(mSprite, mAniScripts->GetRectList("SittingOnShield", "0"), 0.1F);
@@ -35,6 +36,8 @@ void Player::LoadAnimations()
 	mAniCling = new Animation(mSprite, mAniScripts->GetRectList("Cling", "0"), 0.2F);
 	mAniDiving = new Animation(mSprite, mAniScripts->GetRectList("Diving", "0"), 0.2F);
 
+	mAniHealth = new Animation(mSprite, mAniScripts->GetRectList("Health", "0"), .1F, false);
+	mHealth.mAni = mAniHealth;
 
 	mCurrentAni = mAniStanding;
 }
@@ -43,7 +46,17 @@ void Player::Update(float deltaTime)
 {
 	this->deltaTime = deltaTime;
 
-	if (!mIsCollisionLeftRightSide)
+	if (mIsInvincible)
+	{
+		mInvincibleCounter += deltaTime;
+		if (mInvincibleCounter >= INVINCIBLE_DURATION)
+		{
+			mIsInvincible = false;
+			mInvincibleCounter = .0f;
+		}
+	}
+
+	if (!mIsCollisionLeftRightSide && mState->GetState() != EPlayerState::TakeDown)
 	{
 		this->AddPositionX(deltaTime * mVelocityX);
 	}
@@ -56,6 +69,7 @@ void Player::Update(float deltaTime)
 		&& mState->GetState() != EPlayerState::LowPunching
 		&& mState->GetState() != EPlayerState::Punching
 		&& mState->GetState() != EPlayerState::Swimming
+		&& mState->GetState() != EPlayerState::TakeDown
 		) // vY not affect when standing
 	{
 		this->AddPositionY(deltaTime * mVelocityY);
@@ -81,8 +95,10 @@ void Player::Update(float deltaTime)
 
 void Player::Draw(D3DXVECTOR2 trans)
 {
+	mCurrentAni->SetBlink(mIsInvincible && mState->GetState() != EPlayerState::TakeDown);
 	if (mCurrentAni != NULL) mCurrentAni->Draw(GetPosition(), trans);
 	this->RenderBoundingBox(trans);
+	mHealth.Draw();
 }
 
 void Player::HandleKeyboard(Keyboard* keyboard)
@@ -129,6 +145,8 @@ void Player::SetState(EPlayerState state)
 	case SittingOnShield:   mState = &mStateSitOnShield; break;
 	case Swimming:			mState = &mStateSwimming; break;
 	case Kicking:			mState = &mStateKicking; break;
+	case EPlayerState::TakeDamage: mState = &mStateTakeDamage; break;
+	case TakeDown:			mState = &mStateTakeDown; break;
 	}
 
 	mState->Enter(*this, mLastState, std::move(exitData));
@@ -220,6 +238,7 @@ RECT Player::GetBoundingBox()
 	if (mState->GetState() != EPlayerState::HighJumping
 		&& mState->GetState() != EPlayerState::Punching
 		&& mState->GetState() != EPlayerState::LowPunching
+		&& mState->GetState() != EPlayerState::Kicking
 		)
 	{
 		rect.left = (long)(mPosition.x + GetWidth() / 2) - PLAYER_HITBOX_HALF;
@@ -270,6 +289,33 @@ bool Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 	return true;
 }
 
+bool Player::CheckAABB(std::set<Entity*> &entities)
+{
+	auto pbb = GetBoundingBox();
+	for (auto entity : entities)
+	{
+		auto ebb = entity->GetBoundingBox();
+		if (GeoUtils::IsIntersect(pbb, ebb))
+		{
+			if (auto enemy = dynamic_cast<Enemy*>(entity))
+			{
+				if (mState->GetState() != EPlayerState::Surfing
+					&& mState->GetState() != EPlayerState::SittingOnShield)
+				{
+					enemy->TakeDamage(this, 1);
+					this->TakeDamage(1);
+					if (mState->GetState() == EPlayerState::ElectricShock) return true;
+				}
+				else if (mState->GetState() == EPlayerState::Surfing)
+				{
+					enemy->TakeDamage(this, 3);
+				}
+			}
+		}
+	}
+	return true;
+}
+
 Shield* Player::GetShield()
 {
 	return mShield;
@@ -278,4 +324,16 @@ Shield* Player::GetShield()
 void Player::SetShield(Shield* shield)
 {
 	mShield = shield;
+}
+
+void Player::TakeDamage(int modifier)
+{
+	if (mIsInvincible 
+		|| mState->GetState() == EPlayerState::TakeDown
+		|| mState->GetState() == EPlayerState::ElectricShock) return; // Invincible can't take damage
+	std::cout << "Take " << modifier << " damage.\n";
+	mHealth.Subtract(modifier);
+	mIsInvincible = true;
+	mInvincibleCounter = .0f;
+	SetState(EPlayerState::TakeDamage);
 }

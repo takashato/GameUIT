@@ -62,8 +62,6 @@
   <Animation name="TakeDamage" imagePath="Captain America.png" width="400" height="368">
     <Sprites type="0">
 		<sprite x="202" y="192" w="29" h="38" />
-		<sprite x="21" y="11" w="22" h="45" />
-		<sprite x="89" y="187" w="22" h="45" />
     </Sprites>
   </Animation>
   <Animation name="HighShielding" imagePath="Captain America.png" width="400" height="368">
@@ -74,7 +72,7 @@
   <Animation name="TakeDown" imagePath="Captain America.png" width="400" height="368">
     <Sprites type="0">
 		<sprite x="242" y="204" w="30" h="28" />
-		<sprite x="286" y="209" w="26" h="23" />
+		<sprite x="282" y="204" w="30" h="28" />
     </Sprites>
   </Animation>
   <Animation name="LowPunching" imagePath="Captain America.png" width="400" height="368">
@@ -119,5 +117,10 @@
 		<sprite x="208" y="245" w="16" h="7" />
 		<sprite x="232" y="245" w="16" h="7" />
     </Sprites>
+  </Animation>
+  <Animation name="Health">
+	<Sprites type="0">
+		<sprite x="216" y="308" w="8" h="8" />
+	</Sprites>
   </Animation>
 </Animations>
