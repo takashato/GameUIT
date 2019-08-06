@@ -216,11 +216,23 @@ RECT Player::GetBoundingBox()
 	if (mCurrentAni == nullptr) return RECT();
 
 	RECT rect;
-	rect.left = (long)mPosition.x;
-	rect.top = (long)mPosition.y;
-	rect.right = (long)(rect.left + GetWidth());
-	rect.bottom = (long)(rect.top + GetHeight());
-
+	if (mState->GetState() != EPlayerState::HighJumping
+		&& mState->GetState() != EPlayerState::Punching
+		&& mState->GetState() != EPlayerState::LowPunching
+		)
+	{
+		rect.left = (long)(mPosition.x + GetWidth() / 2) - PLAYER_HITBOX_HALF;
+		rect.top = (long)mPosition.y;
+		rect.right = (long)(rect.left + PLAYER_HITBOX_HALF * 2);
+		rect.bottom = (long)(rect.top + GetHeight());
+	}
+	else
+	{
+		rect.left = (long)mPosition.x;
+		rect.top = (long)mPosition.y;
+		rect.right = (long)(rect.left + GetWidth());
+		rect.bottom = (long)(rect.top + GetHeight());
+	}
 	return rect;
 }
 

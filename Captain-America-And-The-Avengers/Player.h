@@ -106,4 +106,6 @@ private:
 
 	bool mIsCollisionLeftRightSide;
 	bool ExitIsOke;//Chap nhan qua man khi an cuc exit
+
+	static constexpr auto PLAYER_HITBOX_HALF = 5;
 };
