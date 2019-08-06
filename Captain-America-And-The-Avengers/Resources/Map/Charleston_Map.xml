@@ -9,6 +9,9 @@
 		<Transport nextSceneName="Charleston_Boss" x="1979" y="358" w="16" h="90"/>
 	</Transports>
 	<MapObjects>
+		<DynamicGrounds>
+			<DynamicGround name="FlyLeftRight" x="200" y="390" subType="0"/>
+		</DynamicGrounds>
 		<Enemies>
 			<Enemy type="RunEnemy" x="285.0" y="404.0" w="24" h="43" subType="1"/>
 			<Enemy type="RunEnemy" x="837.0" y="404.0" w="24" h="43" subType="0"/>

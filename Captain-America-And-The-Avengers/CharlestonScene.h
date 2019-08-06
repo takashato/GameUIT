@@ -13,6 +13,7 @@
 #include "GameMap.h"
 #include "Grid.h"
 #include "Ground.h"
+#include "DynamicGround.h"
 #include "MapObjectReader.h"
 #include "Capsule.h"
 #include "TransportArea.h"

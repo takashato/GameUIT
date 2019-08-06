@@ -15,6 +15,7 @@ void SceneManager::Setup()
 	mKeyboard = new Keyboard();
 	//mCurrentScene = new CharlestonBossScene();
 	ChangeScene(MapID::Charleston);
+	//mCurrentScene = new CharlestonScene();
 }
 
 void SceneManager::Update(float deltaTime)

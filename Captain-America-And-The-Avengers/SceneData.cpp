@@ -138,6 +138,19 @@ void SceneData::ReadData(LPCSTR filePath)
 						capsuleNode = capsuleNode->NextSiblingElement();
 					}
 				}
+				else if (subName == "DynamicGrounds")
+				{
+					auto dynamicGroundNode = subNode->FirstChildElement();
+					while (dynamicGroundNode != nullptr)
+					{
+						mDataDynamicGrounds.push_back(DataDynamicGround(
+							dynamicGroundNode->IntAttribute("x"),
+							dynamicGroundNode->IntAttribute("y"),
+							dynamicGroundNode->IntAttribute("subType")
+						));
+						dynamicGroundNode = dynamicGroundNode->NextSiblingElement();
+					}
+				}
 				subNode = subNode->NextSiblingElement();
 			}
 		}

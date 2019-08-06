@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Idle" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="293" y="365" w="32" h="16" />
+	</Sprites>
+  </Animation>
+  <Animation name="FlyLeft" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="293" y="365" w="32" h="16" />
+		<sprite x="343" y="390" w="40" h="16" />
+	</Sprites>
+  </Animation>
+  <Animation name="FlyRight" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="293" y="365" w="32" h="16" />
+		<sprite x="393" y="389" w="40" h="16" />
+	</Sprites>
+  </Animation>
+  <Animation name="FlyUpRight" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="293" y="365" w="32" h="16" />
+		<sprite x="240" y="390" w="40" h="26" />
+	</Sprites>
+  </Animation>
+  <Animation name="FlyDownLeft" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="293" y="365" w="32" h="16" />
+		<sprite x="287" y="390" w="40" h="26" />
+	</Sprites>
+  </Animation>
+</Animations>

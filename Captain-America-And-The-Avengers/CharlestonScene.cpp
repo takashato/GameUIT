@@ -37,6 +37,11 @@ void CharlestonScene::Setup()
 	mCamera->Update(mPlayer->GetCenterPoint());
 
 	// Load Map Object
+	// DynamicGround
+	for (DataDynamicGround dataDynamicGround : mData.GetDataDynamicGround())
+	{
+		mGrid->Add(new DynamicGround(D3DXVECTOR3(dataDynamicGround.x, dataDynamicGround.y, .0f), dataDynamicGround.subType));
+	}
 	// Ground
 	for (DataGround dataGround : mData.GetDataGround())
 	{

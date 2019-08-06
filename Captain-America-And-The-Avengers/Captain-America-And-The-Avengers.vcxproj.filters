@@ -53,6 +53,9 @@
     <Filter Include="Entities\Items">
       <UniqueIdentifier>{fd31c4ee-c0a3-4cc8-90c2-a057722a29f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entities\DynamicGround">
+      <UniqueIdentifier>{60ba60fe-227b-45d8-88a4-cafc1a704a23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameException.cpp">
@@ -226,6 +229,10 @@
     </ClCompile>
     <ClCompile Include="TransportArea.cpp">
       <Filter>Entities</Filter>
+    <ClCompile Include="CharlestonBossScene.cpp" />
+    <ClCompile Include="TransportArea.cpp" />
+    <ClCompile Include="DynamicGround.cpp">
+      <Filter>Entities\DynamicGround</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -414,6 +421,9 @@
     </ClInclude>
     <ClInclude Include="TransportArea.h">
       <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicGround.h">
+      <Filter>Entities\DynamicGround</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
