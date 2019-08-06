@@ -207,12 +207,14 @@ void Player::ChangeAnimationByState(EPlayerState state)
 {
 	const auto oldHeight = GetHeight();
 	const auto oldWidth = GetWidth();
+
 	mCurrentAni = StateToAnimation(state);
 	mCurrentAni->Reset();
 	UpdateSize();
 	mPosition.x += float(mDirection == Right ? 0 : oldWidth - GetWidth());
-	if(mState->GetState() == EPlayerState::Sitting||mState->GetState() == EPlayerState::Standing)
-		mPosition.y += float(oldHeight - GetHeight());
+	if (mState->GetState() != EPlayerState::Jumping
+		&&mState->GetState() != EPlayerState::HighJumping)
+		mPosition.y += float(oldHeight - GetHeight()); //Lam giat man hinh => xu li lai camera sau
 }
 
 Animation* Player::GetCurrentAnimation()
