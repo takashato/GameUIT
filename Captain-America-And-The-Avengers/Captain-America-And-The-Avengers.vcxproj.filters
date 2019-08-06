@@ -229,9 +229,12 @@
     </ClCompile>
     <ClCompile Include="TransportArea.cpp">
       <Filter>Entities</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="DynamicGround.cpp">
       <Filter>Entities\DynamicGround</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerKicking.cpp">
+      <Filter>Entities\Player\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -423,6 +426,9 @@
     </ClInclude>
     <ClInclude Include="DynamicGround.h">
       <Filter>Entities\DynamicGround</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerKicking.h">
+      <Filter>Entities\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

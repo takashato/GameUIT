@@ -42,17 +42,17 @@ void PlayerHighJumping::Update(Player& player, float deltaTime)
 		counterTimeFlip = 0;
 		player.SetDirection((EntityDirection)(-player.GetDirection()));
 	}
-	else counterTimeFlip += deltaTime;
-
+	else counterTimeFlip += Timer::Dt();
+	player.GetCurrentAnimation()->Update(deltaTime);
 	if (timeUp < TIME_KEEP_SPIN) {
-		timeUp += deltaTime;
+		timeUp += Timer::Dt();
 		player.SetVelocityY(-SPIN_SPEED_VER);
 	}
 	else
 	{
 		if (timeDown < TIME_KEEP_SPIN)
 		{
-			timeDown += deltaTime;
+			timeDown += Timer::Dt();
 			player.SetVelocityY(SPIN_SPEED_VER);
 		}
 		else
@@ -94,14 +94,14 @@ void PlayerHighJumping::HandleKeyboard(Player& player, Keyboard* keyboard)
 
 void PlayerHighJumping::OnKeyDown(Player& player, BYTE code)
 {
-	//if (!isKicked) {
-	//	if (keyCode == setting.Get(KeyControls::Attack))
-	//	{
-	//		isKicked = true;
-	//		cap.SetState(State::Captain_Kicking);
-	//		return;
-	//	}
-	//}
+	if (!isKicked) {
+		if (code == VK_KEY_ATTACK)
+		{
+			isKicked = true;
+			player.SetState(EPlayerState::Kicking);
+			return;
+		}
+	}
 }
 
 void PlayerHighJumping::OnKeyUp(Player& player, BYTE code)

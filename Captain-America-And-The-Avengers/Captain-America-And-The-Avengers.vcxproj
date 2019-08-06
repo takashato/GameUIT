@@ -196,6 +196,7 @@
     <ClCompile Include="PlayerHighJumping.cpp" />
     <ClCompile Include="PlayerHighShielding.cpp" />
     <ClCompile Include="PlayerJumping.cpp" />
+    <ClCompile Include="PlayerKicking.cpp" />
     <ClCompile Include="PlayerLowPunching.cpp" />
     <ClCompile Include="PlayerPunching.cpp" />
     <ClCompile Include="PlayerRunning.cpp" />
@@ -261,6 +262,7 @@
     <ClInclude Include="PlayerHighJumping.h" />
     <ClInclude Include="PlayerHighShielding.h" />
     <ClInclude Include="PlayerJumping.h" />
+    <ClInclude Include="PlayerKicking.h" />
     <ClInclude Include="PlayerLowPunching.h" />
     <ClInclude Include="PlayerPunching.h" />
     <ClInclude Include="PlayerRunning.h" />

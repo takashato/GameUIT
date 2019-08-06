@@ -110,7 +110,14 @@ void PlayerJumping::HandleKeyboard(Player& player, Keyboard* keyboard)
 
 void PlayerJumping::OnKeyDown(Player& player, BYTE code)
 {
-
+	if (code == VK_KEY_ATTACK)
+	{
+		if (!isKicked)
+		{
+			isKicked = true;
+			player.SetState(EPlayerState::Kicking);
+		}
+	}
 }
 
 void PlayerJumping::OnKeyUp(Player& player, BYTE code)

@@ -15,7 +15,7 @@ public:
 	void Update();
 	float Get();
 	float GetFPS();
-
+	static float Dt() { return GetInstance().deltaTime; }
 private:
 	Timer() : ISingleton(NULL) {};
 };

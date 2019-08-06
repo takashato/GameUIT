@@ -1,5 +1,6 @@
 #pragma once
 #include "Keyboard.h"
+#include "Timer.h"
 
 class Entity;
 class Player;

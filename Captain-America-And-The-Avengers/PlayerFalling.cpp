@@ -16,7 +16,9 @@ void PlayerFalling::Enter(Player& player, EPlayerState fromState, Data&& data)
 
 Data PlayerFalling::Exit(Player& player, EPlayerState toState)
 {
-	return Data();
+	isKicked = false;
+	data.Add(IS_KICKED, isKicked);
+	return std::move(data);
 }
 
 void PlayerFalling::Update(Player& player, float deltaTime)
@@ -64,10 +66,20 @@ void PlayerFalling::HandleKeyboard(Player& player, Keyboard* keyboard)
 
 void PlayerFalling::OnKeyDown(Player& player, BYTE code)
 {
+	if (code == VK_KEY_ATTACK)
+	{
+		if (!isKicked)
+		{
+			isKicked = true;
+			player.SetState(EPlayerState::Kicking);
+		}
+	}
 }
 
 void PlayerFalling::OnKeyUp(Player& player, BYTE code)
 {
+	if (code == VK_RIGHT || code == VK_LEFT)
+	player.SetVelocityX(.0f);
 }
 
 void PlayerFalling::OnCollision(Player& player, std::vector<CollisionEvent*>& cEvent)

@@ -128,6 +128,7 @@ void Player::SetState(EPlayerState state)
 	case Punching:		    mState = &mStatePunching; break;
 	case SittingOnShield:   mState = &mStateSitOnShield; break;
 	case Swimming:			mState = &mStateSwimming; break;
+	case Kicking:			mState = &mStateKicking; break;
 	}
 
 	mState->Enter(*this, mLastState, std::move(exitData));

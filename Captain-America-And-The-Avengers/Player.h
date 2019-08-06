@@ -15,6 +15,7 @@
 #include "PlayerPunching.h"
 #include "PlayerSitOnShield.h"
 #include "PlayerSwimming.h"
+#include "PlayerKicking.h"
 #include "AnimationScript.h"
 #include "Camera.h"
 
@@ -92,6 +93,7 @@ private:
 	friend class PlayerPunching;		PlayerPunching mStatePunching;
 	friend class PlayerSitOnShield;		PlayerSitOnShield mStateSitOnShield;
 	friend class PlayerSwimming;		PlayerSwimming mStateSwimming;
+	friend class PlayerKicking;			PlayerKicking mStateKicking;
 
 	EPlayerState mLastState;
 
