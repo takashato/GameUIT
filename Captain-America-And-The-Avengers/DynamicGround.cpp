@@ -56,7 +56,34 @@ void DynamicGround::Update(float deltaTime)
 	}
 	else if (mSubTypeID == 1)
 	{
-
+		mCounter += deltaTime;
+		if (mCounter < 0.2f)
+		{
+			SetVelocityX(0.f);
+			SetVelocityY(0.f);
+		}
+		else if (mCounter >= 0.2f && mCounter < 1.5f)
+		{
+			if (GetDirection() == Left)
+			{
+				SetVelocityX(GetDirection()*FLY_SPEED);
+				AddPositionX(GetVelocityX() * deltaTime);
+				SetVelocityY(GetDirection()*FLY_SPEED*(-1));
+				AddPositionY(GetVelocityY() * deltaTime);
+			}
+			else
+			{
+				SetVelocityX(GetDirection()*FLY_SPEED);
+				AddPositionX(GetVelocityX() * deltaTime);
+				SetVelocityY(GetDirection()*FLY_SPEED*(-1));
+				AddPositionY(GetVelocityY() * deltaTime);
+			}
+		}
+		else
+		{
+			mCounter = 0;
+			SetDirection(GetDirection() == Left ? Right : Left);
+		}
 	}
 	else if (mSubTypeID == 2)
 	{

@@ -229,8 +229,7 @@
     </ClCompile>
     <ClCompile Include="TransportArea.cpp">
       <Filter>Entities</Filter>
-    <ClCompile Include="CharlestonBossScene.cpp" />
-    <ClCompile Include="TransportArea.cpp" />
+	</ClCompile>
     <ClCompile Include="DynamicGround.cpp">
       <Filter>Entities\DynamicGround</Filter>
     </ClCompile>
