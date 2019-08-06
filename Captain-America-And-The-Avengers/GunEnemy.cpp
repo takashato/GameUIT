@@ -4,15 +4,11 @@
 
 GunEnemy::GunEnemy(D3DXVECTOR3 position, int subTypeID) : Enemy()
 {
+	mHP = 2;
 	mSubTypeID = subTypeID;
 	LoadAnimations();
 	SetPosition(position);
 	mState = GUNENEMY_STANDING_STATE;
-}
-
-
-GunEnemy::~GunEnemy()
-{
 }
 
 void GunEnemy::LoadAnimations()
@@ -150,7 +146,6 @@ void GunEnemy::Update(float deltaTime, Player* player)
 			}
 		}
 	}
-
 	if (mBullet != nullptr) mBullet->Update(deltaTime);
 }
 
@@ -217,13 +212,54 @@ void GunEnemy::SetBullet(Bullet* bullet)
 
 void GunEnemy::OnAttacked()
 {
+	if (mCurrentAni == mAniStanding)
+	{
+		SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
+	}
+	else if (mCurrentAni == mAniSitting)
+	{
+		SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniDying->GetHeight());
+	}
+	SetState(GUNENEMY_DYING_STATE);
+	//mCurrentAni->Reset();
 	SetInvincible(true);
 }
 
 void GunEnemy::OnDie()
 {
-	ChangeAnimationByState(GUNENEMY_DYING_STATE);
-	mCurrentAni->Reset();
+	/*SetPositionX(mPosition.x + mDirection * 5);
+	if (mCurrentAni == mAniStanding)
+	{
+		SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
+	}
+	else if (mCurrentAni == mAniSitting)
+	{
+		SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniDying->GetHeight());
+	}
+	SetState(GUNENEMY_DYING_STATE);*/
+
+	mGridNode->Remove(this);
+	delete this;
+
+}
+
+void GunEnemy::TakeDamage(Entity* source, int hp)
+{
+	if (!mIsInvincible)
+	{
+		if (source->GetCollidableObjectType() == EWeapon || source->GetCollidableObjectType() == EPlayer)
+		{
+			mHP -= hp;
+			if (mHP <= 0)
+			{
+				OnDie();
+			}
+			else
+			{
+				OnAttacked();
+			}
+		}
+	}
 }
 
 void GunEnemy::SetInvincible(bool val)

@@ -4,6 +4,7 @@
 
 MissileEnemy::MissileEnemy(D3DXVECTOR3 position, int subTypeID)
 {
+	mHP = 3;
 	mSubTypeID = subTypeID;
 	spawnPosition = position;
 	LoadAnimations();
@@ -615,13 +616,77 @@ void MissileEnemy::SetBullet(Bullet* bullet)
 
 void MissileEnemy::OnAttacked()
 {
+	if (mCurrentAni == mAniStanding)
+	{
+		SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
+	}
+	else if (mCurrentAni == mAniRunning)
+	{
+		SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniDying->GetHeight());
+	}
+	else if (mCurrentAni == mAniFalling)
+	{
+		SetPositionY(mPosition.y + mAniFalling->GetHeight() - mAniDying->GetHeight());
+	}
+	else if (mCurrentAni == mAniJumping)
+	{
+		SetPositionY(mPosition.y + mAniJumping->GetHeight() - mAniDying->GetHeight());
+	}
+	else if (mCurrentAni == mAniSitting)
+	{
+		SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniDying->GetHeight());
+	}
+	SetState(MISSILEENEMY_DYING_STATE);
+	//mCurrentAni->Reset();
 	SetInvincible(true);
 }
 
 void MissileEnemy::OnDie()
 {
-	ChangeAnimationByState(GUNENEMY_DYING_STATE);
-	mCurrentAni->Reset();
+	/*SetPositionX(mPosition.x + mDirection * 5);
+	if (mCurrentAni == mAniStanding)
+	{
+		SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
+	}
+	else if (mCurrentAni == mAniRunning)
+	{
+		SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniDying->GetHeight());
+	}
+	else if (mCurrentAni == mAniFalling)
+	{
+		SetPositionY(mPosition.y + mAniFalling->GetHeight() - mAniDying->GetHeight());
+	}
+	else if (mCurrentAni == mAniJumping)
+	{
+		SetPositionY(mPosition.y + mAniJumping->GetHeight() - mAniDying->GetHeight());
+	}
+	else if (mCurrentAni == mAniSitting)
+	{
+		SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniDying->GetHeight());
+	}
+	SetState(MISSILEENEMY_DYING_STATE);*/
+
+	mGridNode->Remove(this);
+	delete this;
+}
+
+void MissileEnemy::TakeDamage(Entity* source, int hp)
+{
+	if (!mIsInvincible)
+	{
+		if (source->GetCollidableObjectType() == EWeapon || source->GetCollidableObjectType() == EPlayer)
+		{
+			mHP -= hp;
+			if (mHP <= 0)
+			{
+				OnDie();
+			}
+			else
+			{
+				OnAttacked();
+			}
+		}
+	}
 }
 
 void MissileEnemy::SetInvincible(bool val)

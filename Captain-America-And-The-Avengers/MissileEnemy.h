@@ -38,7 +38,7 @@ public:
 
 	void OnAttacked();
 	void OnDie();
-
+	void TakeDamage(Entity* source, int hp);
 	void SetInvincible(bool val);
 
 private:

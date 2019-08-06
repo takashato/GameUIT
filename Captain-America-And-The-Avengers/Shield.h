@@ -47,7 +47,7 @@ public:
 	bool IsThrown();
 
 	bool OnCollision(std::vector<CollisionEvent*>& cEvent);
-
+	bool CheckAABB(std::set<Entity*> &entities);
 private:
 	Player* mPlayer = nullptr;
 

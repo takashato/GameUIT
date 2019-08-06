@@ -15,7 +15,7 @@ class GunEnemy : public Enemy
 {
 public:
 	GunEnemy(D3DXVECTOR3 position = D3DXVECTOR3(300.0f, 402.0f, 0.f), int subTypeID = 0);
-	~GunEnemy();
+	~GunEnemy() = default;
 	void LoadAnimations();
 
 	void Update(float deltaTime, Player* player);
@@ -31,7 +31,7 @@ public:
 	EnemyType GetEnemyType();
 	Bullet* GetBullet();
 	void SetBullet(Bullet* Bullet);
-
+	void TakeDamage(Entity* source, int hp);
 	void OnAttacked();
 	void OnDie();
 

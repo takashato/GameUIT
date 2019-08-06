@@ -281,10 +281,8 @@ bool Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 			auto enemy = ((Enemy*)ce->entity);
 			if (enemy->GetEnemyType() == EGunStockEnemy)
 				((GunStock*)enemy)->BeAttacked();
-			else
-				enemy->TakeDamage(this);
 		}
-		else if (ce->entity->GetCollidableObjectType() == EBullet)
+		if (ce->entity->GetCollidableObjectType() == EBullet)
 		{
 			if (mState == ShieldState::EShieldRun && (((Bullet*)ce->entity)->GetBulletType() == BNormalBullet))
 			{
@@ -306,6 +304,27 @@ bool Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 			SoundManager::GetInstance().CPlaySound(SmallBulletsHitShields);
 		}
 		delete ce;
+	}
+	return true;
+}
+
+bool Shield::CheckAABB(std::set<Entity*> &entities)
+{
+	auto pbb = GetBoundingBox();
+	for (auto entity : entities)
+	{
+		auto ebb = entity->GetBoundingBox();
+		if (GeoUtils::IsIntersect(pbb, ebb))
+		{
+			if (auto enemy = dynamic_cast<Enemy*>(entity))
+			{
+				EnemyType type = enemy->GetEnemyType();
+				if(mState == ShieldState::EShieldHigh || mState == ShieldState::EShieldSit)
+					enemy->TakeDamage(this, 2);
+				else
+					enemy->TakeDamage(this, 1);
+			}
+		}
 	}
 	return true;
 }

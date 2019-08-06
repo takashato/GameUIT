@@ -94,8 +94,10 @@ void CharlestonScene::Update(float deltaTime)
 	cEvent.clear();
 	mPlayer->GetShield()->CalcCollision(&mGrid->mTemp, cEvent);
 	mPlayer->GetShield()->OnCollision(cEvent);
+	mPlayer->GetShield()->CheckAABB(mGrid->mTemp);
 	mPlayer->GetShield()->Update(deltaTime);
 	mCamera->Update(mPlayer->GetCenterPoint());
+	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 }
 
 void CharlestonScene::Draw()
