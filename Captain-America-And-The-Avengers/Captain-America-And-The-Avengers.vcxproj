@@ -191,6 +191,9 @@
     <ClCompile Include="MapReader\tinyxml2.cpp" />
     <ClCompile Include="MissileEnemy.cpp" />
     <ClCompile Include="NormalBullet.cpp" />
+    <ClCompile Include="PittsburghExtra1Scene.cpp" />
+    <ClCompile Include="PittsburghExtra2Scene.cpp" />
+    <ClCompile Include="PittsburghScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerFalling.cpp" />
     <ClCompile Include="PlayerHealth.cpp" />
@@ -211,6 +214,7 @@
     <ClCompile Include="PlayerTakeDamage.cpp" />
     <ClCompile Include="PlayerTakeDown.cpp" />
     <ClCompile Include="PlayerThrowing.cpp" />
+    <ClCompile Include="RedAlertBossScene.cpp" />
     <ClCompile Include="RunEnemy.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneData.cpp" />
@@ -260,6 +264,9 @@
     <ClInclude Include="MapReader\tinyxml2.h" />
     <ClInclude Include="MissileEnemy.h" />
     <ClInclude Include="NormalBullet.h" />
+    <ClInclude Include="PittsburghExtra1Scene.h" />
+    <ClInclude Include="PittsburghExtra2Scene.h" />
+    <ClInclude Include="PittsburghScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerFalling.h" />
     <ClInclude Include="PlayerHealth.h" />
@@ -280,6 +287,7 @@
     <ClInclude Include="PlayerTakeDamage.h" />
     <ClInclude Include="PlayerTakeDown.h" />
     <ClInclude Include="PlayerThrowing.h" />
+    <ClInclude Include="RedAlertBossScene.h" />
     <ClInclude Include="RunEnemy.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneData.h" />

@@ -27,7 +27,9 @@ public:
 	void Draw();
 
 	SoundType GetBgMusic();
+	MapID GetMapID() { return MapID::RedAlertBoss; }
 
+	void Transport() {/*Khong co*/}
 
 private:
 	std::unique_ptr<Player> mPlayer;
@@ -36,4 +38,4 @@ private:
 	virtual void OnKeyUp(BYTE key) override;
 	virtual void OnKeyDown(BYTE key) override;
 
-};
+	};

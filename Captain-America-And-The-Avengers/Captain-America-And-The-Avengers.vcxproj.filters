@@ -252,6 +252,9 @@
     <ClCompile Include="PittsburghScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="RedAlertBossScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -462,6 +465,9 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="PittsburghScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="RedAlertBossScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
