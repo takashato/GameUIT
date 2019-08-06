@@ -4,6 +4,7 @@
 
 RunEnemy::RunEnemy(D3DXVECTOR3 position, int subTypeID) : Enemy()
 {
+	mHP = 2;
 	mSubTypeID = subTypeID;
 	spawnPosition = position;
 	LoadAnimations();
@@ -32,7 +33,7 @@ void RunEnemy::LoadAnimations()
 
 void RunEnemy::Update(float deltaTime, Player* player)
 {
-	/*Enemy::Update(deltaTime, player);*/
+	Enemy::Update(deltaTime, player);
 
 	D3DXVECTOR3 playerPosition = player->GetPosition();
 	D3DXVECTOR3 runEnemyPosition = this->GetPosition();
@@ -257,13 +258,53 @@ void RunEnemy::SetBullet(Bullet* bullet)
 
 void RunEnemy::OnAttacked()
 {
+	if (mCurrentAni == mAniStanding)
+	{
+		SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
+	}
+	else if (mCurrentAni == mAniRunning)
+	{
+		SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniDying->GetHeight());
+	}
+	SetState(RUNENEMY_DYING_STATE);
+	//mCurrentAni->Reset();
 	SetInvincible(true);
 }
 
 void RunEnemy::OnDie()
 {
-	ChangeAnimationByState(GUNENEMY_DYING_STATE);
-	mCurrentAni->Reset();
+	/*SetPositionX(mPosition.x + mDirection * 5);
+	if (mCurrentAni == mAniStanding)
+	{
+		SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
+	}
+	else if (mCurrentAni == mAniRunning)
+	{
+		SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniDying->GetHeight());
+	}
+	SetState(RUNENEMY_DYING_STATE);*/
+
+	mGridNode->Remove(this);
+	delete this;
+}
+
+void RunEnemy::TakeDamage(Entity* source, int hp)
+{
+	if (!mIsInvincible)
+	{
+		if (source->GetCollidableObjectType() == EWeapon || source->GetCollidableObjectType() == EPlayer)
+		{
+			mHP -= hp;
+			if (mHP <= 0)
+			{
+				OnDie();
+			}
+			else
+			{
+				OnAttacked();
+			}
+		}
+	}
 }
 
 void RunEnemy::SetInvincible(bool val)

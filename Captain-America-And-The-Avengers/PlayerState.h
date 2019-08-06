@@ -78,7 +78,7 @@ protected:
 
 	static constexpr auto INJURE_FALL_SPEED = 40.0f;
 	static constexpr auto INJURE_DISTANCE = 10.0f;
-	static constexpr auto INJURE_STATE_HOLD_TIME = 0.5f;
+	static constexpr auto INJURE_STATE_HOLD_TIME = 0.3f;
 
 	static constexpr auto SPIN_SPEED_VER = 120.0f;
 	static constexpr auto SPIN_SPEED_HOR = JUMP_SPEED_HOR;
