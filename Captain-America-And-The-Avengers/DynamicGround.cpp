@@ -26,7 +26,8 @@ void DynamicGround::LoadAnimations()
 
 void DynamicGround::Update(float deltaTime)
 {
-	
+
+
 	if (mSubTypeID == 0)
 	{
 		mCounter += deltaTime;
@@ -87,7 +88,32 @@ void DynamicGround::Update(float deltaTime)
 	}
 	else if (mSubTypeID == 2)
 	{
+		if (GetDirection() == Left)
+		{
+			/*SetVelocityX(GetDirection()*FLY_SPEED);
+			AddPositionX(GetVelocityX() * deltaTime);*/
+			AddPositionX(GetDirection()*0.5);
+			D3DXVECTOR3 dynamicPosition = this->GetPosition();
 
+			float y;
+			y = sqrt(50 * 50 - (dynamicPosition.x - center.x)*(dynamicPosition.x - center.x)) + center.y;
+			SetPositionY(y);
+		}
+		if (GetDirection() == Right)
+		{
+			/*SetVelocityX(GetDirection()*FLY_SPEED);
+			AddPositionX(GetVelocityX() * deltaTime);*/
+			AddPositionX(GetDirection()*0.5);
+			D3DXVECTOR3 dynamicPosition = this->GetPosition();
+
+			float y;
+			y = -sqrt(50 * 50 - (dynamicPosition.x - center.x)*(dynamicPosition.x - center.x)) + center.y;
+			SetPositionY(y);
+		}
+
+		D3DXVECTOR3 dynamicGroundPosition = this->GetPosition();
+		if (dynamicGroundPosition.x == 100  || dynamicGroundPosition.x == 200)
+			SetDirection(GetDirection() == Left ? Right : Left);
 	}
 
 

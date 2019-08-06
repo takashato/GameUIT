@@ -29,7 +29,7 @@ private:
 	Animation* mCurrentAni = NULL;
 
 	Animation* mAniIdle = NULL;
-
+	D3DXVECTOR3 center = D3DXVECTOR3(150.0f, 390.0f, 0.f);
 	int mState;
 	int mLastState;
 	int mSubTypeID;
