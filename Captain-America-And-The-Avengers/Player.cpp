@@ -211,7 +211,8 @@ void Player::ChangeAnimationByState(EPlayerState state)
 	mCurrentAni->Reset();
 	UpdateSize();
 	mPosition.x += float(mDirection == Right ? 0 : oldWidth - GetWidth());
-	mPosition.y += float(oldHeight - GetHeight());
+	if(mState->GetState() == EPlayerState::Sitting||mState->GetState() == EPlayerState::Standing)
+		mPosition.y += float(oldHeight - GetHeight());
 }
 
 Animation* Player::GetCurrentAnimation()
@@ -254,6 +255,7 @@ RECT Player::GetBoundingBox()
 		rect.bottom = (long)(rect.top + GetHeight());
 	}
 	return rect;
+	
 }
 
 CollidableObjectType Player::GetCollidableObjectType()
