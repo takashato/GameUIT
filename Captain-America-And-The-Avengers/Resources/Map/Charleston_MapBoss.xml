@@ -6,7 +6,7 @@
 	</SpawnPoints>
 	<MapObjects>
     <Enemies>
-      <Enemy type="BossCharleston" x="233.0" y="148.0" w="24" h="43" subType="1"/>
+      <Enemy type="BossCharleston" x="189.0" y="145.0" w="24" h="43" subType="1"/>
     </Enemies>
     <Grounds>
       <Ground type="Hard" name="HardGround" x="0" y="-8" w="256" h="8"/>

@@ -30,7 +30,7 @@ void CharlestonBossScene::Setup()
 	mMap->SetCamera(mCamera.get());
 	mCamera->SetWorldBoundary(mMap->GetBoundary());
 
-	mMapDark = std::make_unique<GameMap>(ID_MAP_CHARLESTON_BOSS_DARK, L"Resources\\Map\\Chaleston_MapBoss_Dark.png", L"Resources\\Map\\Matrix_Chaleston_MapBoss.txt");
+	mMapDark = std::make_unique<GameMap>(ID_MAP_CHARLESTON_BOSS_DARK, L"Resources\\Map\\Chaleston_MapBoss_Dark.png", L"Resources\\Map\\Matrix_Chaleston_MapBoss_Dark.txt");
 	mMapDark->SetCamera(mCamera.get());
 
 	// Create grid
@@ -64,6 +64,7 @@ void CharlestonBossScene::Update(float deltaTime)
 	lightInterval += deltaTime;
 
 	mGrid->Update(deltaTime, mCamera->GetBound(), mPlayer.get());
+	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 	std::vector<CollisionEvent*> cEvent;
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->CalcCollision(&mGrid->mTemp, cEvent);
@@ -74,8 +75,10 @@ void CharlestonBossScene::Update(float deltaTime)
 	cEvent.clear();
 	mPlayer->GetShield()->CalcCollision(&mGrid->mTemp, cEvent);
 	mPlayer->GetShield()->OnCollision(cEvent);
+	mPlayer->GetShield()->CheckAABB(mGrid->mTemp);
 	mPlayer->GetShield()->Update(deltaTime);
 	mCamera->Update(mPlayer->GetCenterPoint());
+	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 }
 
 void CharlestonBossScene::Draw()

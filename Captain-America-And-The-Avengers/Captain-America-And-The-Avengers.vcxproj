@@ -177,7 +177,7 @@
     <ClCompile Include="ExitSignal.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="ExtraDrawer.cpp" />
-    <ClCompile Include="FlyEnemy.cpp" />
+    <ClCompile Include="FlyRocketEnemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameException.cpp" />
     <ClCompile Include="GameMap.cpp" />
@@ -254,7 +254,7 @@
     <ClInclude Include="ExitSignal.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="ExtraDrawer.h" />
-    <ClInclude Include="FlyEnemy.h" />
+    <ClInclude Include="FlyRocketEnemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameException.h" />
     <ClInclude Include="GameMap.h" />

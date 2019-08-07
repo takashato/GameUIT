@@ -104,9 +104,6 @@
     <ClCompile Include="RunEnemy.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="FlyEnemy.cpp">
-      <Filter>Entities\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="Bat.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
@@ -269,6 +266,9 @@
     <ClCompile Include="Missile.cpp">
       <Filter>Entities\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="FlyRocketEnemy.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
     <ClCompile Include="LightButton.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -324,9 +324,6 @@
       <Filter>Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="RunEnemy.h">
-      <Filter>Entities\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="FlyEnemy.h">
       <Filter>Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Bat.h">
@@ -497,6 +494,8 @@
     <ClInclude Include="Missile.h">
       <Filter>Entities\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="FlyRocketEnemy.h">
+      <Filter>Entities\Enemies</Filter>
     <ClInclude Include="LightButton.h">
       <Filter>Entities</Filter>
     </ClInclude>

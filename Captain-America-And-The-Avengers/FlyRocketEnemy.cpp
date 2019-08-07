@@ -3,8 +3,9 @@
 #include "FlyRocketEnemy.h"
 #include <cmath>
 
-FlyRocketEnemy::FlyRocketEnemy(D3DXVECTOR3 position)
+FlyRocketEnemy::FlyRocketEnemy(D3DXVECTOR3 position, int subTypeID) 
 {
+	mSubTypeID = subTypeID;
 	mDirection = Right;
 	LoadAnimations();
 	SetPosition(position);
@@ -140,15 +141,7 @@ void FlyRocketEnemy::OnSetPosition()
 {
 }
 
-void FlyRocketEnemy::SetBullet(Bullet* Bullet)
-{
 
-}
-
-Bullet* FlyRocketEnemy::GetBullet()
-{
-	return mBullet;
-}
 void FlyRocketEnemy::CheckDirection(Player* player)
 {
 	if (player->GetPosition().x > mPosition.x + 20 && mDirection == Left)
@@ -160,4 +153,8 @@ void FlyRocketEnemy::CheckDirection(Player* player)
 		mDirection = Left;
 	}
 
+}
+EnemyType FlyRocketEnemy::GetEnemyType()
+{
+	return EnemyType::EFlyEnemy;
 }

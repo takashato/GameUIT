@@ -15,6 +15,8 @@
 #include "Ground.h"
 #include "MapObjectReader.h"
 #include "Capsule.h"
+#include "FlyRocketEnemy.h"
+#include "Bat.h"
 enum TypeExtra
 {
 	Type1,
