@@ -18,12 +18,16 @@ Explosion::~Explosion()
 
 void Explosion::LoadAnimations()
 {
-	mSprite = new Sprite(L"Resources\\Sprites\\Players\\Cap\\Captain America.png");
-	mAniScripts = new AnimationScript("Resources\\Sprites\\Item\\Explosion.xml");
+	if (mSprite == nullptr)
+	{
+		mSprite = new Sprite(L"Resources\\Sprites\\Players\\Cap\\Captain America.png");
+		mAniScripts = new AnimationScript("Resources\\Sprites\\Item\\Explosion.xml");
 
-	mAniExplosing = new Animation(mSprite, mAniScripts->GetRectList("Explosive", "0"), 0.2F);
+		mAniExplosing = new Animation(mSprite, mAniScripts->GetRectList("Explosive", "0"), 0.2F, false);
+	}
 
 	mCurrentAni = mAniExplosing;
+	mCurrentAni->Reset();
 }
 
 void Explosion::Update(float deltaTime)
