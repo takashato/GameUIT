@@ -20,6 +20,7 @@
 #include "PlayerTakeDown.h"
 #include "PlayerHealth.h"
 #include "ExitSignal.h"
+#include "PlayerSurfing.h"
 #include "AnimationScript.h"
 #include "Camera.h"
 
@@ -109,6 +110,7 @@ private:
 	friend class PlayerKicking;			PlayerKicking mStateKicking;
 	friend class PlayerTakeDamage;		PlayerTakeDamage mStateTakeDamage;
 	friend class PlayerTakeDown;		PlayerTakeDown mStateTakeDown;
+	friend class PlayerSurfing;			PlayerSurfing mStateSurfing;
 
 	EPlayerState mLastState;
 
@@ -128,6 +130,9 @@ private:
 	ExitSignal mExitSignal;
 	bool mIsInvincible = false;
 	float mInvincibleCounter = .0f;
+
+	BYTE lastKeyUp, lastKeyDown;
+	std::chrono::time_point<std::chrono::steady_clock> lastKeyUpTimePoint, lastKeyDownTimePoint;
 
 	static constexpr auto PLAYER_HITBOX_HALF = 5;
 	static constexpr auto INVINCIBLE_DURATION = 2;

@@ -42,7 +42,21 @@ void PlayerStanding::OnKeyDown(Player& player, BYTE code)
 {
 	if (code == VK_LEFT || code == VK_RIGHT)
 	{
-		player.SetState(EPlayerState::Running);
+		if (player.lastKeyDown == code && player.lastKeyUp == code) {
+			std::chrono::duration<float> duration = std::chrono::steady_clock::now() - player.lastKeyDownTimePoint;
+			if (duration.count() < 0.3f)
+			{
+				player.SetState(EPlayerState::Surfing);
+			}
+			else
+			{
+				player.SetState(EPlayerState::Running);
+			}
+		}
+		else
+		{
+			player.SetState(EPlayerState::Running);
+		}
 	}
 	else if (code == VK_KEY_JUMP)
 	{

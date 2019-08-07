@@ -263,6 +263,9 @@
     <ClCompile Include="ExitSignal.cpp">
       <Filter>Entities\Player</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerSurfing.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -483,6 +486,9 @@
     </ClInclude>
     <ClInclude Include="ExitSignal.h">
       <Filter>Entities\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSurfing.h">
+      <Filter>Entities\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

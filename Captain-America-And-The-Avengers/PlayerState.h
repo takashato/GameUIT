@@ -89,4 +89,6 @@ protected:
 	static constexpr float WATER_FLOW_SPEED = -20.0f;
 	static constexpr float SWIMMING_SPEED = 50.0f;
 	static constexpr float MAX_JUMP_TIME_FROM_WATER = 0.3f;
+
+	static constexpr auto TACKLE_SPEED = 200.0f;
 };

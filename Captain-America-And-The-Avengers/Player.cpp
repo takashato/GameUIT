@@ -70,6 +70,7 @@ void Player::Update(float deltaTime)
 		&& mState->GetState() != EPlayerState::Punching
 		&& mState->GetState() != EPlayerState::Swimming
 		&& mState->GetState() != EPlayerState::TakeDown
+		&& mState->GetState() != EPlayerState::Surfing
 		) // vY not affect when standing
 	{
 		this->AddPositionY(deltaTime * mVelocityY);
@@ -114,11 +115,25 @@ void Player::HandleKeyboard(Keyboard* keyboard)
 void Player::OnKeyDown(BYTE code)
 {
 	if (mState != nullptr) mState->OnKeyDown(*this, code);
+	if (code == VK_LEFT || code == VK_RIGHT || code == VK_UP || code == VK_DOWN
+		|| code == (BYTE)'X' 
+		|| code == (BYTE)'Z')
+	{
+		lastKeyDown = code;
+		lastKeyDownTimePoint = std::chrono::steady_clock::now();
+	}
 }
 
 void Player::OnKeyUp(BYTE code)
 {
 	if (mState != nullptr) mState->OnKeyUp(*this, code);
+	if (code == VK_LEFT || code == VK_RIGHT || code == VK_UP || code == VK_DOWN
+		|| code == (BYTE)'X'
+		|| code == (BYTE)'Z')
+	{
+		lastKeyUp = code;
+		lastKeyUpTimePoint = std::chrono::steady_clock::now();
+	}
 }
 
 PlayerState* Player::GetState()
@@ -149,6 +164,7 @@ void Player::SetState(EPlayerState state)
 	case Kicking:			mState = &mStateKicking; break;
 	case EPlayerState::TakeDamage: mState = &mStateTakeDamage; break;
 	case TakeDown:			mState = &mStateTakeDown; break;
+	case Surfing:			mState = &mStateSurfing; break;
 	}
 
 	mState->Enter(*this, mLastState, std::move(exitData));
@@ -341,7 +357,7 @@ bool Player::CheckAABB(std::set<Entity*> &entities)
 				}
 				else if (mState->GetState() == EPlayerState::Surfing)
 				{
-					enemy->TakeDamage(this, 3);
+					enemy->TakeDamage(this, 5);
 				}
 			}
 		}
