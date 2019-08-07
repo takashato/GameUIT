@@ -30,7 +30,7 @@ void CharlestonBossScene::Setup()
 	mMap->SetCamera(mCamera.get());
 	mCamera->SetWorldBoundary(mMap->GetBoundary());
 
-	mMapDark = std::make_unique<GameMap>(ID_MAP_CHARLESTON_BOSS_DARK, L"Resources\\Map\\Chaleston_MapBoss_Dark.png", L"Resources\\Map\\Matrix_Chaleston_MapBoss.txt");
+	mMapDark = std::make_unique<GameMap>(ID_MAP_CHARLESTON_BOSS_DARK, L"Resources\\Map\\Chaleston_MapBoss_Dark.png", L"Resources\\Map\\Matrix_Chaleston_MapBoss_Dark.txt");
 	mMapDark->SetCamera(mCamera.get());
 
 	// Create grid
