@@ -31,6 +31,8 @@ public:
 
 	void HitShield();
 
+	void SetState(int state);
+
 protected:
 	static Sprite* mSprite;
 

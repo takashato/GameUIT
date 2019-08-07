@@ -47,3 +47,8 @@ void Bullet::HitShield()
 {
 	mIsHitShield = true;
 }
+
+void Bullet::SetState(int state)
+{
+	mState = state;
+}

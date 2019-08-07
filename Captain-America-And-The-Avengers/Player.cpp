@@ -276,6 +276,15 @@ bool Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 			cEvent.erase(cEvent.begin() + i);
 			--i;
 		}
+		else if (cEvent[i]->entity->GetCollidableObjectType() == EBullet)
+		{
+			auto bullet = (Bullet*)cEvent[i]->entity;
+			if (bullet->GetBulletType() == BulletType::BNormalBullet)
+			{
+				this->TakeDamage(1);
+				bullet->SetState(1); // Pending remove
+			}
+		}
 		else if (cEvent[i]->entity->GetCollidableObjectType() == ETransportArea)
 		{
 			SceneManager::GetInstance().GetScene()->Transport();
