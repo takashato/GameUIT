@@ -58,9 +58,18 @@ void Item::Draw(D3DXVECTOR2 trans)
 void Item::Consume(Player& player)
 {
 	SoundType sound = SoundType::ItemNormal;
-	if (mType == ItemType::KeyCrystal) sound = SoundType::ItemKeyKrystal;
-	else if (mType == ItemType::HeartEnergy) sound = SoundType::ItemEnery;
+	if (mType == ItemType::KeyCrystal) 
+	{
+		sound = SoundType::ItemKeyKrystal;
+		player.canTransport = true;
+	}
+	else if (mType == ItemType::HeartEnergy)
+	{
+		sound = SoundType::ItemEnery;
+		player.GetHealth().Add(1);
+	}
 	SoundManager::GetInstance().CPlaySound(sound);
+
 	mState = 1; // Set to pending delete
 }
 

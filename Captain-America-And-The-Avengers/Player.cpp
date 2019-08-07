@@ -285,7 +285,7 @@ bool Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 				bullet->SetState(1); // Pending remove
 			}
 		}
-		else if (cEvent[i]->entity->GetCollidableObjectType() == ETransportArea)
+		else if (cEvent[i]->entity->GetCollidableObjectType() == ETransportArea && canTransport)
 		{
 			SceneManager::GetInstance().GetScene()->Transport();
 			return false;

@@ -59,7 +59,8 @@ public:
 	void SetShield(Shield* shield);
 
 	void TakeDamage(int modifier = 1);
-
+	PlayerHealth& GetHealth() { return mHealth; }
+	
 	Animation* mAniStanding = NULL;
 	Animation* mAniPunching = NULL;
 	Animation* mAniThrowingShield = NULL;
@@ -81,6 +82,8 @@ public:
 	Animation* mAniHealth = NULL;
 
 	bool shouldFall = false;
+
+	bool canTransport = false;
 private:
 	Sprite* mSprite = NULL;
 	AnimationScript* mAniScripts = NULL;
