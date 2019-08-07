@@ -266,6 +266,9 @@
     <ClCompile Include="PlayerSurfing.cpp">
       <Filter>Entities\Player\State</Filter>
     </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>Entities\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -489,6 +492,9 @@
     </ClInclude>
     <ClInclude Include="PlayerSurfing.h">
       <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
+      <Filter>Entities\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

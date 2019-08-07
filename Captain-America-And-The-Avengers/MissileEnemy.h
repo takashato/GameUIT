@@ -5,6 +5,7 @@
 #include "PlayerStandingState.h" 
 #include "AnimationScript.h"
 #include "Camera.h"
+#include "Missile.h"
 
 #define MISSILEENEMY_STANDING_STATE 0
 #define MISSILEENEMY_SITTING_STATE 1

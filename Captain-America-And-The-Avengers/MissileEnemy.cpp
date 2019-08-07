@@ -565,6 +565,11 @@ int MissileEnemy::GetState()
 
 void MissileEnemy::SetState(int state)
 {
+	if ((state == MISSILEENEMY_STANDING_STATE && mState == MISSILEENEMY_SITTING_STATE)
+		|| (state == MISSILEENEMY_SITTING_STATE && mState == MISSILEENEMY_STANDING_STATE))
+	{
+		SceneManager::GetInstance().GetScene()->GetGrid()->Add(new Missile(mPosition, (int)mDirection));
+	}
 	mState = state;
 	ChangeAnimationByState(mState);
 }
