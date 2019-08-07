@@ -6,7 +6,6 @@ void PlayerSitting::Enter(Player& player, EPlayerState fromState, Data&& data)
 {
 	isPressingKey = false;
 	mCounter = .0f;
-
 	player.SetVelocityX(.0f);
 	player.SetVelocityY(GRAVITY);
 }
@@ -41,7 +40,7 @@ void PlayerSitting::OnKeyDown(Player& player, BYTE code)
 		player.jumpThrough = true;
 		player.SetState(EPlayerState::Falling);
 	}
-	else if (code == VK_KEY_ATTACK)
+	else if (code == VK_KEY_ATTACK && isPressingKey)
 	{
 		player.SetState(EPlayerState::LowPunching);
 	}
