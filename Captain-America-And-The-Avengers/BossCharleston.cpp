@@ -97,7 +97,17 @@ void BossCharleston::Draw(D3DXVECTOR2 transform)
 {
 	if (mCurrentAni != nullptr && mState != -1)
 	{
-		mCurrentAni->Draw(GetPosition(), transform);
+		if (auto scene = dynamic_cast<CharlestonBossScene*>(SceneManager::GetInstance().GetScene()))
+		{
+			if (!scene->isLightOn)
+			{
+				mCurrentAni->Draw(GetPosition(), transform, D3DCOLOR_RGBA(0, 0, 0, 255));
+			}
+			else
+			{
+				mCurrentAni->Draw(GetPosition(), transform);
+			}
+		}
 		this->RenderBoundingBox(transform);
 	}
 	else

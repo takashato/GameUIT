@@ -26,7 +26,7 @@ Animation::Animation(Sprite* sprite, std::vector<RECT> frames, float timePerFram
 	mLoop = loop;
 }
 
-void Animation::Draw(D3DXVECTOR3 position, D3DXVECTOR2 translation)
+void Animation::Draw(D3DXVECTOR3 position, D3DXVECTOR2 translation, D3DCOLOR color)
 {
 	RECT rect = GetCurrentFrameRect();
 	mSprite->SetRect(rect);
@@ -39,7 +39,7 @@ void Animation::Draw(D3DXVECTOR3 position, D3DXVECTOR2 translation)
 	{
 		flipExtra.x += GetWidth() - (rect.right - rect.left);
 	}
-	mSprite->Draw(position, D3DXVECTOR2(mHorizontallyFlip ? -1.0f : 1.0f, 1.0f), translation, mIsBlinking ? 150 : 255, flipExtra);
+	mSprite->Draw(position, D3DXVECTOR2(mHorizontallyFlip ? -1.0f : 1.0f, 1.0f), translation, mIsBlinking ? 150 : 255, flipExtra, color);
 }
 
 void Animation::Update(float deltaTime)
