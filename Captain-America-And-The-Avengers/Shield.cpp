@@ -153,7 +153,6 @@ D3DXVECTOR3 Shield::GetReturnPoint()
 		}
 		break;
 	case Cling:
-
 		break;
 	case Kicking:
 		if (isFacedRight)
@@ -206,13 +205,29 @@ D3DXVECTOR3 Shield::GetReturnPoint()
 	case Surfing:
 		if (isFacedRight)
 		{
-			shieldPosition.x = playerPosition.x + mPlayer->GetWidth() - 3;
-			shieldPosition.y = playerPosition.y;
+			if (mPlayer->mAniSurfing->GetCurrentFrame() == 0)
+			{
+				shieldPosition.x = playerPosition.x + mPlayer->GetWidth() - 8;
+				shieldPosition.y = playerPosition.y;
+			}
+			else
+			{
+				shieldPosition.x = playerPosition.x + mPlayer->GetWidth() - 3;
+				shieldPosition.y = playerPosition.y;
+			}
 		}
 		else
 		{
-			shieldPosition.x = playerPosition.x - 4;
-			shieldPosition.y = playerPosition.y;
+			if (mPlayer->mAniSurfing->GetCurrentFrame() == 0)
+			{
+				shieldPosition.x = playerPosition.x + 1;
+				shieldPosition.y = playerPosition.y;
+			}
+			else
+			{
+				shieldPosition.x = playerPosition.x - 4;
+				shieldPosition.y = playerPosition.y;
+			}
 		}
 		break;
 	case ThrowingShield:
