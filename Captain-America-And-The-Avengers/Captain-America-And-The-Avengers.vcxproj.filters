@@ -242,7 +242,6 @@
     <ClCompile Include="PlayerTakeDamage.cpp">
       <Filter>Entities\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerTakeDown.cpp" />
     <ClCompile Include="PittsburghExtra1Scene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -254,6 +253,12 @@
     </ClCompile>
     <ClCompile Include="RedAlertBossScene.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTakeDown.cpp">
+      <Filter>Entities\Player\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -469,6 +474,9 @@
     </ClInclude>
     <ClInclude Include="RedAlertBossScene.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion.h">
+      <Filter>Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

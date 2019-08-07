@@ -36,6 +36,7 @@ enum CollidableObjectType
 	EBullet,
 	ECapsule,
 	EItem,
+	EExplosion,
 	ETransportArea,
 	EDoor
 };

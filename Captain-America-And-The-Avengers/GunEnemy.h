@@ -5,6 +5,7 @@
 #include "PlayerStandingState.h" 
 #include "AnimationScript.h"
 #include "Camera.h"
+#include "Explosion.h"
 #include "NormalBullet.h"
 
 #define GUNENEMY_STANDING_STATE 0

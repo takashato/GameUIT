@@ -4,7 +4,7 @@
 
 MissileEnemy::MissileEnemy(D3DXVECTOR3 position, int subTypeID)
 {
-	mHP = 3;
+	mHP = 5;
 	mSubTypeID = subTypeID;
 	spawnPosition = position;
 	LoadAnimations();
@@ -643,28 +643,13 @@ void MissileEnemy::OnAttacked()
 
 void MissileEnemy::OnDie()
 {
-	/*SetPositionX(mPosition.x + mDirection * 5);
-	if (mCurrentAni == mAniStanding)
+	if (SceneManager::GetInstance().GetScene() != nullptr
+		&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
 	{
-		SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
+		Explosion* explosion;
+		explosion = new Explosion(this);
+		SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
 	}
-	else if (mCurrentAni == mAniRunning)
-	{
-		SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniDying->GetHeight());
-	}
-	else if (mCurrentAni == mAniFalling)
-	{
-		SetPositionY(mPosition.y + mAniFalling->GetHeight() - mAniDying->GetHeight());
-	}
-	else if (mCurrentAni == mAniJumping)
-	{
-		SetPositionY(mPosition.y + mAniJumping->GetHeight() - mAniDying->GetHeight());
-	}
-	else if (mCurrentAni == mAniSitting)
-	{
-		SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniDying->GetHeight());
-	}
-	SetState(MISSILEENEMY_DYING_STATE);*/
 
 	mGridNode->Remove(this);
 	delete this;

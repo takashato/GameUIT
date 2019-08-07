@@ -47,7 +47,8 @@ void Grid::Update(float deltaTime, RECT rect, Player* player)
 		{
 			((Enemy*)entity)->Update(deltaTime, player);
 		}
-		entity->Update(deltaTime);
+		else
+			entity->Update(deltaTime);
 	}
 }
 

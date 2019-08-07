@@ -84,6 +84,7 @@ void CharlestonScene::Setup()
 void CharlestonScene::Update(float deltaTime)
 {
 	mGrid->Update(deltaTime, mCamera->GetBound(), mPlayer.get());
+	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 	std::vector<CollisionEvent*> cEvent;
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->CalcCollision(&mGrid->mTemp, cEvent);

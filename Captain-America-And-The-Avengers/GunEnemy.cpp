@@ -227,16 +227,13 @@ void GunEnemy::OnAttacked()
 
 void GunEnemy::OnDie()
 {
-	/*SetPositionX(mPosition.x + mDirection * 5);
-	if (mCurrentAni == mAniStanding)
+	if (SceneManager::GetInstance().GetScene() != nullptr
+		&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
 	{
-		SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
+		Explosion* explosion;
+		explosion = new Explosion(this);
+		SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
 	}
-	else if (mCurrentAni == mAniSitting)
-	{
-		SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniDying->GetHeight());
-	}
-	SetState(GUNENEMY_DYING_STATE);*/
 
 	mGridNode->Remove(this);
 	delete this;
