@@ -277,6 +277,9 @@
     </ClCompile>
     <ClCompile Include="BossVipBullet.cpp">
       <Filter>Entities\Bullet</Filter>
+	</ClCompile>
+    <ClCompile Include="BreakGround.cpp">
+      <Filter>Entities\DynamicGround</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -513,6 +516,9 @@
     </ClInclude>
     <ClInclude Include="BossVipBullet.h">
       <Filter>Entities\Bullet</Filter>
+	</ClInclude>
+    <ClInclude Include="BreakGround.h">
+      <Filter>Entities\DynamicGround</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

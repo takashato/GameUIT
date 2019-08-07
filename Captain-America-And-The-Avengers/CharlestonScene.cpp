@@ -37,15 +37,31 @@ void CharlestonScene::Setup()
 	mCamera->Update(mPlayer->GetCenterPoint());
 
 	// Load Map Object
-	// DynamicGround
-	for (DataDynamicGround dataDynamicGround : mData.GetDataDynamicGround())
-	{
-		mGrid->Add(new DynamicGround(D3DXVECTOR3(dataDynamicGround.x, dataDynamicGround.y, .0f), dataDynamicGround.subType));
-	}
 	// Ground
 	for (DataGround dataGround : mData.GetDataGround())
 	{
-		mGrid->Add(new Ground(D3DXVECTOR3(dataGround.x, dataGround.y, .0f), dataGround.type, dataGround.w, dataGround.h));
+		switch (dataGround.type)
+		{
+		case EGroundDynamic:
+		{
+			DynamicGround* ground = new DynamicGround(D3DXVECTOR3(dataGround.x, dataGround.y, .0f),dataGround.subType);
+			mGrid->Add(ground);
+		}
+		break;
+		case EGroundBreak:
+		{
+			BreakGround* breakGr = new BreakGround((D3DXVECTOR3(dataGround.x, dataGround.y, .0f)));
+			mGrid->Add(breakGr);
+		}
+			break;
+		case EGroundHard:
+		case EGroundNormal:
+		case EGroundWater:
+		{
+			mGrid->Add(new Ground(D3DXVECTOR3(dataGround.x, dataGround.y, .0f), dataGround.type, dataGround.w, dataGround.h));
+		}
+		break;
+		}
 	}
 	// Enemy
 	for (DataEnemy dataEnemy : mData.GetDataEnemy())

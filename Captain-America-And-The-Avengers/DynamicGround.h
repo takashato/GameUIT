@@ -1,12 +1,12 @@
 #pragma once
 #include "Animation.h"
-#include "Entity.h"
+#include "Ground.h"
 #include "AnimationScript.h"
 #include "Camera.h"
 
 #define DYNAMICGROUND_IDLE_STATE 0
 
-class DynamicGround : public Entity
+class DynamicGround : public Ground
 {
 	static constexpr auto FLY_SPEED = 35.0f;
 	static constexpr auto PI = 3.14159265f;
