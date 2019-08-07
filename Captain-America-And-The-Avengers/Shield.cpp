@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Shield.h"
 #include "GunStock.h"
+#include "CharlestonBossScene.h"
+#include "SceneManager.h"
 
 Shield::Shield(Player* player) : Weapon()
 {
@@ -296,8 +298,10 @@ bool Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 			auto enemy = ((Enemy*)ce->entity);
 			if (enemy->GetEnemyType() == EGunStockEnemy)
 				((GunStock*)enemy)->BeAttacked();
+			else
+				enemy->TakeDamage(mPlayer, 1);
 		}
-		if (ce->entity->GetCollidableObjectType() == EBullet)
+		else if (ce->entity->GetCollidableObjectType() == EBullet)
 		{
 			if (mState == ShieldState::EShieldRun && (((Bullet*)ce->entity)->GetBulletType() == BNormalBullet))
 			{
@@ -318,6 +322,13 @@ bool Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 			SoundManager::GetInstance().CResetSound(SmallBulletsHitShields);
 			SoundManager::GetInstance().CPlaySound(SmallBulletsHitShields);
 		}
+		else if (ce->entity->GetCollidableObjectType() == EButton)
+		{
+			if (auto scene = dynamic_cast<CharlestonBossScene*>(SceneManager::GetInstance().GetScene()))
+			{
+				scene->ToggleLight();
+			}
+		}
 		delete ce;
 	}
 	return true;
@@ -331,14 +342,14 @@ bool Shield::CheckAABB(std::set<Entity*> &entities)
 		auto ebb = entity->GetBoundingBox();
 		if (GeoUtils::IsIntersect(pbb, ebb))
 		{
-			if (auto enemy = dynamic_cast<Enemy*>(entity))
-			{
-				EnemyType type = enemy->GetEnemyType();
-				if(mState == ShieldState::EShieldHigh || mState == ShieldState::EShieldSit)
-					enemy->TakeDamage(this, 2);
-				else
-					enemy->TakeDamage(this, 1);
-			}
+			//if (auto enemy = dynamic_cast<Enemy*>(entity))
+			//{
+			//	EnemyType type = enemy->GetEnemyType();
+			//	if(mState == ShieldState::EShieldHigh || mState == ShieldState::EShieldSit)
+			//		enemy->TakeDamage(this, 2);
+			//	else
+			//		enemy->TakeDamage(this, 1);
+			//}
 		}
 	}
 	return true;
