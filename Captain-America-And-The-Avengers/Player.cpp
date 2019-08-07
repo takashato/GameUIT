@@ -300,6 +300,12 @@ bool Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 				this->TakeDamage(1);
 				bullet->SetState(1); // Pending remove
 			}
+			else if (bullet->GetBulletType() == BulletType::BLittleMissile)
+			{
+				this->TakeDamage(1);
+				SceneManager::GetInstance().GetScene()->GetGrid()->Add(new Explosion(bullet));
+				bullet->SetState(1);
+			}
 		}
 		else if (cEvent[i]->entity->GetCollidableObjectType() == ETransportArea && canTransport)
 		{

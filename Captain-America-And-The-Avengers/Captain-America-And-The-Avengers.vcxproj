@@ -218,6 +218,7 @@
     <ClCompile Include="PlayerTakeDown.cpp" />
     <ClCompile Include="PlayerThrowing.cpp" />
     <ClCompile Include="RedAlertBossScene.cpp" />
+    <ClCompile Include="Missile.cpp" />
     <ClCompile Include="RunEnemy.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneData.cpp" />
@@ -294,6 +295,7 @@
     <ClInclude Include="PlayerTakeDown.h" />
     <ClInclude Include="PlayerThrowing.h" />
     <ClInclude Include="RedAlertBossScene.h" />
+    <ClInclude Include="Missile.h" />
     <ClInclude Include="RunEnemy.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneData.h" />
