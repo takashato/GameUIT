@@ -49,32 +49,27 @@ void CharlestonBossScene::Setup()
 	}
 	// Boss
 	mGrid->Add(new BossCharleston(D3DXVECTOR3(189.0f, 145.0f, .0f)));
-	// Enemy
-	/*for (DataEnemy dataEnemy : mData.GetDataEnemy())
-	{
-		switch (dataEnemy.type)
-		{
-		case EBossCharleston:
-			mGrid->Add(new BossCharleston(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f)));
-			break;
-		}
-	}*/
+
 }
 
 void CharlestonBossScene::Update(float deltaTime)
 {
 	mGrid->Update(deltaTime, mCamera->GetBound(), mPlayer.get());
+	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 	std::vector<CollisionEvent*> cEvent;
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->CalcCollision(&mGrid->mTemp, cEvent);
-	mPlayer->OnCollision(cEvent);
+	if (!mPlayer->CheckAABB(mGrid->mTemp)) return;
+	if (!mPlayer->OnCollision(cEvent)) return;
 	mPlayer->Update(deltaTime);
 	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 	cEvent.clear();
 	mPlayer->GetShield()->CalcCollision(&mGrid->mTemp, cEvent);
 	mPlayer->GetShield()->OnCollision(cEvent);
+	mPlayer->GetShield()->CheckAABB(mGrid->mTemp);
 	mPlayer->GetShield()->Update(deltaTime);
 	mCamera->Update(mPlayer->GetCenterPoint());
+	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 }
 
 void CharlestonBossScene::Draw()

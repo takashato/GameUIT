@@ -16,7 +16,7 @@
 class FlyRocketEnemy : public Enemy
 {
 public:
-	FlyRocketEnemy(D3DXVECTOR3 position);
+	FlyRocketEnemy(D3DXVECTOR3 position, int subTypeID);
 	~FlyRocketEnemy();
 	void LoadAnimations();
 
@@ -30,10 +30,7 @@ public:
 
 	void OnSetPosition();
 
-
-	void SetBullet(Bullet* Bullet);
-	Bullet* GetBullet();
-
+	EnemyType GetEnemyType();
 	void CheckDirection(Player* player);
 
 
@@ -52,5 +49,6 @@ private:
 	int mState = -1;
 
 	float mCounter = 0;
+	int mSubTypeID = 0;
 };
 
