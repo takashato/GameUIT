@@ -118,6 +118,12 @@
 		<sprite x="232" y="245" w="16" h="7" />
     </Sprites>
   </Animation>
+   <Animation name="ElectricShock" imagePath="Captain America.png" width="400" height="368">
+    <Sprites type="0">
+		<sprite x="120" y="187" w="32" h="45" />
+		<sprite x="160" y="187" w="32" h="45" />
+    </Sprites>
+  </Animation>
   <Animation name="Health">
 	<Sprites type="0">
 		<sprite x="216" y="308" w="8" h="8" />

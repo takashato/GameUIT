@@ -26,7 +26,7 @@ private:
 public:
 	Animation(Sprite* sprite, std::vector<RECT> frames, float timePerFrame = 0.1F, bool loop = true);
 
-	void Draw(D3DXVECTOR3 position, D3DXVECTOR2 translation = D3DXVECTOR2());
+	void Draw(D3DXVECTOR3 position, D3DXVECTOR2 translation = D3DXVECTOR2(), D3DCOLOR color = D3DCOLOR_ARGB(255, 255, 255, 255));
 	virtual void Update(float deltaTime);
 
 	void SetFrame(int frame);

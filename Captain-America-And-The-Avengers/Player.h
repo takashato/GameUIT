@@ -84,6 +84,7 @@ public:
 	Animation* mAniDiving = NULL;
 	Animation* mAniHealth = NULL;
 	Animation* mAniExitSignal = NULL;
+	Animation* mAniElectricShock = NULL;
 
 	bool shouldFall = false;
 

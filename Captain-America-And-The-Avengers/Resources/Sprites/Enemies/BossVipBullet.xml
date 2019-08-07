@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Fly" imagePath="Boss_Wizard.png" width="312" height="232">
+    <Sprites type="0">
+      <sprite x="208" y="140" w="16" h="8" />
+    </Sprites>
+  </Animation>
+   <Animation name="FlyLeftDown" imagePath="Boss_Wizard.png" width="312" height="232">
+    <Sprites type="0">
+      <sprite x="232" y="136" w="16" h="16" />
+    </Sprites>
+  </Animation>
+  <Animation name="FlyDown" imagePath="Boss_Wizard.png" width="312" height="232">
+    <Sprites type="0">
+      <sprite x="256" y="136" w="7" h="16" />
+    </Sprites>
+  </Animation>
+</Animations>

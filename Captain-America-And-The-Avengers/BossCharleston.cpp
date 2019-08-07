@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "Game.h"
+#include "BossSmallBullet.h"
+#include "BossVipBullet.h"
 #include "BossCharleston.h"
 
 BossCharleston::BossCharleston(D3DXVECTOR3 position)
@@ -38,6 +40,7 @@ void BossCharleston::LoadAnimations()
 
 void BossCharleston::Update(float deltaTime, Player* player)
 {
+	playerPos = player->GetPosition();
 
 	Entity::Update(deltaTime);
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
@@ -94,7 +97,17 @@ void BossCharleston::Draw(D3DXVECTOR2 transform)
 {
 	if (mCurrentAni != nullptr && mState != -1)
 	{
-		mCurrentAni->Draw(GetPosition(), transform);
+		if (auto scene = dynamic_cast<CharlestonBossScene*>(SceneManager::GetInstance().GetScene()))
+		{
+			if (!scene->isLightOn)
+			{
+				mCurrentAni->Draw(GetPosition(), transform, D3DCOLOR_RGBA(0, 0, 0, 255));
+			}
+			else
+			{
+				mCurrentAni->Draw(GetPosition(), transform);
+			}
+		}
 		this->RenderBoundingBox(transform);
 	}
 	else
@@ -111,6 +124,38 @@ int BossCharleston::GetState()
 
 void BossCharleston::SetState(int state)
 {
+	if (state == BOSS_CHARLESTON_GUN_STATE)
+	{
+		auto pos = mPosition;
+		auto bb = GetBoundingBox();
+		pos.y += 15;
+		if (mDirection == Left) pos.x = bb.left;
+		else pos.x = bb.right;
+		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+			new BossSmallBullet(pos, mDirection, playerPos.y < mPosition.y ? -1 : 0)
+		);
+	}
+	else if (state == BOSS_CHARLESTON_KAMEHAMEHA_STATE)
+	{
+		auto pos = mPosition;
+		auto bb = GetBoundingBox();
+		pos.y += 13;
+		if (mDirection == Left) pos.x = bb.left;
+		else pos.x = bb.right;
+		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+			new BossVipBullet(pos, mDirection)
+		);
+	}
+	else if (state == BOSS_CHARLESTON_PLYGUN_STATE)
+	{
+		auto pos = mPosition;
+		auto bb = GetBoundingBox();
+		pos.y = (bb.bottom + bb.top) / 2;
+		pos.x = mDirection == Left ? bb.left : bb.right;
+		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+			new BossVipBullet(pos, 0, 1)
+		);
+	}
 	mState = state;
 	ChangeAnimationByState(mState);
 }
@@ -253,7 +298,8 @@ void BossCharleston::ModeTwo(float deltaTime, Player* player)
 {
 	if (mState == BOSS_CHARLESTON_PLY_STATE || mState == BOSS_CHARLESTON_PLYGUN_STATE)
 	{
-		if (player->GetPosition().x - mPosition.x <= 10 && player->GetPosition().x - mPosition.x >= -10) {
+		if (player->GetPosition().x - mPosition.x <= 10 && player->GetPosition().x - mPosition.x >= -10
+			&& mState != BOSS_CHARLESTON_PLYGUN_STATE) {
 			SetState(BOSS_CHARLESTON_PLYGUN_STATE);
 			mCounter = 0;
 		}

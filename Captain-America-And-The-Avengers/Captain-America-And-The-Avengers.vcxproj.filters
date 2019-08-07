@@ -269,7 +269,15 @@
     <ClCompile Include="FlyRocketEnemy.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="LightButton.cpp" />
+    <ClCompile Include="LightButton.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="BossSmallBullet.cpp">
+      <Filter>Entities\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BossVipBullet.cpp">
+      <Filter>Entities\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -496,9 +504,15 @@
     </ClInclude>
     <ClInclude Include="FlyRocketEnemy.h">
       <Filter>Entities\Enemies</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="LightButton.h">
       <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="BossSmallBullet.h">
+      <Filter>Entities\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BossVipBullet.h">
+      <Filter>Entities\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

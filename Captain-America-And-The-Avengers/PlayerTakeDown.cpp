@@ -25,6 +25,11 @@ void PlayerTakeDown::HandleKeyboard(Player& player, Keyboard* keyboard)
 
 void PlayerTakeDown::OnKeyDown(Player& player, BYTE code)
 {
+	if (code == (BYTE)'R')
+	{
+		player.mHealth.Set(12);
+		player.SetState(EPlayerState::Standing);
+	}
 }
 
 void PlayerTakeDown::OnKeyUp(Player& player, BYTE code)

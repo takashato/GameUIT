@@ -34,6 +34,9 @@ public:
 	void ToggleLight();
 
 	void Transport();
+
+	bool isLightOn = true;
+
 private:
 	std::unique_ptr<Player> mPlayer;
 	std::unique_ptr<GameMap> mMapDark;
@@ -42,6 +45,5 @@ private:
 	virtual void OnKeyUp(BYTE key) override;
 	virtual void OnKeyDown(BYTE key) override;
 
-	bool isLightOn = true;
 	float lightInterval = .0f;
 };

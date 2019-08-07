@@ -74,5 +74,7 @@ private:
 	int mState = -1;
 
 	float mCounter = 0;
+
+	D3DXVECTOR3 playerPos;
 };
 
