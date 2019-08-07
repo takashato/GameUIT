@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Player.h"
 #include "PlayerKicking.h"
+#include "Ground.h"
 
 void PlayerKicking::Enter(Player& player, EPlayerState fromState, Data&& data)
 {
@@ -172,6 +173,63 @@ void PlayerKicking::OnKeyUp(Player& player, BYTE code)
 
 void PlayerKicking::OnCollision(Player& player, std::vector<CollisionEvent*>& cEvent)
 {
+	bool collisionWithGround = false;
+	CollisionEvent* groundCe = nullptr;
+	for (auto ce : cEvent)
+	{
+		if (ce->entity->GetCollidableObjectType() == EPlatform)
+		{
+			if (ce->ny == -1.0f)
+			{
+				if (!player.jumpThrough)
+				{
+					if (player.skipGround != ce->entity)
+					{
+						collisionWithGround = true;
+						groundCe = ce;
+					}
+				}
+				else
+				{
+					player.jumpThrough = false;
+					if (((Ground*)ce->entity)->GetGroundType() == EGroundNormal)
+					{
+						player.skipGround = ce->entity;
+					}
+				}
+			}
+
+			if (((Ground*)ce->entity)->GetGroundType() == EGroundHard)
+			{
+				if (ce->nx == -1.0f)
+				{
+					player.mIsCollisionLeftRightSide = true;
+					player.mDirectionUnblock = Left;
+					player.SetPositionX(ce->entity->GetPosition().x - player.GetWidth());
+				}
+				else if (ce->nx == 1.0f)
+				{
+					player.mIsCollisionLeftRightSide = true;
+					player.mDirectionUnblock = Right;
+					player.SetPositionX(ce->entity->GetBoundingBox().right);
+				}
+			}
+		}
+	}
+	if (collisionWithGround)
+	{
+		if (player.skipGround != nullptr) player.skipGround = nullptr;
+		if (((Ground*)groundCe->entity)->GetGroundType() == EGroundWater)
+		{
+			SoundManager::GetInstance().CPlaySound(SoundType::FallingWater);
+			player.SetState(EPlayerState::Swimming);
+		}
+		else
+		{
+			player.SetState(EPlayerState::Sitting);
+		}
+		player.SetPositionY(groundCe->entity->GetPosition().y - player.GetHeight());
+	}
 }
 
 EPlayerState PlayerKicking::GetState()
