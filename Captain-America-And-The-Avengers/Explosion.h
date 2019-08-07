@@ -17,9 +17,9 @@ public:
 	virtual RECT GetBoundingBox() override;
 	virtual CollidableObjectType GetCollidableObjectType() override;
 private:
-	Sprite* mSprite = NULL;
-	AnimationScript* mAniScripts = NULL;
-	Animation* mAniExplosing = NULL;
-	Animation* mCurrentAni = NULL;
+	static Sprite* mSprite;
+	static AnimationScript* mAniScripts;
+	static Animation* mAniExplosing;
+	Animation* mCurrentAni;
 };
 

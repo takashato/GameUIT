@@ -1,6 +1,10 @@
 #include "pch.h"
 #include "Explosion.h"
 
+AnimationScript* Explosion::mAniScripts = nullptr;
+Sprite* Explosion::mSprite = nullptr;
+Animation* Explosion::mAniExplosing = nullptr;
+
 Explosion::Explosion(Entity* source)
 {
 	LoadAnimations();
