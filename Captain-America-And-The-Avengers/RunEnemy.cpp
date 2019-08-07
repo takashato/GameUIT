@@ -41,7 +41,7 @@ void RunEnemy::Update(float deltaTime, Player* player)
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 	if (mSubTypeID == 0) // Only Run
 	{
-		if (mIsInvincible)
+		/*if (mIsInvincible)
 		{
 			if (mCurrentAni != mAniDying)
 			{
@@ -60,60 +60,60 @@ void RunEnemy::Update(float deltaTime, Player* player)
 			mCounter = .0f;
 		}
 		else
+		{*/
+		if (abs(runEnemyPosition.x - playerPosition.x) < 200)
 		{
-			if (abs(runEnemyPosition.x - playerPosition.x) < 200)
+			if (mCurrentAni == mAniStanding)
 			{
-				if (mCurrentAni == mAniStanding)
-				{
-					SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniRunning->GetHeight());
-				}
-				else if (mCurrentAni == mAniDying)
-				{
-					SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniRunning->GetHeight());
-				}
-				SetState(RUNENEMY_RUNNING_STATE);
-
-				mCounter += deltaTime;
-				if (mCounter >= MOVEMENT_UPDATE_TIME)
-				{
-					if (mDirection == Left)
-					{
-						if (GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
-							AddVelocityX(-100);
-						if (GetVelocityX() != 0.f)
-							AddPositionX(GetVelocityX() * mCounter);
-					}
-					else
-					{
-						if (GetVelocityX() < PLAYER_VELOCITY_X_MAX)
-							AddVelocityX(100);
-						if (GetVelocityX() != 0.f)
-							AddPositionX(GetVelocityX() * mCounter);
-					}
-					mCounter = 0;
-				}
-				if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
+				SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniRunning->GetHeight());
 			}
-			else
+			else if (mCurrentAni == mAniDying)
 			{
-				if (mCurrentAni == mAniDying)
-				{
-					SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniStanding->GetHeight());
-				}
-				else if (mCurrentAni == mAniRunning)
-				{
-					SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniStanding->GetHeight());
-				}
-				SetState(RUNENEMY_STANDING_STATE);
+				SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniRunning->GetHeight());
+			}
+			SetState(RUNENEMY_RUNNING_STATE);
 
-				if (runEnemyPosition.x < playerPosition.x)
-					SetDirection(EntityDirection::Right);
+			mCounter += deltaTime;
+			if (mCounter >= MOVEMENT_UPDATE_TIME)
+			{
+				if (mDirection == Left)
+				{
+					if (GetVelocityX() > -PLAYER_VELOCITY_X_MAX)
+						AddVelocityX(-100);
+					if (GetVelocityX() != 0.f)
+						AddPositionX(GetVelocityX() * mCounter);
+				}
 				else
-					SetDirection(EntityDirection::Left);
-				SetVelocityX(0.f);
-				SetVelocityY(0.f);
+				{
+					if (GetVelocityX() < PLAYER_VELOCITY_X_MAX)
+						AddVelocityX(100);
+					if (GetVelocityX() != 0.f)
+						AddPositionX(GetVelocityX() * mCounter);
+				}
+				mCounter = 0;
 			}
+			if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
 		}
+		else
+		{
+			if (mCurrentAni == mAniDying)
+			{
+				SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniStanding->GetHeight());
+			}
+			else if (mCurrentAni == mAniRunning)
+			{
+				SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniStanding->GetHeight());
+			}
+			SetState(RUNENEMY_STANDING_STATE);
+
+			if (runEnemyPosition.x < playerPosition.x)
+				SetDirection(EntityDirection::Right);
+			else
+				SetDirection(EntityDirection::Left);
+			SetVelocityX(0.f);
+			SetVelocityY(0.f);
+		}
+		//}
 	}
 
 	if (mSubTypeID == 1) // Run and Shoot
@@ -121,77 +121,77 @@ void RunEnemy::Update(float deltaTime, Player* player)
 		SetDirection(EntityDirection::Right);
 		/*if(mCurrentAni == mAniStanding && mState == RUNENEMY_STANDING_STATE)
 			lastPosition = this->GetPosition();*/
-		if (mIsInvincible)
-		{
-			if (mCurrentAni != mAniDying)
+			/*if (mIsInvincible)
 			{
-				if (mCurrentAni == mAniStanding)
+				if (mCurrentAni != mAniDying)
 				{
-					SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
+					if (mCurrentAni == mAniStanding)
+					{
+						SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
+					}
+					else if (mCurrentAni == mAniRunning)
+					{
+						SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniDying->GetHeight());
+					}
+					SetState(RUNENEMY_DYING_STATE);
+					SetVelocityX(0.f);
+					SetVelocityY(0.f);
 				}
-				else if (mCurrentAni == mAniRunning)
-				{
-					SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniDying->GetHeight());
-				}
-				SetState(RUNENEMY_DYING_STATE);
-				SetVelocityX(0.f);
-				SetVelocityY(0.f);
+				mCounter = .0f;
 			}
-			mCounter = .0f;
-		}
-		else
+			else
+			{*/
+		if (!isShoot)
 		{
-			if (!isShoot)
+			if (mCurrentAni == mAniStanding)
 			{
-				if (mCurrentAni == mAniStanding)
-				{
-					SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniRunning->GetHeight());
-				}
-				else if (mCurrentAni == mAniDying)
-				{
-					SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniRunning->GetHeight());
-				}
-				SetState(RUNENEMY_RUNNING_STATE);
-
-				if (runEnemyPosition.x - spawnPosition.x > 256)
-				{
-					SetPosition(spawnPosition);
-					SetState(RUNENEMY_STANDING_STATE);
-				}
-				else
-				{
-					SetVelocityX(GetDirection()*RUN_SPEED);
-					AddPositionX(GetVelocityX() * deltaTime);
-				}
+				SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniRunning->GetHeight());
 			}
-
-			if ((int)runEnemyPosition.x % 31 > 29)
-				isShoot = true;
-
-			if (isShoot)
+			else if (mCurrentAni == mAniDying)
 			{
-				mCounter += deltaTime;
+				SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniRunning->GetHeight());
+			}
+			SetState(RUNENEMY_RUNNING_STATE);
 
-				if (mCurrentAni == mAniDying)
-				{
-					SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniStanding->GetHeight());
-				}
-				else if (mCurrentAni == mAniRunning)
-				{
-					SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniStanding->GetHeight());
-				}
+			if (runEnemyPosition.x - spawnPosition.x > 256)
+			{
+				SetPosition(spawnPosition);
 				SetState(RUNENEMY_STANDING_STATE);
-
-				SetVelocityX(0.f);
-				SetVelocityY(0.f);
-				if (mCounter > 0.4f)
-				{
-					isShoot = false;
-					mCounter = .0f;
-				}
 			}
-			if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
+			else
+			{
+				SetVelocityX(GetDirection()*RUN_SPEED);
+				AddPositionX(GetVelocityX() * deltaTime);
+			}
 		}
+
+		if ((int)runEnemyPosition.x % 31 > 29)
+			isShoot = true;
+
+		if (isShoot)
+		{
+			mCounter += deltaTime;
+
+			if (mCurrentAni == mAniDying)
+			{
+				SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniStanding->GetHeight());
+			}
+			else if (mCurrentAni == mAniRunning)
+			{
+				SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniStanding->GetHeight());
+			}
+			SetState(RUNENEMY_STANDING_STATE);
+
+			SetVelocityX(0.f);
+			SetVelocityY(0.f);
+			if (mCounter > 0.4f)
+			{
+				isShoot = false;
+				mCounter = .0f;
+			}
+		}
+		if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
+		//}
 	}
 }
 

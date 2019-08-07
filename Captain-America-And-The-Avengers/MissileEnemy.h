@@ -60,6 +60,7 @@ private:
 	int mSubTypeID = 0;
 	bool isMeetPlayer = false;
 	bool isJump = false;
+	int jumpCounter = 0;
 	int changeDirection = 1;
 };
 

@@ -318,7 +318,7 @@ bool Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 			if (enemy->GetEnemyType() == EGunStockEnemy)
 				((GunStock*)enemy)->BeAttacked();
 			else
-				enemy->TakeDamage(mPlayer, 1);
+				enemy->TakeDamage(mPlayer, 2);
 		}
 		else if (ce->entity->GetCollidableObjectType() == EBullet)
 		{
