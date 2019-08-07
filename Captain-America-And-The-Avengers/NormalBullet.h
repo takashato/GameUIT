@@ -16,7 +16,7 @@ class Bullet;
 class NormalBullet : public Bullet
 {
 public:
-	NormalBullet(D3DXVECTOR3 position, int flyDirection);
+	NormalBullet(D3DXVECTOR3 position, int flyDirection, int flyDirectionY = 0);
 	~NormalBullet();
 	void LoadAnimations();
 
@@ -32,16 +32,17 @@ public:
 	void HitShield();
 
 private:
-	Sprite* mSprite = NULL;
-	AnimationScript* mAniScripts = NULL;
-	Animation* mAniFlying = NULL;
+	static Sprite* mSprite;
+	static AnimationScript* mAniScripts;
+	static Animation* mAniFlying;
 
 	float mCounter = 0;
 	bool isFired = true;
 
 	int mFlyDirection = 0;
+	int mFlyDirectionY = 0;
 
 	static constexpr auto BULLET_SPEED = 150.0f;
-	static constexpr auto DELTA_CAM_TO_DESTROY = 10.0f;
+	static constexpr auto DELTA_CAM_TO_DESTROY = .0f;
 };
 

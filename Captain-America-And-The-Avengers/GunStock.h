@@ -60,5 +60,8 @@ private:
 	int lastState = 0;
 	/*Camera* mCamera;*/
 	float mCounter = 0;
+	float mIntervalCounter = .0f;
 	/*NormalBullet* mBullet;*/
+
+	static constexpr auto BULLET_INTERVAL_TIME = 1.5f;
 };

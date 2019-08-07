@@ -9,7 +9,7 @@ class Entity
 {
 public:
 	Entity();
-	~Entity();
+	virtual ~Entity();
 
 	virtual void Update(float deltaTime);
 	virtual void Draw(D3DXVECTOR2 trans = D3DXVECTOR2(.0f, .0f));

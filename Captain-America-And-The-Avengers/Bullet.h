@@ -18,7 +18,7 @@ class Bullet : public Entity
 
 public:
 	Bullet();
-	~Bullet();
+	virtual ~Bullet() = 0;
 
 	virtual void Update(float deltaTime) = 0;
 	virtual void Draw(D3DXVECTOR2 transform) = 0;

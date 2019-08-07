@@ -199,6 +199,7 @@ void RunEnemy::Draw(D3DXVECTOR2 transform)
 {
 	if (mCurrentAni != nullptr && mState != -1)
 	{
+		mCurrentAni->SetBlink(mIsInvincible);
 		mCurrentAni->Draw(GetPosition(), transform);
 		this->RenderBoundingBox(transform);
 	}
@@ -216,6 +217,14 @@ int RunEnemy::GetState()
 
 void RunEnemy::SetState(int state)
 {
+	if (state == RUNENEMY_RUNNING_STATE && mState == RUNENEMY_STANDING_STATE)
+	{
+		auto position = mPosition;
+		position.x += mDirection == Right ? 5 : -5;
+		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+			new NormalBullet(position, mDirection)
+		);
+	}
 	mState = state;
 	ChangeAnimationByState(mState);
 }
@@ -297,18 +306,4 @@ void RunEnemy::TakeDamage(Entity* source, int hp)
 void RunEnemy::SetInvincible(bool val)
 {
 	Enemy::SetInvincible(val);
-	if (val)
-	{
-		mAniStanding->SetBlink(true);
-		mAniRunning->SetBlink(true);
-		mAniDying->SetBlink(true);
-		std::cout << "Blink on\n";
-	}
-	else
-	{
-		mAniStanding->SetBlink(false);
-		mAniRunning->SetBlink(false);
-		mAniDying->SetBlink(false);
-		std::cout << "Blink off\n";
-	}
 }

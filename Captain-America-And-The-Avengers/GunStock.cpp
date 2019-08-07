@@ -38,6 +38,7 @@ void GunStock::Update(float deltaTime, Player* player)
 
 	if (mCurrentAni == mAniRotating)
 	{
+		mIntervalCounter = .0f;
 		mCounter += deltaTime;
 		if (mCounter > 0.5f)
 		{
@@ -69,6 +70,34 @@ void GunStock::Update(float deltaTime, Player* player)
 				break;
 			}
 			mCounter = 0;
+		}
+	}
+	else // Not rotating
+	{
+		mIntervalCounter += deltaTime;
+		if (mIntervalCounter >= BULLET_INTERVAL_TIME)
+		{
+			int flyDirectionX = 1;
+			if (mState == GUNSTOCK_BOTTOMLEFT_DIRECT
+				|| mState == GUNSTOCK_LEFT_DIRECT
+				|| mState == GUNSTOCK_TOPLEFT_DIRECT) flyDirectionX = -1;
+			else if (mState == GUNSTOCK_TOP_DIRECT
+				|| mState == GUNSTOCK_BOTTOM_DIRECT) flyDirectionX = 0;
+
+			int flyDirectionY = -1; 
+			if (mState == GUNSTOCK_BOTTOMLEFT_DIRECT
+				|| mState == GUNSTOCK_BOTTOMRIGHT_DIRECT
+				|| mState == GUNSTOCK_BOTTOM_DIRECT) flyDirectionY = 1;
+			else if (mState == GUNSTOCK_LEFT_DIRECT
+				|| mState == GUNSTOCK_RIGHT_DIRECT) flyDirectionY = 0;
+
+			auto position = GeoUtils::GetRectCenter(GetBoundingBox());
+
+			SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+				new NormalBullet(position, flyDirectionX, flyDirectionY)
+			);
+
+			mIntervalCounter = .0f;
 		}
 	}
 	if (mCurrentAni != nullptr) mCurrentAni->Update(deltaTime);

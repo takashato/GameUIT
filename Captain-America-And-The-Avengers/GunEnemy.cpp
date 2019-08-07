@@ -172,8 +172,10 @@ void GunEnemy::SetState(int state)
 {
 	if (state == GUNENEMY_STANDING_STATE && mState == GUNENEMY_SITTING_STATE) // Spawn bullet
 	{
+		auto position = mPosition;
+		position.y += 4;
 		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
-			new NormalBullet(mPosition, mDirection)
+			new NormalBullet(position, mDirection)
 		);
 	}
 	mState = state;

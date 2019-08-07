@@ -2,14 +2,17 @@
 #include "Game.h"
 #include "NormalBullet.h"
 
-NormalBullet::NormalBullet(D3DXVECTOR3 position, int flyDirection)
+Sprite* NormalBullet::mSprite = NULL;
+AnimationScript* NormalBullet::mAniScripts = NULL;
+Animation* NormalBullet::mAniFlying = NULL;
+
+NormalBullet::NormalBullet(D3DXVECTOR3 position, int flyDirection, int flyDirectionY)
 {
 	LoadAnimations();
 	mPosition = position;
-	position.y = position.y + 4;
-	SetPosition(position);
 	mState = NORMALBULLET_FLYING_STATE;
 	SetVelocityX(flyDirection * BULLET_SPEED);
+	SetVelocityY(flyDirectionY * BULLET_SPEED);
 
 	if (GeoUtils::IsIntersect(GetBoundingBox(), SceneManager::GetInstance().GetScene()->GetCamera()->GetBound())) {
 		SoundManager::GetInstance().CPlaySound(SoundType::BossShootSmallBullets);
@@ -18,17 +21,17 @@ NormalBullet::NormalBullet(D3DXVECTOR3 position, int flyDirection)
 
 NormalBullet::~NormalBullet()
 {
-	delete mSprite;
-	delete mAniScripts;
-	delete mAniFlying;
 }
 
 void NormalBullet::LoadAnimations()
 {
-	mSprite = new Sprite(L"Resources\\Sprites\\Enemies\\Enemies.png");
-	mAniScripts = new AnimationScript("Resources\\Sprites\\Enemies\\NormalBullet.xml");
+	if (mSprite == nullptr)
+	{
+		mSprite = new Sprite(L"Resources\\Sprites\\Enemies\\Enemies.png");
+		mAniScripts = new AnimationScript("Resources\\Sprites\\Enemies\\NormalBullet.xml");
 
-	mAniFlying = new Animation(mSprite, mAniScripts->GetRectList("Flying", "0"), 0.1F);
+		mAniFlying = new Animation(mSprite, mAniScripts->GetRectList("Flying", "0"), 0.1F);
+	}
 
 	mCurrentAni = mAniFlying;
 }
@@ -38,10 +41,19 @@ void NormalBullet::Update(float deltaTime)
 	if (!mIsHitShield)
 	{
 		AddPositionX(deltaTime * mVelocityX);
+		AddPositionY(deltaTime * mVelocityY);
 	}
 	else
 	{
-		AddPositionY(-abs(mVelocityX) * deltaTime);
+		if (mVelocityY == 0.0f)
+		{
+			AddPositionY(-abs(mVelocityX) * deltaTime);
+		}
+		else
+		{
+			AddPositionX(-mVelocityX * deltaTime);
+			AddPositionY(-mVelocityY * deltaTime);
+		}
 	}
 
 	auto camBound = SceneManager::GetInstance().GetScene()->GetCamera()->GetBound();
