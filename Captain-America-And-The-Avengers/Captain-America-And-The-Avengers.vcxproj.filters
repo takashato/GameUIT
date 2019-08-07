@@ -269,6 +269,7 @@
     <ClCompile Include="Missile.cpp">
       <Filter>Entities\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="LightButton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -495,6 +496,9 @@
     </ClInclude>
     <ClInclude Include="Missile.h">
       <Filter>Entities\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="LightButton.h">
+      <Filter>Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

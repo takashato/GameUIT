@@ -15,6 +15,7 @@
 #include "Ground.h"
 #include "MapObjectReader.h"
 #include "Capsule.h"
+#include "LightButton.h"
 
 class CharlestonBossScene : public Scene
 {
@@ -30,12 +31,17 @@ public:
 	
 	MapID GetMapID() { return MapID::CharlestonBoss; }
 
+	void ToggleLight();
+
 	void Transport();
 private:
 	std::unique_ptr<Player> mPlayer;
+	std::unique_ptr<GameMap> mMapDark;
 
 	// Inherited via Scene
 	virtual void OnKeyUp(BYTE key) override;
 	virtual void OnKeyDown(BYTE key) override;
 
+	bool isLightOn = true;
+	float lightInterval = .0f;
 };
