@@ -3,13 +3,12 @@
 #include "FlyRocketEnemy.h"
 #include <cmath>
 
-FlyRocketEnemy::FlyRocketEnemy(D3DXVECTOR3 position, int subTypeID) 
+FlyRocketEnemy::FlyRocketEnemy(D3DXVECTOR3 position) 
 {
-	mSubTypeID = subTypeID;
 	mDirection = Right;
 	LoadAnimations();
 	SetPosition(position);
-	mState = FLYROCKETENEMY_FLY_STATE;
+	mState = FLYROCKETENEMY_IDLE_STATE;
 	SetVelocityX(0.f);
 	SetVelocityY(0.f);
 	//calculate ellipse //Mac dinh truc lon = 180 truc be = 52
@@ -43,14 +42,27 @@ void FlyRocketEnemy::Update(float deltaTime, Player* player)
 
 	mCounter += deltaTime;
 	CheckDirection(player);
-	if (mPosition.x > (mCenterEllipse.x) + 85 && isShootOke == true &&mFlagMove==1) {
+	if (mState == FLYROCKETENEMY_IDLE_STATE)
+	{
+		if (mCounter > 0.9f) {
+			SetState(FLYROCKETENEMY_FLY_STATE);
+			mCounter = 0;
+		}
+	}
+	if (mPosition.x > (mCenterEllipse.x) + 10 && isShootOke == true &&mFlagMove==1) {
 		isShootOke = false;
-		
+		SetState(FLYROCKETENEMY_GUN_STATE);
+		mCounter = 0;
+	}
+	if (mPosition.x < (mCenterEllipse.x) + 30 && isShootOke == true && mFlagMove == -1) {
+		isShootOke = false;
+		SetState(FLYROCKETENEMY_GUN_STATE);
+		mCounter = 0;
 	}
 	if (mState == FLYROCKETENEMY_GUN_STATE)
 	{
 		CheckDirection(player);
-		if (mCounter > 0.9f)
+		if (mCounter > 0.7f)
 		{
 			SetState(FLYROCKETENEMY_FLY_STATE);
 			mCounter = 0;
@@ -133,6 +145,9 @@ void FlyRocketEnemy::ChangeAnimationByState(int state)
 		break;
 	case BOSS_CHARLESTON_DYING_STATE:
 		mCurrentAni = mAniDying;
+		break;
+	case FLYROCKETENEMY_IDLE_STATE:
+		mCurrentAni = mAniFlying;
 		break;
 	}
 }

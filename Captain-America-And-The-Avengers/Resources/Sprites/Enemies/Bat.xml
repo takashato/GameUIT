@@ -2,7 +2,7 @@
 <Animations>
   <Animation name="Cocoon" imagePath="Enemies.png" width="440" height="432">
     <Sprites type="0">
-      <sprite x="116" y="224" w="8" h="16" />
+      <sprite x="108" y="226" w="26" h="16" />
     </Sprites>
   </Animation>
   <Animation name="Swing" imagePath="Enemies.png" width="440" height="432">

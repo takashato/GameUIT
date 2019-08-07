@@ -17,7 +17,7 @@
 class Bat : public Enemy
 {
 public:
-	Bat(D3DXVECTOR3 position);
+	Bat(D3DXVECTOR3 position, int subTypeID);
 	~Bat();
 	void LoadAnimations();
 
@@ -39,7 +39,7 @@ public:
 private:
 	D3DXVECTOR3 mCenter;
 	bool isDown = true;
-	int amplitudeA = 63, amplitudeB = 23;
+	int amplitudeA = 85, amplitudeB = 50;
 	Sprite* mSprite = NULL;
 	AnimationScript* mAniScripts = NULL;
 
@@ -50,5 +50,6 @@ private:
 	int mState = -1;
 
 	float mCounter = 0;
+	int mSubTypeID;
 };
 

@@ -3,19 +3,6 @@
   <Tilemap matrixPath="Resources\\Map\\Matrix_Pittsburgh_Dark_Map.txt" imagePath="Resources\\Map\\Pittsburgh_Dark_Map.png"/>
   <SpawnPoints>
     <SpawnPoint name="Player" x="22" y="151"/>
-    <!--<SpawnPoint name="RunEnemy" x="282" y="880" w="24" h="43" type="1"/>
-		<SpawnPoint name="MissileEnemy" x="550" y="877" w="22" h="46" type="0"/>
-		<SpawnPoint name="GunEnemy" x="232" y="156" w="24" h="43"/>
-		<SpawnPoint name="GunEnemy" x="344" y="156" w="24" h="43"/>
-		<SpawnPoint name="FlyEnemy" x="133" y="732" w="24" h="37"/>
-		<SpawnPoint name="FlyEnemy" x="704" y="36" w="24" h="37"/>
-		<SpawnPoint name="Bat" x="807" y="240" w="23" h="18"/>
-		<SpawnPoint name="Bat" x="907" y="321" w="23" h="18"/>
-		<SpawnPoint name="GunStock" x="257" y="546" w="15" h="15"/>
-		<SpawnPoint name="GunStock" x="22" y="653" w="15" h="15"/>
-		<SpawnPoint name="GunStock" x="391" y="876" w="15" h="15"/>
-		<SpawnPoint name="GunStock" x="391" y="891" w="15" h="15"/>
-		<SpawnPoint name="GunStock" x="565" y="754" w="15" h="15"/>-->
   </SpawnPoints>
   <Transports>
     <Transport nextSceneName="RedAlert_Map" x="981" y="736" w="12" h="192"/>
@@ -23,6 +10,19 @@
     <Transport nextSceneName="Extra_Map2" x="825" y="640" w="23" h="43"/>
   </Transports>
   <MapObjects>
+    <Enemies>
+      <Enemy type="GunEnemy" x="91.0" y="41.0" w="24" h="43" subType="0"/>
+      <Enemy type="GunEnemy" x="230.0" y="153.0" w="24" h="43" subType="0"/>
+      <Enemy type="GunEnemy" x="345.0" y="153.0" w="24" h="43" subType="0"/>
+      <Enemy type="RunEnemy" x="264.0" y="873.0" w="24" h="43" subType="1"/>
+      <Enemy type="MissileEnemy" x="472.0" y="870.0" w="22" h="46" subType="0"/>
+      <Enemy type="FlyEnemy" x="47.0" y="755.0" w="24" h="43"/>
+      <Enemy type="FlyEnemy" x="519.0" y="39.0" w="24" h="43"/>
+      <Enemy type="Bat" x="787.0" y="240.0" w="38" h="16"/>
+      <Enemy type="GunStock" x="366.0" y="874.0" w="15" h="15"/>
+      <Enemy type="GunStock" x="366.0" y="889.0" w="15" h="15"/>
+      <Enemy type="GunStock" x="560.0" y="760.0" w="15" h="15"/>
+    </Enemies>
     <Grounds>
       <Ground type="Hard" name="HardGround" x="0" y="0" w="1024" h="16"/>
       <Ground type="Hard" name="HardGround" x="0" y="924" w="1024" h="16"/>
@@ -86,6 +86,8 @@
       <Ground type="Hard" name="Ground" x="1" y="676" w="31" h="42"/>
       <Ground type="Hard" name="Ground" x="32" y="692" w="31" h="26"/>
       <Ground type="Hard" name="Ground" x="1" y="484" w="61" h="123"/>
+
+      <Ground type="Normal" name="Ground" x="63" y="205" w="100" h="8"/><!--Ground to check-->
 
       <!--<Ground type="Normal" name="Ground" x="160" y="448" w="1216" h="8"/>
 		

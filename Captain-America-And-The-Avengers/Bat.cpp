@@ -3,8 +3,9 @@
 #include "Bat.h"
 #include <cmath>
 
-Bat::Bat(D3DXVECTOR3 position)
+Bat::Bat(D3DXVECTOR3 position, int subTypeID)
 {
+	mSubTypeID = subTypeID;
 	mDirection = Right;
 	LoadAnimations();
 	SetPosition(position);
@@ -41,84 +42,86 @@ void Bat::Update(float deltaTime, Player* player)
 	mCurrentAni->SetFlippedHorizontally(true);
 
 	mCounter += deltaTime;
-	if (mState == BAT_COCOON_SATTE)
-	{
-		isDown = true;
-		if (mCounter > 0.9f)
+	if (mSubTypeID == 0) {
+		if (mState == BAT_COCOON_SATTE)
 		{
-			SetState(BAT_SWING_STATE);
-			mCounter = 0;
-		}
-	}
-	if (mState == BAT_SWING_STATE)
-	{
-		if (!isDown)
-		{
-			if (mCounter > 0.3f)
+			isDown = true;
+			if (mCounter > 0.9f)
 			{
-				SetState(BAT_COCOON_SATTE);
+				SetState(BAT_SWING_STATE);
 				mCounter = 0;
 			}
 		}
-		if (mCurrentAni->IsDoneCycle() && isDown)
+		if (mState == BAT_SWING_STATE)
 		{
-			mCurrentAni->Reset();
-			SetState(BAT_FLY_STATE);
-			mCounter = 0;
-		}
-
-	}
-	if (mState == BAT_FLY_STATE)
-	{
-		if (isDown)
-			mPosition.y++;
-		else mPosition.y--;
-		if (mPosition.y == mCenter.y)
-		{
-			SetState(BAT_FLYWITHSHOCK_STATE);
-			mCounter = 0;
-		}
-		if (mPosition.y == mCenter.y - 15)
-		{
-			SetState(BAT_SWING_STATE);
-			mCounter = 0;
-		}
-	}
-	if (mState == BAT_FLYWITHSHOCK_STATE) {
-		if (mDirection == Right)
-			mPosition.x -= 1.5;
-		else mPosition.x += 1.5;
-		if (mPosition.x < mCenter.x - amplitudeA || mPosition.x>mCenter.x + amplitudeA)
-		{
-			if (mDirection == Left)
-				mDirection = Right;
-			else mDirection = Left;
-
-			if (isDown)
-				mPosition.y += 0.5;
-			else mPosition.y -= 0.5;
+			if (!isDown)
+			{
+				if (mCounter > 0.3f)
+				{
+					SetState(BAT_COCOON_SATTE);
+					mCounter = 0;
+				}
+			}
+			if (mCurrentAni->IsDoneCycle() && isDown)
+			{
+				mCurrentAni->Reset();
+				SetState(BAT_FLY_STATE);
+				mCounter = 0;
+			}
 
 		}
-		else
+		if (mState == BAT_FLY_STATE)
 		{
 			if (isDown)
-				mPosition.y += 0.3;
-			else mPosition.y -= 0.3;
+				mPosition.y++;
+			else mPosition.y--;
+			if (mPosition.y == mCenter.y)
+			{
+				SetState(BAT_FLYWITHSHOCK_STATE);
+				mCounter = 0;
+			}
+			if (mPosition.y == mCenter.y - 15)
+			{
+				SetState(BAT_SWING_STATE);
+				mCounter = 0;
+			}
 		}
-		if ((mPosition.y > mCenter.y + amplitudeB * 2 && mPosition.x < mCenter.x))
-		{
-			if (mPosition.y > mCenter.y + amplitudeB * 2)
-				mPosition.y--;
-			isDown = !isDown;
-		}
-		if ((mPosition.y < mCenter.y) && mPosition.x < mCenter.x)
-		{
-			SetPositionX(mCenter.x);
-			SetPositionY(mCenter.y);
-			SetVelocityX(0.f);
-			SetVelocityY(0.f);
-			SetState(BAT_FLY_STATE);
-			mCounter = 0;
+		if (mState == BAT_FLYWITHSHOCK_STATE) {
+			if (mDirection == Right)
+				mPosition.x -= 1.5;
+			else mPosition.x += 1.5;
+			if (mPosition.x < mCenter.x - amplitudeA || mPosition.x>mCenter.x + amplitudeA)
+			{
+				if (mDirection == Left)
+					mDirection = Right;
+				else mDirection = Left;
+
+				if (isDown)
+					mPosition.y += 0.5;
+				else mPosition.y -= 0.5;
+
+			}
+			else
+			{
+				if (isDown)
+					mPosition.y += 0.3;
+				else mPosition.y -= 0.3;
+			}
+			if ((mPosition.y > mCenter.y + amplitudeB * 2 && mPosition.x < mCenter.x))
+			{
+				if (mPosition.y > mCenter.y + amplitudeB * 2)
+					mPosition.y--;
+				isDown = !isDown;
+			}
+			if ((mPosition.y < mCenter.y) && mPosition.x < mCenter.x)
+			{
+				SetPositionX(mCenter.x);
+				SetPositionY(mCenter.y);
+				SetVelocityX(0.f);
+				SetVelocityY(0.f);
+				SetState(BAT_FLY_STATE);
+				mCounter = 0;
+			}
 		}
 	}
 	mCurrentAni->Update(deltaTime);

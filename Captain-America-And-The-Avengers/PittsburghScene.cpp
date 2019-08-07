@@ -39,30 +39,33 @@ void PittsburghScene::Setup()
 	mCamera->Update(mPlayer->GetCenterPoint());
 
 	// Load Map Object
-	//for (DataEnemy dataEnemy : mData.GetDataEnemy())
-	//{
-	//	switch (dataEnemy.type)
-	//	{
-	///*	case EGunEnemy:
-	//	{
-	//		GunEnemy* enemy = new GunEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType);
-	//		mGrid->Add(enemy);
-	//	}
-	//	break;
-	//	case EMissileEnemy:
-	//		mGrid->Add(new MissileEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType));
-	//		break;
-	//	case ERunEnemy:
-	//		mGrid->Add(new RunEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType));
-	//		break;
-	//	case EGunStockEnemy:
-	//		mGrid->Add(new GunStock(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f)));
-	//		break;*/
-	//	case EBatEnemy:
-	//		mGrid->Add(new (D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType));
-	//		break;
-	//	}
-	//}
+	for (DataEnemy dataEnemy : mData.GetDataEnemy())
+	{
+		switch (dataEnemy.type)
+		{
+		case EGunEnemy:
+		{
+			GunEnemy* enemy = new GunEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType);
+			mGrid->Add(enemy);
+		}
+		break;
+		case EMissileEnemy:
+			mGrid->Add(new MissileEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType));
+			break;
+		case ERunEnemy:
+			mGrid->Add(new RunEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType));
+			break;
+		case EGunStockEnemy:
+			mGrid->Add(new GunStock(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f)));
+			break;
+		case EBatEnemy:
+			mGrid->Add(new Bat(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType));
+			break;
+		case EFlyEnemy:
+			mGrid->Add(new FlyRocketEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f)));
+			break;
+		}
+	}
 	// Ground
 	for (DataGround dataGround : mData.GetDataGround())
 	{
@@ -74,17 +77,21 @@ void PittsburghScene::Setup()
 void PittsburghScene::Update(float deltaTime)
 {
 	mGrid->Update(deltaTime, mCamera->GetBound(), mPlayer.get());
+	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 	std::vector<CollisionEvent*> cEvent;
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->CalcCollision(&mGrid->mTemp, cEvent);
-	mPlayer->OnCollision(cEvent);
+	if (!mPlayer->CheckAABB(mGrid->mTemp)) return;
+	if (!mPlayer->OnCollision(cEvent)) return;
 	mPlayer->Update(deltaTime);
 	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 	cEvent.clear();
 	mPlayer->GetShield()->CalcCollision(&mGrid->mTemp, cEvent);
 	mPlayer->GetShield()->OnCollision(cEvent);
+	//mPlayer->GetShield()->CheckAABB(mGrid->mTemp);
 	mPlayer->GetShield()->Update(deltaTime);
 	mCamera->Update(mPlayer->GetCenterPoint());
+	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 }
 
 void PittsburghScene::Draw()

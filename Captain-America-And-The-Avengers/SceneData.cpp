@@ -96,6 +96,10 @@ void SceneData::ReadData(LPCSTR filePath)
 							eType = EnemyType::EGunEnemy;
 						else if (type == "GunStock")
 							eType = EnemyType::EGunStockEnemy;
+						else if (type == "Bat")
+							eType = EnemyType::EBatEnemy;
+						else if (type == "FlyEnemy")
+							eType = EnemyType::EFlyEnemy;
 						if (eType != EnemyType::EDefaultEnemy)
 						{
 							mDataEnemies.push_back(DataEnemy(

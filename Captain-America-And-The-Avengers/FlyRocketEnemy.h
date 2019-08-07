@@ -6,9 +6,11 @@
 #include "AnimationScript.h"
 #include "Camera.h"
 
+
 #define FLYROCKETENEMY_FLY_STATE 0
 #define FLYROCKETENEMY_GUN_STATE 1
-#define FLYROCKETENEMY_DYING_STATE 0
+#define FLYROCKETENEMY_DYING_STATE 2
+#define FLYROCKETENEMY_IDLE_STATE 3
 
 
 
@@ -16,7 +18,7 @@
 class FlyRocketEnemy : public Enemy
 {
 public:
-	FlyRocketEnemy(D3DXVECTOR3 position, int subTypeID);
+	FlyRocketEnemy(D3DXVECTOR3 position);
 	~FlyRocketEnemy();
 	void LoadAnimations();
 
@@ -49,6 +51,6 @@ private:
 	int mState = -1;
 
 	float mCounter = 0;
-	int mSubTypeID = 0;
+
 };
 
