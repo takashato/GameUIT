@@ -39,6 +39,7 @@ void BossCharleston::LoadAnimations()
 void BossCharleston::Update(float deltaTime, Player* player)
 {
 
+	Entity::Update(deltaTime);
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 
 	mCounter += deltaTime;
