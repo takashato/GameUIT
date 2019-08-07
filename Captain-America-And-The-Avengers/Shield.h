@@ -64,6 +64,7 @@ private:
 	float mCounter = 0;
 	D3DXVECTOR3 throwPos;
 	bool isThrown = false;
+	bool isReturning = false;
 	bool flyDirection = true;  // fly right
 	EntityDirection throwingStateDirection;
 	float maxLengthFly;

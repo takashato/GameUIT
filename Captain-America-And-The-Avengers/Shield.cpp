@@ -52,13 +52,31 @@ void Shield::Update(float deltaTime)
 	}
 	else
 	{
-		float acc = 2222.2125f;
+		//float acc = 2222.2125f;
+		float velocity = 300.0f;
 
 		if (mState != EShieldHigh) SetState(EShieldHigh);
 
 		D3DXVECTOR3 oldPosition = mPosition;
 
-		AddVelocityX((flyDirection ? -1 : 1) * acc * deltaTime);
+		if (isReturning)
+		{
+			SetVelocityX((flyDirection ? -1 : 1) * velocity);
+		}
+		else
+		{
+			if (abs(throwPos.x - mPosition.x) >= 100.0f && !isReturning)
+			{
+				isReturning = true;
+				SetVelocityX((flyDirection ? -1 : 1) * velocity);
+			}
+			else
+			{
+				SetVelocityX(-(flyDirection ? -1 : 1) * velocity);
+			}
+		}
+
+
 		Entity::Update(deltaTime); // Update velocity
 
 		if (flyDirection && GetVelocityX() <= 0.0f || !flyDirection && GetVelocityX() >= 0.0f)
@@ -69,6 +87,7 @@ void Shield::Update(float deltaTime)
 		if (flyDirection && mPosition.x <= mPlayer->GetPosition().x || !flyDirection && mPosition.x >= mPlayer->GetPosition().x)
 		{
 			isThrown = false;
+			isReturning = false;
 			SetPosition(returnPos);
 			SetVelocityX(0.0f);
 			SetVelocityY(0.0f);
@@ -394,13 +413,14 @@ void Shield::SetState(ShieldState state)
 void Shield::Throw()
 {
 	isThrown = true;
+	isReturning = false;
 	flyDirection = mPlayer->GetDirection() == Right;
 	maxLengthFly = 100.0f;
-	SetVelocityX((flyDirection ? 1 : -1) * 666.66f);
+	//SetVelocityX((flyDirection ? 1 : -1) * 666.66f);
 	SetVelocityY(.0f);
+	throwPos = GetReturnPoint();
 	SoundManager::GetInstance().CResetSound(ThrowShield);
 	SoundManager::GetInstance().CPlaySound(ThrowShield);
-	std::cout << "Started throwing shield!!!\n";
 }
 
 void Shield::ChangeAnimationByState(int state)
