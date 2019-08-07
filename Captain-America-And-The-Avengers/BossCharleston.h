@@ -5,7 +5,7 @@
 #include "PlayerStandingState.h" 
 #include "AnimationScript.h"
 #include "Camera.h"
-//Tam thoi
+
 #define BOSS_CHARLESTON_IDLE_STATE 0
 #define BOSS_CHARLESTON_LAUGH_STATE 1
 #define BOSS_CHARLESTON_DYING_STATE 2

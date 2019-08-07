@@ -14,7 +14,7 @@ void SceneManager::Setup()
 	Item::LoadAnimation();
 	mKeyboard = new Keyboard();
 	//mCurrentScene = new CharlestonBossScene();
-	ChangeScene(MapID::Charleston);
+	ChangeScene(MapID::Pittsburgh);
 	//mCurrentScene = new CharlestonScene();
 }
 

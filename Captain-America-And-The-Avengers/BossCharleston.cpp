@@ -43,7 +43,7 @@ void BossCharleston::Update(float deltaTime, Player* player)
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 
 	mCounter += deltaTime;
-	if (player->GetPosition().y < 60 && mPosition.y == 145) {
+	if (player->GetPosition().y <= 57 && mPosition.y == 145) {
 		SetState(BOSS_CHARLESTON_LAUGH_STATE);
 		mCounter = 0;
 	}
