@@ -103,6 +103,11 @@ void Item::SetType(ItemType type)
 	mWidth = mCurrentAni->GetWidth();
 }
 
+ItemType Item::GetType()
+{
+	return mType;
+}
+
 void Item::LoadAnimation()
 {
 	mAniScript = new AnimationScript("Resources\\Sprites\\Item\\Item.xml");

@@ -19,6 +19,7 @@
 #include "PlayerTakeDamage.h"
 #include "PlayerTakeDown.h"
 #include "PlayerHealth.h"
+#include "ExitSignal.h"
 #include "AnimationScript.h"
 #include "Camera.h"
 
@@ -27,6 +28,7 @@ class Shield;
 class Player : public Entity
 {
 	friend class PlayerHealth;
+	friend class ExitSignal;
 public:
 	Player();
 	void LoadAnimations();
@@ -80,6 +82,7 @@ public:
 	Animation* mAniCling = NULL;
 	Animation* mAniDiving = NULL;
 	Animation* mAniHealth = NULL;
+	Animation* mAniExitSignal = NULL;
 
 	bool shouldFall = false;
 
@@ -119,9 +122,10 @@ private:
 	EntityDirection mDirectionUnblock;
 
 	bool mIsCollisionLeftRightSide;
-	bool ExitIsOke;//Chap nhan qua man khi an cuc exit
+	bool mIsCollectKeyCrystal;//Chap nhan qua man khi an cuc exit
 
 	PlayerHealth mHealth;
+	ExitSignal mExitSignal;
 	bool mIsInvincible = false;
 	float mInvincibleCounter = .0f;
 

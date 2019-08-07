@@ -123,4 +123,9 @@
 		<sprite x="216" y="308" w="8" h="8" />
 	</Sprites>
   </Animation>
+  <Animation name="ExitSignal">
+	<Sprites type="0">
+		<sprite x="280" y="304" w="29" h="16" />
+	</Sprites>
+  </Animation>
 </Animations>

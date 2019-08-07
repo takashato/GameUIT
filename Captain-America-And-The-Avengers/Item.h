@@ -20,6 +20,7 @@ public:
 	virtual CollidableObjectType GetCollidableObjectType() override;
 
 	void SetType(ItemType type);
+	ItemType GetType();
 
 	static void LoadAnimation();
 

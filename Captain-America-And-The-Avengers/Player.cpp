@@ -5,10 +5,8 @@
 
 Player::Player() : Entity()
 {	
-	ExitIsOke = true; //Chua xu lí an cuc exit
-
+	mIsCollectKeyCrystal = false;
 	LoadAnimations();
-
 	SetState(EPlayerState::Standing);
 }
 
@@ -37,8 +35,10 @@ void Player::LoadAnimations()
 	mAniDiving = new Animation(mSprite, mAniScripts->GetRectList("Diving", "0"), 0.2F);
 
 	mAniHealth = new Animation(mSprite, mAniScripts->GetRectList("Health", "0"), .1F, false);
-	mHealth.mAni = mAniHealth;
+	mAniExitSignal = new Animation(mSprite, mAniScripts->GetRectList("ExitSignal", "0"), .1F, false);
 
+	mHealth.mAni = mAniHealth;
+	mExitSignal.mAni = mAniExitSignal;
 	mCurrentAni = mAniStanding;
 }
 
@@ -98,7 +98,9 @@ void Player::Draw(D3DXVECTOR2 trans)
 	mCurrentAni->SetBlink(mIsInvincible && mState->GetState() != EPlayerState::TakeDown);
 	if (mCurrentAni != NULL) mCurrentAni->Draw(GetPosition(), trans);
 	this->RenderBoundingBox(trans);
+	mExitSignal.CollectKeyCrystal(mIsCollectKeyCrystal);
 	mHealth.Draw();
+	mExitSignal.Draw();
 }
 
 void Player::HandleKeyboard(Keyboard* keyboard)
@@ -272,6 +274,8 @@ bool Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 		if (cEvent[i]->entity->GetCollidableObjectType() == EItem)
 		{
 			((Item*)cEvent[i]->entity)->Consume(*this);
+			if (((Item*)cEvent[i]->entity)->GetType() == KeyCrystal)
+				mIsCollectKeyCrystal = true;
 			delete cEvent[i];
 			cEvent.erase(cEvent.begin() + i);
 			--i;
