@@ -61,15 +61,11 @@ void BossSmallBullet::Update(float deltaTime)
 	}
 	else
 	{
+		AddPositionX(-mVelocityX * deltaTime);
 		if (mVelocityY == 0.0f)
-		{
-			AddPositionY(-abs(mVelocityX) * deltaTime);
-		}
+			AddPositionY(BULLET_SPEED * deltaTime);
 		else
-		{
-			AddPositionX(-mVelocityX * deltaTime);
 			AddPositionY(-mVelocityY * deltaTime);
-		}
 	}
 
 	auto camBound = SceneManager::GetInstance().GetScene()->GetCamera()->GetBound();
