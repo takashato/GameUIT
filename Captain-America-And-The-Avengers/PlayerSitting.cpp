@@ -44,6 +44,18 @@ void PlayerSitting::OnKeyDown(Player& player, BYTE code)
 	{
 		player.SetState(EPlayerState::LowPunching);
 	}
+	else if (code == VK_LEFT)
+	{
+		if (player.GetDirection() == Right)
+			player.SetDirection(Left);
+			
+	}
+	else if (code == VK_RIGHT)
+	{
+		if (player.GetDirection() == Left)
+			player.SetDirection(Right);
+
+	}
 }
 
 void PlayerSitting::OnKeyUp(Player& player, BYTE code)
