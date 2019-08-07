@@ -32,14 +32,14 @@ void GunEnemy::Update(float deltaTime, Player* player)
 
 	if (playerPosition.x <= gunEnemyPosition.x)
 	{
-		mDirection = Right;
+		mDirection = Left;
 	}
 	else
 	{
-		mDirection = Left;
+		mDirection = Right;
 	}
 
-	mCurrentAni->SetFlippedHorizontally(mDirection == Left);
+	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 	if (mSubTypeID == 0) // Normal
 	{
 		mCounter += deltaTime;
@@ -146,13 +146,13 @@ void GunEnemy::Update(float deltaTime, Player* player)
 			}
 		}
 	}
-	if (mBullet != nullptr) mBullet->Update(deltaTime);
 }
 
 void GunEnemy::Draw(D3DXVECTOR2 transform)
 {
 	if (mCurrentAni != nullptr && mState != -1)
 	{
+		mCurrentAni->SetBlink(mIsInvincible);
 		mCurrentAni->Draw(GetPosition(), transform);
 		this->RenderBoundingBox(transform);
 	}
@@ -170,6 +170,12 @@ int GunEnemy::GetState()
 
 void GunEnemy::SetState(int state)
 {
+	if (state == GUNENEMY_STANDING_STATE && mState == GUNENEMY_SITTING_STATE) // Spawn bullet
+	{
+		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+			new NormalBullet(mPosition, mDirection)
+		);
+	}
 	mState = state;
 	ChangeAnimationByState(mState);
 }
@@ -198,16 +204,6 @@ void GunEnemy::OnSetPosition()
 EnemyType GunEnemy::GetEnemyType()
 {
 	return EnemyType::EGunEnemy;
-}
-
-Bullet* GunEnemy::GetBullet()
-{
-	return mBullet;
-}
-
-void GunEnemy::SetBullet(Bullet* bullet)
-{
-	mBullet = (NormalBullet*)bullet;
 }
 
 void GunEnemy::OnAttacked()
@@ -262,19 +258,5 @@ void GunEnemy::TakeDamage(Entity* source, int hp)
 void GunEnemy::SetInvincible(bool val)
 {
 	Enemy::SetInvincible(val);
-	if (val)
-	{
-		mAniStanding->SetBlink(true);
-		mAniSitting->SetBlink(true);
-		mAniDying->SetBlink(true);
-		std::cout << "Blink on\n";
-	}
-	else
-	{
-		mAniStanding->SetBlink(false);
-		mAniSitting->SetBlink(false);
-		mAniDying->SetBlink(false);
-		std::cout << "Blink off\n";
-	}
 }
 

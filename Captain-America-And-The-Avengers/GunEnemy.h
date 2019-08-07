@@ -30,9 +30,8 @@ public:
 	void OnSetPosition();
 
 	EnemyType GetEnemyType();
-	Bullet* GetBullet();
-	void SetBullet(Bullet* Bullet);
 	void TakeDamage(Entity* source, int hp);
+
 	void OnAttacked();
 	void OnDie();
 
@@ -50,6 +49,5 @@ private:
 	/*Camera* mCamera;*/
 	float mCounter = 0;
 	int mSubTypeID = 0;
-	NormalBullet* mBullet;
 };
 

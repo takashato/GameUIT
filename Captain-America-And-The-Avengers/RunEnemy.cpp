@@ -246,16 +246,6 @@ EnemyType RunEnemy::GetEnemyType()
 	return EnemyType::ERunEnemy;
 }
 
-Bullet* RunEnemy::GetBullet()
-{
-	return mBullet;
-}
-
-void RunEnemy::SetBullet(Bullet* bullet)
-{
-	mBullet = (NormalBullet*)bullet;
-}
-
 void RunEnemy::OnAttacked()
 {
 	if (mCurrentAni == mAniStanding)

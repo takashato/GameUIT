@@ -18,8 +18,6 @@ public:
 	virtual RECT GetBoundingBox();
 	virtual CollidableObjectType GetCollidableObjectType() override;
 	virtual EnemyType GetEnemyType();
-	virtual Bullet* GetBullet();
-	virtual void SetBullet(Bullet* Bullet) = 0;
 
 	virtual void TakeDamage(Entity* source, int hp = 1);
 	virtual void SetInvincible(bool val);
@@ -35,5 +33,4 @@ protected:
 	float mInvincibleCounter = .0f;
 
 	Animation* mCurrentAni = NULL;
-	Bullet* mBullet;
 };

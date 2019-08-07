@@ -171,10 +171,7 @@ EnemyType BossCharleston::GetEnemyType()
 {
 	return EnemyType::EBossCharleston;
 }
-void BossCharleston::SetBullet(Bullet* Bullet)
-{
 
-}
 void BossCharleston::ModeOne(float deltaTime, Player* player)
 {
 	if (mState == BOSS_CHARLESTON_IDLE_STATE && mCounter > 0.9f)
@@ -375,10 +372,7 @@ void BossCharleston::ModeTwo(float deltaTime, Player* player)
 	}
 
 }
-Bullet* BossCharleston::GetBullet()
-{
-	return mBullet;
-}
+
 void BossCharleston::CheckDirection(Player* player)
 {
 	if (player->GetPosition().x > mPosition.x + 20 && mDirection == Left)

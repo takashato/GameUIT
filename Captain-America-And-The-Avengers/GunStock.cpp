@@ -72,7 +72,6 @@ void GunStock::Update(float deltaTime, Player* player)
 		}
 	}
 	if (mCurrentAni != nullptr) mCurrentAni->Update(deltaTime);
-	if (mBullet != nullptr) mBullet->Update(deltaTime);
 }
 
 void GunStock::Draw(D3DXVECTOR2 transform)
@@ -144,17 +143,6 @@ EnemyType GunStock::GetEnemyType()
 {
 	return EnemyType::EGunStockEnemy;
 }
-
-Bullet* GunStock::GetBullet()
-{
-	return mBullet;
-}
-
-void GunStock::SetBullet(Bullet* bullet)
-{
-	mBullet = (NormalBullet*)bullet;
-}
-
 
 void GunStock::BeAttacked()
 {

@@ -30,8 +30,6 @@ public:
 	void OnSetPosition();
 
 	EnemyType GetEnemyType();
-	Bullet* GetBullet();
-	void SetBullet(Bullet* Bullet);
 
 	void OnAttacked();
 	void OnDie();

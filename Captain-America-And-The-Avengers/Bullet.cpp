@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Bullet.h"
 
+Sprite* Bullet::mSprite = NULL;
+
 Bullet::Bullet()
 {
 }

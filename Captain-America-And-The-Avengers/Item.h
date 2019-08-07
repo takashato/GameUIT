@@ -5,6 +5,8 @@
 
 class Item : public Entity
 {
+	friend class Grid;
+
 public:
 	Item(ItemType type, D3DXVECTOR3 position);
 	~Item() = default;
@@ -29,4 +31,6 @@ private:
 	static AnimationScript* mAniScript;
 	static Sprite* mSprite;
 	static Animation *mAniFivePoint, *mAniHeartEnergy, *mAniKeyCrystal, *mAniOneUp, *mAniPowerStone;
+
+	int mState = -1;
 };

@@ -16,7 +16,7 @@ class Bullet;
 class NormalBullet : public Bullet
 {
 public:
-	NormalBullet(Enemy* Enemy);
+	NormalBullet(D3DXVECTOR3 position, int flyDirection);
 	~NormalBullet();
 	void LoadAnimations();
 
@@ -35,10 +35,13 @@ private:
 	Sprite* mSprite = NULL;
 	AnimationScript* mAniScripts = NULL;
 	Animation* mAniFlying = NULL;
-	int mState = -1;
+
 	float mCounter = 0;
 	bool isFired = true;
-	GunEnemy* mGunEnemy = NULL;
-	RunEnemy* mRunEnemy = NULL;
+
+	int mFlyDirection = 0;
+
+	static constexpr auto BULLET_SPEED = 150.0f;
+	static constexpr auto DELTA_CAM_TO_DESTROY = 10.0f;
 };
 

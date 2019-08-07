@@ -46,11 +46,6 @@ EnemyType Enemy::GetEnemyType()
 	return EDefaultEnemy;
 }
 
-Bullet* Enemy::GetBullet()
-{
-	return mBullet;
-}
-
 void Enemy::TakeDamage(Entity* source, int hp)
 {
 	if (!mIsInvincible) // Can take damage!

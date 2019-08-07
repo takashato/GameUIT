@@ -39,9 +39,6 @@ public:
 
 	EnemyType GetEnemyType();
 
-	void SetBullet(Bullet* Bullet);
-	Bullet* GetBullet();
-
 	void CheckDirection(Player* player);
 
 

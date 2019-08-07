@@ -61,8 +61,7 @@ void Item::Consume(Player& player)
 	if (mType == ItemType::KeyCrystal) sound = SoundType::ItemKeyKrystal;
 	else if (mType == ItemType::HeartEnergy) sound = SoundType::ItemEnery;
 	SoundManager::GetInstance().CPlaySound(sound);
-	mGridNode->Remove(this);
-	delete this;
+	mState = 1; // Set to pending delete
 }
 
 RECT Item::GetBoundingBox()

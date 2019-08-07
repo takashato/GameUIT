@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Game.h"
+#include "Item.h"
 #include "Grid.h"
 
 Grid::Grid(int totalWidth, int totalHeight)
@@ -41,14 +42,45 @@ void Grid::Update(float deltaTime, RECT rect, Player* player)
 {
 	mTemp.clear();
 	GetEntities(rect, mTemp);
+	std::vector<Entity*> toDelete;
 	for (Entity* entity : mTemp)
 	{
-		if (entity->GetCollidableObjectType() == EEnemy)
+		auto type = entity->GetCollidableObjectType();
+		if (type == EEnemy)
 		{
 			((Enemy*)entity)->Update(deltaTime, player);
 		}
 		else
+		{
 			entity->Update(deltaTime);
+		}
+
+		// Check destroy
+		if (type == EBullet)
+		{
+			auto bullet = (Bullet*)entity;
+			if (bullet->GetBulletType() == BulletType::BNormalBullet)
+			{
+				if (bullet->mState == 1) // is pending delete
+				{
+					toDelete.emplace_back(entity);
+				}
+			}
+		}
+		else if (type == EItem)
+		{
+			if (((Item*)entity)->mState == 1)
+			{
+				toDelete.emplace_back(entity);
+			}
+		}
+	}
+
+	for (auto entity : toDelete)
+	{
+		entity->GetGridNode()->Remove(entity);
+		delete entity;
+		mTemp.erase(entity);
 	}
 }
 

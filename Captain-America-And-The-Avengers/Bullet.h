@@ -14,6 +14,8 @@ enum BulletType
 
 class Bullet : public Entity
 {
+	friend class Grid;
+
 public:
 	Bullet();
 	~Bullet();
@@ -30,9 +32,11 @@ public:
 	void HitShield();
 
 protected:
-	Animation* mCurrentAni = NULL;
+	static Sprite* mSprite;
 
-	int mFlyDirection = 0;
+	int mState = -1;
+
+	Animation* mCurrentAni = NULL;
 
 	bool mIsHitShield = false;
 };

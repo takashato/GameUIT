@@ -55,7 +55,6 @@ void CharlestonScene::Setup()
 		case EGunEnemy:
 		{
 			GunEnemy* enemy = new GunEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType);
-			enemy->SetBullet(new NormalBullet(enemy));
 			mGrid->Add(enemy);
 		}
 			break;
