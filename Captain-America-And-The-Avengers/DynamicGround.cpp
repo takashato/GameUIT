@@ -88,32 +88,39 @@ void DynamicGround::Update(float deltaTime)
 	}
 	else if (mSubTypeID == 2)
 	{
-		if (GetDirection() == Left)
-		{
-			/*SetVelocityX(GetDirection()*FLY_SPEED);
-			AddPositionX(GetVelocityX() * deltaTime);*/
-			AddPositionX(GetDirection()*0.5);
-			D3DXVECTOR3 dynamicPosition = this->GetPosition();
+		//if (GetDirection() == Left)
+		//{
+		//	/*SetVelocityX(GetDirection()*FLY_SPEED);
+		//	AddPositionX(GetVelocityX() * deltaTime);*/
+		//	AddPositionX(GetDirection()*0.5);
+		//	D3DXVECTOR3 dynamicPosition = this->GetPosition();
 
-			float y;
-			y = sqrt(50 * 50 - (dynamicPosition.x - center.x)*(dynamicPosition.x - center.x)) + center.y;
-			SetPositionY(y);
-		}
-		if (GetDirection() == Right)
-		{
-			/*SetVelocityX(GetDirection()*FLY_SPEED);
-			AddPositionX(GetVelocityX() * deltaTime);*/
-			AddPositionX(GetDirection()*0.5);
-			D3DXVECTOR3 dynamicPosition = this->GetPosition();
+		//	float y;
+		//	y = sqrt(50 * 50 - (dynamicPosition.x - center.x)*(dynamicPosition.x - center.x)) + center.y;
+		//	SetPositionY(y);
+		//}
+		//if (GetDirection() == Right)
+		//{
+		//	/*SetVelocityX(GetDirection()*FLY_SPEED);
+		//	AddPositionX(GetVelocityX() * deltaTime);*/
+		//	AddPositionX(GetDirection()*0.5);
+		//	D3DXVECTOR3 dynamicPosition = this->GetPosition();
 
-			float y;
-			y = -sqrt(50 * 50 - (dynamicPosition.x - center.x)*(dynamicPosition.x - center.x)) + center.y;
-			SetPositionY(y);
-		}
+		//	float y;
+		//	y = -sqrt(50 * 50 - (dynamicPosition.x - center.x)*(dynamicPosition.x - center.x)) + center.y;
+		//	SetPositionY(y);
+		//}
 
-		D3DXVECTOR3 dynamicGroundPosition = this->GetPosition();
-		if (dynamicGroundPosition.x == 100  || dynamicGroundPosition.x == 200)
-			SetDirection(GetDirection() == Left ? Right : Left);
+		//D3DXVECTOR3 dynamicGroundPosition = this->GetPosition();
+		//if (dynamicGroundPosition.x == 100  || dynamicGroundPosition.x == 200)
+		//	SetDirection(GetDirection() == Left ? Right : Left);
+
+		mCounter += deltaTime;
+
+		mPosition.x = 200.0f + 30.0f * cos(omega * mCounter);
+		mPosition.y = 390.0f - 30.0f * omega * sin(omega * mCounter);
+		mPosition.z = 0.f;
+		SetPosition(mPosition);
 	}
 
 
