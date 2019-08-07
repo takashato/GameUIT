@@ -295,7 +295,7 @@ bool Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 		else if (cEvent[i]->entity->GetCollidableObjectType() == EBullet)
 		{
 			auto bullet = (Bullet*)cEvent[i]->entity;
-			if (bullet->GetBulletType() == BulletType::BNormalBullet)
+			if (bullet->GetBulletType() == BulletType::BNormalBullet || bullet->GetBulletType() == BulletType::BBossNormalBullet)
 			{
 				this->TakeDamage(1);
 				bullet->SetState(1); // Pending remove

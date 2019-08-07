@@ -322,7 +322,9 @@ bool Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 		}
 		else if (ce->entity->GetCollidableObjectType() == EBullet)
 		{
-			if (mState == ShieldState::EShieldRun && (((Bullet*)ce->entity)->GetBulletType() == BNormalBullet))
+			if (mState == ShieldState::EShieldRun && (
+				( ((Bullet*)ce->entity)->GetBulletType() == BNormalBullet)
+				|| ((Bullet*)ce->entity)->GetBulletType() == BulletType::BBossNormalBullet))
 			{
 				if (GetDirection() == Right && ce->nx == -1.0f || GetDirection() == Left && ce->nx == 1.0f)
 				{

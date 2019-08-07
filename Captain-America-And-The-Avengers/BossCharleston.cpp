@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Game.h"
+#include "BossSmallBullet.h"
 #include "BossCharleston.h"
 
 BossCharleston::BossCharleston(D3DXVECTOR3 position)
@@ -38,6 +39,7 @@ void BossCharleston::LoadAnimations()
 
 void BossCharleston::Update(float deltaTime, Player* player)
 {
+	playerPos = player->GetPosition();
 
 	Entity::Update(deltaTime);
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
@@ -111,6 +113,17 @@ int BossCharleston::GetState()
 
 void BossCharleston::SetState(int state)
 {
+	if (state == BOSS_CHARLESTON_GUN_STATE)
+	{
+		auto pos = mPosition;
+		auto bb = GetBoundingBox();
+		pos.y += 17;
+		if (mDirection == Left) pos.x = bb.left;
+		else pos.x = bb.right;
+		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+			new BossSmallBullet(pos, mDirection, playerPos.y < mPosition.y ? -1 : 0)
+		);
+	}
 	mState = state;
 	ChangeAnimationByState(mState);
 }
