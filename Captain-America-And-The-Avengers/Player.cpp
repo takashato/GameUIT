@@ -349,7 +349,14 @@ bool Player::CheckAABB(std::set<Entity*> &entities)
 						capsule->Drop();
 						continue;
 					}
-					// TODO button
+					else if (auto button = dynamic_cast<LightButton*>(entity))
+					{
+						if (auto scene = dynamic_cast<CharlestonBossScene*>(SceneManager::GetInstance().GetScene()))
+						{
+							scene->ToggleLight();
+						}
+						continue;
+					}
 				}
 			}
 

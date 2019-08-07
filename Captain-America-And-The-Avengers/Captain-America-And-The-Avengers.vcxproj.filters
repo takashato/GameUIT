@@ -269,6 +269,7 @@
     <ClCompile Include="FlyRocketEnemy.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="LightButton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -495,6 +496,8 @@
     </ClInclude>
     <ClInclude Include="FlyRocketEnemy.h">
       <Filter>Entities\Enemies</Filter>
+    <ClInclude Include="LightButton.h">
+      <Filter>Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

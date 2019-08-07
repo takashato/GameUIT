@@ -30,6 +30,9 @@ void CharlestonBossScene::Setup()
 	mMap->SetCamera(mCamera.get());
 	mCamera->SetWorldBoundary(mMap->GetBoundary());
 
+	mMapDark = std::make_unique<GameMap>(ID_MAP_CHARLESTON_BOSS_DARK, L"Resources\\Map\\Chaleston_MapBoss_Dark.png", L"Resources\\Map\\Matrix_Chaleston_MapBoss.txt");
+	mMapDark->SetCamera(mCamera.get());
+
 	// Create grid
 	mGrid = std::make_unique<Grid>(mMap->GetWidth(), mMap->GetHeight());
 
@@ -50,10 +53,16 @@ void CharlestonBossScene::Setup()
 	// Boss
 	mGrid->Add(new BossCharleston(D3DXVECTOR3(189.0f, 145.0f, .0f)));
 
+	// Button
+	mGrid->Add(new LightButton(D3DXVECTOR3(16.0f, 128.0f, .0f)));
+	mGrid->Add(new LightButton(D3DXVECTOR3(80.0f, 64.0f, .0f)));
+	mGrid->Add(new LightButton(D3DXVECTOR3(176.0f, 96.0f, .0f)));
 }
 
 void CharlestonBossScene::Update(float deltaTime)
 {
+	lightInterval += deltaTime;
+
 	mGrid->Update(deltaTime, mCamera->GetBound(), mPlayer.get());
 	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 	std::vector<CollisionEvent*> cEvent;
@@ -75,7 +84,10 @@ void CharlestonBossScene::Update(float deltaTime)
 void CharlestonBossScene::Draw()
 {
 	auto trans = mCamera->GetTransform();
-	mMap->Draw(trans);
+	if (isLightOn)
+		mMap->Draw(trans);
+	else
+		mMapDark->Draw(trans);
 	mGrid->Draw(trans);
 	mPlayer->Draw(trans);
 	mPlayer->GetShield()->Draw(trans);
@@ -84,6 +96,15 @@ void CharlestonBossScene::Draw()
 SoundType CharlestonBossScene::GetBgMusic()
 {
 	return SoundType::BossBattle;
+}
+
+void CharlestonBossScene::ToggleLight()
+{
+	if (lightInterval >= .5f)
+	{
+		lightInterval = .0f;
+		isLightOn = !isLightOn;
+	}
 }
 
 void CharlestonBossScene::Transport()

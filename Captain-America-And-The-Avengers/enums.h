@@ -38,7 +38,8 @@ enum CollidableObjectType
 	EItem,
 	EExplosion,
 	ETransportArea,
-	EDoor
+	EDoor,
+	EButton
 };
 
 enum ItemType
