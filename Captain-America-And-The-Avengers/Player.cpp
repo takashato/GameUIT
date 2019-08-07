@@ -309,6 +309,27 @@ bool Player::CheckAABB(std::set<Entity*> &entities)
 		auto ebb = entity->GetBoundingBox();
 		if (GeoUtils::IsIntersect(pbb, ebb))
 		{
+			if (mState->GetState() == EPlayerState::Kicking
+				|| mState->GetState() == EPlayerState::LowPunching
+				|| mState->GetState() == EPlayerState::Punching)
+			{
+				if (mDirection == Right && ebb.left > pbb.left
+					|| mDirection == Left && ebb.right < pbb.right)
+				{
+					if (auto enemy = dynamic_cast<Enemy*>(entity))
+					{
+						enemy->TakeDamage(this, 1);
+						continue;
+					}
+					else if (auto capsule = dynamic_cast<Capsule*>(entity))
+					{
+						capsule->Drop();
+						continue;
+					}
+					// TODO button
+				}
+			}
+
 			if (auto enemy = dynamic_cast<Enemy*>(entity))
 			{
 				if (mState->GetState() != EPlayerState::Surfing
