@@ -98,7 +98,7 @@ void Player::Draw(D3DXVECTOR2 trans)
 	mCurrentAni->SetBlink(mIsInvincible && mState->GetState() != EPlayerState::TakeDown);
 	if (mCurrentAni != NULL) mCurrentAni->Draw(GetPosition(), trans);
 	this->RenderBoundingBox(trans);
-	mExitSignal.CollectKeyCrystal(mIsCollectKeyCrystal);
+	mExitSignal.CollectKeyCrystal(canTransport);
 	mHealth.Draw();
 	mExitSignal.Draw();
 }
@@ -274,11 +274,6 @@ bool Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 		if (cEvent[i]->entity->GetCollidableObjectType() == EItem)
 		{
 			((Item*)cEvent[i]->entity)->Consume(*this);
-			if (((Item*)cEvent[i]->entity)->GetType() == KeyCrystal)
-				mIsCollectKeyCrystal = true;
-			delete cEvent[i];
-			cEvent.erase(cEvent.begin() + i);
-			--i;
 		}
 		else if (cEvent[i]->entity->GetCollidableObjectType() == EBullet)
 		{
