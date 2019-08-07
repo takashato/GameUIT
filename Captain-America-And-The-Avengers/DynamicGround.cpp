@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "DynamicGround.h"
 
-DynamicGround::DynamicGround(D3DXVECTOR3 position, int subTypeID)
+DynamicGround::DynamicGround(D3DXVECTOR3 position, int subTypeID) : Ground(position)
 {
 	LoadAnimations();
 	mSubTypeID = subTypeID;

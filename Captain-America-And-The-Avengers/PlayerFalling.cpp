@@ -2,6 +2,7 @@
 #include "PlayerFalling.h"
 #include "Player.h"
 #include "Ground.h"
+#include "BreakGround.h"
 
 void PlayerFalling::Enter(Player& player, EPlayerState fromState, Data&& data)
 {
@@ -103,11 +104,17 @@ void PlayerFalling::OnCollision(Player& player, std::vector<CollisionEvent*>& cE
 				else
 				{
 					player.jumpThrough = false;
-					if (((Ground*)ce->entity)->GetGroundType() == EGroundNormal)
+					if (((Ground*)ce->entity)->GetGroundType() == EGroundNormal || (((Ground*)ce->entity)->GetGroundType() == EGroundDynamic)
+						|| (((Ground*)ce->entity)->GetGroundType() == EGroundBreak))
 					{
 						player.skipGround = ce->entity;
 					}
 				}
+			}
+
+			if (((Ground*)ce->entity)->GetGroundType() == EGroundBreak)
+			{
+				((BreakGround*)ce->entity)->isCollidedWithPlayer = true;
 			}
 
 			if (((Ground*)ce->entity)->GetGroundType() == EGroundHard)

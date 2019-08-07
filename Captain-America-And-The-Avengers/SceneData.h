@@ -1,24 +1,16 @@
 #pragma once
 #include "MapReader/tinyxml2.h"
 
-struct DataDynamicGround {
-	int x, y, subType;
-	DataDynamicGround(int x, int y, int subType) {
-		this->x = x;
-		this->y = y;
-		this->subType = subType;
-	}
-};
-
 struct DataGround {
 	GroundType type;
-	int x, y, w, h;
-	DataGround(GroundType type, int x, int y, int w, int h) {
+	int x, y, w, h, subType;
+	DataGround(GroundType type, int x, int y, int w, int h, int subType) {
 		this->type = type;
 		this->x = x;
 		this->y = y;
 		this->w = w;
 		this->h = h;
+		this->subType = subType;
 	};
 };
 
@@ -60,7 +52,6 @@ public:
 	std::list<DataGround>& GetDataGround() { return mDataGrounds; };
 	std::list<DataEnemy>& GetDataEnemy() { return mDataEnemies; };
 	std::list<DataCapsule>& GetDataCapsule() { return mDataCapsules; };
-	std::list<DataDynamicGround>& GetDataDynamicGround() { return mDataDynamicGrounds; };
 
 private:
 	tinyxml2::XMLNode* pRoot = nullptr;
@@ -71,5 +62,4 @@ private:
 	std::list<DataGround> mDataGrounds;
 	std::list<DataEnemy> mDataEnemies;
 	std::list<DataCapsule> mDataCapsules;
-	std::list<DataDynamicGround> mDataDynamicGrounds;
 };

@@ -22,8 +22,8 @@ public:
 
 	RECT GetBoundingBox();
 	CollidableObjectType GetCollidableObjectType();
-
-private:
+	bool isCollidedWithPlayer = false;
+protected:
 	int mState = -1;
 	GroundType mGroundType;
 };

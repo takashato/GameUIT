@@ -71,12 +71,21 @@ void SceneData::ReadData(LPCSTR filePath)
 						{
 							gType = GroundType::EGroundWater;
 						}
+						else if (type == "Dynamic")
+						{
+							gType = GroundType::EGroundDynamic;
+						}
+						else if (type == "Break")
+						{
+							gType = GroundType::EGroundBreak;
+						}
 						mDataGrounds.push_back(DataGround(
 							gType, 
 							groundNode->IntAttribute("x"),
 							groundNode->IntAttribute("y"),
 							groundNode->IntAttribute("w"),
-							groundNode->IntAttribute("h")
+							groundNode->IntAttribute("h"),
+							groundNode->IntAttribute("subType")
 						));
 						groundNode = groundNode->NextSiblingElement();
 					}
@@ -140,19 +149,6 @@ void SceneData::ReadData(LPCSTR filePath)
 						}
 						mDataCapsules.push_back(DataCapsule(x, y, std::move(itemList)));
 						capsuleNode = capsuleNode->NextSiblingElement();
-					}
-				}
-				else if (subName == "DynamicGrounds")
-				{
-					auto dynamicGroundNode = subNode->FirstChildElement();
-					while (dynamicGroundNode != nullptr)
-					{
-						mDataDynamicGrounds.push_back(DataDynamicGround(
-							dynamicGroundNode->IntAttribute("x"),
-							dynamicGroundNode->IntAttribute("y"),
-							dynamicGroundNode->IntAttribute("subType")
-						));
-						dynamicGroundNode = dynamicGroundNode->NextSiblingElement();
 					}
 				}
 				subNode = subNode->NextSiblingElement();

@@ -165,6 +165,7 @@
     <ClCompile Include="BossCharleston.cpp" />
     <ClCompile Include="BossSmallBullet.cpp" />
     <ClCompile Include="BossVipBullet.cpp" />
+    <ClCompile Include="BreakGround.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Capsule.cpp" />
@@ -242,6 +243,7 @@
     <ClInclude Include="BossCharleston.h" />
     <ClInclude Include="BossSmallBullet.h" />
     <ClInclude Include="BossVipBullet.h" />
+    <ClInclude Include="BreakGround.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Capsule.h" />
