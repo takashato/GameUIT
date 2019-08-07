@@ -90,6 +90,7 @@ SoundType CharlestonBossScene::GetBgMusic()
 {
 	return SoundType::BossBattle;
 }
+
 void CharlestonBossScene::Transport()
 {
 	if (HasBgMusic())
@@ -98,6 +99,7 @@ void CharlestonBossScene::Transport()
 	}
 	SceneManager::GetInstance().ChangeScene(MapID::Pittsburgh);
 }
+
 void CharlestonBossScene::OnKeyUp(BYTE key)
 {
 	mPlayer->OnKeyUp(key);

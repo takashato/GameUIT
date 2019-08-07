@@ -14,7 +14,7 @@ void SceneManager::Setup()
 	Item::LoadAnimation();
 	mKeyboard = new Keyboard();
 	//mCurrentScene = new CharlestonBossScene();
-	ChangeScene(MapID::Pittsburgh);
+	ChangeScene(MapID::Charleston);
 	//mCurrentScene = new CharlestonScene();
 }
 
@@ -46,6 +46,9 @@ void SceneManager::OnKeyDown(BYTE key)
 	{
 	case KEY_TOGGLE_DEBUG: // KEY D for debug
 		Entity::shouldRenderBoundingBox = !Entity::shouldRenderBoundingBox;
+		break;
+	case (BYTE)'Q':
+		mCurrentScene->Transport();
 		break;
 	}
 	mCurrentScene->OnKeyDown(key);
