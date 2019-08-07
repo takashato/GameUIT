@@ -17,7 +17,7 @@
 #define BOSS_CHARLESTON_PLY_STATE 8
 #define BOSS_CHARLESTON_PLYGUN_STATE 9
 #define BOSS_CHARLESTON_JUMP_STATE 10
-
+#define BOSS_CHARLESTON_TURN_OFF_THE_LIGHT_STATE 11
 
 
 class BossCharleston : public Enemy
@@ -45,6 +45,7 @@ public:
 	void ModeOne(float deltaTime, Player* player);//Run and Hit
 	void ModeTwo(float deltaTime, Player* player);//Fly and Shot when fly
 	void ModeThree(float deltaTime, Player* player);//Jump
+	void ModeFour(float deltaTime, Player* player);//Turn off the light
 	int mNumChangeMode = 1;
 	int mCountMisc = 0;
 
@@ -56,6 +57,9 @@ public:
 	//Logic for Jump
 	bool mIsJump = true;
 	bool mIsFalling = false;
+	
+	//Logic for light
+	bool mChangeLight = false;
 
 private:
 	Sprite* mSprite = NULL;
@@ -71,6 +75,7 @@ private:
 	Animation* mAniHit = NULL;
 	Animation* mAniFly = NULL;
 	Animation* mAniFlyGun = NULL;
+	Animation* mAniTurnOffTheLight = NULL;
 	int mState = -1;
 
 	float mCounter = 0;

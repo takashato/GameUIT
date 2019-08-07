@@ -47,6 +47,11 @@
       <sprite x="243" y="69" w="36" h="51" />
     </Sprites>
   </Animation>
+  <Animation name="TurnOffTheLight" imagePath="Boss_Wizard.png" width="312" height="232">
+    <Sprites type="0">
+      <sprite x="203" y="69" w="36" h="51" />
+    </Sprites>
+  </Animation>
   <Animation name="Fly" imagePath="Boss_Wizard.png" width="312" height="232">
     <Sprites type="0">
       <sprite x="48" y="130" w="29" h="51" />

@@ -29,11 +29,12 @@ void BossCharleston::LoadAnimations()
 	mAniDying = new Animation(mSprite, mAniScripts->GetRectList("Dying", "0"), 0.1F);
 	mAniLaugh = new Animation(mSprite, mAniScripts->GetRectList("Laugh", "0"), 0.1F);
 	mAniBeHit = new Animation(mSprite, mAniScripts->GetRectList("BeHit", "0"), 0.1F);
-	mAniGun = new Animation(mSprite, mAniScripts->GetRectList("Gun", "0"), 0.2F, false);
+	mAniGun = new Animation(mSprite, mAniScripts->GetRectList("Gun", "0"), 0.3F, false);
 	mAniKamehameha = new Animation(mSprite, mAniScripts->GetRectList("Kamehameha", "0"), 0.15F);
-	mAniHit = new Animation(mSprite, mAniScripts->GetRectList("Hit", "0"), 0.1F);
+	mAniHit = new Animation(mSprite, mAniScripts->GetRectList("Hit", "0"), 0.2F);
 	mAniFly = new Animation(mSprite, mAniScripts->GetRectList("Fly", "0"), 0.1F);
 	mAniFlyGun = new Animation(mSprite, mAniScripts->GetRectList("FlyGun", "0"), 0.1F, false);
+	mAniTurnOffTheLight = new Animation(mSprite, mAniScripts->GetRectList("TurnOffTheLight", "0"), 0.2F);
 
 	mCurrentAni = mAniStanding;
 }
@@ -46,6 +47,30 @@ void BossCharleston::Update(float deltaTime, Player* player)
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 
 	mCounter += deltaTime;
+	if (mPosition.y == 145 && player->GetPosition().x > mPosition.x - 5 && player->GetPosition().x < mPosition.x + 28 && player->GetPosition().y>145)
+	{
+		SetState(BOSS_CHARLESTON_HIT_STATE);
+		mCounter = 0;
+	}
+	if (mState == BOSS_CHARLESTON_HIT_STATE)
+	{
+		CheckDirection(player);
+		if (mCurrentAni->IsDoneCycle())
+		{
+			mCurrentAni->Reset();
+			if (mChangeLight)
+			{
+				if (auto scene = dynamic_cast<CharlestonBossScene*>(SceneManager::GetInstance().GetScene()))
+				{
+					scene->ToggleLight();
+				}
+				mChangeLight = false;
+			}
+			SetState(BOSS_CHARLESTON_IDLE_STATE);
+			mCounter = 0;
+		}
+
+	}
 	if (player->GetPosition().y <= 57 && mPosition.y == 145) {
 		SetState(BOSS_CHARLESTON_LAUGH_STATE);
 		mCounter = 0;
@@ -59,37 +84,46 @@ void BossCharleston::Update(float deltaTime, Player* player)
 		}
 
 	}
-		if (BOSS_CHARLESTON_IDLE_STATE)
-		{
-			SetVelocityX(0.f);
-			SetVelocityY(0.f);
-		}
-		switch (mNumChangeMode)
-		{
-		case 1:
-			ModeOne(deltaTime, player);
-			break;
-		case 2:
-			ModeTwo(deltaTime, player);
-			break;
-		case 3:
-			ModeThree(deltaTime, player);
-			break;
-		default:
-			break;
-		}
-		if (mCountMisc == 2)
-		{
-			if (mNumChangeMode == 1)
-				mNumChangeMode = 2;
-			else if(mNumChangeMode==2)
-				mNumChangeMode = 3;
-			else mNumChangeMode = 1;
-			mCountMisc = 0;
-			SetState(BOSS_CHARLESTON_IDLE_STATE);
-			mCounter = 0;
-		}
+	if (BOSS_CHARLESTON_IDLE_STATE)
+	{
+		SetVelocityX(0.f);
+		SetVelocityY(0.f);
+	}
 
+	switch (mNumChangeMode)
+	{
+	case 1:
+		ModeOne(deltaTime, player);
+		break;
+	case 2:
+		ModeTwo(deltaTime, player);
+		break;
+	case 3:
+		ModeThree(deltaTime, player);
+		break;
+	case 4:
+		ModeFour(deltaTime, player);//
+	default:
+		break;
+	}
+	if (mCountMisc == 2)
+	{
+		if (mNumChangeMode == 1)
+			mNumChangeMode = 2;
+		else if (mNumChangeMode == 2)
+			mNumChangeMode = 3;
+		else if (mNumChangeMode == 3)
+			mNumChangeMode = 4;
+		else mNumChangeMode = 1;
+		mCountMisc = 0;
+		if (mNumChangeMode == 4)
+		{
+			if (mPosition.x < 96 || mDirection == Right)
+				mNumChangeMode = 3;
+		}
+		SetState(BOSS_CHARLESTON_IDLE_STATE);
+		mCounter = 0;
+	}
 	mCurrentAni->Update(deltaTime);
 }
 
@@ -199,13 +233,21 @@ void BossCharleston::ChangeAnimationByState(int state)
 		mCurrentAni = mAniFlyGun;
 		break;
 	case BOSS_CHARLESTON_PLY_STATE:
+		mFlyUp = true;
+		mFlyDown = false;
+		mFlyHorizontal = false;
 		mCurrentAni = mAniFly;
 		break;
+	case BOSS_CHARLESTON_TURN_OFF_THE_LIGHT_STATE:
+		SetVelocityX(0.f);
+		SetVelocityY(0.f);
+		mCurrentAni = mAniHit;
 	case BOSS_CHARLESTON_JUMP_STATE:
 		mCurrentAni = mAniFly;
-		bool mIsJump = true;
-		bool mIsFalling = false;
+		mIsJump = true;
+		mIsFalling = false;
 		break;
+
 	}
 }
 
@@ -234,20 +276,20 @@ void BossCharleston::ModeOne(float deltaTime, Player* player)
 	{
 		if (mDirection == EntityDirection::Left)
 		{
-			if (mVelocityX > -PLAYER_VELOCITY_X_MAX)
+			if (mVelocityX > -60)
 			{
-				AddVelocityX(-50);
-				if (mVelocityX < -PLAYER_VELOCITY_X_MAX)
-					SetVelocityX(-PLAYER_VELOCITY_X_MAX);
+				AddVelocityX(-20);
+				if (mVelocityX < -60)
+					SetVelocityX(-60);
 			}
 		}
 		else
 		{
-			if (mVelocityX < PLAYER_VELOCITY_X_MAX)
+			if (mVelocityX < 60)
 			{
-				AddVelocityX(50);
-				if (mVelocityX > PLAYER_VELOCITY_X_MAX)
-					SetVelocityX(PLAYER_VELOCITY_X_MAX);
+				AddVelocityX(20);
+				if (mVelocityX > 60)
+					SetVelocityX(60);
 			}
 		}
 	}
@@ -532,6 +574,117 @@ void BossCharleston::ModeThree(float deltaTime, Player* player)
 				mDirection = Left;
 			}
 		}
+	}
+}
+void BossCharleston::ModeFour(float deltaTime, Player* player)
+{
+	
+	if (mState == BOSS_CHARLESTON_PLY_STATE)
+	{
+		if (mFlyHorizontal)
+		{
+			if (mDirection == EntityDirection::Left)
+			{
+
+				if (mVelocityX > -PLAYER_VELOCITY_X_MAX)
+				{
+					AddVelocityX(-150);
+					if (mVelocityX < -PLAYER_VELOCITY_X_MAX)
+						SetVelocityX(-PLAYER_VELOCITY_X_MAX);
+				}
+			}
+			else
+			{
+
+				if (mVelocityX < PLAYER_VELOCITY_X_MAX)
+				{
+					AddVelocityX(150);
+					if (mVelocityX > PLAYER_VELOCITY_X_MAX)
+						SetVelocityX(PLAYER_VELOCITY_X_MAX);
+				}
+
+
+			}
+		}
+		if (mFlyUp)
+		{
+			if (mVelocityY > -PLAYER_VELOCITY_Y_MAX)
+			{
+				AddVelocityY(-100);
+				if (mVelocityY < -PLAYER_VELOCITY_Y_MAX)
+					SetVelocityY(-PLAYER_VELOCITY_Y_MAX);
+			}
+		}
+		if (mFlyDown)
+		{
+			if (mVelocityY < PLAYER_VELOCITY_Y_MAX)
+			{
+				AddVelocityY(100);
+				if (mVelocityY > PLAYER_VELOCITY_Y_MAX)
+					SetVelocityY(PLAYER_VELOCITY_Y_MAX);
+			}
+		}
+
+		if (mPosition.y < 30.f)
+		{
+			mFlyUp = false;
+			mFlyHorizontal = true;
+			mFlyDown = false;
+			SetVelocityY(0.f);
+		}
+		if (mPosition.x < 65.f)
+		{
+			mFlyUp = false;
+			mFlyHorizontal = false;
+			mFlyDown = true;
+			SetVelocityX(0.f);
+		}
+		if (mPosition.y > 48.f&&mPosition.x == 65.f&&mDirection == Left)
+		{
+			mDirection = Right;
+			mFlyUp = true;
+			mFlyHorizontal = false;
+			mFlyDown = false;
+			mChangeLight = true;
+			SetState(BOSS_CHARLESTON_HIT_STATE);
+			mCountMisc++;
+			mCounter = 0;
+
+		}
+		if (mPosition.x > 189)
+		{
+			mFlyUp = false;
+			mFlyHorizontal = false;
+			mFlyDown = true;
+			SetVelocityX(0.f);
+		}
+		if (mPosition.y > 145.f&&mPosition.x == 189.f&&mDirection == Right)
+		{
+			mDirection = Left;
+			mFlyUp = true;
+			mFlyHorizontal = false;
+			mFlyDown = false;
+			SetState(BOSS_CHARLESTON_IDLE_STATE);
+			mCountMisc++;
+			mCounter = 0;
+
+		}
+
+
+
+	}
+	if (mPosition.y < 30.f)
+		mPosition.y = 30.f;
+	if (mPosition.x < 65.f)
+		mPosition.x = 65.f;
+	if (mPosition.y > 145.f)
+		mPosition.y = 145.f;
+	if (mPosition.x > 189.f)
+		mPosition.x = 189.f;
+	if (mState == BOSS_CHARLESTON_IDLE_STATE && mCounter > 1.f)
+	{
+		SetState(BOSS_CHARLESTON_PLY_STATE);
+		mCounter = 0;
 	}
 }
 
