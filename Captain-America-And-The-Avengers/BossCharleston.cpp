@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Game.h"
 #include "BossSmallBullet.h"
+#include "BossVipBullet.h"
 #include "BossCharleston.h"
 
 BossCharleston::BossCharleston(D3DXVECTOR3 position)
@@ -117,11 +118,32 @@ void BossCharleston::SetState(int state)
 	{
 		auto pos = mPosition;
 		auto bb = GetBoundingBox();
-		pos.y += 17;
+		pos.y += 15;
 		if (mDirection == Left) pos.x = bb.left;
 		else pos.x = bb.right;
 		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
 			new BossSmallBullet(pos, mDirection, playerPos.y < mPosition.y ? -1 : 0)
+		);
+	}
+	else if (state == BOSS_CHARLESTON_KAMEHAMEHA_STATE)
+	{
+		auto pos = mPosition;
+		auto bb = GetBoundingBox();
+		pos.y += 13;
+		if (mDirection == Left) pos.x = bb.left;
+		else pos.x = bb.right;
+		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+			new BossVipBullet(pos, mDirection)
+		);
+	}
+	else if (state == BOSS_CHARLESTON_PLYGUN_STATE)
+	{
+		auto pos = mPosition;
+		auto bb = GetBoundingBox();
+		pos.y = (bb.bottom + bb.top) / 2;
+		pos.x = mDirection == Left ? bb.left : bb.right;
+		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+			new BossVipBullet(pos, 0, 1)
 		);
 	}
 	mState = state;
@@ -266,7 +288,8 @@ void BossCharleston::ModeTwo(float deltaTime, Player* player)
 {
 	if (mState == BOSS_CHARLESTON_PLY_STATE || mState == BOSS_CHARLESTON_PLYGUN_STATE)
 	{
-		if (player->GetPosition().x - mPosition.x <= 10 && player->GetPosition().x - mPosition.x >= -10) {
+		if (player->GetPosition().x - mPosition.x <= 10 && player->GetPosition().x - mPosition.x >= -10
+			&& mState != BOSS_CHARLESTON_PLYGUN_STATE) {
 			SetState(BOSS_CHARLESTON_PLYGUN_STATE);
 			mCounter = 0;
 		}

@@ -275,6 +275,9 @@
     <ClCompile Include="BossSmallBullet.cpp">
       <Filter>Entities\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="BossVipBullet.cpp">
+      <Filter>Entities\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -506,6 +509,9 @@
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="BossSmallBullet.h">
+      <Filter>Entities\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BossVipBullet.h">
       <Filter>Entities\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
