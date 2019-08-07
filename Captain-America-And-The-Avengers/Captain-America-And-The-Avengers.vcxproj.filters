@@ -496,6 +496,7 @@
     </ClInclude>
     <ClInclude Include="FlyRocketEnemy.h">
       <Filter>Entities\Enemies</Filter>
+	</ClInclude>
     <ClInclude Include="LightButton.h">
       <Filter>Entities</Filter>
     </ClInclude>
