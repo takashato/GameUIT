@@ -299,6 +299,7 @@
     <ClCompile Include="RedAlertBullet.cpp">
       <Filter>Entities\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="Door.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -555,6 +556,9 @@
     </ClInclude>
     <ClInclude Include="RedAlertBullet.h">
       <Filter>Entities\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

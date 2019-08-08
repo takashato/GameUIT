@@ -32,7 +32,7 @@ void PittsburghScene::Setup()
 
 	// Create player
 	mPlayer = std::make_unique<Player>();
-	mPlayer->SetPosition(mData.GetSpawnPoint("Player"));
+	mPlayer->SetPosition(mData.GetSpawnPoint("Extra2"));
 	mPlayer->SetShield(new Shield(mPlayer.get()));
 
 	// Update Camera for the first time
@@ -74,6 +74,9 @@ void PittsburghScene::Setup()
 	}
 	// Button
 	mGrid->Add(new LightButton(D3DXVECTOR3(270.0f, 48.0f, .0f)));
+	// Door
+	mGrid->Add(new Door(D3DXVECTOR3(564.0f, 148.0f, .0f), "extra1"));
+	mGrid->Add(new Door(D3DXVECTOR3(820.0f, 633.0f, .0f), "extra2"));
 	//IronBar
 	for (DataIronBar dataIronBar : mData.GetDataIronBar())
 	{

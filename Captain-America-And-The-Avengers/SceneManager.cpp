@@ -63,15 +63,39 @@ Scene* SceneManager::GetScene()
 void SceneManager::ChangeScene(MapID mapID)
 {
 	if (mCurrentScene != nullptr && mCurrentScene->GetMapID() == mapID) return;
+	
 	if (mCurrentScene != nullptr)
-		delete mCurrentScene;
+	{
+		if ((mapID == MapID::Pittsburgh &&
+			(mCurrentScene->GetMapID() == MapID::PittsburghExtra1 || mCurrentScene->GetMapID() == MapID::PittsburghExtra2))
+			||
+			(mCurrentScene->GetMapID() == MapID::Pittsburgh &&
+			(mapID == MapID::PittsburghExtra1 || mapID == MapID::PittsburghExtra2)))
+		{
+			std::cout << "Switch between extra map.\n";
+		}
+		else
+		{
+			delete mCurrentScene;
+		}
+	}
+
 	switch (mapID)
 	{
 	case MapID::Charleston:		mCurrentScene = new CharlestonScene(); break;
 	case MapID::CharlestonBoss:	mCurrentScene = new CharlestonBossScene(); break;
-	case MapID::Pittsburgh:		mCurrentScene = new PittsburghScene(); break;
-	case MapID::PittsburghExtra1:mCurrentScene = new PittsburghExtra1Scene(); break;
-	case MapID::PittsburghExtra2:mCurrentScene = new PittsburghExtra2Scene(); break;
+	case MapID::Pittsburgh:
+		if (mScenePittsburg == nullptr) mScenePittsburg = new PittsburghScene();
+		mCurrentScene = mScenePittsburg;
+		if (mSceneExtra1 == nullptr) mSceneExtra1 = new PittsburghExtra1Scene();
+		if (mSceneExtra2 == nullptr) mSceneExtra2 = new PittsburghExtra2Scene();
+		break;
+	case MapID::PittsburghExtra1:
+		mCurrentScene = mSceneExtra1; 
+		break;
+	case MapID::PittsburghExtra2:
+		mCurrentScene = mSceneExtra2; 
+		break;
 	case MapID::RedAlertBoss:	mCurrentScene = new RedAlertBossScene(); break;
 	}
 }

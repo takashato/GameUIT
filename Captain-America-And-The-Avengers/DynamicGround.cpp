@@ -161,5 +161,5 @@ CollidableObjectType DynamicGround::GetCollidableObjectType()
 
 GroundType DynamicGround::GetGroundType()
 {
-	return EGroundNormal;
+	return EGroundDynamic;
 }

@@ -25,10 +25,13 @@ public:
 	Scene* GetScene();
 	void ChangeScene(MapID mapID);
 
-	/*void ChangeScene();*/
 private:
 	SceneManager() : ISingleton(NULL) {}
 	Scene* mCurrentScene = NULL;
+
+	Scene* mSceneExtra1 = NULL;
+	Scene* mSceneExtra2 = NULL;
+	Scene* mScenePittsburg = NULL;
 
 	Keyboard* mKeyboard = NULL;
 };

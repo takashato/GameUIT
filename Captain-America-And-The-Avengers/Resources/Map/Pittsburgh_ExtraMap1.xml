@@ -24,9 +24,11 @@
 		<Capsules>
 			<Capsule x="127" y="136" w="16" h="16">
 				<Item type="HeartEnegy"/>
+				<Item type="FivePointItem"/>
 			</Capsule>
 			<Capsule x="123" y="32" w="16" h="16">
 				<Item type="PowerStone"/>
+				<Item type="FivePointItem"/>
 			</Capsule>
 		</Capsules>
 	</MapObjects>
