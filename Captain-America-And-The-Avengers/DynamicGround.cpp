@@ -117,8 +117,8 @@ void DynamicGround::Update(float deltaTime)
 
 		mCounter += deltaTime;
 
-		mPosition.x = 610.0 + 40.0f * cos(omega * mCounter);
-		mPosition.y = 650.0 - 40.0f * omega * sin(omega * mCounter);
+		mPosition.x = 620.0 + 50.0f * cos(omega * mCounter);
+		mPosition.y = 650.0 - 50.0f * omega * sin(omega * mCounter);
 		mPosition.z = 0.f;
 		SetPosition(mPosition);
 	}

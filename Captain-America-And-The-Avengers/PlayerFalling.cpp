@@ -142,6 +142,10 @@ void PlayerFalling::OnCollision(Player& player, std::vector<CollisionEvent*>& cE
 			SoundManager::GetInstance().CPlaySound(SoundType::FallingWater);
 			player.SetState(EPlayerState::Swimming);
 		}
+		else if (((Ground*)groundCe->entity)->GetGroundType() == EGroundThorns && player.mState->GetState() != EPlayerState::SittingOnShield)
+		{
+			player.TakeDamage(1);
+		}
 		else
 		{
 			player.SetState(EPlayerState::Sitting);

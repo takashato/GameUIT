@@ -100,7 +100,7 @@ void PittsburghScene::Setup()
 		mGrid->Add(capsule);
 	}
 	// Button
-	mGrid->Add(new LightButton(D3DXVECTOR3(274.0f, 52.0f, .0f)));
+	mGrid->Add(new LightButton(D3DXVECTOR3(270.0f, 48.0f, .0f)));
 }
 
 void PittsburghScene::Update(float deltaTime)

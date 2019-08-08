@@ -79,6 +79,10 @@ void SceneData::ReadData(LPCSTR filePath)
 						{
 							gType = GroundType::EGroundBreak;
 						}
+						else if (type == "Thorns")
+						{
+							gType = GroundType::EGroundThorns;
+						}
 						mDataGrounds.push_back(DataGround(
 							gType, 
 							groundNode->IntAttribute("x"),

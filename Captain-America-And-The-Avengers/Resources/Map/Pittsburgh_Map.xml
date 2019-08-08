@@ -86,8 +86,8 @@
       <Ground type="Hard" name="Ground" x="1" y="676" w="31" h="42"/>
       <Ground type="Hard" name="Ground" x="32" y="692" w="31" h="26"/>
       <Ground type="Hard" name="Ground" x="1" y="484" w="61" h="123"/>
-	  <Ground type="Thorns" name="Thorns" x="795" y="441" w="212" h="8"/>
-	  <Ground type="Dynamic" x="610" y="650" w="32" h="16" subType="2"/>
+	  <Ground type="Thorns" name="Thorns" x="790" y="441" w="212" h="8"/>
+	  <Ground type="Dynamic" x="620" y="650" w="32" h="16" subType="2"/>
 	  <Ground type="Dynamic" x="700" y="482" w="32" h="16" subType="1"/>
 	  <Ground type="Dynamic" x="700" y="460" w="32" h="16" subType="0"/>
 	  <Ground type="Break" x="110" y="343" w="32" h="16"/>
@@ -120,7 +120,7 @@
 		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="984" y="323.5" w="16" h="16">
-        <Item type="PowerStone"/>
+        <Item type="HeartEnegy"/>
 		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="972" y="540" w="16" h="16">
@@ -140,7 +140,7 @@
 		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="176" y="869" w="16" h="16">
-        <Item type="PowerStone"/>
+        <Item type="HeartEnegy"/>
 		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="79" y="736" w="16" h="16">
@@ -152,12 +152,12 @@
 		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="226" y="534" w="16" h="16">
-        <Item type="PowerStone"/>
+        <Item type="HeartEnegy"/>
 		<Item type="FivePointItem"/>
       </Capsule>
     </Capsules>
     <Buttons>
-      <Button name="Button" x="271" y="50" w="15" h="10"/>
+      <Button name="Button" x="270" y="48" w="12" h="8"/>
     </Buttons>
     <IronBars>
       <IronBar name="IronBar" x="468" y="86" w="29" h="2"/>

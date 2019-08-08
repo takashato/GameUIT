@@ -317,10 +317,6 @@ bool Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 			SceneManager::GetInstance().GetScene()->Transport();
 			return false;
 		}
-		else if (((Ground*)cEvent[i]->entity)->GetCollidableObjectType() == EGroundThorns && mState->GetState() != EPlayerState::SittingOnShield)
-		{
-			this->TakeDamage(1);
-		}
 	}
 
 	if (mState != nullptr) mState->OnCollision(*this, cEvent);
