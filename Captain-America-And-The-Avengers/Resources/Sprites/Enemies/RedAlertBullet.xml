@@ -5,4 +5,9 @@
       <sprite x="216" y="41" w="16" h="11" />
     </Sprites>
   </Animation>
+  <Animation name="Barrel" imagePath="BossRedAlert2.png" width="481" height="380">
+    <Sprites type="0">
+      <sprite x="403" y="42" w="20" h="12" />
+    </Sprites>
+  </Animation>
 </Animations>

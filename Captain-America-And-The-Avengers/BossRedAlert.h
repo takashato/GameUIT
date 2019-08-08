@@ -6,6 +6,7 @@
 #include "AnimationScript.h"
 #include "Camera.h"
 #include "RedAlertBullet.h"
+#include "Barrel.h"
 
 #define BOSSREDALERT_IDLE_STATE 0
 #define BOSSREDALERT_TOSS_THE_BARREL_STATE 1
@@ -13,6 +14,8 @@
 #define BOSSREDALERT_GUN_STATE 3
 #define BOSSREDALERT_CRAZY_STATE 4
 #define BOSSREDALERT_HURT_STATE 5
+#define BOSSREDALERT_CHANGE_STATUS_STATE 6
+#define BOSSREDALERT_DYING_STATE 7
 
 
 
@@ -34,12 +37,14 @@ public:
 
 	void OnSetPosition();
 
-	void TakeDamageBossRedAlert(Entity* source, int damage = 1);
+	void TakeDamageBossRedAlertNotCrazy(Entity* source, int damage = 2);
 	void SetInvincible(bool val);
 
 	void CheckDirection(Player* player);
 
 	//
+	void TakeDamage(Entity* source, int damage = 2);
+
 	int mCountGun = 0;
 
 private:
@@ -48,6 +53,7 @@ private:
 	bool isDown = true;
 	int amplitudeA = 63, amplitudeB = 23;
 	Sprite* mSprite = NULL;
+	Sprite* mSprite2 = NULL;
 	AnimationScript* mAniScripts = NULL;
 
 	Animation* mAniIdle = NULL;
@@ -55,6 +61,8 @@ private:
 	Animation* mAniRunning = NULL;
 	Animation* mAniGun = NULL;
 	Animation* mAniCrazy = NULL;
+	Animation* mAniHurt = NULL;
+	Animation* mAniDying = NULL;
 
 	int mState = -1;
 

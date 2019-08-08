@@ -161,6 +161,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationScript.cpp" />
     <ClInclude Include="AnimationScript.h" />
+    <ClCompile Include="Barrel.cpp" />
     <ClCompile Include="Bat.cpp" />
     <ClCompile Include="BigMissile.cpp" />
     <ClCompile Include="BossCharleston.cpp" />
@@ -246,6 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Barrel.h" />
     <ClInclude Include="Bat.h" />
     <ClInclude Include="BossCharleston.h" />
     <ClInclude Include="BossRedAlert.h" />

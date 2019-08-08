@@ -36,6 +36,7 @@ void BossCharleston::LoadAnimations()
 	mAniFlyGun = new Animation(mSprite, mAniScripts->GetRectList("FlyGun", "0"), 0.1F, false);
 	mAniTurnOffTheLight = new Animation(mSprite, mAniScripts->GetRectList("TurnOffTheLight", "0"), 0.2F);
 
+
 	mCurrentAni = mAniStanding;
 }
 

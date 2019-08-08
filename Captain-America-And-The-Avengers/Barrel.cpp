@@ -1,70 +1,79 @@
 #include "pch.h"
 #include "SceneManager.h"
-#include "RedAlertBullet.h"
+#include "Barrel.h"
 
-Sprite* RedAlertBullet::mSprite = NULL;
-AnimationScript* RedAlertBullet::mAniScripts = NULL;
-Animation* RedAlertBullet::mAniFly = NULL;
+Sprite* Barrel::mSprite = NULL;
+AnimationScript* Barrel::mAniScripts = NULL;
+Animation* Barrel::mAniBarrel = NULL;
 
 
-RedAlertBullet::RedAlertBullet(D3DXVECTOR3 position, int flyDirection, int flyDirectionY)
+Barrel::Barrel(D3DXVECTOR3 position, int flyDirection, float playerX, int flyDirectionY)
 {
 	LoadAnimations();
 	mPosition = position;
 	mState = 0;
 	SetVelocityX(flyDirection * BULLET_SPEED);
 	SetVelocityY(flyDirectionY * BULLET_SPEED);
-
+	if (flyDirection == -1)
+		mA = mPosition.x - playerX;
+	else mA = playerX - mPosition.x;
 	mFlyDirection = flyDirection;
 	mFlyDirectionY = flyDirectionY;
 
-	if (flyDirectionY == 1)
-	{
-		//---------
-	}
-	else
-	{
-		/*mCurrentAni = mAniFly;*/
-	}
+
 
 	if (GeoUtils::IsIntersect(GetBoundingBox(), SceneManager::GetInstance().GetScene()->GetCamera()->GetBound())) {
 		SoundManager::GetInstance().CPlaySound(SoundType::BossShootBigBullets);
 	}
 }
 
-RedAlertBullet::~RedAlertBullet()
+Barrel::~Barrel()
 {
 }
 
-void RedAlertBullet::LoadAnimations()
+void Barrel::LoadAnimations()
 {
 	if (mSprite == nullptr)
 	{
 		mSprite = new Sprite(L"Resources\\Sprites\\Enemies\\BossRedAlert2.png");
 		mAniScripts = new AnimationScript("Resources\\Sprites\\Enemies\\RedAlertBullet.xml");
 
-		mAniFly = new Animation(mSprite, mAniScripts->GetRectList("Fly", "0"), 0.1F);
+		mAniBarrel = new Animation(mSprite, mAniScripts->GetRectList("Barrel", "0"), 0.1F);
 	}
 
-	mCurrentAni = mAniFly;
+	mCurrentAni = mAniBarrel;
 }
 
-void RedAlertBullet::Update(float deltaTime)
+void Barrel::Update(float deltaTime)
 {
-	if (!mIsHitShield)
+	if (mDirection == -1)
 	{
-		AddPositionX(deltaTime * mVelocityX);
-		AddPositionY(deltaTime * mVelocityY);
-	}
-	else
-	{
-		AddPositionX(-mVelocityX * deltaTime);
-		if (mVelocityY == 0.0f)
-			AddPositionY(BULLET_SPEED * deltaTime);
+		if (mPosition.x>mA)
+		{
+			AddPositionX(deltaTime * mVelocityX);
+			AddPositionY(deltaTime * mVelocityY);
+		}
 		else
+		{
+			AddPositionX(-mVelocityX * deltaTime);
 			AddPositionY(-mVelocityY * deltaTime);
+		}
 	}
-
+	else if (mDirection == 1)
+	{
+		if (mPosition.x < mA)
+		{
+			AddPositionX(deltaTime * mVelocityX);
+			AddPositionY(deltaTime * mVelocityY);
+		}
+		else
+		{
+			AddPositionX(-mVelocityX * deltaTime);
+			AddPositionY(-mVelocityY * deltaTime);
+		}
+	}
+	if(mPosition.y>200)
+		mState = 1;
 	auto camBound = SceneManager::GetInstance().GetScene()->GetCamera()->GetBound();
 	if (mPosition.x <= camBound.left + DELTA_CAM_TO_DESTROY
 		|| mPosition.x >= camBound.right - DELTA_CAM_TO_DESTROY
@@ -75,7 +84,7 @@ void RedAlertBullet::Update(float deltaTime)
 	}
 }
 
-void RedAlertBullet::Draw(D3DXVECTOR2 transform)
+void Barrel::Draw(D3DXVECTOR2 transform)
 {
 	if (mCurrentAni != nullptr && mState != -1)
 	{
@@ -90,22 +99,22 @@ void RedAlertBullet::Draw(D3DXVECTOR2 transform)
 	}
 }
 
-int RedAlertBullet::GetState()
+int Barrel::GetState()
 {
 	return mState;
 }
 
-void RedAlertBullet::OnSetPosition()
+void Barrel::OnSetPosition()
 {
 	Bullet::OnSetPosition();
 }
 
-BulletType RedAlertBullet::GetBulletType()
+BulletType Barrel::GetBulletType()
 {
-	return BulletType::BRedAlertBullet;
+	return BulletType::BBarrel;
 }
 
-void RedAlertBullet::HitShield()
+void Barrel::HitShield()
 {
 	mIsHitShield = true;
 }

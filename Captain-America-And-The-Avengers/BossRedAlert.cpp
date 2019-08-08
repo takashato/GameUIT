@@ -23,6 +23,7 @@ BossRedAlert::~BossRedAlert()
 void BossRedAlert::LoadAnimations()
 {
 	mSprite = new Sprite(L"Resources\\Sprites\\Enemies\\BossRedAlert.png");
+	mSprite2 = new Sprite(L"Resources\\Sprites\\Enemies\\BossRedAlert2.png");
 	mAniScripts = new AnimationScript("Resources\\Sprites\\Enemies\\BossRedAlert.xml");
 
 	mAniIdle = new Animation(mSprite, mAniScripts->GetRectList("Idle", "0"), 0.1F);
@@ -30,6 +31,8 @@ void BossRedAlert::LoadAnimations()
 	mAniGun = new Animation(mSprite, mAniScripts->GetRectList("Gun", "0"), 0.9F, false);
 	mAniRunning = new Animation(mSprite, mAniScripts->GetRectList("Running", "0"), 0.1F);
 	mAniCrazy = new Animation(mSprite, mAniScripts->GetRectList("Crazy", "0"), 0.1F);
+	mAniHurt = new Animation(mSprite2, mAniScripts->GetRectList("Hurt", "0"), 0.1F);
+	mAniDying = new Animation(mSprite2, mAniScripts->GetRectList("Die", "0"), 0.1F);
 
 	mCurrentAni = mAniIdle;
 }
@@ -67,7 +70,7 @@ void BossRedAlert::Update(float deltaTime, Player* player)
 			if (mCurrentAni->IsDoneCycle())//Neu thung thung no roi
 			{
 				mCurrentAni->Reset();
-				SetState(BOSSREDALERT_GUN_STATE);
+				SetState(BOSSREDALERT_TOSS_THE_BARREL_STATE);
 				mCounter = 0;
 			}
 		}
@@ -121,38 +124,26 @@ void BossRedAlert::Update(float deltaTime, Player* player)
 			}
 		}
 	}
-	else if (mHP > 0 && mHP < 13)
+	if (mState == BOSSREDALERT_CRAZY_STATE)
 	{
-		if (mState != BOSSREDALERT_CRAZY_STATE)
+		if (mDirection == EntityDirection::Left)
 		{
-			SetState(BOSSREDALERT_CRAZY_STATE);
-			mCounter = 0;
-		}
-		if (mState == BOSSREDALERT_CRAZY_STATE)
-		{
-			if (mDirection == EntityDirection::Left)
+			if (mVelocityX > -60)
 			{
-				if (mVelocityX > -60)
-				{
-					AddVelocityX(-20);
-					if (mVelocityX < -60)
-						SetVelocityX(-60);
-				}
-			}
-			else
-			{
-				if (mVelocityX < 60)
-				{
-					AddVelocityX(20);
-					if (mVelocityX > 60)
-						SetVelocityX(60);
-				}
+				AddVelocityX(-20);
+				if (mVelocityX < -60)
+					SetVelocityX(-60);
 			}
 		}
-	}
-	else if (mHP == 0)
-	{
-		/*SetState(Boss);*///Die
+		else
+		{
+			if (mVelocityX < 60)
+			{
+				AddVelocityX(20);
+				if (mVelocityX > 60)
+					SetVelocityX(60);
+			}
+		}
 	}
 	if (mPosition.x < 14.f)
 	{
@@ -203,6 +194,17 @@ void BossRedAlert::SetState(int state)
 			new RedAlertBullet(pos, mDirection)
 		);
 	}
+	else if (state == BOSSREDALERT_TOSS_THE_BARREL_STATE)
+	{
+		auto pos = mPosition;
+		auto bb = GetBoundingBox();
+		pos.y -= 12;
+		if (mDirection == Left) pos.x = bb.left;
+		else pos.x = bb.right;
+		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+			new Barrel(pos, mDirection, playerPos.x)
+		);
+	}
 	mState = state;
 	ChangeAnimationByState(mState);
 }
@@ -230,6 +232,16 @@ void BossRedAlert::ChangeAnimationByState(int state)
 	case BOSSREDALERT_RUNNING_STATE:
 		mCurrentAni = mAniRunning;
 		break;
+	case BOSSREDALERT_HURT_STATE:
+		mCurrentAni = mAniHurt;
+		break;
+	case BOSSREDALERT_DYING_STATE:
+		mCurrentAni = mAniDying;
+		break;
+	case BOSSREDALERT_CHANGE_STATUS_STATE:
+		mCurrentAni = mAniDying;
+		break;
+
 	}
 }
 
@@ -249,27 +261,48 @@ void BossRedAlert::CheckDirection(Player* player)
 	}
 
 }
-void BossRedAlert::TakeDamageBossRedAlert(Entity* source, int damage)
+void BossRedAlert::TakeDamageBossRedAlertNotCrazy(Entity* source, int damage)
 {
 	if (mIsInvincible) return;
-	/*SetState(BOSS_CHARLESTON_BEHIT_STATE);*/
+	SetState(BOSSREDALERT_HURT_STATE);
 	mHP -= damage;
 	std::cout << "Boss take " << damage << "\n";
 	if (damage == 2)
 	{
 		std::cout << "Found 2!\n";
 	}
-	if (mHP <= 0)
+	if (mHP <= 12)
 	{
-		SceneManager::GetInstance().GetScene()->mCanTransport = true;
-		SetState(BOSS_CHARLESTON_DYING_STATE);
+		SetState(BOSSREDALERT_CRAZY_STATE);
+		mCounter = 0;
 	}
 	else
 	{
 		SetInvincible(true);
 	}
 }
-
+void BossRedAlert::TakeDamage(Entity* source, int damage)
+{
+	if (mState == BOSSREDALERT_CRAZY_STATE)
+	{
+		if (mIsInvincible) return;
+		mHP -= damage;
+		std::cout << "Boss take " << damage << "\n";
+		if (damage == 2)
+		{
+			std::cout << "Found 2!\n";
+		}
+		if (mHP <= 0)
+		{
+			SetState(BOSSREDALERT_DYING_STATE);
+			mCounter = 0;
+		}
+		else
+		{
+			SetInvincible(true);
+		}
+	}
+}
 void BossRedAlert::SetInvincible(bool val)
 {
 	mIsInvincible = val;

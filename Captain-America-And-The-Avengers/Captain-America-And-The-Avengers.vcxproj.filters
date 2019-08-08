@@ -300,6 +300,9 @@
       <Filter>Entities\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Door.cpp" />
+    <ClCompile Include="Barrel.cpp">
+      <Filter>Entities\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -559,6 +562,9 @@
     </ClInclude>
     <ClInclude Include="Door.h">
       <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Barrel.h">
+      <Filter>Entities\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
