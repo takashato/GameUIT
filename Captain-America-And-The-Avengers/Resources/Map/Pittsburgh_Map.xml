@@ -8,8 +8,8 @@
   </SpawnPoints>
   <Transports>
     <Transport nextSceneName="RedAlert_Map" x="981" y="736" w="12" h="192"/>
-    <Transport nextSceneName="Extra_Map1" x="568" y="157" w="23" h="43"/>
-    <Transport nextSceneName="Extra_Map2" x="825" y="640" w="23" h="43"/>
+    <!--<Transport nextSceneName="Extra_Map1" x="568" y="157" w="23" h="43"/>
+    <Transport nextSceneName="Extra_Map2" x="825" y="640" w="23" h="43"/>-->
   </Transports>
   <MapObjects>
     <Enemies>

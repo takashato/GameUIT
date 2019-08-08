@@ -72,6 +72,9 @@ void PittsburghScene::Setup()
 		break;
 		}
 	}
+
+
+
 	// Button
 	mGrid->Add(new LightButton(D3DXVECTOR3(270.0f, 48.0f, .0f)));
 	// Door
@@ -87,6 +90,9 @@ void PittsburghScene::Setup()
 	{
 		mGrid->Add(new Spawner(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy));
 	}
+	
+	// Transport
+	mGrid->Add(new TransportArea(D3DXVECTOR3(981.0f, 736.0f, .0f), 12, 192));
 }
 
 void PittsburghScene::Update(float deltaTime)
