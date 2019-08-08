@@ -27,8 +27,9 @@ void BossRedAlert::LoadAnimations()
 
 	mAniIdle = new Animation(mSprite, mAniScripts->GetRectList("Idle", "0"), 0.1F);
 	mAniTossTheBarrel = new Animation(mSprite, mAniScripts->GetRectList("TossTheBarrel", "0"), 1.F, false);
-	mAniGun = new Animation(mSprite, mAniScripts->GetRectList("Gun", "0"), 0.2F, false);
+	mAniGun = new Animation(mSprite, mAniScripts->GetRectList("Gun", "0"), 1.F, false);
 	mAniRunning = new Animation(mSprite, mAniScripts->GetRectList("Running", "0"), 0.1F);
+	mAniCrazy = new Animation(mSprite, mAniScripts->GetRectList("Crazy", "0"), 0.1F);
 
 	mCurrentAni = mAniIdle;
 }
@@ -39,63 +40,99 @@ void BossRedAlert::Update(float deltaTime, Player* player)
 
 	Entity::Update(deltaTime);
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
-	if (mState == BOSSREDALERT_IDLE_STATE)
+	if (mHP > 13)
 	{
-		CheckDirection(player);
-		if (mCounter > 0.5f)
+		if (mState == BOSSREDALERT_IDLE_STATE)
 		{
-			SetState(BOSSREDALERT_TOSS_THE_BARREL_STATE);
-			mCounter = 0;
-		}
-	}
-	if (mState == BOSSREDALERT_TOSS_THE_BARREL_STATE)
-	{
-		if (mCurrentAni->IsDoneCycle())//Neu thung thung no roi
-		{
-			mCurrentAni->Reset();
-			SetState(BOSSREDALERT_GUN_STATE);
-			mCounter = 0;
-		}
-	}
-	if (mState == BOSSREDALERT_GUN_STATE)
-	{
-		if (mCurrentAni->IsDoneCycle())
-		{
-			mCountGun++;
-			mCurrentAni->Reset();
-			if (mCountGun == 2)
+			CheckDirection(player);
+			if (mCounter > 0.5f)
 			{
-				mCountGun = 0;
-				SetState(BOSSREDALERT_RUNNING_STATE);
+				SetState(BOSSREDALERT_TOSS_THE_BARREL_STATE);
 				mCounter = 0;
 			}
-			else
+		}
+		if (mState == BOSSREDALERT_TOSS_THE_BARREL_STATE)
+		{
+			if (mCurrentAni->IsDoneCycle())//Neu thung thung no roi
 			{
+				mCurrentAni->Reset();
 				SetState(BOSSREDALERT_GUN_STATE);
 				mCounter = 0;
 			}
 		}
+		if (mState == BOSSREDALERT_GUN_STATE)
+		{
+			if (mCurrentAni->IsDoneCycle())
+			{
+				mCountGun++;
+				mCurrentAni->Reset();
+				if (mCountGun == 2)
+				{
+					mCountGun = 0;
+					SetState(BOSSREDALERT_RUNNING_STATE);
+					mCounter = 0;
+				}
+				else
+				{
+					SetState(BOSSREDALERT_GUN_STATE);
+					mCounter = 0;
+				}
+			}
+		}
+		if (mState == BOSSREDALERT_RUNNING_STATE)
+		{
+			if (mDirection == EntityDirection::Left)
+			{
+				if (mVelocityX > -60)
+				{
+					AddVelocityX(-20);
+					if (mVelocityX < -60)
+						SetVelocityX(-60);
+				}
+			}
+			else
+			{
+				if (mVelocityX < 60)
+				{
+					AddVelocityX(20);
+					if (mVelocityX > 60)
+						SetVelocityX(60);
+				}
+			}
+		}
 	}
-	if (mState == BOSSREDALERT_RUNNING_STATE)
+	else if (mHP > 0 && mHP < 13)
 	{
-		if (mDirection == EntityDirection::Left)
+		if (mState != BOSSREDALERT_CRAZY_STATE)
 		{
-			if (mVelocityX > -60)
+			SetState(BOSSREDALERT_CRAZY_STATE);
+			mCounter = 0;
+		}
+		if (mState == BOSSREDALERT_CRAZY_STATE)
+		{
+			if (mDirection == EntityDirection::Left)
 			{
-				AddVelocityX(-20);
-				if (mVelocityX < -60)
-					SetVelocityX(-60);
+				if (mVelocityX > -60)
+				{
+					AddVelocityX(-20);
+					if (mVelocityX < -60)
+						SetVelocityX(-60);
+				}
+			}
+			else
+			{
+				if (mVelocityX < 60)
+				{
+					AddVelocityX(20);
+					if (mVelocityX > 60)
+						SetVelocityX(60);
+				}
 			}
 		}
-		else
-		{
-			if (mVelocityX < 60)
-			{
-				AddVelocityX(20);
-				if (mVelocityX > 60)
-					SetVelocityX(60);
-			}
-		}
+	}
+	else if (mHP == 0)
+	{
+		/*SetState(Boss);*///Die
 	}
 	if (mPosition.x < 14.f)
 	{
@@ -154,6 +191,9 @@ void BossRedAlert::ChangeAnimationByState(int state)
 		break;
 	case BOSSREDALERT_GUN_STATE:
 		mCurrentAni = mAniGun;
+		break;
+	case BOSSREDALERT_CRAZY_STATE:
+		mCurrentAni = mAniCrazy;
 		break;
 	case BOSSREDALERT_RUNNING_STATE:
 		mCurrentAni = mAniRunning;

@@ -10,6 +10,7 @@
 #define BOSSREDALERT_TOSS_THE_BARREL_STATE 1
 #define BOSSREDALERT_RUNNING_STATE 2
 #define BOSSREDALERT_GUN_STATE 3
+#define BOSSREDALERT_CRAZY_STATE 4
 
 
 
@@ -39,6 +40,7 @@ public:
 	int mCountGun = 0;
 
 private:
+	int mHP = 12;
 	D3DXVECTOR3 mCenter;
 	bool isDown = true;
 	int amplitudeA = 63, amplitudeB = 23;
@@ -49,6 +51,7 @@ private:
 	Animation* mAniTossTheBarrel = NULL;
 	Animation* mAniRunning = NULL;
 	Animation* mAniGun = NULL;
+	Animation* mAniCrazy = NULL;
 
 	int mState = -1;
 

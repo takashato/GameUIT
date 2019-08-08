@@ -25,4 +25,11 @@
       <sprite x="89" y="9" w="28" h="62" />
     </Sprites>
   </Animation>
+  <Animation name="Crazy" imagePath="BossRedAlert.png" width="472" height="304">
+    <Sprites type="0">
+      <sprite x="116" y="296" w="35" h="62" />
+      <sprite x="158" y="296" w="35" h="62" />
+      <sprite x="203" y="296" w="35" h="62" />
+    </Sprites>
+  </Animation>
 </Animations>
