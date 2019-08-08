@@ -11,8 +11,6 @@ BossRedAlert::BossRedAlert(D3DXVECTOR3 position)
 	mState = BOSSREDALERT_IDLE_STATE;
 	SetVelocityX(0.f);
 	SetVelocityY(0.f);
-	mCenter = position;
-	mCenter.y = mCenter.y + 15;
 }
 
 
@@ -23,16 +21,15 @@ BossRedAlert::~BossRedAlert()
 void BossRedAlert::LoadAnimations()
 {
 	mSprite = new Sprite(L"Resources\\Sprites\\Enemies\\BossRedAlert.png");
-	mSprite2 = new Sprite(L"Resources\\Sprites\\Enemies\\BossRedAlert2.png");
 	mAniScripts = new AnimationScript("Resources\\Sprites\\Enemies\\BossRedAlert.xml");
 
 	mAniIdle = new Animation(mSprite, mAniScripts->GetRectList("Idle", "0"), 0.1F);
-	mAniTossTheBarrel = new Animation(mSprite, mAniScripts->GetRectList("TossTheBarrel", "0"), 1.F, false);
+	mAniTossTheBarrel = new Animation(mSprite, mAniScripts->GetRectList("TossTheBarrel", "0"), 1.5F, false);
 	mAniGun = new Animation(mSprite, mAniScripts->GetRectList("Gun", "0"), 0.9F, false);
 	mAniRunning = new Animation(mSprite, mAniScripts->GetRectList("Running", "0"), 0.1F);
 	mAniCrazy = new Animation(mSprite, mAniScripts->GetRectList("Crazy", "0"), 0.1F);
-	mAniHurt = new Animation(mSprite2, mAniScripts->GetRectList("Hurt", "0"), 0.1F);
-	mAniDying = new Animation(mSprite2, mAniScripts->GetRectList("Die", "0"), 0.1F);
+	mAniHurt = new Animation(mSprite, mAniScripts->GetRectList("Hurt", "0"), 0.1F);
+	mAniDying = new Animation(mSprite, mAniScripts->GetRectList("Die", "0"), 0.1F);
 
 	mCurrentAni = mAniIdle;
 }
@@ -53,97 +50,108 @@ void BossRedAlert::Update(float deltaTime, Player* player)
 			mIsInvincible = false;
 		}
 	}
-
-	if (mHP > 13)
+	if (mState == BOSSREDALERT_IDLE_STATE)
 	{
-		if (mState == BOSSREDALERT_IDLE_STATE)
-		{
 
-			CheckDirection(player);
-			if (mCounter > 0.5f)
-			{
-				SetState(BOSSREDALERT_TOSS_THE_BARREL_STATE);
-				mCounter = 0;
-			}
-		}
-		if (mState == BOSSREDALERT_TOSS_THE_BARREL_STATE)
+		CheckDirection(player);
+		if (mCounter > 0.5f)
 		{
-			if (mCurrentAni->GetCurrentFrame() == 1 && !thrownDynamite) // Create 
-			{
-				thrownDynamite = true;
-				auto pos = mPosition;
+			SetState(BOSSREDALERT_TOSS_THE_BARREL_STATE);
+			mCounter = 0;
+		}
+	}
+	if (mState == BOSSREDALERT_TOSS_THE_BARREL_STATE)
+	{
+		SetVelocityX(0.f);
+		SetVelocityY(0.f);
+		if (mCurrentAni->GetCurrentFrame() == 1 && !thrownDynamite) // Create 
+		{
+			thrownDynamite = true;
+			auto pos = mPosition;
+			if (mDirection == Left)
 				pos.x += 10;
-				this->dynamite = new Dynamite(pos, mDirection);
-				this->dynamite->boss = this;
-				SceneManager::GetInstance().GetScene()->GetGrid()->Add(
-					this->dynamite
-				);
-			}
-			else if (mCurrentAni->GetCurrentFrame() == 2 && dynamite != nullptr && !dynamite->isThrown)
-			{
-				dynamite->Throw();
-			}
-			else if (mCurrentAni->IsDoneCycle())//Neu thung thung no roi
-			{
-				mCurrentAni->Reset();
-				SetState(BOSSREDALERT_TOSS_THE_BARREL_STATE);
-				mCounter = 0;
-				thrownDynamite = false;
-				dynamite = nullptr;
-			}
+			this->dynamite = new Dynamite(pos, mDirection);
+			this->dynamite->boss = this;
+			SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+				this->dynamite
+			);
 		}
-		if (mState == BOSSREDALERT_GUN_STATE)
+		else if (mCurrentAni->GetCurrentFrame() == 2 && dynamite != nullptr && !dynamite->isThrown)
 		{
-			SetVelocityX(0.f);
-			SetVelocityY(0.f);
-			if (mCurrentAni->IsDoneCycle())
-			{
-				CheckDirection(player);
-				mCountGun++;
-				mCurrentAni->Reset();
-				if (mCountGun == 2)
-				{
-					mCountGun = 0;
-					SetState(BOSSREDALERT_RUNNING_STATE);
-					mCounter = 0;
-				}
-				else
-				{
-					SetState(BOSSREDALERT_GUN_STATE);
-					mCounter = 0;
-				}
-			}
+			dynamite->Throw();
 		}
-		if (mState == BOSSREDALERT_RUNNING_STATE)
+		else if (mCurrentAni->IsDoneCycle())//Neu thung thung no roi
 		{
-			if (mCounter > 5.f)
+			mCurrentAni->Reset();
+			SetState(BOSSREDALERT_GUN_STATE);
+			mCounter = 0;
+			thrownDynamite = false;
+			dynamite = nullptr;
+		}
+	}
+	if (mState == BOSSREDALERT_GUN_STATE)
+	{
+		SetVelocityX(0.f);
+		SetVelocityY(0.f);
+		if (mCurrentAni->IsDoneCycle())
+		{
+			CheckDirection(player);
+			mCountGun++;
+			mCurrentAni->Reset();
+			if (mCountGun == 2)
 			{
-				CheckDirection(player);
-				SetState(BOSSREDALERT_GUN_STATE);
+				mCountGun = 0;
+				SetState(BOSSREDALERT_RUNNING_STATE);
 				mCounter = 0;
-			}
-			if (mDirection == EntityDirection::Left)
-			{
-				if (mVelocityX > -60)
-				{
-					AddVelocityX(-20);
-					if (mVelocityX < -60)
-						SetVelocityX(-60);
-				}
 			}
 			else
 			{
-				if (mVelocityX < 60)
-				{
-					AddVelocityX(20);
-					if (mVelocityX > 60)
-						SetVelocityX(60);
-				}
+				SetState(BOSSREDALERT_GUN_STATE);
+				mCounter = 0;
+			}
+		}
+	}
+	if (mState == BOSSREDALERT_RUNNING_STATE)
+	{
+		if (mCounter > 4.f)
+		{
+			CheckDirection(player);
+			SetState(BOSSREDALERT_TOSS_THE_BARREL_STATE);
+			mCounter = 0;
+		}
+		if (mDirection == EntityDirection::Left)
+		{
+			if (mVelocityX > -100)
+			{
+				AddVelocityX(-20);
+				if (mVelocityX < -100)
+					SetVelocityX(-100);
+			}
+		}
+		else
+		{
+			if (mVelocityX < 100)
+			{
+				AddVelocityX(20);
+				if (mVelocityX > 100)
+					SetVelocityX(100);
 			}
 		}
 	}
 	if (mState == BOSSREDALERT_CRAZY_STATE)
 	{
+		if (mCounter > 1.f)
+		{
+			auto pos = mPosition;
+			auto bb = GetBoundingBox();
+			pos.y += 25;
+			if (mDirection == Left) pos.x = bb.left;
+			else pos.x = bb.right;
+			SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+				new RedAlertBullet(pos, mDirection)
+			);
+			mCounter = 0;
+		}
 		if (mDirection == EntityDirection::Left)
 		{
 			if (mVelocityX > -60)
@@ -163,6 +171,39 @@ void BossRedAlert::Update(float deltaTime, Player* player)
 			}
 		}
 	}
+	if (mState == BOSSREDALERT_HURT_STATE)
+	{
+		if (mCounter > 2.f) {
+			thrownDynamite = false;
+			SetState(BOSSREDALERT_GUN_STATE);
+			mCounter = 0;
+		}
+	}
+	if (mState == BOSSREDALERT_DYING_STATE)
+	{
+		SetVelocityX(0.f);
+		SetVelocityY(0.f);
+		mCounterDie += deltaTime;
+		if (mCounterDie > 0.2f)
+		{
+			SetDirection(GetDirection() == Left ? Right : Left);
+			mCounterDie = 0;
+		}
+		if (mCounter > 1.f)
+		{
+			if (SceneManager::GetInstance().GetScene() != nullptr
+				&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
+			{
+				Explosion* explosion;
+				explosion = new Explosion(this);
+				SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
+			}
+			pendingDelete = true;
+
+		}
+		
+		
+	}
 	if (mPosition.x < 14.f)
 	{
 		mPosition.x = 14;
@@ -178,7 +219,6 @@ void BossRedAlert::Update(float deltaTime, Player* player)
 
 	mCurrentAni->Update(deltaTime);
 }
-
 void BossRedAlert::Draw(D3DXVECTOR2 transform)
 {
 	if (mCurrentAni != nullptr && mState != -1)
@@ -243,6 +283,8 @@ void BossRedAlert::ChangeAnimationByState(int state)
 		mCurrentAni = mAniHurt;
 		break;
 	case BOSSREDALERT_DYING_STATE:
+		SetVelocityX(0.f);
+		SetVelocityY(0.f);
 		mCurrentAni = mAniDying;
 		break;
 	case BOSSREDALERT_CHANGE_STATUS_STATE:
@@ -272,21 +314,19 @@ void BossRedAlert::TakeDamageBossRedAlertNotCrazy(Entity* source, int damage)
 {
 	if (mIsInvincible) return;
 	SetState(BOSSREDALERT_HURT_STATE);
+	mCounter = 0;
 	mHP -= damage;
 	std::cout << "Boss take " << damage << "\n";
 	if (damage == 2)
 	{
 		std::cout << "Found 2!\n";
 	}
-	if (mHP <= 12)
+	if (mHP < 5)
 	{
 		SetState(BOSSREDALERT_CRAZY_STATE);
-		mCounter = 0;
 	}
-	else
-	{
-		SetInvincible(true);
-	}
+	SetInvincible(true);
+
 }
 void BossRedAlert::TakeDamage(Entity* source, int damage)
 {
@@ -313,4 +353,17 @@ void BossRedAlert::TakeDamage(Entity* source, int damage)
 void BossRedAlert::SetInvincible(bool val)
 {
 	mIsInvincible = val;
+}
+RECT BossRedAlert::GetBoundingBox()
+{
+	if (mCurrentAni == nullptr) {
+		return RECT();
+	}
+
+	RECT bb;
+	bb.left = mPosition.x + 5;
+	bb.top = mPosition.y + 20;
+	bb.right = mPosition.x + mCurrentAni->GetWidth() - 10;
+	bb.bottom = mPosition.y + mCurrentAni->GetHeight();
+	return bb;
 }

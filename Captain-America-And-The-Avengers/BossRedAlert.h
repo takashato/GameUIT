@@ -6,7 +6,6 @@
 #include "AnimationScript.h"
 #include "Camera.h"
 #include "RedAlertBullet.h"
-#include "Barrel.h"
 #include "Dynamite.h"
 
 #define BOSSREDALERT_IDLE_STATE 0
@@ -38,7 +37,7 @@ public:
 
 	void OnSetPosition();
 
-	void TakeDamageBossRedAlertNotCrazy(Entity* source, int damage = 2);
+	void TakeDamageBossRedAlertNotCrazy(Entity* source, int damage = 8);
 	void SetInvincible(bool val);
 
 	void CheckDirection(Player* player);
@@ -48,13 +47,12 @@ public:
 
 	int mCountGun = 0;
 
+	RECT GetBoundingBox();
+
 private:
 	int mHP = 20;
-	D3DXVECTOR3 mCenter;
-	bool isDown = true;
-	int amplitudeA = 63, amplitudeB = 23;
+
 	Sprite* mSprite = NULL;
-	Sprite* mSprite2 = NULL;
 	AnimationScript* mAniScripts = NULL;
 
 	Animation* mAniIdle = NULL;
@@ -71,6 +69,7 @@ private:
 	float mCounterBeHit = 0;
 	bool mIsInvincible = false;
 	float mInvincibleCounter = .0f;
+	float mCounterDie = 0;
 
 	bool thrownDynamite = false;
 

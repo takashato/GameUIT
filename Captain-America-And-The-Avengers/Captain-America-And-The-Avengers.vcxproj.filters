@@ -301,9 +301,6 @@
     </ClCompile>
     <ClCompile Include="Door.cpp">
     </ClCompile>
-    <ClCompile Include="Barrel.cpp">
-      <Filter>Entities\Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerElectricShock.cpp">
       <Filter>Entities\Player\State</Filter>
     </ClCompile>
@@ -567,9 +564,6 @@
     </ClInclude>
     <ClInclude Include="Door.h">
       <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Barrel.h">
-      <Filter>Entities\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="PlayerElectricShock.h">
       <Filter>Entities\Player\State</Filter>

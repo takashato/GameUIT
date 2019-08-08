@@ -293,6 +293,11 @@ RECT Player::GetBoundingBox()
 		rect.right = (long)(rect.left + GetWidth());
 		rect.bottom = (long)(rect.top + GetHeight());
 	}
+	if (mState->GetState() == EPlayerState::Kicking)//Da de~ trung hon
+	{
+		rect.left -= 5;
+		rect.right += 5;
+	}
 	return rect;
 	
 }

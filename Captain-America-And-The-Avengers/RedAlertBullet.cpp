@@ -40,7 +40,7 @@ void RedAlertBullet::LoadAnimations()
 {
 	if (mSprite == nullptr)
 	{
-		mSprite = new Sprite(L"Resources\\Sprites\\Enemies\\BossRedAlert2.png");
+		mSprite = new Sprite(L"Resources\\Sprites\\Enemies\\BossRedAlert.png");
 		mAniScripts = new AnimationScript("Resources\\Sprites\\Enemies\\RedAlertBullet.xml");
 
 		mAniFly = new Animation(mSprite, mAniScripts->GetRectList("Fly", "0"), 0.1F);

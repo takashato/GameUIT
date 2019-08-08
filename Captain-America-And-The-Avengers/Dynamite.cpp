@@ -73,6 +73,7 @@ CollidableObjectType Dynamite::GetCollidableObjectType()
 
 void Dynamite::Throw()
 {
+
 	isThrown = true;
 
 	SetVelocityX(flyDirection * DYNAMITE_VELO_X);
