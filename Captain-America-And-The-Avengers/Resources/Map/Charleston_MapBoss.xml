@@ -2,7 +2,7 @@
 <Map>
 	<Tilemap matrixPath="Resources\\Map\\Matrix_Chaleston_MapBoss.txt" imagePath="Resources\\Map\\Chaleston_MapBoss.png"/>
 	<SpawnPoints>
-		<SpawnPoint name="Player" x="59.0" y="152.0"/>
+		<SpawnPoint name="Player" x="59.0" y="150.0"/>
 	</SpawnPoints>
 	<MapObjects>
     <Enemies>
