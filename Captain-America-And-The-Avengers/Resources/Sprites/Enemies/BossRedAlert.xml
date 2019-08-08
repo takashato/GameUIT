@@ -14,8 +14,8 @@
   </Animation>
   <Animation name="Gun" imagePath="BossRedAlert.png" width="472" height="304">
     <Sprites type="0">
-      <sprite x="240" y="9" w="34" h="62" />
       <sprite x="168" y="9" w="38" h="62" />
+      <sprite x="240" y="9" w="34" h="62" />
     </Sprites>
   </Animation>
   <Animation name="Running" imagePath="BossRedAlert.png" width="472" height="304">

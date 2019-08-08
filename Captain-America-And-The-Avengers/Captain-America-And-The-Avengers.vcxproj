@@ -227,6 +227,7 @@
     <ClCompile Include="PlayerThrowing.cpp" />
     <ClCompile Include="RedAlertBossScene.cpp" />
     <ClCompile Include="Missile.cpp" />
+    <ClCompile Include="RedAlertBullet.cpp" />
     <ClCompile Include="RunEnemy.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneData.cpp" />
@@ -277,6 +278,7 @@
     <ClInclude Include="GunEnemy.h" />
     <ClInclude Include="GunStock.h" />
     <ClInclude Include="IronBar.h" />
+    <ClInclude Include="RedAlertBullet.h" />
     <ClInclude Include="Spawner.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Keyboard.h" />

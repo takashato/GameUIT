@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Animations>
+  <Animation name="Fly" imagePath="BossRedAlert2.png" width="481" height="380">
+    <Sprites type="0">
+      <sprite x="216" y="41" w="16" h="11" />
+    </Sprites>
+  </Animation>
+</Animations>

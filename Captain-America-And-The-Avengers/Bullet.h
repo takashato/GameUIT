@@ -9,7 +9,9 @@ enum BulletType
 	BLittleMissile,
 	BBossNormalBullet,
 	BBossVipBullet,
-	BDefaultBullet
+	BDefaultBullet,
+	BRedAlertBullet, 
+	BBarrel
 };
 
 class Bullet : public Entity
