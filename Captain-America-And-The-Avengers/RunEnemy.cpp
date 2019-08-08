@@ -39,6 +39,36 @@ void RunEnemy::Update(float deltaTime, Player* player)
 	D3DXVECTOR3 runEnemyPosition = this->GetPosition();
 	
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
+
+	if (mIsInvincible)
+	{
+		mInvincibleCounter += deltaTime;
+		if (mInvincibleCounter >= 1.0f)
+		{
+			mInvincibleCounter = .0f;
+			mIsInvincible = false;
+		}
+	}
+
+	if (mState == RUNENEMY_DYING_STATE)
+	{
+		mCounterDie += deltaTime;
+		if (mCounterDie > 0.2f)
+		{
+			if (SceneManager::GetInstance().GetScene() != nullptr
+				&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
+			{
+				Explosion* explosion;
+				explosion = new Explosion(this);
+				SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
+			}
+
+			mGridNode->Remove(this);
+			delete this;
+		}
+		return;
+	}
+	
 	if (mSubTypeID == 0) // Only Run
 	{
 		/*if (mIsInvincible)
@@ -200,6 +230,10 @@ void RunEnemy::Draw(D3DXVECTOR2 transform)
 	if (mCurrentAni != nullptr && mState != -1)
 	{
 		mCurrentAni->SetBlink(mIsInvincible);
+		if (mCurrentAni == mAniDying)
+		{
+			AddPositionX(mDirection*(-1));
+		}
 		mCurrentAni->Draw(GetPosition(), transform);
 		this->RenderBoundingBox(transform);
 	}
@@ -257,31 +291,12 @@ EnemyType RunEnemy::GetEnemyType()
 
 void RunEnemy::OnAttacked()
 {
-	if (mCurrentAni == mAniStanding)
-	{
-		SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
-	}
-	else if (mCurrentAni == mAniRunning)
-	{
-		SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniDying->GetHeight());
-	}
-	SetState(RUNENEMY_DYING_STATE);
-	//mCurrentAni->Reset();
 	SetInvincible(true);
 }
 
 void RunEnemy::OnDie()
 {
-	if (SceneManager::GetInstance().GetScene() != nullptr
-		&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
-	{
-		Explosion* explosion;
-		explosion = new Explosion(this);
-		SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
-	}
-
-	mGridNode->Remove(this);
-	delete this;
+	SetState(RUNENEMY_DYING_STATE);
 }
 
 void RunEnemy::TakeDamage(Entity* source, int hp)

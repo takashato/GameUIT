@@ -61,6 +61,7 @@ private:
 	bool isMeetPlayer = false;
 	bool isJump = false;
 	int jumpCounter = 0;
+	float mCounterDie = 0;
 	int changeDirection = 1;
 };
 
