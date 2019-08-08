@@ -215,6 +215,11 @@ void RunEnemy::Update(float deltaTime, Player* player)
 			SetVelocityY(0.f);
 			if (mCounter > 0.4f)
 			{
+				auto position = mPosition;
+				position.x += mDirection == Right ? 5 : -5;
+				SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+					new NormalBullet(position, mDirection)
+				);
 				isShoot = false;
 				mCounter = .0f;
 			}
@@ -252,11 +257,11 @@ void RunEnemy::SetState(int state)
 {
 	if (state == RUNENEMY_RUNNING_STATE && mState == RUNENEMY_STANDING_STATE)
 	{
-		auto position = mPosition;
+		/*auto position = mPosition;
 		position.x += mDirection == Right ? 5 : -5;
 		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
 			new NormalBullet(position, mDirection)
-		);
+		);*/
 	}
 	mState = state;
 	ChangeAnimationByState(mState);
