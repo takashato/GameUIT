@@ -31,7 +31,8 @@ public:
 	void ChangeAnimationByState(int state);
 
 	void OnSetPosition();
-
+	void TakeDamage(Entity* source, int damage = 1);
+	void SetInvincible(bool val);
 	EnemyType GetEnemyType();
 	void CheckDirection(Player* player);
 
@@ -49,10 +50,12 @@ private:
 	Animation* mAniGunning = NULL;
 	Animation* mAniDying = NULL;
 	int mState = -1;
-
+	int mLastState;
 	Player* mPlayer;
-
+	bool mIsInvincible = false;
+	float mInvincibleCounter = .0f;
 	float mCounter = 0;
-
+	float mCounterDie = 0;
+	D3DXVECTOR3 spawnPos;
 };
 
