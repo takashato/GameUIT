@@ -126,6 +126,14 @@ void PlayerStanding::OnCollision(Player& player, std::vector<CollisionEvent*>& c
 			player.TakeDamage(1);
 		}
 	}
+	else if (player.mLastState == EPlayerState::Running
+		|| player.mLastState == EPlayerState::Jumping
+		|| player.mLastState == EPlayerState::Falling
+		|| player.mLastState == EPlayerState::HighJumping
+		|| player.mLastState == EPlayerState::Sitting)
+	{
+		player.SetState(EPlayerState::Falling);
+	}
 }
 
 EPlayerState PlayerStanding::GetState()
