@@ -89,7 +89,7 @@ void Grid::Update(float deltaTime, RECT rect, Player* player)
 	{
 		if (auto enemy = dynamic_cast<Enemy*>(entity)) // Tell spawner they will be delete
 		{
-			enemy->GetSpawner()->OnDelete();
+			if (enemy->GetSpawner() != nullptr) enemy->GetSpawner()->OnDelete();
 		}
 		entity->GetGridNode()->Remove(entity);
 		delete entity;
