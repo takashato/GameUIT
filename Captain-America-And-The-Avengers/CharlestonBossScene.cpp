@@ -79,6 +79,15 @@ void CharlestonBossScene::Update(float deltaTime)
 	mPlayer->GetShield()->Update(deltaTime);
 	mCamera->Update(mPlayer->GetCenterPoint());
 	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
+
+	if (mCanTransport)
+	{
+		transportDelay += deltaTime;
+		if (transportDelay >= 2.0f)
+		{
+			Transport();
+		}
+	}
 }
 
 void CharlestonBossScene::Draw()
