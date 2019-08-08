@@ -7,7 +7,7 @@ void PlayerJumping::Enter(Player& player, EPlayerState fromState, Data&& data)
 {
 	allowHighJump = fromState != EPlayerState::Swimming;
 	mCounter = .0f;
-
+	lastState = fromState;
 	if (fromState != EPlayerState::Kicking) { JumpSpeed = JUMP_SPEED_VER_MAX; }
 
 	if (fromState == EPlayerState::Kicking)
@@ -151,6 +151,14 @@ void PlayerJumping::OnCollision(Player& player, std::vector<CollisionEvent*>& cE
 			{
 				player.SetVelocityX(.0f);
 				player.SetPositionX(ce->entity->GetBoundingBox().right - (player.GetWidth() / 2 - Player::PLAYER_HITBOX_HALF));
+			}
+		}
+		if (ce->entity->GetCollidableObjectType() == EIronBar)
+		{
+			if (lastState != EPlayerState::Cling)
+			{
+				player.SetState(EPlayerState::Cling);
+				player.SetPositionY(ce->entity->GetPosition().y);
 			}
 		}
 	}

@@ -25,6 +25,6 @@ private:
 	float JumpSpeed = JUMP_SPEED_VER_MAX;
 
 	bool allowHighJump = true;
-
+	EPlayerState lastState;
 	float mCounter = .0f;
 };
