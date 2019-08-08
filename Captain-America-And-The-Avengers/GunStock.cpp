@@ -2,11 +2,38 @@
 #include "Game.h"
 #include "GunStock.h"
 
-GunStock::GunStock(D3DXVECTOR3 position)
+GunStock::GunStock(D3DXVECTOR3 position, int subType)
 {
 	LoadAnimations();
 	SetPosition(position);
-	mState = GUNSTOCK_RIGHT_DIRECT;
+	SetState(GUNSTOCK_RIGHT_DIRECT);
+	switch (subType)
+	{
+	case 0:
+		SetState(GUNSTOCK_TOP_DIRECT);
+		break;
+	case 1:
+		SetState(GUNSTOCK_TOPRIGHT_DIRECT);
+		break;
+	case 2:
+		SetState(GUNSTOCK_RIGHT_DIRECT);
+		break;
+	case 3:
+		SetState(GUNSTOCK_BOTTOMRIGHT_DIRECT);
+		break;
+	case 4:
+		SetState(GUNSTOCK_BOTTOM_DIRECT);
+		break;
+	case 5:
+		SetState (GUNSTOCK_BOTTOMLEFT_DIRECT);
+		break;
+	case 6:
+		SetState(GUNSTOCK_LEFT_DIRECT);
+		break;
+	case 7:
+		SetState(GUNSTOCK_TOPLEFT_DIRECT);
+		break;
+	}
 }
 
 

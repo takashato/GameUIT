@@ -19,7 +19,7 @@
 class GunStock : public Enemy
 {
 public:
-	GunStock(D3DXVECTOR3 position = D3DXVECTOR3(300.0f, 402.0f, 0.f));
+	GunStock(D3DXVECTOR3 position = D3DXVECTOR3(300.0f, 402.0f, 0.f), int subType = 0);
 	~GunStock();
 	void LoadAnimations();
 
