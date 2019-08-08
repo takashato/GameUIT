@@ -33,12 +33,17 @@ public:
 
 	void Transport();
 
+	bool isLightOn = false;
+	void ToggleLight();
 
 private:
 	std::unique_ptr<Player> mPlayer;
+	std::unique_ptr<GameMap> mMapLight;
 
 	// Inherited via Scene
 	virtual void OnKeyUp(BYTE key) override;
 	virtual void OnKeyDown(BYTE key) override;
+
+	float lightInterval = .0f;
 
 };

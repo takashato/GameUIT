@@ -41,8 +41,50 @@ void Capsule::Update(float deltaTime)
 
 void Capsule::Draw(D3DXVECTOR2 trans)
 {
-	mCurrentAni->Draw(mPosition, trans);
-	this->RenderBoundingBox(trans);
+	if (auto scene = dynamic_cast<PittsburghScene*>(SceneManager::GetInstance().GetScene()))
+	{
+		if (!scene->isLightOn)
+		{
+			mCurrentAni->Draw(GetPosition(), trans, D3DCOLOR_RGBA(0, 0, 0, 255));
+			this->RenderBoundingBox(trans);
+		}
+		else
+		{
+			mCurrentAni->Draw(mPosition, trans);
+			this->RenderBoundingBox(trans);
+		}
+	}
+	else if (auto scene = dynamic_cast<PittsburghExtra1Scene*>(SceneManager::GetInstance().GetScene()))
+	{
+		if (!scene->isLightOn)
+		{
+			mCurrentAni->Draw(GetPosition(), trans, D3DCOLOR_RGBA(0, 0, 0, 255));
+			this->RenderBoundingBox(trans);
+		}
+		else
+		{
+			mCurrentAni->Draw(mPosition, trans);
+			this->RenderBoundingBox(trans);
+		}
+	}
+	else if (auto scene = dynamic_cast<PittsburghExtra2Scene*>(SceneManager::GetInstance().GetScene()))
+	{
+		if (!scene->isLightOn)
+		{
+			mCurrentAni->Draw(GetPosition(), trans, D3DCOLOR_RGBA(0, 0, 0, 255));
+			this->RenderBoundingBox(trans);
+		}
+		else
+		{
+			mCurrentAni->Draw(mPosition, trans);
+			this->RenderBoundingBox(trans);
+		}
+	}
+	else
+	{
+		mCurrentAni->Draw(mPosition, trans);
+		this->RenderBoundingBox(trans);
+	}
 }
 
 void Capsule::Drop()

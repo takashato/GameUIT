@@ -45,13 +45,13 @@ public:
 	void Transport(/*TypeExtra type*/);
 
 	bool isLightOn = false;
-
+	void ToggleLight();
 
 	void CheckAmbush();
 	void EnterAmbush();
 	void LeaveAmbush();
 
-	void ToggleLight();
+	
 
 private:
 	std::unique_ptr<Player> mPlayer;
