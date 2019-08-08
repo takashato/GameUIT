@@ -138,7 +138,6 @@ void PittsburghScene::Draw()
 		mMap->Draw(trans);
 	else
 		mMapDark->Draw(trans);
-	mMap->Draw(trans);
 	mGrid->Draw(trans);
 	mPlayer->Draw(trans);
 	mPlayer->GetShield()->Draw(trans);
