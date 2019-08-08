@@ -56,6 +56,11 @@ void PittsburghExtra1Scene::Setup()
 	{
 		mGrid->Add(new Ground(D3DXVECTOR3(dataGround.x, dataGround.y, .0f), dataGround.type, dataGround.w, dataGround.h));
 	}
+	//IronBar
+	for (DataIronBar dataIronBar : mData.GetDataIronBar())
+	{
+		mGrid->Add(new IronBar(D3DXVECTOR3(dataIronBar.x, dataIronBar.y, .0f), dataIronBar.w, dataIronBar.h));
+	}
 }
 
 void PittsburghExtra1Scene::Update(float deltaTime)
