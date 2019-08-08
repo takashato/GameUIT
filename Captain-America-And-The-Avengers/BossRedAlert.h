@@ -12,6 +12,7 @@
 #define BOSSREDALERT_RUNNING_STATE 2
 #define BOSSREDALERT_GUN_STATE 3
 #define BOSSREDALERT_CRAZY_STATE 4
+#define BOSSREDALERT_HURT_STATE 5
 
 
 
@@ -33,7 +34,7 @@ public:
 
 	void OnSetPosition();
 
-	void TakeDamage(Entity* source, int damage = 1);
+	void TakeDamageBossRedAlert(Entity* source, int damage = 1);
 	void SetInvincible(bool val);
 
 	void CheckDirection(Player* player);

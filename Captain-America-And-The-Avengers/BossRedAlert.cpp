@@ -249,7 +249,7 @@ void BossRedAlert::CheckDirection(Player* player)
 	}
 
 }
-void BossRedAlert::TakeDamage(Entity* source, int damage)
+void BossRedAlert::TakeDamageBossRedAlert(Entity* source, int damage)
 {
 	if (mIsInvincible) return;
 	/*SetState(BOSS_CHARLESTON_BEHIT_STATE);*/
