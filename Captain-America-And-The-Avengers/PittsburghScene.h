@@ -19,6 +19,7 @@
 #include "FlyRocketEnemy.h"
 #include "Bat.h"
 #include "Door.h"
+#include "LightButton.h"
 
 enum TypeExtra
 {
@@ -43,19 +44,28 @@ public:
 
 	void Transport(/*TypeExtra type*/);
 
+	bool isLightOn = true;
+
+
 	void CheckAmbush();
 	void EnterAmbush();
 	void LeaveAmbush();
 
+	void ToggleLight();
+
 private:
 	std::unique_ptr<Player> mPlayer;
-
+	std::unique_ptr<GameMap> mMapDark;
 	// Inherited via Scene
 	virtual void OnKeyUp(BYTE key) override;
 	virtual void OnKeyDown(BYTE key) override;
 
 	bool enteredAmbush = false;
 	bool passedAmbush = false;
+
+	float lightInterval = .0f;
+
+	float transportDelay = .0f;
 
 	std::set<Spawner*> spawnerList, ambushSpawner;
 };
