@@ -26,7 +26,9 @@ void PittsburghScene::Setup()
 	mMap = std::make_unique<GameMap>(ID_MAP_CHARLESTON_BOSS_LIGHT, CA2W(mData.GetTilemapImagePath()), CA2W(mData.GetTilemapMatrixPath()));
 	mMap->SetCamera(mCamera.get());
 	mCamera->SetWorldBoundary(mMap->GetBoundary());
-
+	//Map Dark
+	mMapDark = std::make_unique<GameMap>(ID_MAP_CHARLESTON_BOSS_DARK, L"Resources\\Map\\Pittsburgh_Light_Map.png", L"Resources\\Map\\Matrix_Pittsburgh_Light_Map.txt");
+	mMapDark->SetCamera(mCamera.get());
 	// Create grid
 	mGrid = std::make_unique<Grid>(mMap->GetWidth(), mMap->GetHeight());
 
@@ -108,6 +110,8 @@ void PittsburghScene::Setup()
 
 void PittsburghScene::Update(float deltaTime)
 {
+	lightInterval += deltaTime;
+
 	mGrid->Update(deltaTime, mCamera->GetBound(), mPlayer.get());
 	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 	std::vector<CollisionEvent*> cEvent;
@@ -130,6 +134,10 @@ void PittsburghScene::Update(float deltaTime)
 void PittsburghScene::Draw()
 {
 	auto trans = mCamera->GetTransform();
+	if (isLightOn)
+		mMap->Draw(trans);
+	else
+		mMapDark->Draw(trans);
 	mMap->Draw(trans);
 	mGrid->Draw(trans);
 	mPlayer->Draw(trans);
@@ -227,6 +235,15 @@ void PittsburghScene::LeaveAmbush()
 		}
 	}
 }
+void PittsburghScene::ToggleLight()
+{
+	if (lightInterval >= .5f)
+	{
+		lightInterval = .0f;
+		isLightOn = !isLightOn;
+	}
+}
+
 
 void PittsburghScene::OnKeyUp(BYTE key)
 {
