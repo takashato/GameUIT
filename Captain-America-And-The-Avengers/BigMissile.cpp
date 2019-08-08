@@ -33,7 +33,7 @@ void BigMissile::LoadAnimations()
 {
 	if (mSprite == nullptr)
 	{
-		mSprite = new Sprite(L"Resources\\Sprites\\Enemies\\Enemies.png");
+		mSprite = new Sprite(L"Resources\\Sprites\\Enemies\\Rocket.png");
 		mAniScripts = new AnimationScript("Resources\\Sprites\\Enemies\\MissileOfFlyEnemy.xml");
 
 		mAniTop = new Animation(mSprite, mAniScripts->GetRectList("Top", "0"), 0.1F);
