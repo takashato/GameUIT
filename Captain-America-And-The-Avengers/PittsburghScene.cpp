@@ -88,8 +88,19 @@ void PittsburghScene::Setup()
 	//Enemy
 	for (DataEnemy dataEnemy : mData.GetDataEnemy())
 	{
-		mGrid->Add(new Spawner(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy));
+		auto spawner = new Spawner(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy);
+		mGrid->Add(spawner);
+		spawnerList.emplace(spawner);
 	}
+	// Enemy in ambush
+	auto ambushEnemy1 = new Spawner(D3DXVECTOR3(264.0f, 873.f, .0f), DataEnemy(EnemyType::ERunEnemy, 264.0f, 873.0f, 1), .0f);
+	auto ambushEnemy2 = new Spawner(D3DXVECTOR3(472.0f, 870.f, .0f), DataEnemy(EnemyType::EMissileEnemy, 472.0f, 870.0f, 4), .0f);
+	ambushEnemy1->SetActivate(false);
+	ambushEnemy2->SetActivate(false);
+	mGrid->Add(ambushEnemy1);
+	mGrid->Add(ambushEnemy2);
+	ambushSpawner.emplace(ambushEnemy1);
+	ambushSpawner.emplace(ambushEnemy2);
 	
 	// Transport
 	mGrid->Add(new TransportArea(D3DXVECTOR3(981.0f, 736.0f, .0f), 12, 192));
@@ -113,6 +124,7 @@ void PittsburghScene::Update(float deltaTime)
 	mPlayer->GetShield()->Update(deltaTime);
 	mCamera->Update(mPlayer->GetCenterPoint());
 	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
+	CheckAmbush();
 }
 
 void PittsburghScene::Draw()
@@ -150,6 +162,72 @@ void PittsburghScene::Transport(/*TypeExtra type*/)
 	}
 	SceneManager::GetInstance().ChangeScene(MapID::RedAlertBoss);
 }
+void PittsburghScene::CheckAmbush()
+{
+	if (passedAmbush) return;
+
+	if (!enteredAmbush)
+	{
+		if (mPlayer->GetPosition().x > 401.0f && mPlayer->GetPosition().y > 768.0f
+			&& mPlayer->GetPosition().x < 410.0f && mPlayer->GetPosition().y < 960.0f)
+		{
+			EnterAmbush();
+		}
+	}
+	else // If are in ambushh
+	{
+		int total = 0;
+		for (auto spawner : ambushSpawner)
+		{
+			total += spawner->GetKillCounter();
+		}
+		if (total >= 6)
+		{
+			LeaveAmbush();
+		}
+	}
+}
+
+void PittsburghScene::EnterAmbush()
+{
+	enteredAmbush = true;
+	SoundManager::GetInstance().CStopsound(GetBgMusic());
+	SoundManager::GetInstance().CPlaySound(SoundType::Ambush);
+	mCamera->SetLock(true);
+	for (auto spawner : spawnerList) // Process non-ambush mode enemies
+	{
+		spawner->SetActivate(false);
+		if (spawner->GetEnemy() != nullptr)
+		{
+			spawner->GetEnemy()->TakeDamage(mPlayer.get(), 1000);
+		}
+	}
+	for (auto spawner : ambushSpawner)
+	{
+		spawner->SetActivate(true);
+	}
+}
+
+void PittsburghScene::LeaveAmbush()
+{
+	passedAmbush = true;
+	SoundManager::GetInstance().CPlaySound(GetBgMusic());
+	SoundManager::GetInstance().CStopsound(SoundType::Ambush);
+	mCamera->SetLock(false);
+	for (auto spawner : spawnerList) // Process non-ambush mode enemies
+	{
+		spawner->SetActivate(true);
+	}
+	for (auto spawner : ambushSpawner)
+	{
+		spawner->SetActivate(false);
+		if (spawner->GetEnemy() != nullptr)
+		{
+			spawner->GetEnemy()->TakeDamage(mPlayer.get(), 1000);
+		}
+	}
+}
+
 void PittsburghScene::OnKeyUp(BYTE key)
 {
 	mPlayer->OnKeyUp(key);
