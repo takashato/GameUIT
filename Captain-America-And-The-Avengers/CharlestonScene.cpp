@@ -66,8 +66,20 @@ void CharlestonScene::Setup()
 	// Enemy
 	for (DataEnemy dataEnemy : mData.GetDataEnemy())
 	{
-		mGrid->Add(new Spawner(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy));
+		auto spawner = new Spawner(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy);
+		mGrid->Add(spawner);
+		spawnerList.emplace(spawner);
 	}
+	// Enemy in ambush
+	auto ambushEnemy1 = new Spawner(D3DXVECTOR3(265.0f, 404.f, .0f), DataEnemy(EnemyType::ERunEnemy, 265.0f, 404.0f, 1), .0f);
+	auto ambushEnemy2 = new Spawner(D3DXVECTOR3(528.0f, 404.f, .0f), DataEnemy(EnemyType::EMissileEnemy, 528.0f, 404.0f, 0), .0f);
+	ambushEnemy1->SetActivate(false);
+	ambushEnemy2->SetActivate(false);
+	mGrid->Add(ambushEnemy1);
+	mGrid->Add(ambushEnemy2);
+	ambushSpawner.emplace(ambushEnemy1);
+	ambushSpawner.emplace(ambushEnemy2);
+
 	// Transport Area
 	mGrid->Add(new TransportArea(D3DXVECTOR3(1979.0f, 358.0f, .0f), 16, 90));
 
@@ -97,6 +109,7 @@ void CharlestonScene::Update(float deltaTime)
 	mPlayer->GetShield()->Update(deltaTime);
 	mCamera->Update(mPlayer->GetCenterPoint());
 	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
+	CheckAmbush();
 }
 
 void CharlestonScene::Draw()
@@ -120,6 +133,71 @@ void CharlestonScene::Transport()
 		SoundManager::GetInstance().CStopsound(GetBgMusic());
 	}
 	SceneManager::GetInstance().ChangeScene(MapID::CharlestonBoss);
+}
+
+void CharlestonScene::CheckAmbush()
+{
+	if (passedAmbush) return;
+
+	if (!enteredAmbush)
+	{
+		if (mPlayer->GetPosition().x > 400.0f)
+		{
+			EnterAmbush();
+		}
+	}
+	else // If are in ambushh
+	{
+		int total = 0;
+		for (auto spawner : ambushSpawner)
+		{
+			total += spawner->GetKillCounter();
+		}
+		if (total >= 6)
+		{
+			LeaveAmbush();
+		}
+	}
+}
+
+void CharlestonScene::EnterAmbush()
+{
+	enteredAmbush = true;
+	SoundManager::GetInstance().CStopsound(GetBgMusic());
+	SoundManager::GetInstance().CPlaySound(SoundType::Ambush);
+	mCamera->SetLock(true);
+	for (auto spawner : spawnerList) // Process non-ambush mode enemies
+	{
+		spawner->SetActivate(false);
+		if (spawner->GetEnemy() != nullptr)
+		{
+			spawner->GetEnemy()->TakeDamage(mPlayer.get(), 1000);
+		}
+	}
+	for (auto spawner : ambushSpawner)
+	{
+		spawner->SetActivate(true);
+	}
+}
+
+void CharlestonScene::LeaveAmbush()
+{
+	passedAmbush = true;
+	SoundManager::GetInstance().CPlaySound(GetBgMusic());
+	SoundManager::GetInstance().CStopsound(SoundType::Ambush);
+	mCamera->SetLock(false);
+	for (auto spawner : spawnerList) // Process non-ambush mode enemies
+	{
+		spawner->SetActivate(true);
+	}
+	for (auto spawner : ambushSpawner)
+	{
+		spawner->SetActivate(false);
+		if (spawner->GetEnemy() != nullptr)
+		{
+			spawner->GetEnemy()->TakeDamage(mPlayer.get(), 1000);
+		}
+	}
 }
 
 void CharlestonScene::OnKeyUp(BYTE key)

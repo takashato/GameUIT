@@ -32,6 +32,8 @@ CollidableObjectType Spawner::GetCollidableObjectType()
 
 void Spawner::Update(float deltaTime)
 {
+	if (!mIsActivted) return;
+
 	if (mEnemy == nullptr)
 	{
 		mCounter += deltaTime;
@@ -51,7 +53,7 @@ void Spawner::Draw(D3DXVECTOR2 trans)
 void Spawner::Spawn()
 {
 	if (!GeoUtils::IsIntersect(GetBoundingBox(), SceneManager::GetInstance().GetScene()->GetCamera()->GetBound())
-		|| !spawnFirstTime
+		|| !spawnFirstTime || spawnInterval == .0f
 		)
 	{
 		if (mEnemy != nullptr) return;
@@ -95,6 +97,7 @@ void Spawner::Spawn()
 
 void Spawner::OnDelete()
 {
+	killCounter++;
 	std::cout << "Enemy controlled by this spawner has been deleted.\n";
 	this->mEnemy = nullptr;
 }

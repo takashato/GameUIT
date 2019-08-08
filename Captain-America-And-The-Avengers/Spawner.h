@@ -18,8 +18,14 @@ public:
 	Enemy* GetEnemy() { return mEnemy; }
 
 	void OnDelete();
+
+	void SetActivate(bool val) { mIsActivted = val;  }
+
+	int GetKillCounter() { return killCounter; }
 	
 private:
+	bool mIsActivted = true;
+
 	bool spawnFirstTime = false;
 	float spawnInterval;
 
@@ -28,4 +34,6 @@ private:
 	Enemy* mEnemy = nullptr;
 
 	float mCounter = 0.0f;
+
+	int killCounter = 0;
 };

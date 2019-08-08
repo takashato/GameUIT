@@ -38,6 +38,10 @@ public:
 
 	void Transport();
 
+	void CheckAmbush();
+	void EnterAmbush();
+	void LeaveAmbush();
+
 private:
 	std::unique_ptr<Player> mPlayer;
 
@@ -45,5 +49,8 @@ private:
 	virtual void OnKeyUp(BYTE key) override;
 	virtual void OnKeyDown(BYTE key) override;
 
+	bool enteredAmbush = false;
+	bool passedAmbush = false;
 
+	std::set<Spawner*> spawnerList, ambushSpawner;
 };
