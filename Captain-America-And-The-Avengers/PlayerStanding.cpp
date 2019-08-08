@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "PlayerStanding.h"
+#include "Ground.h"
 #include "Player.h"
 
 void PlayerStanding::Enter(Player& player, EPlayerState fromState, Data&& data)
@@ -90,17 +91,22 @@ void PlayerStanding::OnKeyUp(Player& player, BYTE code)
 void PlayerStanding::OnCollision(Player& player, std::vector<CollisionEvent*>& cEvent)
 {
 	bool collisionWithGround = false;
+	CollisionEvent* groundCe = nullptr;
 	for (auto ce : cEvent)
 	{
 		if (ce->entity->GetCollidableObjectType() == EPlatform && ce->ny == -1.0f) 
 		{
 			collisionWithGround = true;
+			groundCe = ce;
 		}
 	}
-	/*if (!collisionWithGround)
+	if (collisionWithGround)
 	{
-		player.SetState(EPlayerState::Falling);
-	}*/
+		if (((Ground*)groundCe->entity)->GetGroundType() == EGroundThorns && player.mState->GetState() != EPlayerState::SittingOnShield)
+		{
+			player.TakeDamage(1);
+		}
+	}
 }
 
 EPlayerState PlayerStanding::GetState()

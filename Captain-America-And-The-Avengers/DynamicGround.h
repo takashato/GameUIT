@@ -10,7 +10,7 @@ class DynamicGround : public Ground
 {
 	static constexpr auto FLY_SPEED = 35.0f;
 	static constexpr auto PI = 3.14159265f;
-	static constexpr auto omega = 1.5f;
+	static constexpr auto omega = 1.0f;
 
 public:
 	DynamicGround(D3DXVECTOR3 position = D3DXVECTOR3(344.0f, 416.0f, 0.f), int subTypeID = 1);

@@ -38,14 +38,11 @@ public:
 	void OnSetPosition();
 
 	EnemyType GetEnemyType();
-	void TakeDamage(Entity* source, int hp);
-
-	void OnAttacked();
-	void OnDie();
-
-	void SetInvincible(bool val);
 
 	void CheckDirection(Player* player);
+
+	void TakeDamage(Entity* source, int damage = 1);
+	void SetInvincible(bool val);
 
 
 	void ModeOne(float deltaTime, Player* player);//Run and Hit
@@ -85,7 +82,11 @@ private:
 	int mState = -1;
 
 	float mCounter = 0;
-	float timeDie = 0;
+
+	int mHP = 15;
+	bool mIsInvincible = false;
+	float mInvincibleCounter = .0f;
+
 	D3DXVECTOR3 playerPos;
 };
 

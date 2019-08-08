@@ -27,7 +27,7 @@ void BossCharleston::LoadAnimations()
 
 	mAniStanding = new Animation(mSprite, mAniScripts->GetRectList("Idle", "0"), 0.1F);
 	mAniRunning = new Animation(mSprite, mAniScripts->GetRectList("Running", "0"), 0.15F);
-	mAniDying = new Animation(mSprite, mAniScripts->GetRectList("Dying", "0"), 0.1F);
+	mAniDying = new Animation(mSprite, mAniScripts->GetRectList("Dying", "0"), 0.5F, false);
 	mAniLaugh = new Animation(mSprite, mAniScripts->GetRectList("Laugh", "0"), 0.1F);
 	mAniBeHit = new Animation(mSprite, mAniScripts->GetRectList("BeHit", "0"), 0.1F);
 	mAniGun = new Animation(mSprite, mAniScripts->GetRectList("Gun", "0"), 0.3F, false);
@@ -45,17 +45,25 @@ void BossCharleston::Update(float deltaTime, Player* player)
 	playerPos = player->GetPosition();
 
 	Entity::Update(deltaTime);
-	Enemy::Update(deltaTime, player);
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 
-	
-	
-	mCounter += deltaTime;
-	if (mHP <= 0)
+	if (mIsInvincible)
 	{
-		//timeDie += deltaTime;
-		SetState(BOSS_CHARLESTON_DYING_STATE);
-		mCounter = 0;
+		mInvincibleCounter += deltaTime;
+		if (mInvincibleCounter >= 1.0f)
+		{
+			mInvincibleCounter = .0f;
+			mIsInvincible = false;
+		}
+	}
+
+	mCounter += deltaTime;
+
+	if (mState == BOSS_CHARLESTON_DYING_STATE)
+	{
+		SetVelocityX(.0f);
+		SetVelocityY(.0f);
+		return;
 	}
 
 	if (mPosition.y == 145 && player->GetPosition().x > mPosition.x - 5 && player->GetPosition().x < mPosition.x + 28 && player->GetPosition().y>145)
@@ -136,18 +144,13 @@ void BossCharleston::Update(float deltaTime, Player* player)
 		mCounter = 0;
 	}
 	mCurrentAni->Update(deltaTime);
-	
-	/*if (mCurrentAni == mAniDying && timeDie > 0.5f)
-	{
-		SceneManager::GetInstance().GetScene()->Transport();
-
-	}*/
 }
 
 void BossCharleston::Draw(D3DXVECTOR2 transform)
 {
 	if (mCurrentAni != nullptr && mState != -1)
 	{
+		mCurrentAni->SetBlink(mIsInvincible);
 		if (auto scene = dynamic_cast<CharlestonBossScene*>(SceneManager::GetInstance().GetScene()))
 		{
 			if (!scene->isLightOn)
@@ -491,6 +494,30 @@ void BossCharleston::CheckDirection(Player* player)
 	}
 
 }
+void BossCharleston::TakeDamage(Entity* source, int damage)
+{
+	if (mIsInvincible) return;
+	mHP -= damage;
+	std::cout << "Boss take " << damage << "\n";
+	if (damage == 2)
+	{
+		std::cout << "Found 2!\n";
+	}
+	if (mHP <= 0)
+	{
+		SetState(BOSS_CHARLESTON_DYING_STATE);
+	}
+	else
+	{
+		SetInvincible(true);
+	}
+}
+
+void BossCharleston::SetInvincible(bool val)
+{
+	mIsInvincible = val;
+}
+
 void BossCharleston::ModeThree(float deltaTime, Player* player)
 {
 	if (mState == BOSS_CHARLESTON_IDLE_STATE && mCounter > 1.f)
@@ -705,42 +732,3 @@ void BossCharleston::ModeFour(float deltaTime, Player* player)
 	}
 }
 
-void BossCharleston::OnAttacked()
-{
-	//SetState(BOSS_CHARLESTON_BEHIT_STATE);
-	SetInvincible(true);
-}
-
-void BossCharleston::OnDie()
-{
-	/*if (SceneManager::GetInstance().GetScene() != nullptr
-		&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
-	{
-		Explosion* explosion;
-		explosion = new Explosion(this);
-		SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
-	}*/
-
-	SetState(BOSS_CHARLESTON_DYING_STATE);
-	SetInvincible(true);
-	/*mGridNode->Remove(this);
-	delete this;*/
-
-}
-
-void BossCharleston::TakeDamage(Entity* source, int hp)
-{
-	if (!mIsInvincible)
-	{
-		if (source->GetCollidableObjectType() == EWeapon || source->GetCollidableObjectType() == EPlayer)
-		{
-			mHP -= hp;
-			OnAttacked();
-		}
-	}
-}
-
-void BossCharleston::SetInvincible(bool val)
-{
-	Enemy::SetInvincible(val);
-}

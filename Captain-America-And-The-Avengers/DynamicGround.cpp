@@ -36,7 +36,7 @@ void DynamicGround::Update(float deltaTime)
 			SetVelocityX(0.f);
 			SetVelocityY(0.f);
 		}
-		else if (mCounter >= 0.2f && mCounter < 1.5f)
+		else if (mCounter >= 0.2f && mCounter < 3.0f)
 		{
 			if (GetDirection() == Left)
 			{
@@ -63,7 +63,7 @@ void DynamicGround::Update(float deltaTime)
 			SetVelocityX(0.f);
 			SetVelocityY(0.f);
 		}
-		else if (mCounter >= 0.2f && mCounter < 1.5f)
+		else if (mCounter >= 0.2f && mCounter < 2.2f)
 		{
 			if (GetDirection() == Left)
 			{
@@ -117,8 +117,8 @@ void DynamicGround::Update(float deltaTime)
 
 		mCounter += deltaTime;
 
-		mPosition.x = 200.0f + 30.0f * cos(omega * mCounter);
-		mPosition.y = 390.0f - 30.0f * omega * sin(omega * mCounter);
+		mPosition.x = 620.0 + 50.0f * cos(omega * mCounter);
+		mPosition.y = 650.0 - 50.0f * omega * sin(omega * mCounter);
 		mPosition.z = 0.f;
 		SetPosition(mPosition);
 	}

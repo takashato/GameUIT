@@ -69,7 +69,29 @@ void PittsburghScene::Setup()
 	// Ground
 	for (DataGround dataGround : mData.GetDataGround())
 	{
-		mGrid->Add(new Ground(D3DXVECTOR3(dataGround.x, dataGround.y, .0f), dataGround.type, dataGround.w, dataGround.h));
+		switch (dataGround.type)
+		{
+		case EGroundDynamic:
+		{
+			DynamicGround* ground = new DynamicGround(D3DXVECTOR3(dataGround.x, dataGround.y, .0f), dataGround.subType);
+			mGrid->Add(ground);
+		}
+		break;
+		case EGroundBreak:
+		{
+			BreakGround* breakGr = new BreakGround((D3DXVECTOR3(dataGround.x, dataGround.y, .0f)));
+			mGrid->Add(breakGr);
+		}
+		break;
+		case EGroundHard:
+		case EGroundNormal:
+		case EGroundWater:
+		case EGroundThorns:
+		{
+			mGrid->Add(new Ground(D3DXVECTOR3(dataGround.x, dataGround.y, .0f), dataGround.type, dataGround.w, dataGround.h));
+		}
+		break;
+		}
 	}
 	// Capsule
 	for (DataCapsule dataCapsule : mData.GetDataCapsule())
@@ -77,7 +99,8 @@ void PittsburghScene::Setup()
 		auto capsule = new Capsule(D3DXVECTOR3(dataCapsule.x, dataCapsule.y, .0f), dataCapsule.itemList);
 		mGrid->Add(capsule);
 	}
-
+	// Button
+	mGrid->Add(new LightButton(D3DXVECTOR3(270.0f, 48.0f, .0f)));
 }
 
 void PittsburghScene::Update(float deltaTime)

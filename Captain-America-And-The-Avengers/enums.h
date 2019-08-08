@@ -6,7 +6,8 @@ enum GroundType
 	EGroundHard,
 	EGroundWater,
 	EGroundDynamic,
-	EGroundBreak
+	EGroundBreak,
+	EGroundThorns
 };
 
 enum EnemyType

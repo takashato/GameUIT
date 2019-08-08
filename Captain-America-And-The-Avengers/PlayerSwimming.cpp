@@ -72,12 +72,12 @@ void PlayerSwimming::OnCollision(Player& player, std::vector<CollisionEvent*>& c
 				if (ce->nx == -1.0f)
 				{
 					player.SetVelocityX(.0f);
-					player.SetPositionX(ce->entity->GetPosition().x - player.GetWidth());
+					player.SetPositionX(ce->entity->GetPosition().x - (player.GetWidth() / 2 + Player::PLAYER_HITBOX_HALF));
 				}
 				else if (ce->nx == 1.0f)
 				{
 					player.SetVelocityX(.0f);
-					player.SetPositionX(ce->entity->GetBoundingBox().right);
+					player.SetPositionX(ce->entity->GetBoundingBox().right + (player.GetWidth() / 2 - Player::PLAYER_HITBOX_HALF));
 				}
 			}
 		}

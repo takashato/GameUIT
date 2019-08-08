@@ -164,7 +164,7 @@ void Entity::CalcCollision(std::set<Entity*> *entities, std::vector<CollisionEve
 
 		CollisionEvent* e = SweptAABBEx(entity);
 
-		if (e->t >= .0f && e->t <= 1.0f)
+		if (e->t >= 0 && e->t <= 1.0f)
 			cEvent.push_back(e);
 		else
 			delete e;

@@ -112,6 +112,8 @@ void PlayerHighJumping::OnKeyUp(Player& player, BYTE code)
 
 void PlayerHighJumping::OnCollision(Player& player, std::vector<CollisionEvent*>& cEvent)
 {
+	player.mIsCollisionLeftRightSide = false;
+
 	bool collisionWithGroundTop = false;
 	bool collisionWithGroundBottom = false;
 
@@ -137,16 +139,16 @@ void PlayerHighJumping::OnCollision(Player& player, std::vector<CollisionEvent*>
 				if (ce->nx == -1.0f)
 				{
 					player.mIsCollisionLeftRightSide = true;
-					player.mDirectionUnblock = Left;
+					//player.mDirectionUnblock = Left;
 					player.SetVelocityX(.0f);
-					player.SetPositionX(ce->entity->GetPosition().x - player.GetWidth());
+					player.SetPositionX(ce->entity->GetPosition().x - (player.GetWidth() / 2 + Player::PLAYER_HITBOX_HALF));
 				}
 				else if (ce->nx == 1.0f)
 				{
 					player.mIsCollisionLeftRightSide = true;
-					player.mDirectionUnblock = Right;
+					//player.mDirectionUnblock = Right;
 					player.SetVelocityX(.0f);
-					player.SetPositionX(ce->entity->GetBoundingBox().right);
+					player.SetPositionX(ce->entity->GetBoundingBox().right - (player.GetWidth() / 2 - Player::PLAYER_HITBOX_HALF));
 				}
 			}
 		}

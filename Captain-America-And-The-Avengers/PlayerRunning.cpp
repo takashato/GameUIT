@@ -67,6 +67,7 @@ void PlayerRunning::OnKeyUp(Player& player, BYTE code)
 void PlayerRunning::OnCollision(Player& player, std::vector<CollisionEvent*>& cEvent)
 {
 	bool collisionWithGround = false;
+	CollisionEvent* groundCe = nullptr;
 	for (auto ce : cEvent)
 	{
 		if (ce->entity->GetCollidableObjectType() == EPlatform)
@@ -74,6 +75,7 @@ void PlayerRunning::OnCollision(Player& player, std::vector<CollisionEvent*>& cE
 			if (ce->ny == -1.0f)
 			{
 				collisionWithGround = true;
+				groundCe = ce;
 			}
 			
 			if (((Ground*)ce->entity)->GetGroundType() == EGroundHard)
@@ -81,16 +83,23 @@ void PlayerRunning::OnCollision(Player& player, std::vector<CollisionEvent*>& cE
 				if (ce->nx == -1.0f)
 				{
 					player.SetVelocityX(.0f);
-					player.SetPositionX(ce->entity->GetPosition().x - player.GetWidth());
+					player.SetPositionX(ce->entity->GetPosition().x - (player.GetWidth() / 2 + Player::PLAYER_HITBOX_HALF));
 				}
 				else if (ce->nx == 1.0f)
 				{
 					player.SetVelocityX(.0f);
-					player.SetPositionX(ce->entity->GetBoundingBox().right);
+					player.SetPositionX(ce->entity->GetBoundingBox().right - (player.GetWidth() / 2 - Player::PLAYER_HITBOX_HALF));
 				}
 			}
 		}
 
+	}
+	if (collisionWithGround)
+	{
+		if (((Ground*)groundCe->entity)->GetGroundType() == EGroundThorns && player.mState->GetState() != EPlayerState::SittingOnShield)
+		{
+			player.TakeDamage(1);
+		}
 	}
 	if (!collisionWithGround)
 	{
