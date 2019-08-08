@@ -148,84 +148,49 @@ void RunEnemy::Update(float deltaTime, Player* player)
 	if (mSubTypeID == 1) // Run and Shoot
 	{
 		SetDirection(EntityDirection::Right);
-		/*if(mCurrentAni == mAniStanding && mState == RUNENEMY_STANDING_STATE)
-			lastPosition = this->GetPosition();*/
-			/*if (mIsInvincible)
+		mCounter += deltaTime;
+
+		if (runEnemyPosition.x - spawnPosition.x > 256)
+		{
+			SetPosition(spawnPosition);
+			SetState(RUNENEMY_STANDING_STATE);
+		}
+
+		if (mCounter < 0.6f)
+		{
+			if (mCurrentAni == mAniRunning)
 			{
-				if (mCurrentAni != mAniDying)
-				{
-					if (mCurrentAni == mAniStanding)
-					{
-						SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
-					}
-					else if (mCurrentAni == mAniRunning)
-					{
-						SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniDying->GetHeight());
-					}
-					SetState(RUNENEMY_DYING_STATE);
-					SetVelocityX(0.f);
-					SetVelocityY(0.f);
-				}
-				mCounter = .0f;
+				SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniStanding->GetHeight());
 			}
-			else
-			{*/
-		if (!isShoot)
+			SetState(RUNENEMY_STANDING_STATE);
+			if (isShoot)
+			{
+				auto position = mPosition;
+				position.x += mDirection == Right ? 5 : -5;
+				position.y += 4;
+				SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+					new NormalBullet(position, mDirection)
+				);
+			}
+			isShoot = false;
+		}
+		else if(mCounter >= 0.6f && mCounter < 2.0f)
 		{
 			if (mCurrentAni == mAniStanding)
 			{
 				SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniRunning->GetHeight());
 			}
-			else if (mCurrentAni == mAniDying)
-			{
-				SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniRunning->GetHeight());
-			}
 			SetState(RUNENEMY_RUNNING_STATE);
-
-			if (runEnemyPosition.x - spawnPosition.x > 256)
-			{
-				SetPosition(spawnPosition);
-				SetState(RUNENEMY_STANDING_STATE);
-			}
-			else
-			{
-				SetVelocityX(GetDirection()*RUN_SPEED);
-				AddPositionX(GetVelocityX() * deltaTime);
-			}
+			SetVelocityX(GetDirection()*RUN_SPEED);
+			AddPositionX(GetVelocityX() * deltaTime);
+			
 		}
-
-		if ((int)runEnemyPosition.x % 31 > 29)
-			isShoot = true;
-
-		if (isShoot)
+		else if (mCounter >= 2.0f)
 		{
-			mCounter += deltaTime;
-
-			if (mCurrentAni == mAniDying)
-			{
-				SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniStanding->GetHeight());
-			}
-			else if (mCurrentAni == mAniRunning)
-			{
-				SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniStanding->GetHeight());
-			}
-			SetState(RUNENEMY_STANDING_STATE);
-
-			SetVelocityX(0.f);
-			SetVelocityY(0.f);
-			if (mCounter > 0.4f)
-			{
-				auto position = mPosition;
-				position.x += mDirection == Right ? 5 : -5;
-				SceneManager::GetInstance().GetScene()->GetGrid()->Add(
-					new NormalBullet(position, mDirection)
-				);
-				isShoot = false;
-				mCounter = .0f;
-			}
+			isShoot = true;
+			mCounter = 0;
 		}
 		if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
-		//}
 	}
 }
 
@@ -255,14 +220,6 @@ int RunEnemy::GetState()
 
 void RunEnemy::SetState(int state)
 {
-	if (state == RUNENEMY_RUNNING_STATE && mState == RUNENEMY_STANDING_STATE)
-	{
-		/*auto position = mPosition;
-		position.x += mDirection == Right ? 5 : -5;
-		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
-			new NormalBullet(position, mDirection)
-		);*/
-	}
 	mState = state;
 	ChangeAnimationByState(mState);
 }
