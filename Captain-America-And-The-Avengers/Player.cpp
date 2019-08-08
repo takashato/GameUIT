@@ -426,10 +426,21 @@ bool Player::CheckAABB(std::set<Entity*> &entities)
 			}
 			else if (auto dynamicGround = dynamic_cast<DynamicGround*>(entity))
 			{
-				if (mState->GetState() == EPlayerState::HighJumping) SetState(EPlayerState::Standing);
-				collideWithMovingGround = true;
-				if (GetVelocityY() > 0.0)
-					SetPositionY(dynamicGround->GetPosition().y - GetHeight() + 5);
+				if (mState->GetState() == EPlayerState::Jumping && (pbb.top + pbb.bottom / 2) >= ebb.top)
+				{
+					// nothing
+				}
+				else
+				{
+					if (mState->GetState() != EPlayerState::Standing
+						&& mState->GetState() != EPlayerState::Running
+						&& mState->GetState() != EPlayerState::Jumping
+						&& mState->GetState() != EPlayerState::Sitting)
+						SetState(EPlayerState::Sitting);
+					collideWithMovingGround = true;
+					if (GetVelocityY() > 0.0)
+						SetPositionY(dynamicGround->GetPosition().y - GetHeight() + 5);
+				}
 			}
 			else if (auto door = dynamic_cast<Door*>(entity))
 			{
