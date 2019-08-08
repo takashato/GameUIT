@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Bullet.h"
+#include "SceneManager.h"
 
 Sprite* Bullet::mSprite = NULL;
 
@@ -37,9 +38,10 @@ BulletType Bullet::GetBulletType()
 
 void Bullet::OnSetPosition()
 {
-	if (Grid::instance != nullptr)
+	auto grid = SceneManager::GetInstance().GetScene()->GetGrid();
+	if (grid != nullptr)
 	{
-		Grid::instance->Move(this);
+		grid->Move(this);
 	}
 }
 
