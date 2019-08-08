@@ -307,6 +307,7 @@
     <ClCompile Include="PlayerElectricShock.cpp">
       <Filter>Entities\Player\State</Filter>
     </ClCompile>
+    <ClCompile Include="Dynamite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -572,6 +573,9 @@
     </ClInclude>
     <ClInclude Include="PlayerElectricShock.h">
       <Filter>Entities\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Dynamite.h">
+      <Filter>Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

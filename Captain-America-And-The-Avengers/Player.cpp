@@ -351,6 +351,15 @@ bool Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 			SceneManager::GetInstance().GetScene()->Transport();
 			return false;
 		}
+		else if (cEvent[i]->entity->GetCollidableObjectType() == EDynamite)
+		{
+			auto dynamite = (Dynamite*)cEvent[i]->entity;
+			dynamite->pendingDelete = true;
+			SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+				new Explosion(dynamite)
+			);
+			this->TakeDamage(3);
+		}
 	}
 
 	if (mState != nullptr) mState->OnCollision(*this, cEvent);
@@ -395,6 +404,18 @@ bool Player::CheckAABB(std::set<Entity*> &entities)
 						if (auto scene = dynamic_cast<CharlestonBossScene*>(SceneManager::GetInstance().GetScene()))
 						{
 							scene->ToggleLight();
+						}
+						continue;
+					}
+					else if (auto dynamite = dynamic_cast<Dynamite*>(entity))
+					{
+						if (!dynamite->isThrown)
+						{
+							dynamite->boss->TakeDamageBossRedAlertNotCrazy(this);
+							dynamite->pendingDelete = true;
+							SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+								new Explosion(dynamite)
+							);
 						}
 						continue;
 					}

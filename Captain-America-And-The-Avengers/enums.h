@@ -44,7 +44,8 @@ enum CollidableObjectType
 	EDoor,
 	EButton,
 	EIronBar,
-	ESpawner
+	ESpawner,
+	EDynamite
 };
 
 enum ItemType

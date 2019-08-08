@@ -53,6 +53,7 @@ void BossRedAlert::Update(float deltaTime, Player* player)
 			mIsInvincible = false;
 		}
 	}
+
 	if (mHP > 13)
 	{
 		if (mState == BOSSREDALERT_IDLE_STATE)
@@ -67,11 +68,28 @@ void BossRedAlert::Update(float deltaTime, Player* player)
 		}
 		if (mState == BOSSREDALERT_TOSS_THE_BARREL_STATE)
 		{
-			if (mCurrentAni->IsDoneCycle())//Neu thung thung no roi
+			if (mCurrentAni->GetCurrentFrame() == 1 && !thrownDynamite) // Create 
+			{
+				thrownDynamite = true;
+				auto pos = mPosition;
+				pos.x += 10;
+				this->dynamite = new Dynamite(pos, mDirection);
+				this->dynamite->boss = this;
+				SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+					this->dynamite
+				);
+			}
+			else if (mCurrentAni->GetCurrentFrame() == 2 && dynamite != nullptr && !dynamite->isThrown)
+			{
+				dynamite->Throw();
+			}
+			else if (mCurrentAni->IsDoneCycle())//Neu thung thung no roi
 			{
 				mCurrentAni->Reset();
 				SetState(BOSSREDALERT_TOSS_THE_BARREL_STATE);
 				mCounter = 0;
+				thrownDynamite = false;
+				dynamite = nullptr;
 			}
 		}
 		if (mState == BOSSREDALERT_GUN_STATE)
@@ -192,17 +210,6 @@ void BossRedAlert::SetState(int state)
 		else pos.x = bb.right;
 		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
 			new RedAlertBullet(pos, mDirection)
-		);
-	}
-	else if (state == BOSSREDALERT_TOSS_THE_BARREL_STATE)
-	{
-		auto pos = mPosition;
-		auto bb = GetBoundingBox();
-		pos.y -= 12;
-		if (mDirection == Left) pos.x = bb.left;
-		else pos.x = bb.right;
-		SceneManager::GetInstance().GetScene()->GetGrid()->Add(
-			new Barrel(pos, mDirection, playerPos.x)
 		);
 	}
 	mState = state;
