@@ -38,7 +38,7 @@ public:
 		return MapID::Pittsburgh;
 	};
 
-	void Transport(TypeExtra type);
+	void Transport(/*TypeExtra type*/);
 
 private:
 	std::unique_ptr<Player> mPlayer;

@@ -72,6 +72,7 @@ void SceneManager::ChangeScene(MapID mapID)
 	case MapID::Pittsburgh:		mCurrentScene = new PittsburghScene(); break;
 	case MapID::PittsburghExtra1:mCurrentScene = new PittsburghExtra1Scene(); break;
 	case MapID::PittsburghExtra2:mCurrentScene = new PittsburghExtra2Scene(); break;
+	case MapID::RedAlertBoss:	mCurrentScene = new RedAlertBossScene(); break;
 	}
 }
 

@@ -107,21 +107,27 @@ SoundType PittsburghScene::GetBgMusic()
 {
 	return SoundType::ThemeOfCaptainAmerica;
 }
-void PittsburghScene::Transport(TypeExtra type)
+void PittsburghScene::Transport(/*TypeExtra type*/)
 {
+	//if (HasBgMusic())
+	//{
+	//	SoundManager::GetInstance().CStopsound(GetBgMusic());
+	//}
+	//if(type==Type1)
+	//{
+	//	SceneManager::GetInstance().ChangeScene(MapID::PittsburghExtra1);
+	//}
+	//else
+	//{
+	//	SceneManager::GetInstance().ChangeScene(MapID::PittsburghExtra2);
+	//}
+	//Notes: Chua luu lai vi tri player o map chinh
+
 	if (HasBgMusic())
 	{
 		SoundManager::GetInstance().CStopsound(GetBgMusic());
 	}
-	if(type==Type1)
-	{
-		SceneManager::GetInstance().ChangeScene(MapID::PittsburghExtra1);
-	}
-	else
-	{
-		SceneManager::GetInstance().ChangeScene(MapID::PittsburghExtra2);
-	}
-	//Notes: Chua luu lai vi tri player o map chinh
+	SceneManager::GetInstance().ChangeScene(MapID::RedAlertBoss);
 }
 void PittsburghScene::OnKeyUp(BYTE key)
 {
