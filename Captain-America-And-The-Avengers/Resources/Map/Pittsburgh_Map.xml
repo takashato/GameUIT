@@ -160,15 +160,15 @@
       <Button name="Button" x="270" y="48" w="12" h="8"/>
     </Buttons>
     <IronBars>
-      <IronBar name="IronBar" x="468" y="86" w="29" h="2"/>
-      <IronBar name="IronBar" x="67" y="536" w="92" h="2"/>
-      <IronBar name="IronBar" x="163" y="600" w="64" h="2"/>
-      <IronBar name="IronBar" x="82" y="617" w="28" h="2"/>
-      <IronBar name="IronBar" x="351" y="825" w="68" h="2"/>
-      <IronBar name="IronBar" x="853" y="375" w="29" h="2"/>
-      <IronBar name="IronBar" x="918" y="375" w="29" h="2"/>
-      <IronBar name="IronBar" x="934" y="117" w="61" h="2"/>
-      <IronBar name="IronBar" x="163" y="117" w="60" h="2"/>
+      <IronBar name="IronBar" x="468" y="84" w="25" h="2"/>
+      <IronBar name="IronBar" x="68" y="532" w="87" h="2"/>
+      <IronBar name="IronBar" x="164" y="596" w="59" h="2"/>
+      <IronBar name="IronBar" x="83" y="612" w="23" h="2"/>
+      <IronBar name="IronBar" x="356" y="804" w="63" h="2"/>
+      <IronBar name="IronBar" x="853" y="372" w="25" h="2"/>
+      <IronBar name="IronBar" x="918" y="372" w="25" h="2"/>
+      <IronBar name="IronBar" x="932" y="116" w="56" h="2"/>
+      <IronBar name="IronBar" x="165" y="116" w="55" h="2"/>
     </IronBars>
   </MapObjects>
 </Map>
