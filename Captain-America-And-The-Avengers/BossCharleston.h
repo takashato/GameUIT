@@ -80,9 +80,10 @@ private:
 	Animation* mAniFlyGun = NULL;
 	Animation* mAniTurnOffTheLight = NULL;
 	int mState = -1;
-
+	int mLastState;
 	float mCounter = 0;
-
+	float mCounterBeHit = 0;
+	D3DXVECTOR3 oldPos;
 	int mHP = 15;
 	bool mIsInvincible = false;
 	float mInvincibleCounter = .0f;

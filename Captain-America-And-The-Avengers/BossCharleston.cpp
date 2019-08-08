@@ -66,6 +66,16 @@ void BossCharleston::Update(float deltaTime, Player* player)
 		return;
 	}
 
+	if (mState == BOSS_CHARLESTON_BEHIT_STATE)
+	{
+		mCounterBeHit += deltaTime;
+		if (mCounterBeHit > 0.2f)
+		{
+			SetState(mLastState);
+			mCounterBeHit = 0;
+		}
+	}
+
 	if (mPosition.y == 145 && player->GetPosition().x > mPosition.x - 5 && player->GetPosition().x < mPosition.x + 28 && player->GetPosition().y>145)
 	{
 		SetState(BOSS_CHARLESTON_HIT_STATE);
@@ -159,6 +169,10 @@ void BossCharleston::Draw(D3DXVECTOR2 transform)
 			}
 			else
 			{
+				if (mCurrentAni == mAniBeHit)
+				{
+					AddPositionX(mDirection*(-1));
+				}
 				mCurrentAni->Draw(GetPosition(), transform);
 			}
 		}
@@ -497,6 +511,8 @@ void BossCharleston::CheckDirection(Player* player)
 void BossCharleston::TakeDamage(Entity* source, int damage)
 {
 	if (mIsInvincible) return;
+	mLastState = mState;
+	SetState(BOSS_CHARLESTON_BEHIT_STATE);
 	mHP -= damage;
 	std::cout << "Boss take " << damage << "\n";
 	if (damage == 2)
