@@ -38,6 +38,12 @@ public:
 	void OnSetPosition();
 
 	EnemyType GetEnemyType();
+	void TakeDamage(Entity* source, int hp);
+
+	void OnAttacked();
+	void OnDie();
+
+	void SetInvincible(bool val);
 
 	void CheckDirection(Player* player);
 
@@ -79,7 +85,7 @@ private:
 	int mState = -1;
 
 	float mCounter = 0;
-
+	float timeDie = 0;
 	D3DXVECTOR3 playerPos;
 };
 
