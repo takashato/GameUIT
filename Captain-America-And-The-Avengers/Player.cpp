@@ -256,8 +256,7 @@ RECT Player::GetBoundingBox()
 	if (mCurrentAni == nullptr) return RECT();
 
 	RECT rect;
-	if (mState->GetState() != EPlayerState::HighJumping
-		&& mState->GetState() != EPlayerState::Punching
+	if (mState->GetState() != EPlayerState::Punching
 		&& mState->GetState() != EPlayerState::LowPunching
 		&& mState->GetState() != EPlayerState::Kicking
 		&& mState->GetState() != EPlayerState::Surfing
@@ -378,6 +377,9 @@ bool Player::CheckAABB(std::set<Entity*> &entities)
 				{
 					enemy->TakeDamage(this, 5);
 				}
+			}
+			else if (auto ground = dynamic_cast<Ground*>(entity))
+			{
 			}
 		}
 	}
