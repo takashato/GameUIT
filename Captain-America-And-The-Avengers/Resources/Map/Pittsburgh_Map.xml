@@ -15,7 +15,7 @@
       <Enemy type="GunEnemy" x="230.0" y="153.0" w="24" h="43" subType="0"/>
       <Enemy type="GunEnemy" x="345.0" y="153.0" w="24" h="43" subType="0"/>
       <Enemy type="RunEnemy" x="264.0" y="873.0" w="24" h="43" subType="1"/>
-      <Enemy type="MissileEnemy" x="472.0" y="870.0" w="22" h="46" subType="0"/>
+      <Enemy type="MissileEnemy" x="472.0" y="870.0" w="22" h="46" subType="4"/>
       <Enemy type="FlyEnemy" x="47.0" y="755.0" w="24" h="43"/>
       <Enemy type="FlyEnemy" x="519.0" y="39.0" w="24" h="43"/>
       <Enemy type="Bat" x="787.0" y="240.0" w="38" h="16"/>
@@ -86,8 +86,7 @@
       <Ground type="Hard" name="Ground" x="1" y="676" w="31" h="42"/>
       <Ground type="Hard" name="Ground" x="32" y="692" w="31" h="26"/>
       <Ground type="Hard" name="Ground" x="1" y="484" w="61" h="123"/>
-
-      <Ground type="Normal" name="Ground" x="63" y="205" w="100" h="8"/><!--Ground to check-->
+		<!--Ground to check-->
 
       <!--<Ground type="Normal" name="Ground" x="160" y="448" w="1216" h="8"/>
 		
@@ -96,48 +95,63 @@
     <Capsules>
       <Capsule x="92" y="48" w="16" h="16">
         <Item type="KeyCrystal"/>
+		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="130" y="145" w="16" h="16">
         <Item type="PowerStone"/>
+		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="437" y="56" w="16" h="16">
         <Item type="HeartEnegy"/>
+		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="518" y="84" w="16" h="16">
         <Item type="PowerStone"/>
+		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="864" y="54" w="16" h="16">
         <Item type="HeartEnegy"/>
+		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="903" y="139" w="16" h="16">
         <Item type="PowerStone"/>
+		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="984" y="323.5" w="16" h="16">
-        <Item type="OneUp"/>
+        <Item type="PowerStone"/>
+		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="972" y="540" w="16" h="16">
         <Item type="HeartEnegy"/>
+		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="971" y="635" w="16" h="16">
         <Item type="PowerStone"/>
+		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="526" y="768" w="16" h="16">
         <Item type="HeartEnegy"/>
+		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="676" y="881" w="16" h="16">
         <Item type="PowerStone"/>
+		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="176" y="869" w="16" h="16">
         <Item type="PowerStone"/>
+		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="79" y="736" w="16" h="16">
         <Item type="KeyCrystal"/>
+		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="458" y="641" w="16" h="16">
         <Item type="PowerStone"/>
+		<Item type="FivePointItem"/>
       </Capsule>
       <Capsule x="226" y="534" w="16" h="16">
         <Item type="PowerStone"/>
+		<Item type="FivePointItem"/>
       </Capsule>
     </Capsules>
     <Buttons>

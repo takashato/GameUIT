@@ -42,7 +42,7 @@ void MissileEnemy::Update(float deltaTime, Player* player)
 	D3DXVECTOR3 playerPosition = player->GetPosition();
 	D3DXVECTOR3 missileEnemyPosition = this->GetPosition();
 
-	if (mSubTypeID != 0 && mSubTypeID != 3)
+	if (mSubTypeID != 0 && mSubTypeID != 3 && mSubTypeID != 4)
 	{
 		if (playerPosition.x <= missileEnemyPosition.x)
 		{
@@ -252,33 +252,7 @@ void MissileEnemy::Update(float deltaTime, Player* player)
 	else if (mSubTypeID == 0) // Only Run and Jump Not Shoot
 	{
 		SetDirection(EntityDirection::Left);
-		/*if (mIsInvincible)
-		{
-			if (mCurrentAni != mAniDying)
-			{
-				if (mCurrentAni == mAniStanding)
-				{
-					SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
-				}
-				else if (mCurrentAni == mAniRunning)
-				{
-					SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniDying->GetHeight());
-				}
-				else if (mCurrentAni == mAniFalling)
-				{
-					SetPositionY(mPosition.y + mAniFalling->GetHeight() - mAniDying->GetHeight());
-				}
-				else if (mCurrentAni == mAniJumping)
-				{
-					SetPositionY(mPosition.y + mAniJumping->GetHeight() - mAniDying->GetHeight());
-				}
-				SetState(MISSILEENEMY_DYING_STATE);
-				SetVelocityX(0.f);
-				SetVelocityY(0.f);
-			}
-		}
-		else
-		{*/
+	
 		if (!isJump || jumpCounter == 1)
 		{
 			if (mCurrentAni == mAniStanding)
@@ -389,37 +363,6 @@ void MissileEnemy::Update(float deltaTime, Player* player)
 		if (mPosition.x - playerPosition.x < 100)
 			isMeetPlayer = true;
 
-		/*if (mIsInvincible)
-		{
-			if (mCurrentAni != mAniDying)
-			{
-				if (mCurrentAni == mAniStanding)
-				{
-					SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniDying->GetHeight());
-				}
-				else if (mCurrentAni == mAniRunning)
-				{
-					SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniDying->GetHeight());
-				}
-				else if (mCurrentAni == mAniFalling)
-				{
-					SetPositionY(mPosition.y + mAniFalling->GetHeight() - mAniDying->GetHeight());
-				}
-				else if (mCurrentAni == mAniJumping)
-				{
-					SetPositionY(mPosition.y + mAniJumping->GetHeight() - mAniDying->GetHeight());
-				}
-				else if (mCurrentAni == mAniSitting)
-				{
-					SetPositionY(mPosition.y + mAniSitting->GetHeight() - mAniDying->GetHeight());
-				}
-				SetState(MISSILEENEMY_DYING_STATE);
-				SetVelocityX(0.f);
-				SetVelocityY(0.f);
-			}
-		}
-		else
-		{*/
 		if (missileEnemyPosition.y < 401.0f)
 		{
 			if (isMeetPlayer)
@@ -544,6 +487,113 @@ void MissileEnemy::Update(float deltaTime, Player* player)
 		}
 		//}
 		if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
+	}
+	else if (mSubTypeID == 4) // Only Run and Jump Not Shoot Map 2
+	{
+		SetDirection(EntityDirection::Left);
+
+		if (!isJump || jumpCounter == 1)
+		{
+			if (mCurrentAni == mAniStanding)
+			{
+				SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniRunning->GetHeight());
+			}
+			else if (mCurrentAni == mAniDying)
+			{
+				SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniRunning->GetHeight());
+			}
+			else if (mCurrentAni == mAniFalling)
+			{
+				SetPositionY(mPosition.y + mAniFalling->GetHeight() - mAniRunning->GetHeight());
+			}
+			else if (mCurrentAni == mAniJumping)
+			{
+				SetPositionY(mPosition.y + mAniJumping->GetHeight() - mAniRunning->GetHeight());
+			}
+			SetState(MISSILEENEMY_RUNNING_STATE);
+
+			if (spawnPosition.x - GetPosition().x > 256)
+			{
+				SetPosition(spawnPosition);
+				SetState(MISSILEENEMY_STANDING_STATE);
+			}
+			else
+			{
+				SetVelocityX(GetDirection()*RUN_SPEED);
+				AddPositionX(GetVelocityX() * deltaTime);
+			}
+		}
+
+		if (missileEnemyPosition.x - player->GetShield()->GetPosition().x < 70 && player->GetShield()->GetState() == ShieldState::EShieldHigh)
+		{
+			isJump = true;
+		}
+
+		if (isJump && jumpCounter == 0)
+		{
+			mCounter += deltaTime;
+			if (mCounter < 0.4f)
+			{
+				if (mCurrentAni == mAniStanding)
+				{
+					SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniJumping->GetHeight());
+				}
+				else if (mCurrentAni == mAniDying)
+				{
+					SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniJumping->GetHeight());
+				}
+				else if (mCurrentAni == mAniFalling)
+				{
+					SetPositionY(mPosition.y + mAniFalling->GetHeight() - mAniJumping->GetHeight());
+				}
+				else if (mCurrentAni == mAniRunning)
+				{
+					SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniJumping->GetHeight());
+				}
+				SetState(MISSILEENEMY_JUMPING_STATE);
+
+				AddPositionY(-100 * deltaTime);
+
+				SetVelocityX(GetDirection()*RUN_SPEED);
+				AddPositionX(GetVelocityX() * deltaTime);
+			}
+			else
+			{
+				if (mCurrentAni == mAniStanding)
+				{
+					SetPositionY(mPosition.y + mAniStanding->GetHeight() - mAniFalling->GetHeight());
+				}
+				else if (mCurrentAni == mAniDying)
+				{
+					SetPositionY(mPosition.y + mAniDying->GetHeight() - mAniFalling->GetHeight());
+				}
+				else if (mCurrentAni == mAniJumping)
+				{
+					SetPositionY(mPosition.y + mAniJumping->GetHeight() - mAniFalling->GetHeight());
+				}
+				else if (mCurrentAni == mAniRunning)
+				{
+					SetPositionY(mPosition.y + mAniRunning->GetHeight() - mAniFalling->GetHeight());
+				}
+				SetState(MISSILEENEMY_FALLING_STATE);
+
+				AddPositionY(100 * deltaTime);
+
+				SetVelocityX(GetDirection()*RUN_SPEED);
+				AddPositionX(GetVelocityX() * deltaTime);
+
+				if (missileEnemyPosition.y > 870.0f)
+				{
+					isJump = false;
+					jumpCounter++;
+					SetPositionY(870.0f);
+					SetState(MISSILEENEMY_RUNNING_STATE);
+					mCounter = 0;
+				}
+			}
+		}
+		if (mCurrentAni != NULL) mCurrentAni->Update(deltaTime);
+		//}
 	}
 }
 
