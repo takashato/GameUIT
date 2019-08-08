@@ -101,15 +101,6 @@ void BossRedAlert::OnSetPosition()
 {
 }
 
-void BossRedAlert::SetBullet(Bullet* Bullet)
-{
-
-}
-
-Bullet* BossRedAlert::GetBullet()
-{
-	return mBullet;
-}
 void BossRedAlert::CheckDirection(Player* player)
 {
 	if (player->GetPosition().x > mPosition.x + 20 && mDirection == Left)

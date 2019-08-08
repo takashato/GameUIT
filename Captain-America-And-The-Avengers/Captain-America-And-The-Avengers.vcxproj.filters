@@ -277,9 +277,12 @@
     </ClCompile>
     <ClCompile Include="BossVipBullet.cpp">
       <Filter>Entities\Bullet</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="BreakGround.cpp">
       <Filter>Entities\DynamicGround</Filter>
+    </ClCompile>
+    <ClCompile Include="BossRedAlert.cpp">
+      <Filter>Entities\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -516,9 +519,12 @@
     </ClInclude>
     <ClInclude Include="BossVipBullet.h">
       <Filter>Entities\Bullet</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="BreakGround.h">
       <Filter>Entities\DynamicGround</Filter>
+    </ClInclude>
+    <ClInclude Include="BossRedAlert.h">
+      <Filter>Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

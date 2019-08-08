@@ -8,7 +8,7 @@
   <Animation name="TossTheBarrel" imagePath="BossRedAlert.png" width="465" height="304">
     <Sprites type="0">
       <sprite x="236" y="9" w="34" h="62" />
-      <sprite x="426" y="9" w="32" h="62" />
+      <sprite x="424" y="9" w="34" h="62" />
       <sprite x="320" y="9" w="32" h="62" />
     </Sprites>
   </Animation>

@@ -15,6 +15,7 @@
 #include "Ground.h"
 #include "MapObjectReader.h"
 #include "Capsule.h"
+#include "BossRedAlert.h"
 
 class RedAlertBossScene : public Scene
 {

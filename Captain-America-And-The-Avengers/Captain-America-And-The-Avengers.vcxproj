@@ -163,6 +163,7 @@
     <ClInclude Include="AnimationScript.h" />
     <ClCompile Include="Bat.cpp" />
     <ClCompile Include="BossCharleston.cpp" />
+    <ClCompile Include="BossRedAlert.cpp" />
     <ClCompile Include="BossSmallBullet.cpp" />
     <ClCompile Include="BossVipBullet.cpp" />
     <ClCompile Include="BreakGround.cpp" />
@@ -241,6 +242,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Bat.h" />
     <ClInclude Include="BossCharleston.h" />
+    <ClInclude Include="BossRedAlert.h" />
     <ClInclude Include="BossSmallBullet.h" />
     <ClInclude Include="BossVipBullet.h" />
     <ClInclude Include="BreakGround.h" />

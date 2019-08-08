@@ -48,6 +48,10 @@ void RedAlertBossScene::Setup()
 		mGrid->Add(new Ground(D3DXVECTOR3(dataGround.x, dataGround.y, .0f), dataGround.type, dataGround.w, dataGround.h));
 	}
 
+	//Boss
+	mGrid->Add(new BossRedAlert(D3DXVECTOR3(182.f, 130.f, 0.f)));
+
+
 }
 
 void RedAlertBossScene::Update(float deltaTime)
