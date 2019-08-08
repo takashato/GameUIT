@@ -60,7 +60,8 @@ void Grid::Update(float deltaTime, RECT rect, Player* player)
 		{
 			auto bullet = (Bullet*)entity;
 			if (bullet->GetBulletType() == BulletType::BNormalBullet
-				|| bullet->GetBulletType() == BulletType::BLittleMissile)
+				|| bullet->GetBulletType() == BulletType::BLittleMissile
+				|| bullet->GetBulletType() == BulletType::BBigMissile)
 			{
 				if (bullet->mState == 1) // is pending delete
 				{

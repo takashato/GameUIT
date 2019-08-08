@@ -20,4 +20,9 @@
 		<sprite x="204" y="192" w="8" h="8" />
 	</Sprites>
   </Animation>
+   <Animation name="Bottom" imagePath="Enemies.png" width="440" height="432">
+	<Sprites type="0">  
+		<sprite x="221" y="192" w="5" h="8" />
+	</Sprites>
+  </Animation>
 </Animations>

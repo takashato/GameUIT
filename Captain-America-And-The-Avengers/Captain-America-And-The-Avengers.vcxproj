@@ -162,6 +162,7 @@
     <ClCompile Include="AnimationScript.cpp" />
     <ClInclude Include="AnimationScript.h" />
     <ClCompile Include="Bat.cpp" />
+    <ClCompile Include="BigMissile.cpp" />
     <ClCompile Include="BossCharleston.cpp" />
     <ClCompile Include="BossRedAlert.cpp" />
     <ClCompile Include="BossSmallBullet.cpp" />
@@ -317,6 +318,7 @@
     <ClInclude Include="ISingleton.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="BigMissile.h" />
     <ClInclude Include="TransportArea.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="Window.h" />

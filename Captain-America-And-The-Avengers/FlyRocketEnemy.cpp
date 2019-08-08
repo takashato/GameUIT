@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Game.h"
 #include "FlyRocketEnemy.h"
+#include "BigMissile.h"
 #include <cmath>
 
 FlyRocketEnemy::FlyRocketEnemy(D3DXVECTOR3 position) 
@@ -35,7 +36,7 @@ void FlyRocketEnemy::LoadAnimations()
 
 void FlyRocketEnemy::Update(float deltaTime, Player* player)
 {
-
+	mPlayer = player;
 
 	Entity::Update(deltaTime);
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
@@ -127,6 +128,10 @@ int FlyRocketEnemy::GetState()
 
 void FlyRocketEnemy::SetState(int state)
 {
+	if (state == FLYROCKETENEMY_GUN_STATE)
+	{
+		SceneManager::GetInstance().GetScene()->GetGrid()->Add(new BigMissile(mPosition, mPlayer));
+	}
 	mState = state;
 	ChangeAnimationByState(mState);
 }

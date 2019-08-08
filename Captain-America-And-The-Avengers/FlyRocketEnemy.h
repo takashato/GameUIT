@@ -50,6 +50,8 @@ private:
 	Animation* mAniDying = NULL;
 	int mState = -1;
 
+	Player* mPlayer;
+
 	float mCounter = 0;
 
 };

@@ -310,6 +310,12 @@ bool Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 				this->TakeDamage(3);
 				bullet->SetState(1);
 			}
+			else if (bullet->GetBulletType() == BulletType::BBigMissile)
+			{
+				this->TakeDamage(1);
+				SceneManager::GetInstance().GetScene()->GetGrid()->Add(new Explosion(bullet));
+				bullet->SetState(1);
+			}
 		}
 		else if (cEvent[i]->entity->GetCollidableObjectType() == ETransportArea && canTransport)
 		{
