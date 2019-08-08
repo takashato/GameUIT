@@ -78,6 +78,16 @@ void Player::Update(float deltaTime)
 		this->AddPositionY(deltaTime * mVelocityY);
 	}
 
+	auto camBB = SceneManager::GetInstance().GetScene()->GetCamera()->GetBound();
+	if (mPosition.x < camBB.left)
+	{
+		mPosition.x = camBB.left;
+	}
+	else if (mPosition.x + GetWidth() > camBB.right)
+	{
+		mPosition.x = camBB.right - GetWidth();
+	}
+
 	if (mCurrentAni != NULL)
 	{
 		mCurrentAni->SetFlippedHorizontally(mDirection == Right);
