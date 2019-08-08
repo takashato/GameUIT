@@ -36,7 +36,7 @@ public:
 	void OnDie();
 
 	void SetInvincible(bool val);
-
+	float mInvincibleCounter = 0;
 private:
 	Sprite* mSprite = NULL;
 	AnimationScript* mAniScripts = NULL;
@@ -48,6 +48,7 @@ private:
 
 	/*Camera* mCamera;*/
 	float mCounter = 0;
+	float mCounterDie = 0;
 	int mSubTypeID = 0;
 };
 

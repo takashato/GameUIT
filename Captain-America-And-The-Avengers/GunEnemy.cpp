@@ -29,7 +29,7 @@ void GunEnemy::Update(float deltaTime, Player* player)
 
 	D3DXVECTOR3 playerPosition = player->GetPosition();
 	D3DXVECTOR3 gunEnemyPosition = this->GetPosition();
-
+	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 	if (playerPosition.x <= gunEnemyPosition.x)
 	{
 		mDirection = Left;
@@ -39,7 +39,35 @@ void GunEnemy::Update(float deltaTime, Player* player)
 		mDirection = Right;
 	}
 
-	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
+	if (mIsInvincible)
+	{
+		mInvincibleCounter += deltaTime;
+		if (mInvincibleCounter >= 1.0f)
+		{
+			mInvincibleCounter = .0f;
+			mIsInvincible = false;
+		}
+	}
+
+	if (mState == GUNENEMY_DYING_STATE)
+	{
+		mCounterDie += deltaTime;
+		if (mCounterDie > 0.2f)
+		{
+			if (SceneManager::GetInstance().GetScene() != nullptr
+				&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
+			{
+				Explosion* explosion;
+				explosion = new Explosion(this);
+				SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
+			}
+
+			mGridNode->Remove(this);
+			delete this;
+		}
+		return;
+	}
+
 	if (mSubTypeID == 0) // Normal
 	{
 		mCounter += deltaTime;
@@ -152,7 +180,10 @@ void GunEnemy::Draw(D3DXVECTOR2 transform)
 {
 	if (mCurrentAni != nullptr && mState != -1)
 	{
-		mCurrentAni->SetBlink(mIsInvincible);
+		if (mCurrentAni == mAniDying)
+		{
+			AddPositionX(mDirection*(-1));
+		}
 		mCurrentAni->Draw(GetPosition(), transform);
 		this->RenderBoundingBox(transform);
 	}
@@ -215,7 +246,9 @@ void GunEnemy::OnAttacked()
 
 void GunEnemy::OnDie()
 {
-	if (SceneManager::GetInstance().GetScene() != nullptr
+	SetState(GUNENEMY_DYING_STATE);
+
+	/*if (SceneManager::GetInstance().GetScene() != nullptr
 		&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
 	{
 		Explosion* explosion;
@@ -224,7 +257,7 @@ void GunEnemy::OnDie()
 	}
 
 	mGridNode->Remove(this);
-	delete this;
+	delete this;*/
 
 }
 
@@ -250,5 +283,19 @@ void GunEnemy::TakeDamage(Entity* source, int hp)
 void GunEnemy::SetInvincible(bool val)
 {
 	Enemy::SetInvincible(val);
+	if (val)
+	{
+		mAniStanding->SetBlink(true);
+		mAniDying->SetBlink(true);
+		mAniSitting->SetBlink(true);
+		std::cout << "Blink on\n";
+	}
+	else
+	{
+		mAniStanding->SetBlink(false);
+		mAniDying->SetBlink(false);
+		mAniSitting->SetBlink(false);
+		std::cout << "Blink off\n";
+	}
 }
 

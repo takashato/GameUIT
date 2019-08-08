@@ -35,7 +35,7 @@ public:
 	void OnDie();
 	void TakeDamage(Entity* source, int hp);
 	void SetInvincible(bool val);
-
+	float mInvincibleCounter = 0;
 private:
 	Sprite* mSprite = NULL;
 	AnimationScript* mAniScripts = NULL;
@@ -47,6 +47,7 @@ private:
 
 	/*Camera* mCamera;*/
 	float mCounter = 0;
+	float mCounterDie = 0;
 	NormalBullet* mBullet;
 	int mSubTypeID = 0;
 	D3DXVECTOR3 spawnPosition;

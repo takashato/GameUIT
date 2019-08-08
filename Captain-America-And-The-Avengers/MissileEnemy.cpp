@@ -56,6 +56,25 @@ void MissileEnemy::Update(float deltaTime, Player* player)
 
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 	
+	if (mState == MISSILEENEMY_DYING_STATE)
+	{
+		mCounterDie += deltaTime;
+		if (mCounterDie > 0.2f)
+		{
+			if (SceneManager::GetInstance().GetScene() != nullptr
+				&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
+			{
+				Explosion* explosion;
+				explosion = new Explosion(this);
+				SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
+			}
+
+			mGridNode->Remove(this);
+			delete this;
+		}
+		return;
+	}
+
 	if (mSubTypeID == 1) // Missile Enemy Stand, Sit and Shoot
 	{
 		mCounter += deltaTime;
@@ -601,6 +620,10 @@ void MissileEnemy::Draw(D3DXVECTOR2 transform)
 {
 	if (mCurrentAni != nullptr && mState != -1)
 	{
+		if (mCurrentAni == mAniDying)
+		{
+			AddPositionX(mDirection*(-1));
+		}
 		mCurrentAni->Draw(GetPosition(), transform);
 		this->RenderBoundingBox(transform);
 	}
@@ -679,16 +702,7 @@ void MissileEnemy::OnAttacked()
 
 void MissileEnemy::OnDie()
 {
-	if (SceneManager::GetInstance().GetScene() != nullptr
-		&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
-	{
-		Explosion* explosion;
-		explosion = new Explosion(this);
-		SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
-	}
-
-	mGridNode->Remove(this);
-	delete this;
+	SetState(MISSILEENEMY_DYING_STATE);
 }
 
 void MissileEnemy::TakeDamage(Entity* source, int hp)
