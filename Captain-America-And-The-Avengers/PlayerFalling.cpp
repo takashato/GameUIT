@@ -154,6 +154,10 @@ void PlayerFalling::OnCollision(Player& player, std::vector<CollisionEvent*>& cE
 		{
 			player.TakeDamage(1);
 		}
+		else if (((Ground*)groundCe->entity)->GetGroundType() == GroundType::EGroundDynamic)
+		{
+			player.SetState(EPlayerState::Standing);
+		}
 		else
 		{
 			player.SetState(EPlayerState::Sitting);

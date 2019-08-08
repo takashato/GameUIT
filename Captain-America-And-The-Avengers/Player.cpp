@@ -144,6 +144,8 @@ PlayerState* Player::GetState()
 
 void Player::SetState(EPlayerState state)
 {
+	if (state == EPlayerState::Falling && collideWithMovingGround) return;
+
 	mLastState = mState == nullptr ? state : mState->GetState();
 	Data exitData;
 	if (mState != nullptr) exitData = mState->Exit(*this, state);
@@ -349,6 +351,7 @@ bool Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 
 bool Player::CheckAABB(std::set<Entity*> &entities)
 {
+	collideWithMovingGround = false;
 	auto pbb = GetBoundingBox();
 	for (auto entity : entities)
 	{
@@ -409,6 +412,11 @@ bool Player::CheckAABB(std::set<Entity*> &entities)
 						enemy->TakeDamage(this, 3);
 					}
 				}
+			}
+			else if (auto dynamicGround = dynamic_cast<DynamicGround*>(entity))
+			{
+				collideWithMovingGround = true;
+				SetPositionY(dynamicGround->GetPosition().y - GetHeight() + 5);
 			}
 		}
 	}

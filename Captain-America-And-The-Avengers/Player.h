@@ -134,6 +134,8 @@ private:
 	bool mIsInvincible = false;
 	float mInvincibleCounter = .0f;
 
+	bool collideWithMovingGround = false;
+
 	BYTE lastKeyUp, lastKeyDown;
 	std::chrono::time_point<std::chrono::steady_clock> lastKeyUpTimePoint, lastKeyDownTimePoint;
 

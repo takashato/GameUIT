@@ -101,9 +101,12 @@ void PlayerRunning::OnCollision(Player& player, std::vector<CollisionEvent*>& cE
 			player.TakeDamage(1);
 		}
 	}
-	if (!collisionWithGround)
+	else
 	{
-		player.SetState(EPlayerState::Falling);
+		if (!player.collideWithMovingGround)
+		{
+			player.SetState(EPlayerState::Falling);
+		}
 	}
 }
 
