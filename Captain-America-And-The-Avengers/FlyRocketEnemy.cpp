@@ -6,8 +6,10 @@
 
 FlyRocketEnemy::FlyRocketEnemy(D3DXVECTOR3 position) 
 {
+	mHP = 2;
 	mDirection = Right;
 	LoadAnimations();
+	spawnPos = position;
 	SetPosition(position);
 	mState = FLYROCKETENEMY_IDLE_STATE;
 	SetVelocityX(0.f);
@@ -40,6 +42,68 @@ void FlyRocketEnemy::Update(float deltaTime, Player* player)
 
 	Entity::Update(deltaTime);
 	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
+
+	if (mIsInvincible)
+	{
+		mInvincibleCounter += deltaTime;
+		if (mInvincibleCounter >= 1.0f)
+		{
+			mInvincibleCounter = .0f;
+			mIsInvincible = false;
+		}
+	}
+
+	if (mState == FLYROCKETENEMY_DYING_STATE)
+	{
+		if (spawnPos.y == 755)
+		{
+			AddPositionY(50*deltaTime);
+			if (mPosition.y > 900)
+			{
+				if (SceneManager::GetInstance().GetScene() != nullptr
+					&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
+				{
+					Explosion* explosion;
+					explosion = new Explosion(this);
+					SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
+				}
+				pendingDelete = true;
+			}	
+		}
+		if (spawnPos.y == 39)
+		{
+			AddPositionY(50*deltaTime);
+			if (mPosition.x > 638 && mPosition.x < 673)
+			{
+				if (mPosition.y > 180)
+				{
+					if (SceneManager::GetInstance().GetScene() != nullptr
+						&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
+					{
+						Explosion* explosion;
+						explosion = new Explosion(this);
+						SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
+					}
+					pendingDelete = true;
+				}
+			}
+			else
+			{
+				if (mPosition.y > 90)
+				{
+					if (SceneManager::GetInstance().GetScene() != nullptr
+						&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
+					{
+						Explosion* explosion;
+						explosion = new Explosion(this);
+						SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
+					}
+					pendingDelete = true;
+				}
+			}
+		}
+		return;
+	}
 
 	mCounter += deltaTime;
 	CheckDirection(player);
@@ -111,6 +175,7 @@ void FlyRocketEnemy::Draw(D3DXVECTOR2 transform)
 {
 	if (mCurrentAni != nullptr && mState != -1)
 	{
+		mCurrentAni->SetBlink(mIsInvincible);
 		mCurrentAni->Draw(GetPosition(), transform);
 		this->RenderBoundingBox(transform);
 	}
@@ -177,4 +242,26 @@ void FlyRocketEnemy::CheckDirection(Player* player)
 EnemyType FlyRocketEnemy::GetEnemyType()
 {
 	return EnemyType::EFlyEnemy;
+}
+
+void FlyRocketEnemy::TakeDamage(Entity* source, int damage)
+{
+	if (mIsInvincible) return;
+	mLastState = mState;
+	mHP -= damage;
+
+	if (mHP <= 0)
+	{
+		SetState(FLYROCKETENEMY_DYING_STATE);
+		SetVelocityX(0.f);
+	}
+	else
+	{
+		SetInvincible(true);
+	}
+}
+
+void FlyRocketEnemy::SetInvincible(bool val)
+{
+	mIsInvincible = val;
 }
