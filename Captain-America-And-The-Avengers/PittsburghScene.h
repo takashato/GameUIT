@@ -44,7 +44,7 @@ public:
 
 	void Transport(/*TypeExtra type*/);
 
-	bool isLightOn = true;
+	bool isLightOn = false;
 
 
 	void CheckAmbush();
@@ -55,7 +55,7 @@ public:
 
 private:
 	std::unique_ptr<Player> mPlayer;
-	std::unique_ptr<GameMap> mMapDark;
+	std::unique_ptr<GameMap> mMapLight;
 	// Inherited via Scene
 	virtual void OnKeyUp(BYTE key) override;
 	virtual void OnKeyDown(BYTE key) override;

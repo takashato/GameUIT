@@ -415,6 +415,10 @@ bool Player::CheckAABB(std::set<Entity*> &entities)
 						{
 							scene->ToggleLight();
 						}
+						if (auto scene = dynamic_cast<PittsburghScene*>(SceneManager::GetInstance().GetScene()))
+						{
+							scene->ToggleLight();
+						}
 						continue;
 					}
 					else if (auto dynamite = dynamic_cast<Dynamite*>(entity))
