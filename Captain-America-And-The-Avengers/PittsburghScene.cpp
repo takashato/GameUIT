@@ -71,6 +71,12 @@ void PittsburghScene::Setup()
 	{
 		mGrid->Add(new Ground(D3DXVECTOR3(dataGround.x, dataGround.y, .0f), dataGround.type, dataGround.w, dataGround.h));
 	}
+	// Capsule
+	for (DataCapsule dataCapsule : mData.GetDataCapsule())
+	{
+		auto capsule = new Capsule(D3DXVECTOR3(dataCapsule.x, dataCapsule.y, .0f), dataCapsule.itemList);
+		mGrid->Add(capsule);
+	}
 
 }
 
