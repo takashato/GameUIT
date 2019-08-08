@@ -14,6 +14,16 @@ struct DataGround {
 	};
 };
 
+struct DataIronBar {
+	int x, y, w, h;
+	DataIronBar(int x, int y, int w, int h) {
+		this->x = x;
+		this->y = y;
+		this->w = w;
+		this->h = h;
+	};
+};
+
 struct DataEnemy {
 	EnemyType type;
 	int x, y, subType;
@@ -50,6 +60,7 @@ public:
 
 	D3DXVECTOR3 GetSpawnPoint(LPCSTR name);
 	std::list<DataGround>& GetDataGround() { return mDataGrounds; };
+	std::list<DataIronBar>& GetDataIronBar() { return mDataIronBars; };
 	std::list<DataEnemy>& GetDataEnemy() { return mDataEnemies; };
 	std::list<DataCapsule>& GetDataCapsule() { return mDataCapsules; };
 
@@ -62,4 +73,5 @@ private:
 	std::list<DataGround> mDataGrounds;
 	std::list<DataEnemy> mDataEnemies;
 	std::list<DataCapsule> mDataCapsules;
+	std::list<DataIronBar> mDataIronBars;
 };

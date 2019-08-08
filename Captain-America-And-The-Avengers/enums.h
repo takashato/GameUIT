@@ -42,7 +42,8 @@ enum CollidableObjectType
 	EExplosion,
 	ETransportArea,
 	EDoor,
-	EButton
+	EButton,
+	EIronBar
 };
 
 enum ItemType

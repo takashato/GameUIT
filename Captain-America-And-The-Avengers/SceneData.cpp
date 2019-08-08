@@ -125,6 +125,20 @@ void SceneData::ReadData(LPCSTR filePath)
 						enemyNode = enemyNode->NextSiblingElement();
 					}
 				}
+				else if (subName == "IronBars")
+				{
+					auto ironBarNode = subNode->FirstChildElement();
+					while (ironBarNode != nullptr)
+					{
+						mDataIronBars.push_back(DataIronBar(
+							ironBarNode->IntAttribute("x"),
+							ironBarNode->IntAttribute("y"),
+							ironBarNode->IntAttribute("w"),
+							ironBarNode->IntAttribute("h")
+						));
+						ironBarNode = ironBarNode->NextSiblingElement();
+					}
+				}
 				else if (subName == "Capsules")
 				{
 					auto capsuleNode = subNode->FirstChildElement();

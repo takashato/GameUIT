@@ -192,6 +192,7 @@
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="GunEnemy.cpp" />
     <ClCompile Include="GunStock.cpp" />
+    <ClCompile Include="IronBar.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="LightButton.cpp" />
@@ -273,6 +274,7 @@
     <ClInclude Include="Ground.h" />
     <ClInclude Include="GunEnemy.h" />
     <ClInclude Include="GunStock.h" />
+    <ClInclude Include="IronBar.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Entity.h" />
