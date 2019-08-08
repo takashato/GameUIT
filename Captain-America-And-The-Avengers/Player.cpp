@@ -415,8 +415,10 @@ bool Player::CheckAABB(std::set<Entity*> &entities)
 			}
 			else if (auto dynamicGround = dynamic_cast<DynamicGround*>(entity))
 			{
+				if (mState->GetState() == EPlayerState::HighJumping) SetState(EPlayerState::Standing);
 				collideWithMovingGround = true;
-				SetPositionY(dynamicGround->GetPosition().y - GetHeight() + 5);
+				if (GetVelocityY() > 0.0)
+					SetPositionY(dynamicGround->GetPosition().y - GetHeight() + 5);
 			}
 		}
 	}
