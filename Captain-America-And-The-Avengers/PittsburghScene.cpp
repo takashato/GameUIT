@@ -101,6 +101,11 @@ void PittsburghScene::Setup()
 	}
 	// Button
 	mGrid->Add(new LightButton(D3DXVECTOR3(270.0f, 48.0f, .0f)));
+	//IronBar
+	for (DataIronBar dataIronBar : mData.GetDataIronBar())
+	{
+		mGrid->Add(new IronBar(D3DXVECTOR3(dataIronBar.x, dataIronBar.y, .0f), dataIronBar.w, dataIronBar.h));
+	}
 }
 
 void PittsburghScene::Update(float deltaTime)

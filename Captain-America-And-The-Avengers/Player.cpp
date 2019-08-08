@@ -69,7 +69,7 @@ void Player::Update(float deltaTime)
 		&& mState->GetState() != EPlayerState::LowPunching
 		&& mState->GetState() != EPlayerState::Punching
 		&& mState->GetState() != EPlayerState::Swimming
-		&& mState->GetState() != EPlayerState::TakeDown
+		//&& mState->GetState() != EPlayerState::TakeDown
 		&& mState->GetState() != EPlayerState::Surfing
 		) // vY not affect when standing
 	{
@@ -418,5 +418,13 @@ void Player::TakeDamage(int modifier)
 	mHealth.Subtract(modifier);
 	mIsInvincible = true;
 	mInvincibleCounter = .0f;
-	SetState(EPlayerState::TakeDamage);
+	if (mState->GetState() != EPlayerState::Jumping
+		&& mState->GetState() != EPlayerState::Falling
+		&& mState->GetState() != EPlayerState::SittingOnShield
+		)
+		SetState(EPlayerState::TakeDamage);
+	else if (mHealth.Get() <= 0)
+	{
+		SetState(EPlayerState::TakeDown);
+	}
 }

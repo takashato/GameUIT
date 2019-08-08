@@ -13,6 +13,7 @@
 #include "GameMap.h"
 #include "Grid.h"
 #include "Ground.h"
+#include "IronBar.h"
 #include "MapObjectReader.h"
 #include "Capsule.h"
 #include "FlyRocketEnemy.h"
