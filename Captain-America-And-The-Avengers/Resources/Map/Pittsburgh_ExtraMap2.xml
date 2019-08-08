@@ -10,16 +10,16 @@
 	<MapObjects>
 		<Grounds>
 			<Ground type="Hard" name="HardGround" x="0" y="0" w="256" h="12"/>
-			<Ground type="Hard" name="HardGround" x="0" y="186" w="256" h="41"/>
-			<Ground type="Hard" name="HardGround" x="18" y="155" w="27" h="30"/>
-			<Ground type="Hard" name="HardGround" x="82" y="155" w="27" h="30"/>
-			<Ground type="Hard" name="HardGround" x="146" y="155" w="27" h="30"/>
-			<Ground type="Hard" name="HardGround" x="210" y="155" w="27" h="30"/>
+			<Ground type="Hard" name="HardGround" x="0" y="194" w="256" h="41"/>
+			<Ground type="Hard" name="HardGround" x="18" y="163" w="27" h="30"/>
+			<Ground type="Hard" name="HardGround" x="82" y="163" w="27" h="30"/>
+			<Ground type="Hard" name="HardGround" x="146" y="163" w="27" h="30"/>
+			<Ground type="Hard" name="HardGround" x="210" y="163" w="27" h="30"/>
 			<Ground type="Hard" name="LeftBorder" x="0" y="0" w="12" h="186"/>
 			<Ground type="Hard" name="RightBorder" x="244" y="0" w="12" h="186"/>
-			<Ground type="Normal" name="Ground" x="48" y="80" w="30" h="8"/>
-			<Ground type="Normal" name="Ground" x="112" y="80" w="30" h="8"/>
-			<Ground type="Normal" name="Ground" x="177" y="80" w="30" h="8"/>
+			<Ground type="Normal" name="Ground" x="48" y="88" w="30" h="8"/>
+			<Ground type="Normal" name="Ground" x="112" y="88" w="30" h="8"/>
+			<Ground type="Normal" name="Ground" x="177" y="88" w="30" h="8"/>
 		</Grounds>
 		<Capsules>
 			<Capsule x="158" y="49" w="16" h="16">

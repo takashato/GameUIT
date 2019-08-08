@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Enemy.h"
+#include "SceneManager.h"
 
 Enemy::Enemy()
 {
@@ -80,8 +81,9 @@ void Enemy::OnDie()
 
 void Enemy::OnSetPosition()
 {
-	if (Grid::instance != nullptr)
+	auto grid = SceneManager::GetInstance().GetScene()->GetGrid();
+	if (grid != nullptr)
 	{
-		Grid::instance->Move(this);
+		grid->Move(this);
 	}
 }

@@ -299,9 +299,13 @@
     <ClCompile Include="RedAlertBullet.cpp">
       <Filter>Entities\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="Door.cpp" />
+    <ClCompile Include="Door.cpp">
+    </ClCompile>
     <ClCompile Include="Barrel.cpp">
       <Filter>Entities\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerElectricShock.cpp">
+      <Filter>Entities\Player\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -565,6 +569,9 @@
     </ClInclude>
     <ClInclude Include="Barrel.h">
       <Filter>Entities\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerElectricShock.h">
+      <Filter>Entities\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

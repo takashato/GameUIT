@@ -38,6 +38,8 @@ public:
 	void SetBullet(Bullet* Bullet);
 
 	void BeAttacked();
+
+	void TakeDamage(Entity* source, int damage);
 	/*void OnDie();
 
 	void SetInvincible(bool val);*/
@@ -62,6 +64,8 @@ private:
 	float mCounter = 0;
 	float mIntervalCounter = .0f;
 	/*NormalBullet* mBullet;*/
+
+	int mHP = 1000;
 
 	static constexpr auto BULLET_INTERVAL_TIME = 1.5f;
 };

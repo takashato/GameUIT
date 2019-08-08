@@ -205,6 +205,21 @@ void GunStock::BeAttacked()
 	SetState(GUNSTOCK_ROTATING_STATE);
 }
 
+void GunStock::TakeDamage(Entity* source, int damage)
+{
+	if (mHP - damage <= 0)
+	{
+		if (SceneManager::GetInstance().GetScene() != nullptr
+			&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
+		{
+			Explosion* explosion;
+			explosion = new Explosion(this);
+			SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
+		}
+		pendingDelete = true;
+	}
+}
+
 //void GunStock::OnDie()
 //{
 //	ChangeAnimationByState(GUNENEMY_DYING_STATE);

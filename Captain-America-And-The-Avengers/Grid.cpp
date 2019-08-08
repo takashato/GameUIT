@@ -104,7 +104,26 @@ void Grid::Update(float deltaTime, RECT rect, Player* player)
 
 void Grid::Draw(D3DXVECTOR2 trans)
 {
+	std::set<Entity*> layer1, layer2;
+
 	for (Entity* entity : mTemp)
+	{
+		if (entity->GetCollidableObjectType() == CollidableObjectType::ECapsule)
+		{
+			layer1.emplace(entity);
+		}
+		else
+		{
+			layer2.emplace(entity);
+		}
+	}
+
+	for (Entity* entity : layer1)
+	{
+		entity->Draw(trans);
+	}
+
+	for (Entity* entity : layer2)
 	{
 		entity->Draw(trans);
 	}
