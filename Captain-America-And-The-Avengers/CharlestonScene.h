@@ -18,6 +18,7 @@
 #include "MapObjectReader.h"
 #include "Capsule.h"
 #include "TransportArea.h"
+#include "Spawner.h"
 
 class CharlestonScene : public Scene
 {

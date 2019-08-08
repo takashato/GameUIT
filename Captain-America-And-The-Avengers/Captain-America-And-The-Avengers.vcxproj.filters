@@ -293,6 +293,9 @@
     <ClCompile Include="PlayerCling.cpp">
       <Filter>Entities\Player\State</Filter>
     </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -543,6 +546,9 @@
     </ClInclude>
     <ClInclude Include="PlayerCling.h">
       <Filter>Entities\Player\State</Filter>
+	</ClInclude>
+    <ClInclude Include="Spawner.h">
+      <Filter>Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

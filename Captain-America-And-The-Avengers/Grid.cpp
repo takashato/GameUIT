@@ -76,10 +76,21 @@ void Grid::Update(float deltaTime, RECT rect, Player* player)
 				toDelete.emplace_back(entity);
 			}
 		}
+		else if (type == EEnemy)
+		{
+			if (((Enemy*)entity)->pendingDelete)
+			{
+				toDelete.emplace_back(entity);
+			}
+		}
 	}
 
 	for (auto entity : toDelete)
 	{
+		if (auto enemy = dynamic_cast<Enemy*>(entity)) // Tell spawner they will be delete
+		{
+			enemy->GetSpawner()->OnDelete();
+		}
 		entity->GetGridNode()->Remove(entity);
 		delete entity;
 		mTemp.erase(entity);

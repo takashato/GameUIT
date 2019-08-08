@@ -69,8 +69,7 @@ void MissileEnemy::Update(float deltaTime, Player* player)
 				SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
 			}
 
-			mGridNode->Remove(this);
-			delete this;
+			pendingDelete = true;
 		}
 		return;
 	}

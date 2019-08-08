@@ -66,24 +66,7 @@ void CharlestonScene::Setup()
 	// Enemy
 	for (DataEnemy dataEnemy : mData.GetDataEnemy())
 	{
-		switch (dataEnemy.type)
-		{
-		case EGunEnemy:
-		{
-			GunEnemy* enemy = new GunEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType);
-			mGrid->Add(enemy);
-		}
-			break;
-		case EMissileEnemy:
-			mGrid->Add(new MissileEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType));
-			break;
-		case ERunEnemy:
-			mGrid->Add(new RunEnemy(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy.subType));
-			break;
-		case EGunStockEnemy:
-			mGrid->Add(new GunStock(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f)));
-			break;
-		}
+		mGrid->Add(new Spawner(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy));
 	}
 	// Transport Area
 	mGrid->Add(new TransportArea(D3DXVECTOR3(1979.0f, 358.0f, .0f), 16, 90));

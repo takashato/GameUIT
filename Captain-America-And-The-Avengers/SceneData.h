@@ -27,6 +27,7 @@ struct DataIronBar {
 struct DataEnemy {
 	EnemyType type;
 	int x, y, subType;
+	DataEnemy() {}
 	DataEnemy(EnemyType type, int x, int y, int subType) {
 		this->type = type;
 		this->x = x;

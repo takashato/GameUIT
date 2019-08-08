@@ -5,9 +5,12 @@
 #include "Grid.h"
 
 class Bullet;
+class Spawner;
 
 class Enemy : public Entity
 {
+	friend class Spawner;
+
 public:
 	Enemy();
 	~Enemy();
@@ -24,8 +27,12 @@ public:
 
 	virtual void OnAttacked();
 	virtual void OnDie();
+
+	Spawner* GetSpawner() { return spawner; };
 	
 	void OnSetPosition();
+
+	bool pendingDelete = false;
 
 protected:
 	int mHP = 1;
@@ -33,4 +40,7 @@ protected:
 	float mInvincibleCounter = .0f;
 
 	Animation* mCurrentAni = NULL;
+
+	Spawner* spawner = nullptr;
+
 };
