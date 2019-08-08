@@ -2,7 +2,7 @@
 <Map>
   <Tilemap matrixPath="Resources\\Map\\Matrix_Pittsburgh_Dark_Map.txt" imagePath="Resources\\Map\\Pittsburgh_Dark_Map.png"/>
   <SpawnPoints>
-    <SpawnPoint name="Player" x="22" y="151"/>
+    <SpawnPoint name="Player" x="22" y="150"/>
 	<SpawnPoint name="Extra1" x="568" y="157"/>
 	<SpawnPoint name="Extra2" x="825" y="640"/>
   </SpawnPoints>

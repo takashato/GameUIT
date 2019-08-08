@@ -2,7 +2,7 @@
 <Map>
 	<Tilemap matrixPath="Resources\\Map\\Matrix_map_red-alert.txt" imagePath="Resources\\Map\\map_red-alert.png"/>
 	<SpawnPoints>
-		<SpawnPoint name="Player" x="108" y="146"/>
+		<SpawnPoint name="Player" x="108" y="145"/>
 		<SpawnPoint name="MiniBoss" x="195" y="148"/>
 	</SpawnPoints>
 	<MapObjects>
