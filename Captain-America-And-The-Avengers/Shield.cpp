@@ -370,6 +370,10 @@ bool Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 			{
 				scene->ToggleLight();
 			}
+			if (auto scene = dynamic_cast<PittsburghScene*>(SceneManager::GetInstance().GetScene()))
+			{
+				scene->ToggleLight();
+			}
 		}
 		else if (ce->entity->GetCollidableObjectType() == EDynamite)
 		{
