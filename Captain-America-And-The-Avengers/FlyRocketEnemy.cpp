@@ -55,6 +55,12 @@ void FlyRocketEnemy::Update(float deltaTime, Player* player)
 
 	if (mState == FLYROCKETENEMY_DYING_STATE)
 	{
+		mCounterDie += deltaTime;
+		if (mCounterDie > 0.2f)
+		{
+			SetDirection(GetDirection() == Left ? Right : Left);
+			mCounterDie = 0;
+		}
 		if (spawnPos.y == 755)
 		{
 			AddPositionY(50*deltaTime);
