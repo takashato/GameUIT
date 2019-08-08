@@ -300,6 +300,9 @@
       <Filter>Entities\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Door.cpp" />
+    <ClCompile Include="PlayerElectricShock.cpp">
+      <Filter>Entities\Player\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -559,6 +562,9 @@
     </ClInclude>
     <ClInclude Include="Door.h">
       <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerElectricShock.h">
+      <Filter>Entities\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

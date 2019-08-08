@@ -206,6 +206,7 @@
     <ClCompile Include="PittsburghScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerCling.cpp" />
+    <ClCompile Include="PlayerElectricShock.cpp" />
     <ClCompile Include="PlayerFalling.cpp" />
     <ClCompile Include="PlayerHealth.cpp" />
     <ClCompile Include="PlayerHighJumping.cpp" />
@@ -280,6 +281,7 @@
     <ClInclude Include="GunEnemy.h" />
     <ClInclude Include="GunStock.h" />
     <ClInclude Include="IronBar.h" />
+    <ClInclude Include="PlayerElectricShock.h" />
     <ClInclude Include="RedAlertBullet.h" />
     <ClInclude Include="Spawner.h" />
     <ClInclude Include="Item.h" />

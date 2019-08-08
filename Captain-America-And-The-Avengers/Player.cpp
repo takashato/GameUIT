@@ -33,6 +33,7 @@ void Player::LoadAnimations()
 	mAniSwimming = new Animation(mSprite, mAniScripts->GetRectList("Swimming", "0"), 0.1F);
 	mAniCling = new Animation(mSprite, mAniScripts->GetRectList("Cling", "0"), 0.2F);
 	mAniDiving = new Animation(mSprite, mAniScripts->GetRectList("Diving", "0"), 0.2F);
+	mAniElectricShock = new Animation(mSprite, mAniScripts->GetRectList("ElectricShock", "0"), 0.2F);
 
 	mAniHealth = new Animation(mSprite, mAniScripts->GetRectList("Health", "0"), .1F, false);
 	mAniExitSignal = new Animation(mSprite, mAniScripts->GetRectList("ExitSignal", "0"), .1F, false);
@@ -169,6 +170,7 @@ void Player::SetState(EPlayerState state)
 	case TakeDown:			mState = &mStateTakeDown; break;
 	case Surfing:			mState = &mStateSurfing; break;
 	case Cling:				mState = &mStateCling; break;
+	case ElectricShock:		mState = &mStateElectricShock; break;
 	}
 
 	mState->Enter(*this, mLastState, std::move(exitData));
@@ -196,6 +198,8 @@ Animation* Player::StateToAnimation(EPlayerState state)
 	case EPlayerState::HighShielding:
 		return mAniHighShielding;
 	case EPlayerState::Punching:
+		return mAniPunching;
+	case EPlayerState::ElectricShock:
 		return mAniPunching;
 	case EPlayerState::LowPunching:
 		return mAniLowPunching;
