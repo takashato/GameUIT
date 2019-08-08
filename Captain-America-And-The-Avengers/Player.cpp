@@ -377,7 +377,13 @@ bool Player::CheckAABB(std::set<Entity*> &entities)
 				if (mState->GetState() != EPlayerState::Surfing
 					&& mState->GetState() != EPlayerState::SittingOnShield)
 				{
-					enemy->TakeDamage(this, 1);
+					if (enemy->GetEnemyType() == EGunStockEnemy)
+					{
+						if (((GunStock*)enemy)->GetState() != GUNSTOCK_ROTATING_STATE)
+							((GunStock*)enemy)->BeAttacked();
+					}
+					else
+						enemy->TakeDamage(this, 1);
 					this->TakeDamage(1);
 					if (mState->GetState() == EPlayerState::ElectricShock) return true;
 				}

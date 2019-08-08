@@ -152,6 +152,11 @@ void PlayerHighJumping::OnCollision(Player& player, std::vector<CollisionEvent*>
 				}
 			}
 		}
+		if (ce->entity->GetCollidableObjectType() == EIronBar)
+		{
+			player.SetState(EPlayerState::Cling);
+			player.SetPositionY(ce->entity->GetPosition().y);
+		}
 	}
 	if (collisionWithGroundTop)
 	{
