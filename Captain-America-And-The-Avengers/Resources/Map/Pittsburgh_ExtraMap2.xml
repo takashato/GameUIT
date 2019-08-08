@@ -23,7 +23,7 @@
 		</Grounds>
 		<Capsules>
 			<Capsule x="158" y="49" w="16" h="16">
-				<Item type="HeartEnegy"/>
+				<Item type="HeartEnergy"/>
 				<Item type="FivePointItem"/>
 			</Capsule>
 			<Capsule x="184" y="123" w="16" h="16">
