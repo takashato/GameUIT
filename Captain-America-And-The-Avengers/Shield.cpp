@@ -331,6 +331,11 @@ bool Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 				if(((GunStock*)enemy)->GetState() != GUNSTOCK_ROTATING_STATE)
 					((GunStock*)enemy)->BeAttacked();
 			}
+			else if (enemy->GetCollidableObjectType() == EBatEnemy)
+			{
+				if (((Bat*)enemy)->GetState() != BAT_FLYWITHSHOCK_STATE)
+					((Bat*)enemy)->TakeDamage(this, 2);
+			}
 			else if (enemy->GetEnemyType() == EnemyType::EBossCharleston)
 				enemy->TakeDamage(mPlayer, 1);
 			else

@@ -405,7 +405,14 @@ bool Player::CheckAABB(std::set<Entity*> &entities)
 					if (enemy->GetEnemyType() == EGunStockEnemy)
 					{
 						if (((GunStock*)enemy)->GetState() != GUNSTOCK_ROTATING_STATE)
-							((GunStock*)enemy)->BeAttacked();
+							((GunStock*)enemy)->BeAttacked();						
+					}
+					else if (enemy->GetCollidableObjectType() == EBatEnemy)
+					{
+						if (((Bat*)enemy)->GetState() == BAT_FLYWITHSHOCK_STATE)
+							this->SetState(EPlayerState::ElectricShock);
+						else
+							((Bat*)enemy)->TakeDamage(this, 1);
 					}
 					else
 						enemy->TakeDamage(this, 1);
