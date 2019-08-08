@@ -362,6 +362,7 @@ bool Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 bool Player::CheckAABB(std::set<Entity*> &entities)
 {
 	collideWithMovingGround = false;
+	collideWithDoor = nullptr;
 	auto pbb = GetBoundingBox();
 	for (auto entity : entities)
 	{
@@ -429,6 +430,10 @@ bool Player::CheckAABB(std::set<Entity*> &entities)
 				collideWithMovingGround = true;
 				if (GetVelocityY() > 0.0)
 					SetPositionY(dynamicGround->GetPosition().y - GetHeight() + 5);
+			}
+			else if (auto door = dynamic_cast<Door*>(entity))
+			{
+				collideWithDoor = door;
 			}
 		}
 	}

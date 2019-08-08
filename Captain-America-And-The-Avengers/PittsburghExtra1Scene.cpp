@@ -41,13 +41,21 @@ void PittsburghExtra1Scene::Setup()
 	// Update Camera for the first time
 	mCamera->Update(mPlayer->GetCenterPoint());
 
+	// Door
+	mGrid->Add(new Door(D3DXVECTOR3(52.0f, 145.0f, .0f), "pittsburg"));
+
 	// Load Map Object
+	// Capsule
+	for (DataCapsule dataCapsule : mData.GetDataCapsule())
+	{
+		auto capsule = new Capsule(D3DXVECTOR3(dataCapsule.x, dataCapsule.y, .0f), dataCapsule.itemList);
+		mGrid->Add(capsule);
+	}
 	// Ground
 	for (DataGround dataGround : mData.GetDataGround())
 	{
 		mGrid->Add(new Ground(D3DXVECTOR3(dataGround.x, dataGround.y, .0f), dataGround.type, dataGround.w, dataGround.h));
 	}
-
 }
 
 void PittsburghExtra1Scene::Update(float deltaTime)
@@ -56,6 +64,7 @@ void PittsburghExtra1Scene::Update(float deltaTime)
 	std::vector<CollisionEvent*> cEvent;
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->CalcCollision(&mGrid->mTemp, cEvent);
+	if (!mPlayer->CheckAABB(mGrid->mTemp)) return;
 	mPlayer->OnCollision(cEvent);
 	mPlayer->Update(deltaTime);
 	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity

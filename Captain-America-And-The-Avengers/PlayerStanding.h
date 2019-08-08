@@ -1,5 +1,6 @@
 #pragma once
 #include "PlayerState.h"
+#include "Door.h"
 
 class PlayerStanding : public PlayerState
 {

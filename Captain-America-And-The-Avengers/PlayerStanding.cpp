@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "PlayerStanding.h"
 #include "Ground.h"
+#include "SceneManager.h"
 #include "Player.h"
 
 void PlayerStanding::Enter(Player& player, EPlayerState fromState, Data&& data)
@@ -80,7 +81,25 @@ void PlayerStanding::OnKeyDown(Player& player, BYTE code)
 	}
 	else if (code == VK_UP)
 	{
-		player.SetState(EPlayerState::HighShielding);
+		if (player.collideWithDoor != nullptr)
+		{
+			if (player.collideWithDoor->doorName == "extra1")
+			{
+				SceneManager::GetInstance().ChangeScene(MapID::PittsburghExtra1);
+			}
+			else if (player.collideWithDoor->doorName == "extra2")
+			{
+				SceneManager::GetInstance().ChangeScene(MapID::PittsburghExtra2);
+			}
+			else
+			{
+				SceneManager::GetInstance().ChangeScene(MapID::Pittsburgh);
+			}
+		}
+		else
+		{
+			player.SetState(EPlayerState::HighShielding);
+		}
 	}
 }
 

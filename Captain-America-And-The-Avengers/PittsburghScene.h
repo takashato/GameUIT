@@ -18,6 +18,8 @@
 #include "Capsule.h"
 #include "FlyRocketEnemy.h"
 #include "Bat.h"
+#include "Door.h"
+
 enum TypeExtra
 {
 	Type1,
