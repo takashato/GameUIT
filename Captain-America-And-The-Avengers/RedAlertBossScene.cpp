@@ -26,7 +26,7 @@ void RedAlertBossScene::Setup()
 	mCamera = std::make_unique<Camera>(Game::GetInstance().GetWidth(), Game::GetInstance().GetHeight());
 
 	// Load map
-	mMap = std::make_unique<GameMap>(ID_MAP_CHARLESTON_BOSS_LIGHT, CA2W(mData.GetTilemapImagePath()), CA2W(mData.GetTilemapMatrixPath()));
+	mMap = std::make_unique<GameMap>(ID_MAP_RED_ALERT, CA2W(mData.GetTilemapImagePath()), CA2W(mData.GetTilemapMatrixPath()));
 	mMap->SetCamera(mCamera.get());
 	mCamera->SetWorldBoundary(mMap->GetBoundary());
 

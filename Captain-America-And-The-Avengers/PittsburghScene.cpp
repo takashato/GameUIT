@@ -23,12 +23,12 @@ void PittsburghScene::Setup()
 	mCamera = std::make_unique<Camera>(Game::GetInstance().GetWidth(), Game::GetInstance().GetHeight());
 
 	// Load map
-	mMap = std::make_unique<GameMap>(ID_MAP_CHARLESTON_BOSS_LIGHT, CA2W(mData.GetTilemapImagePath()), CA2W(mData.GetTilemapMatrixPath()));
+	mMap = std::make_unique<GameMap>(ID_MAP_PITTSBURGH_DARK, CA2W(mData.GetTilemapImagePath()), CA2W(mData.GetTilemapMatrixPath()));
 	mMap->SetCamera(mCamera.get());
 	mCamera->SetWorldBoundary(mMap->GetBoundary());
 	//Map Dark
-	mMapDark = std::make_unique<GameMap>(ID_MAP_CHARLESTON_BOSS_DARK, L"Resources\\Map\\Pittsburgh_Light_Map.png", L"Resources\\Map\\Matrix_Pittsburgh_Light_Map.txt");
-	mMapDark->SetCamera(mCamera.get());
+	mMapLight = std::make_unique<GameMap>(ID_MAP_PITTSBURGH_LIGHT, L"Resources\\Map\\Pittsburgh_Light_Map.png", L"Resources\\Map\\Matrix_Pittsburgh_Light_Map.txt");
+	mMapLight->SetCamera(mCamera.get());
 	// Create grid
 	mGrid = std::make_unique<Grid>(mMap->GetWidth(), mMap->GetHeight());
 
@@ -135,9 +135,9 @@ void PittsburghScene::Draw()
 {
 	auto trans = mCamera->GetTransform();
 	if (isLightOn)
-		mMap->Draw(trans);
+		mMapLight->Draw(trans);
 	else
-		mMapDark->Draw(trans);
+		mMap->Draw(trans);
 	mGrid->Draw(trans);
 	mPlayer->Draw(trans);
 	mPlayer->GetShield()->Draw(trans);
