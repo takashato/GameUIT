@@ -34,7 +34,7 @@
   </Animation>
   <Animation name="LowJump" imagePath="Captain America.png" width="400" height="368">
     <Sprites type="0">
-		<sprite x="244" y="15" w="22" h="38" />
+		<sprite x="244" y="15" w="22" h="45" />
     </Sprites>
   </Animation>
   <Animation name="Falling" imagePath="Captain America.png" width="400" height="368">

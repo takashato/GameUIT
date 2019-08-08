@@ -57,17 +57,21 @@ void RedAlertBossScene::Setup()
 void RedAlertBossScene::Update(float deltaTime)
 {
 	mGrid->Update(deltaTime, mCamera->GetBound(), mPlayer.get());
+	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 	std::vector<CollisionEvent*> cEvent;
 	mPlayer->HandleKeyboard(SceneManager::GetInstance().GetKeyboard());
 	mPlayer->CalcCollision(&mGrid->mTemp, cEvent);
-	mPlayer->OnCollision(cEvent);
+	if (!mPlayer->CheckAABB(mGrid->mTemp)) return;
+	if (!mPlayer->OnCollision(cEvent)) return;
 	mPlayer->Update(deltaTime);
 	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 	cEvent.clear();
 	mPlayer->GetShield()->CalcCollision(&mGrid->mTemp, cEvent);
 	mPlayer->GetShield()->OnCollision(cEvent);
+	mPlayer->GetShield()->CheckAABB(mGrid->mTemp);
 	mPlayer->GetShield()->Update(deltaTime);
 	mCamera->Update(mPlayer->GetCenterPoint());
+	mGrid->GetEntities(mCamera->GetBound(), mGrid->mTemp); // Avoid get deleted entity
 }
 
 void RedAlertBossScene::Draw()

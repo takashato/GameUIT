@@ -39,9 +39,11 @@ void PittsburghScene::Setup()
 	mCamera->Update(mPlayer->GetCenterPoint());
 
 	// Load Map Object
-	for (DataEnemy dataEnemy : mData.GetDataEnemy())
+	// Capsule
+	for (DataCapsule dataCapsule : mData.GetDataCapsule())
 	{
-		mGrid->Add(new Spawner(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy));
+		auto capsule = new Capsule(D3DXVECTOR3(dataCapsule.x, dataCapsule.y, .0f), dataCapsule.itemList);
+		mGrid->Add(capsule);
 	}
 	// Ground
 	for (DataGround dataGround : mData.GetDataGround())
@@ -70,18 +72,17 @@ void PittsburghScene::Setup()
 		break;
 		}
 	}
-	// Capsule
-	for (DataCapsule dataCapsule : mData.GetDataCapsule())
-	{
-		auto capsule = new Capsule(D3DXVECTOR3(dataCapsule.x, dataCapsule.y, .0f), dataCapsule.itemList);
-		mGrid->Add(capsule);
-	}
 	// Button
 	mGrid->Add(new LightButton(D3DXVECTOR3(270.0f, 48.0f, .0f)));
 	//IronBar
 	for (DataIronBar dataIronBar : mData.GetDataIronBar())
 	{
 		mGrid->Add(new IronBar(D3DXVECTOR3(dataIronBar.x, dataIronBar.y, .0f), dataIronBar.w, dataIronBar.h));
+	}
+	//Enemy
+	for (DataEnemy dataEnemy : mData.GetDataEnemy())
+	{
+		mGrid->Add(new Spawner(D3DXVECTOR3(dataEnemy.x, dataEnemy.y, .0f), dataEnemy));
 	}
 }
 

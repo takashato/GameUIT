@@ -244,8 +244,7 @@ void Player::ChangeAnimationByState(EPlayerState state)
 		mPosition.x += float(oldWidth - GetWidth()) / 2.0f;
 	}
 
-	if (mState->GetState() != EPlayerState::Jumping
-		&&mState->GetState() != EPlayerState::HighJumping)
+	if (mState->GetState() != EPlayerState::HighJumping)
 		mPosition.y += float(oldHeight - GetHeight()); //Lam giat man hinh => xu li lai camera sau
 }
 
