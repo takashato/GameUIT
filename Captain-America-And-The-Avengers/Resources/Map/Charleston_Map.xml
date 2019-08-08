@@ -2,7 +2,7 @@
 <Map>
 	<Tilemap matrixPath="Resources\\Map\\Chaleston_Map_Matrix.txt" imagePath="Resources\\Map\\Chaleston_Map.png"/>
 	<SpawnPoints>
-		<SpawnPoint name="Player" x="22.0" y="403.0"/>
+		<SpawnPoint name="Player" x="22.0" y="402.0"/>
 		<SpawnPoint name="Player1" x="1700.0" y="403.0"/>
 	</SpawnPoints>
 	<Transports>
@@ -22,9 +22,9 @@
 			<Enemy type="GunEnemy" x="943.0" y="322.0" w="24" h="43" subType="0"/>
 		</Enemies>
 		<Grounds>
-			<Ground type="Normal" name="Ground" x="0" y="448" w="96" h="8"/>
-			<Ground type="Normal" name="Ground" x="160" y="448" w="1216" h="8"/>
-			<Ground type="Normal" name="Ground" x="1440" y="448" w="352" h="8"/>
+			<Ground type="Normal" name="Ground" x="0" y="447" w="96" h="8"/>
+			<Ground type="Normal" name="Ground" x="160" y="447" w="1216" h="8"/>
+			<Ground type="Normal" name="Ground" x="1440" y="447" w="352" h="8"/>
 			<Ground type="Normal" name="Ground" x="48" y="318" w="48" h="8"/>
 			<Ground type="Normal" name="Ground" x="40" y="206" w="216" h="8"/>
 			<Ground type="Normal" name="Ground" x="296" y="206" w="216" h="8"/>

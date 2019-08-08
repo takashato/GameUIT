@@ -231,7 +231,19 @@ void Player::ChangeAnimationByState(EPlayerState state)
 	mCurrentAni = StateToAnimation(state);
 	mCurrentAni->Reset();
 	UpdateSize();
-	mPosition.x += float(mDirection == Right ? 0 : oldWidth - GetWidth());
+
+	if ((state == EPlayerState::Punching
+		|| state == EPlayerState::LowPunching)
+		&& (mLastState == EPlayerState::Punching
+			|| mLastState == EPlayerState::LowPunching))
+	{
+		mPosition.x += float(mDirection == Right ? 0 : oldWidth - GetWidth());
+	}
+	else
+	{
+		mPosition.x += float(oldWidth - GetWidth()) / 2.0f;
+	}
+
 	if (mState->GetState() != EPlayerState::HighJumping)
 		mPosition.y += float(oldHeight - GetHeight()); //Lam giat man hinh => xu li lai camera sau
 }
@@ -407,9 +419,6 @@ bool Player::CheckAABB(std::set<Entity*> &entities)
 						enemy->TakeDamage(this, 3);
 					}
 				}
-			}
-			else if (auto ground = dynamic_cast<Ground*>(entity))
-			{
 			}
 		}
 	}

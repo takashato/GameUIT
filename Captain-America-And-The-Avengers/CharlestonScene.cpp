@@ -37,6 +37,12 @@ void CharlestonScene::Setup()
 	mCamera->Update(mPlayer->GetCenterPoint());
 
 	// Load Map Object
+	// Capsule
+	for (DataCapsule dataCapsule : mData.GetDataCapsule())
+	{
+		auto capsule = new Capsule(D3DXVECTOR3(dataCapsule.x, dataCapsule.y, .0f), dataCapsule.itemList);
+		mGrid->Add(capsule);
+	}
 	// Ground
 	for (DataGround dataGround : mData.GetDataGround())
 	{
@@ -71,8 +77,8 @@ void CharlestonScene::Setup()
 		spawnerList.emplace(spawner);
 	}
 	// Enemy in ambush
-	auto ambushEnemy1 = new Spawner(D3DXVECTOR3(265.0f, 404.f, .0f), DataEnemy(EnemyType::ERunEnemy, 265.0f, 404.0f, 1), .0f);
-	auto ambushEnemy2 = new Spawner(D3DXVECTOR3(528.0f, 404.f, .0f), DataEnemy(EnemyType::EMissileEnemy, 528.0f, 404.0f, 0), .0f);
+	auto ambushEnemy1 = new Spawner(D3DXVECTOR3(265.0f, 404.f, .0f), DataEnemy(EnemyType::ERunEnemy, 265.0f, 401.0f, 1), .0f);
+	auto ambushEnemy2 = new Spawner(D3DXVECTOR3(528.0f, 404.f, .0f), DataEnemy(EnemyType::EMissileEnemy, 528.0f, 401.0f, 0), .0f);
 	ambushEnemy1->SetActivate(false);
 	ambushEnemy2->SetActivate(false);
 	mGrid->Add(ambushEnemy1);
@@ -82,13 +88,6 @@ void CharlestonScene::Setup()
 
 	// Transport Area
 	mGrid->Add(new TransportArea(D3DXVECTOR3(1979.0f, 358.0f, .0f), 16, 90));
-
-	// Capsule
-	for (DataCapsule dataCapsule : mData.GetDataCapsule())
-	{
-		auto capsule = new Capsule(D3DXVECTOR3(dataCapsule.x, dataCapsule.y, .0f), dataCapsule.itemList);
-		mGrid->Add(capsule);
-	}
 }
 
 void CharlestonScene::Update(float deltaTime)
