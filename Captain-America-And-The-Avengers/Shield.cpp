@@ -317,6 +317,8 @@ bool Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 			auto enemy = ((Enemy*)ce->entity);
 			if (enemy->GetEnemyType() == EGunStockEnemy)
 				((GunStock*)enemy)->BeAttacked();
+			else if (enemy->GetEnemyType() == EnemyType::EBossCharleston)
+				enemy->TakeDamage(mPlayer, 1);
 			else
 				enemy->TakeDamage(mPlayer, 2);
 		}

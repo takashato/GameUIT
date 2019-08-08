@@ -41,6 +41,9 @@ public:
 
 	void CheckDirection(Player* player);
 
+	void TakeDamage(Entity* source, int damage = 1);
+	void SetInvincible(bool val);
+
 
 	void ModeOne(float deltaTime, Player* player);//Run and Hit
 	void ModeTwo(float deltaTime, Player* player);//Fly and Shot when fly
@@ -79,6 +82,10 @@ private:
 	int mState = -1;
 
 	float mCounter = 0;
+
+	int mHP = 15;
+	bool mIsInvincible = false;
+	float mInvincibleCounter = .0f;
 
 	D3DXVECTOR3 playerPos;
 };

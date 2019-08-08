@@ -375,7 +375,14 @@ bool Player::CheckAABB(std::set<Entity*> &entities)
 				}
 				else if (mState->GetState() == EPlayerState::Surfing)
 				{
-					enemy->TakeDamage(this, 5);
+					if (enemy->GetEnemyType() == EnemyType::EBossCharleston)
+					{
+						enemy->TakeDamage(this, 2);
+					}
+					else
+					{
+						enemy->TakeDamage(this, 3);
+					}
 				}
 			}
 			else if (auto ground = dynamic_cast<Ground*>(entity))
