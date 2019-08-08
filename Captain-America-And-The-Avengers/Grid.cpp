@@ -92,8 +92,8 @@ void Grid::Update(float deltaTime, RECT rect, Player* player)
 			if (enemy->GetSpawner() != nullptr) enemy->GetSpawner()->OnDelete();
 		}
 		entity->GetGridNode()->Remove(entity);
-		delete entity;
 		mTemp.erase(entity);
+		delete entity;
 	}
 }
 

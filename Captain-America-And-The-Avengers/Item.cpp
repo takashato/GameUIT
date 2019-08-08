@@ -25,9 +25,12 @@ void Item::Update(float deltaTime)
 		this->deltaTime = deltaTime;
 
 		std::vector<CollisionEvent*> cEvent;
-		auto entities = &SceneManager::GetInstance().GetScene()->GetGrid()->mTemp;
+		std::set<Entity*> entities;
+		SceneManager::GetInstance().GetScene()->GetGrid()->GetEntities(
+			SceneManager::GetInstance().GetScene()->GetCamera()->GetBound(),
+			entities);
 		this->CalcCollision(
-			entities,
+			&entities,
 			cEvent);
 		for (CollisionEvent* ce : cEvent)
 		{

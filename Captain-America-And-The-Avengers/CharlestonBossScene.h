@@ -46,4 +46,6 @@ private:
 	virtual void OnKeyDown(BYTE key) override;
 
 	float lightInterval = .0f;
+
+	float transportDelay = .0f;
 };

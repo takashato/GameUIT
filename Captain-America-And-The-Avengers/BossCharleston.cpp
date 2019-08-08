@@ -521,6 +521,7 @@ void BossCharleston::TakeDamage(Entity* source, int damage)
 	}
 	if (mHP <= 0)
 	{
+		SceneManager::GetInstance().GetScene()->mCanTransport = true;
 		SetState(BOSS_CHARLESTON_DYING_STATE);
 	}
 	else
