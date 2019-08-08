@@ -5,6 +5,7 @@
 
 Bat::Bat(D3DXVECTOR3 position, int subTypeID)
 {
+	mHP = 2;
 	mSubTypeID = subTypeID;
 	mDirection = Right;
 	LoadAnimations();
@@ -36,10 +37,18 @@ void Bat::LoadAnimations()
 
 void Bat::Update(float deltaTime, Player* player)
 {
-
-
 	Entity::Update(deltaTime);
 	mCurrentAni->SetFlippedHorizontally(true);
+
+	if (mIsInvincible)
+	{
+		mInvincibleCounter += deltaTime;
+		if (mInvincibleCounter >= 1.0f)
+		{
+			mInvincibleCounter = .0f;
+			mIsInvincible = false;
+		}
+	}
 
 	mCounter += deltaTime;
 	if (mSubTypeID == 0) {
@@ -131,6 +140,7 @@ void Bat::Draw(D3DXVECTOR2 transform)
 {
 	if (mCurrentAni != nullptr && mState != -1)
 	{
+		mCurrentAni->SetBlink(mIsInvincible);
 		mCurrentAni->Draw(GetPosition(), transform);
 		this->RenderBoundingBox(transform);
 	}
@@ -175,8 +185,6 @@ void Bat::OnSetPosition()
 {
 }
 
-
-
 void Bat::CheckDirection(Player* player)
 {
 	if (player->GetPosition().x > mPosition.x + 20 && mDirection == Left)
@@ -189,8 +197,34 @@ void Bat::CheckDirection(Player* player)
 	}
 
 }
+
 EnemyType Bat::GetEnemyType()
 {
 	return EnemyType::EBatEnemy;
 }
 
+void Bat::TakeDamage(Entity* source, int damage)
+{
+	if (mIsInvincible) return;
+	mHP -= damage;
+	if (mHP <= 0)
+	{
+		if (SceneManager::GetInstance().GetScene() != nullptr
+			&& SceneManager::GetInstance().GetScene()->GetGrid() != nullptr)
+		{
+			Explosion* explosion;
+			explosion = new Explosion(this);
+			SceneManager::GetInstance().GetScene()->GetGrid()->Add(explosion);
+		}
+		pendingDelete = true;
+	}
+	else
+	{
+		SetInvincible(true);
+	}
+}
+
+void Bat::SetInvincible(bool val)
+{
+	mIsInvincible = val;
+}

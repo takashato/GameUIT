@@ -11,9 +11,6 @@
 #define BAT_COCOON_SATTE 2
 #define BAT_FLYWITHSHOCK_STATE 3
 
-
-
-
 class Bat : public Enemy
 {
 public:
@@ -33,8 +30,10 @@ public:
 
 	EnemyType GetEnemyType();
 	void CheckDirection(Player* player);
-
-
+	void TakeDamage(Entity* source, int damage = 1);
+	void SetInvincible(bool val);
+	bool mIsInvincible = false;
+	float mInvincibleCounter = .0f;
 
 private:
 	D3DXVECTOR3 mCenter;

@@ -6,7 +6,6 @@
 
 BossCharleston::BossCharleston(D3DXVECTOR3 position)
 {
-	mHP = 20;
 	mDirection = Left;
 	LoadAnimations();
 	SetPosition(position);
@@ -508,6 +507,7 @@ void BossCharleston::CheckDirection(Player* player)
 	}
 
 }
+
 void BossCharleston::TakeDamage(Entity* source, int damage)
 {
 	if (mIsInvincible) return;
