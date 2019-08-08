@@ -30,7 +30,7 @@ void PittsburghExtra1Scene::Setup()
 	mMap->SetCamera(mCamera.get());
 	mCamera->SetWorldBoundary(mMap->GetBoundary());
 	// Map Light
-	mMapLight = std::make_unique<GameMap>(ID_MAP_PITTSBURGH_LIGHT_EXTRA_2, L"Resources\\Map\\pittsburgh_light_extramap1.png", L"Resources\\Map\\Matrix_pittsburgh_light_extramap1.txt");
+	mMapLight = std::make_unique<GameMap>(ID_MAP_PITTSBURGH_LIGHT_EXTRA_1, L"Resources\\Map\\pittsburgh_light_extramap1.png", L"Resources\\Map\\Matrix_pittsburgh_light_extramap1.txt");
 	mMapLight->SetCamera(mCamera.get());
 
 	// Create grid
@@ -86,7 +86,10 @@ void PittsburghExtra1Scene::Update(float deltaTime)
 void PittsburghExtra1Scene::Draw()
 {
 	auto trans = mCamera->GetTransform();
-	mMap->Draw(trans);
+	if (isLightOn)
+		mMapLight->Draw(trans);
+	else
+		mMap->Draw(trans);
 	mGrid->Draw(trans);
 	mPlayer->Draw(trans);
 	mPlayer->GetShield()->Draw(trans);

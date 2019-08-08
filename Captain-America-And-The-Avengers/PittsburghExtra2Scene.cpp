@@ -29,6 +29,9 @@ void PittsburghExtra2Scene::Setup()
 	mMap = std::make_unique<GameMap>(ID_MAP_PITTSBURGH_DARK_EXTRA_2, CA2W(mData.GetTilemapImagePath()), CA2W(mData.GetTilemapMatrixPath()));
 	mMap->SetCamera(mCamera.get());
 	mCamera->SetWorldBoundary(mMap->GetBoundary());
+	//
+	mMapLight = std::make_unique<GameMap>(ID_MAP_PITTSBURGH_LIGHT_EXTRA_2, L"Resources\\Map\\pittsburgh_light_extramap2.png", L"Resources\\Map\\Matrix_pittsburgh_dark_extramap2.txt");
+	mMapLight->SetCamera(mCamera.get());
 
 	// Create grid
 	mGrid = std::make_unique<Grid>(mMap->GetWidth(), mMap->GetHeight());
@@ -79,7 +82,10 @@ void PittsburghExtra2Scene::Update(float deltaTime)
 void PittsburghExtra2Scene::Draw()
 {
 	auto trans = mCamera->GetTransform();
-	mMap->Draw(trans);
+	if (isLightOn)
+		mMapLight->Draw(trans);
+	else
+		mMap->Draw(trans);
 	mGrid->Draw(trans);
 	mPlayer->Draw(trans);
 	mPlayer->GetShield()->Draw(trans);
