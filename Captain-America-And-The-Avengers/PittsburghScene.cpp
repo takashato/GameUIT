@@ -32,7 +32,7 @@ void PittsburghScene::Setup()
 
 	// Create player
 	mPlayer = std::make_unique<Player>();
-	mPlayer->SetPosition(mData.GetSpawnPoint("Extra2"));
+	mPlayer->SetPosition(mData.GetSpawnPoint("Player"));
 	mPlayer->SetShield(new Shield(mPlayer.get()));
 
 	// Update Camera for the first time
