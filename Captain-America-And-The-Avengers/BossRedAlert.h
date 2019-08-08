@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "RedAlertBullet.h"
 #include "Barrel.h"
+#include "Dynamite.h"
 
 #define BOSSREDALERT_IDLE_STATE 0
 #define BOSSREDALERT_TOSS_THE_BARREL_STATE 1
@@ -70,6 +71,10 @@ private:
 	float mCounterBeHit = 0;
 	bool mIsInvincible = false;
 	float mInvincibleCounter = .0f;
+
+	bool thrownDynamite = false;
+
+	Dynamite* dynamite = nullptr;
 
 	D3DXVECTOR3 playerPos;
 };

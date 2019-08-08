@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Game.h"
 #include "Item.h"
+#include "Dynamite.h"
 #include "Grid.h"
 
 Grid::Grid(int totalWidth, int totalHeight)
@@ -84,6 +85,13 @@ void Grid::Update(float deltaTime, RECT rect, Player* player)
 		else if (type == EEnemy)
 		{
 			if (((Enemy*)entity)->pendingDelete)
+			{
+				toDelete.emplace_back(entity);
+			}
+		}
+		else if (type == EDynamite)
+		{
+			if (((Dynamite*)entity)->pendingDelete)
 			{
 				toDelete.emplace_back(entity);
 			}

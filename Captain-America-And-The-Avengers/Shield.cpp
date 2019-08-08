@@ -371,6 +371,17 @@ bool Shield::OnCollision(std::vector<CollisionEvent*>& cEvent)
 				scene->ToggleLight();
 			}
 		}
+		else if (ce->entity->GetCollidableObjectType() == EDynamite)
+		{
+			auto dynamite = (Dynamite*)ce->entity;
+			if (!dynamite->isThrown) {
+				dynamite->boss->TakeDamageBossRedAlertNotCrazy(this);
+				dynamite->pendingDelete = true;
+				SceneManager::GetInstance().GetScene()->GetGrid()->Add(
+					new Explosion(dynamite)
+				);
+			}
+		}
 		delete ce;
 	}
 	return true;
