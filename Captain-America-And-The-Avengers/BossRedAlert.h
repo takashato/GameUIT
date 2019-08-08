@@ -8,7 +8,8 @@
 
 #define BOSSREDALERT_IDLE_STATE 0
 #define BOSSREDALERT_TOSS_THE_BARREL_STATE 1
-
+#define BOSSREDALERT_RUNNING_STATE 2
+#define BOSSREDALERT_GUN_STATE 3
 
 
 
@@ -34,7 +35,8 @@ public:
 
 	void CheckDirection(Player* player);
 
-
+	//
+	int mCountGun = 0;
 
 private:
 	D3DXVECTOR3 mCenter;
@@ -45,6 +47,9 @@ private:
 
 	Animation* mAniIdle = NULL;
 	Animation* mAniTossTheBarrel = NULL;
+	Animation* mAniRunning = NULL;
+	Animation* mAniGun = NULL;
+
 	int mState = -1;
 
 	float mCounter = 0;

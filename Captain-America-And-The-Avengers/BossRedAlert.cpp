@@ -26,7 +26,9 @@ void BossRedAlert::LoadAnimations()
 	mAniScripts = new AnimationScript("Resources\\Sprites\\Enemies\\BossRedAlert.xml");
 
 	mAniIdle = new Animation(mSprite, mAniScripts->GetRectList("Idle", "0"), 0.1F);
-	mAniTossTheBarrel = new Animation(mSprite, mAniScripts->GetRectList("TossTheBarrel", "0"), 1.F,false);
+	mAniTossTheBarrel = new Animation(mSprite, mAniScripts->GetRectList("TossTheBarrel", "0"), 1.F, false);
+	mAniGun = new Animation(mSprite, mAniScripts->GetRectList("Gun", "0"), 0.2F, false);
+	mAniRunning = new Animation(mSprite, mAniScripts->GetRectList("Running", "0"), 0.1F);
 
 	mCurrentAni = mAniIdle;
 }
@@ -36,11 +38,11 @@ void BossRedAlert::Update(float deltaTime, Player* player)
 
 
 	Entity::Update(deltaTime);
-	mCurrentAni->SetFlippedHorizontally(mDirection==Right);
+	mCurrentAni->SetFlippedHorizontally(mDirection == Right);
 	if (mState == BOSSREDALERT_IDLE_STATE)
 	{
 		CheckDirection(player);
-		if (mCounter > 0.9f)
+		if (mCounter > 0.5f)
 		{
 			SetState(BOSSREDALERT_TOSS_THE_BARREL_STATE);
 			mCounter = 0;
@@ -48,15 +50,66 @@ void BossRedAlert::Update(float deltaTime, Player* player)
 	}
 	if (mState == BOSSREDALERT_TOSS_THE_BARREL_STATE)
 	{
-		if (mCounter>3.f)//Neu thung thung no roi
+		if (mCurrentAni->IsDoneCycle())//Neu thung thung no roi
 		{
 			mCurrentAni->Reset();
-			SetState(BOSSREDALERT_IDLE_STATE);
+			SetState(BOSSREDALERT_GUN_STATE);
 			mCounter = 0;
 		}
 	}
+	if (mState == BOSSREDALERT_GUN_STATE)
+	{
+		if (mCurrentAni->IsDoneCycle())
+		{
+			mCountGun++;
+			mCurrentAni->Reset();
+			if (mCountGun == 2)
+			{
+				mCountGun = 0;
+				SetState(BOSSREDALERT_RUNNING_STATE);
+				mCounter = 0;
+			}
+			else
+			{
+				SetState(BOSSREDALERT_GUN_STATE);
+				mCounter = 0;
+			}
+		}
+	}
+	if (mState == BOSSREDALERT_RUNNING_STATE)
+	{
+		if (mDirection == EntityDirection::Left)
+		{
+			if (mVelocityX > -60)
+			{
+				AddVelocityX(-20);
+				if (mVelocityX < -60)
+					SetVelocityX(-60);
+			}
+		}
+		else
+		{
+			if (mVelocityX < 60)
+			{
+				AddVelocityX(20);
+				if (mVelocityX > 60)
+					SetVelocityX(60);
+			}
+		}
+	}
+	if (mPosition.x < 14.f)
+	{
+		mPosition.x = 14;
+		mDirection = Right;
+	}
+	if (mPosition.x > 213.f)
+	{
+		mPosition.x = 213;
+		mDirection = Left;
+	}
+
 	mCounter += deltaTime;
-	
+
 	mCurrentAni->Update(deltaTime);
 }
 
@@ -90,10 +143,21 @@ void BossRedAlert::ChangeAnimationByState(int state)
 	switch (state)
 	{
 	case BOSSREDALERT_IDLE_STATE:
+		SetVelocityX(0.f);
+		SetVelocityY(0.f);
 		mCurrentAni = mAniIdle;
 		break;
 	case BOSSREDALERT_TOSS_THE_BARREL_STATE:
+		SetVelocityX(0.f);
+		SetVelocityY(0.f);
 		mCurrentAni = mAniTossTheBarrel;
+		break;
+	case BOSSREDALERT_GUN_STATE:
+		mCurrentAni = mAniGun;
+		break;
+	case BOSSREDALERT_RUNNING_STATE:
+		mCurrentAni = mAniRunning;
+		break;
 	}
 }
 
