@@ -317,6 +317,16 @@ bool Player::OnCollision(std::vector<CollisionEvent*>& cEvent)
 				SceneManager::GetInstance().GetScene()->GetGrid()->Add(new Explosion(bullet));
 				bullet->SetState(1);
 			}
+			else if (bullet->GetBulletType() == BulletType::BRedAlertBullet)
+			{
+				this->TakeDamage(3);
+				bullet->SetState(1);
+			}
+			else if (bullet->GetBulletType() == BulletType::BBarrel)
+			{
+				this->TakeDamage(3);
+				bullet->SetState(1);
+			}
 		}
 		else if (cEvent[i]->entity->GetCollidableObjectType() == ETransportArea && canTransport)
 		{

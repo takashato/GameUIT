@@ -5,6 +5,7 @@
 #include "PlayerStandingState.h" 
 #include "AnimationScript.h"
 #include "Camera.h"
+#include "RedAlertBullet.h"
 
 #define BOSSREDALERT_IDLE_STATE 0
 #define BOSSREDALERT_TOSS_THE_BARREL_STATE 1
@@ -32,7 +33,8 @@ public:
 
 	void OnSetPosition();
 
-
+	void TakeDamage(Entity* source, int damage = 1);
+	void SetInvincible(bool val);
 
 	void CheckDirection(Player* player);
 
@@ -40,7 +42,7 @@ public:
 	int mCountGun = 0;
 
 private:
-	int mHP = 12;
+	int mHP = 20;
 	D3DXVECTOR3 mCenter;
 	bool isDown = true;
 	int amplitudeA = 63, amplitudeB = 23;
@@ -56,5 +58,10 @@ private:
 	int mState = -1;
 
 	float mCounter = 0;
+	float mCounterBeHit = 0;
+	bool mIsInvincible = false;
+	float mInvincibleCounter = .0f;
+
+	D3DXVECTOR3 playerPos;
 };
 
