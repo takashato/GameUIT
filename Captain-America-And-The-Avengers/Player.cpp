@@ -69,6 +69,7 @@ void Player::Update(float deltaTime)
 		&& mState->GetState() != EPlayerState::LowPunching
 		&& mState->GetState() != EPlayerState::Punching
 		&& mState->GetState() != EPlayerState::Swimming
+		&& mState->GetState() != EPlayerState::Cling
 		//&& mState->GetState() != EPlayerState::TakeDown
 		&& mState->GetState() != EPlayerState::Surfing
 		) // vY not affect when standing
@@ -165,6 +166,7 @@ void Player::SetState(EPlayerState state)
 	case EPlayerState::TakeDamage: mState = &mStateTakeDamage; break;
 	case TakeDown:			mState = &mStateTakeDown; break;
 	case Surfing:			mState = &mStateSurfing; break;
+	case Cling:				mState = &mStateCling; break;
 	}
 
 	mState->Enter(*this, mLastState, std::move(exitData));

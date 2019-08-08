@@ -286,9 +286,12 @@
     </ClCompile>
     <ClCompile Include="BigMissile.cpp">
       <Filter>Entities\Bullet</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="IronBar.cpp">
       <Filter>Entities\Statics</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCling.cpp">
+      <Filter>Entities\Player\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -534,9 +537,12 @@
     </ClInclude>
     <ClInclude Include="BigMissile.h">
       <Filter>Entities\Bullet</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="IronBar.h">
       <Filter>Entities\Statics</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCling.h">
+      <Filter>Entities\Player\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -204,6 +204,7 @@
     <ClCompile Include="PittsburghExtra2Scene.cpp" />
     <ClCompile Include="PittsburghScene.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerCling.cpp" />
     <ClCompile Include="PlayerFalling.cpp" />
     <ClCompile Include="PlayerHealth.cpp" />
     <ClCompile Include="PlayerHighJumping.cpp" />
@@ -287,6 +288,7 @@
     <ClInclude Include="PittsburghExtra2Scene.h" />
     <ClInclude Include="PittsburghScene.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerCling.h" />
     <ClInclude Include="PlayerFalling.h" />
     <ClInclude Include="PlayerHealth.h" />
     <ClInclude Include="PlayerHighJumping.h" />

@@ -18,6 +18,7 @@
 #include "PlayerKicking.h"
 #include "PlayerTakeDamage.h"
 #include "PlayerTakeDown.h"
+#include "PlayerCling.h"
 #include "PlayerHealth.h"
 #include "ExitSignal.h"
 #include "PlayerSurfing.h"
@@ -112,6 +113,7 @@ private:
 	friend class PlayerTakeDamage;		PlayerTakeDamage mStateTakeDamage;
 	friend class PlayerTakeDown;		PlayerTakeDown mStateTakeDown;
 	friend class PlayerSurfing;			PlayerSurfing mStateSurfing;
+	friend class PlayerCling;			PlayerCling mStateCling;
 
 	EPlayerState mLastState;
 
